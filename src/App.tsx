@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import 'normalize.css';
 
-// import './App.scss';
 import { Routes } from './routes';
 
 const App: React.FC = () => (

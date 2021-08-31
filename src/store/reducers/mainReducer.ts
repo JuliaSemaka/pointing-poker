@@ -5,8 +5,8 @@ const mainState: IMainState = {
 }
 
 export const mainReducer = (state = mainState, action: IAction): IMainState => {
-    switch(action.type) {
-        default:
-            return state;
-    }
+  switch(action.type) {
+    default:
+      return state;
+  }
 };
