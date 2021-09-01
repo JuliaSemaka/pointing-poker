@@ -13,6 +13,7 @@
     "@types/react-redux": "^7.1.18",
     "@types/react-router-dom": "^5.1.8",
     "@types/react-transition-group": "^4.4.2",
+    "@types/redux-form": "^8.3.2",
     "antd": "^4.16.13",
     "normalize.css": "^8.0.1",
     "react": "^17.0.2",
@@ -22,6 +23,7 @@
     "react-scripts": "4.0.3",
     "react-transition-group": "^4.4.2",
     "redux": "^4.1.1",
+    "redux-form": "^8.3.7",
     "redux-thunk": "^2.3.0",
     "typescript": "^4.4.2",
     "web-vitals": "^1.1.2"
@@ -30,7 +32,6 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "precommit": "lint-staged",
     "lint": "eslint src --fix",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
@@ -41,6 +42,14 @@
       "react-app/jest"
     ],
     "overrides": [
+      {
+        "files": [
+          "**/*.stories.*"
+        ],
+        "rules": {
+          "import/no-anonymous-default-export": "off"
+        }
+      },
       {
         "files": [
           "**/*.stories.*"
