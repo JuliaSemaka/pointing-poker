@@ -5,7 +5,6 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { Footer, Header } from '../components';
 import { Start, Game, Lobby, Settings, ErrorPage } from '../pages';
 
-// Routes
 export const Routes: React.FC = () => {
   const location = useLocation();
 
