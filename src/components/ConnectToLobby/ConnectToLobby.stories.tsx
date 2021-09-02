@@ -12,4 +12,5 @@ const Template: ComponentStory<typeof ConnectToLobby> = (args) => <ConnectToLobb
 export const Empty = Template.bind({});
 Empty.args = {
   label: 'Connect To Lobby',
+  name: 'Name'
 };
