@@ -11,5 +11,11 @@ const Template: ComponentStory<typeof MainPage> = (args) => <MainPage {...args} 
 
 export const Empty = Template.bind({});
 Empty.args = {
-  title: "Main page"
+  url: ""
 };
+
+export const FillLobby = Template.bind({});
+FillLobby.args = {
+  url: "test.ru/lobby/connect&id=test_id_123"
+};
+

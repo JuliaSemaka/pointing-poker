@@ -4,14 +4,14 @@ import logo from './PokerPlanningTitle.png'
 import './MainPage.css';
 
 interface MainPage {
-  title: string,
+  url: string,
 }
 
 const { Header, Footer, Sider, Content } = Layout;
 const { Title, Text } = Typography;
 
 export const MainPage: React.FC<MainPage> = ({ ...props }: MainPage) => {
-  const { title } = props;
+  const { url } = props;
   return (
     <>
       <Layout>
@@ -59,7 +59,7 @@ export const MainPage: React.FC<MainPage> = ({ ...props }: MainPage) => {
                       name="lobbyUrl"
                       rules={[{ required: true, message: 'Please input your lobby URL!' }]}
                     >
-                      <Input className="main-lobby-url" />
+                      <Input className="main-lobby-url" defaultValue={url} placeholder="Input lobby URL" />
                     </Form.Item>
                   </Col>
                   <Col span={14}>
