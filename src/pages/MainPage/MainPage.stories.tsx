@@ -14,8 +14,13 @@ Empty.args = {
   url: ""
 };
 
-export const FillLobby = Template.bind({});
-FillLobby.args = {
+export const FillLobbyWrongUrl = Template.bind({});
+FillLobbyWrongUrl.args = {
   url: "test.ru/lobby/connect&id=test_id_123"
+};
+
+export const FillLobbyRightUrl = Template.bind({});
+FillLobbyRightUrl.args = {
+  url: "https://ant.design/components/space/"
 };
 

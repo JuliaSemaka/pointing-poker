@@ -1,5 +1,5 @@
 import React from 'react'
-import { Image, Layout, Typography, Row, Col, Button, Form, Input } from 'antd';
+import { Image, Layout, Typography, Row, Col, Button, Form, Input, Space } from 'antd';
 import logo from './PokerPlanningTitle.png'
 import './MainPage.css';
 
@@ -7,23 +7,23 @@ interface MainPage {
   url: string,
 }
 
-const { Header, Footer, Sider, Content } = Layout;
-const { Title, Text } = Typography;
+const { Header, Footer, Content } = Layout;
+const { Text } = Typography;
 
 export const MainPage: React.FC<MainPage> = ({ ...props }: MainPage) => {
   const { url } = props;
   return (
-    <>
-      <Layout>
-        <Header>Header</Header>
-        <Content className="main-container">
-          <Row>
-            <Col span={16} offset={4} className="main-logo-image" >
-              <Image src={logo} preview={false} />
-            </Col>
-          </Row>
-          <Row>
-            <Col span={16} offset={4}>
+    <Layout>
+      <Header>Header</Header>
+      <Content className="main-container">
+        <Row>
+          <Col span={16} offset={4} className="main-logo-image" >
+            <Image src={logo} preview={false} />
+          </Col>
+        </Row>
+        <Row>
+          <Col span={16} offset={4}>
+            <Space direction="vertical" size={50}>
               <Row>
                 <Col>
                   <Text className="main-text">Start your planning:</Text>
@@ -50,16 +50,27 @@ export const MainPage: React.FC<MainPage> = ({ ...props }: MainPage) => {
               </Row>
               <Form
                 name="basic"
-                initialValues={{ remember: true }}
                 autoComplete="off"
+                initialValues={{
+                  ["lobbyUrl"]: url,
+                  remember: true
+                }}
               >
                 <Row>
                   <Col span={10}>
                     <Form.Item
                       name="lobbyUrl"
-                      rules={[{ required: true, message: 'Please input your lobby URL!' }]}
+                      rules={[
+                        {
+                          required: true,
+                          message: 'Please type your lobby URL!'
+                        },
+                        {
+                          type: "url",
+                          message: "This field must be a valid url.",
+                        }]}
                     >
-                      <Input className="main-lobby-url" defaultValue={url} placeholder="Input lobby URL" />
+                      <Input className="main-lobby-url" placeholder="Type lobby URL" />
                     </Form.Item>
                   </Col>
                   <Col span={14}>
@@ -71,12 +82,12 @@ export const MainPage: React.FC<MainPage> = ({ ...props }: MainPage) => {
                   </Col>
                 </Row>
               </Form>
-            </Col>
-          </Row>
-        </Content>
-        <Footer>Footer</Footer>
-      </Layout>
-    </>
+            </Space>
+          </Col>
+        </Row>
+      </Content>
+      <Footer>Footer</Footer>
+    </Layout>
   )
 }
 
