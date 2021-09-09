@@ -12,8 +12,7 @@ export const Header: React.FC = () => {
         <div className="header-logo">
           <img src={logo} alt="logo" />
         </div>
-        <div className="header-second-line">
-        </div>
+        <div className="header-second-line" />
       </div>
     </Layout>
   )
