@@ -9,6 +9,7 @@ interface Props {
   error?: string,
   id: string
 }
+type ValidationFunc<T> = (value: T) => void | string
 const { Text } = Typography;
 
 const validate = (values: { id: string }) => {
@@ -20,19 +21,23 @@ const validate = (values: { id: string }) => {
   }
   return errors
 }
+const isValid: void = undefined
+export const isRequired: ValidationFunc<any> = value => (value ? isValid : 'Required')
 
-
-const renderField = ({ input, label, type, meta: { touched, error }, ...other }: any) => (
+const renderField = ({ input, placeholder, type, meta: { touched, error }, ...other }: any) => (
   <>
-      <input {...input} {...other} placeholder={label} type={type} />
-      <Button htmlType="submit" className="main-button">
-        <Text className="main-button-text">Connect</Text>
-      </Button>
+    <input {...input} {...other} placeholder={placeholder} type={type} />
+    <Button htmlType="submit" className="main-button" disabled={!touched}>
+      <Text className="main-button-text">Connect</Text>
+    </Button>
     {touched && (error && <span><Text className="main-form-error">{error}</Text></span>)}
   </>
 )
-
-const MainForm = ({ id, error }: any): JSX.Element => {
+const handleSubmit = (event: any) => {
+  event.preventDefault();
+  console.log('Form send')
+}
+const MainForm:React.FC = ({ id, error }: any): JSX.Element => {
   return (
     <div className="main-page-wrapper">
       <div className="main-container">
@@ -50,13 +55,15 @@ const MainForm = ({ id, error }: any): JSX.Element => {
           </div>
           <Text className="main-text">OR:</Text>
           <Text className="main-subtext">Connect to lobby by ID:</Text>
-          <form onSubmit={() => console.log(test)} className="main-connect-to-lobby">
-            <Field 
-            name="id" 
-            type="number" 
-            component={renderField} 
-            className="main-lobby-url"
-            placeholder="Type lobby ID" />
+          <form onSubmit={handleSubmit} className="main-connect-to-lobby">
+            <Field
+              name="name1"
+              type="string"
+              component={renderField}
+              className="main-lobby-url"
+              placeholder="Type lobby ID"
+              validate={[isRequired]}
+            />
           </form>
         </div>
       </div>
@@ -64,5 +71,5 @@ const MainForm = ({ id, error }: any): JSX.Element => {
   )
 }
 
-export const MainPage = reduxForm({ form: 'connectToLobby' })(MainForm)
+export const MainPage = reduxForm({ form: 'connectToLobby'})(MainForm)
 export default MainPage

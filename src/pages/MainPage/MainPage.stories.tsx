@@ -17,29 +17,35 @@ const reducerWithFormError = combineReducers({
 
 const props = {
   onSubmit: action('onSubmit'),
-  id: '',
-  error: {}
+  initialValues: {
+    name1: ''
+  }
 }
-
+const props2 = {
+  onSubmit: action('onSubmit'),
+  initialValues: {
+    name1: '12211234'
+  }
+}
 storiesOf('Pages/Main page', module)
   .addDecorator(story => <MemoryRouter>{story()}</MemoryRouter>)
   .add('Main page unauthorized - Empty', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <MainPage  />
+        <MainPage {...props} />
       </Provider>
     </>
   ))
   .add('Main page unauthorized - Right Id', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <MainPage />
+        <MainPage {...props2} />
       </Provider>
     </>
   ))
   .add('Main page unauthorized - Wrong Id', () => (
     <>
-      <Provider store={createStore(reducerWithFormError)}>
+      <Provider store={createStore(reducer)}>
         <MainPage />
       </Provider>
     </>
