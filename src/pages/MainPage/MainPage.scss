@@ -1,15 +1,12 @@
-.main-container {
+.main-page-wrapper {
   display: flex;
   flex-direction: column;
-  /* align-items: center;
-  justify-content: center; */
+  align-items: center;
+  justify-content: center;
 }
-.main-text {
-  font-style: normal;
-  font-weight: bold;
-  font-size: 48px;
-  line-height: 56px;
-  color: #66999b;
+
+.main-container {
+  max-width: 1000px;
 }
 
 .main-logo-image {
@@ -18,6 +15,31 @@
   align-items: center;
   padding-top: 5rem;
   padding-bottom: 2.5rem;
+}
+
+.main-page-start {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+
+.main-create-session {
+  display: flex;
+  flex-direction: row;
+}
+
+.main-connect-to-lobby {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.main-text {
+  font-style: normal;
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+  color: #66999b;
 }
 
 .main-lobby-url {
@@ -52,6 +74,9 @@
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.main-form-error {
+  color: red;
+}
 .main-subtext {
   font-style: normal;
   font-weight: 300;

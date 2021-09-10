@@ -1,26 +1,47 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { MainPage } from './MainPage';
+import { storiesOf } from '@storybook/react'
+import { action } from '@storybook/addon-actions'
+import { createStore, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import formReducer from 'redux-form/lib/reducer'
+import { MemoryRouter } from 'react-router-dom'
 
-export default {
-  title: 'Main Page',
-  component: MainPage,
-} as ComponentMeta<typeof MainPage>;
+import MainPage from './MainPage';
 
-const Template: ComponentStory<typeof MainPage> = (args) => <MainPage {...args} />;
+const reducer = combineReducers({ form: formReducer })
 
-export const Empty = Template.bind({});
-Empty.args = {
-  url: ""
-};
+const reducerWithFormError = combineReducers({
+  form: () => ({ lobbyId: { error: 'Error message' } }),
+})
 
-export const FillLobbyWrongUrl = Template.bind({});
-FillLobbyWrongUrl.args = {
-  url: "test.ru/lobby/connect&id=test_id_123"
-};
+const props = {
+  onSubmit: action('onSubmit'),
+  id: '',
+  error: {}
+}
 
-export const FillLobbyRightUrl = Template.bind({});
-FillLobbyRightUrl.args = {
-  url: "https://ant.design/components/space/"
-};
+storiesOf('Pages/Main page', module)
+  .addDecorator(story => <MemoryRouter>{story()}</MemoryRouter>)
+  .add('Main page unauthorized - Empty', () => (
+    <>
+      <Provider store={createStore(reducer)}>
+        <MainPage  />
+      </Provider>
+    </>
+  ))
+  .add('Main page unauthorized - Right Id', () => (
+    <>
+      <Provider store={createStore(reducer)}>
+        <MainPage />
+      </Provider>
+    </>
+  ))
+  .add('Main page unauthorized - Wrong Id', () => (
+    <>
+      <Provider store={createStore(reducerWithFormError)}>
+        <MainPage />
+      </Provider>
+    </>
+  ))
 
