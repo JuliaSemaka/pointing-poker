@@ -1,8 +1,9 @@
-import { Input, Typography, Form, Switch, Button, Avatar, Upload, Row, Col } from 'antd'
+import { Input, Typography, Form, Switch, Button, Avatar, Upload } from 'antd'
 import { DownloadOutlined } from '@ant-design/icons'
 import React from 'react'
 
-import './ConnectToLobby.css'
+import './ConnectToLobby.scss'
+import { Field, reduxForm } from 'redux-form'
 
 interface ConnectToLobbyProps {
   label: string,
@@ -24,15 +25,26 @@ const formItemLayout = {
     lg: { span: 16 },
   },
 };
+const renderToggleInput = (field: any) => (
+  <Switch checked={field.input.value} onChange={field.input.onChange} icons={false} />
+);
 
-export const ConnectToLobby: React.FC<ConnectToLobbyProps> = ({ ...props }: ConnectToLobbyProps) => {
+const ConnectToLobbyForm = ({ ...props }: any) => {
   const { label, name, lastName, jobPosition, defaultNameForImage } = props;
   return (
-    <>
+    <div className="modal-connect-to-lobby">
       <Typography.Title level={3}>
         {label}
       </Typography.Title>
 
+      <Field
+        name="switch"
+        id="switch"
+        component={renderToggleInput}
+      />
+      
+
+      {/* 
       <Form {...formItemLayout} name="nest-messages" validateMessages={validateMessages} layout={'vertical'} >
         <Form.Item name="switch" label="Connect as Observer" valuePropName="checked">
           <Switch />
@@ -46,7 +58,7 @@ export const ConnectToLobby: React.FC<ConnectToLobbyProps> = ({ ...props }: Conn
         <Form.Item name={['user', 'jobPosition']} label="Your job position">
           <Input defaultValue={jobPosition} placeholder="Input your job position" />
         </Form.Item>
-        <Row className="form-avatar">
+        <div className="form-avatar">
           <Avatar size={64} style={{ color: '#f56a00', backgroundColor: '#fde3cf' }}>{defaultNameForImage}</Avatar>
 
           <Form.Item
@@ -60,10 +72,10 @@ export const ConnectToLobby: React.FC<ConnectToLobbyProps> = ({ ...props }: Conn
               </Button>
             </Upload>
           </Form.Item>
-        </Row>
+        </div>
 
         <Form.Item >
-          <Row className="form-buttons">
+          <div className="form-buttons">
             <Button type="primary" htmlType="submit">
               <Typography.Text>Confirm</Typography.Text>
             </Button>
@@ -71,11 +83,11 @@ export const ConnectToLobby: React.FC<ConnectToLobbyProps> = ({ ...props }: Conn
             <Button>
               <Typography.Text>Cancel</Typography.Text>
             </Button>
-          </Row>
+          </div>
         </Form.Item>
-      </Form>
-    </>
+      </Form> */}
+    </div>
   )
 }
-
+export const ConnectToLobby = reduxForm({ form: 'otpEmail' })(ConnectToLobbyForm)
 export default ConnectToLobby
