@@ -1,5 +1,4 @@
 import React from 'react'
-import { Image, Typography, Button } from 'antd';
 import { Field, reduxForm } from 'redux-form'
 import type { FormProps } from 'redux-form'
 import logo from './PokerPlanningTitle.png'
@@ -10,7 +9,6 @@ interface Props {
   id: string
 }
 type ValidationFunc<T> = (value: T) => void | string
-const { Text } = Typography;
 
 const validate = (values: { id: string }) => {
   const errors = { id: '' }
@@ -27,10 +25,10 @@ export const isRequired: ValidationFunc<any> = value => (value ? isValid : 'Requ
 const renderField = ({ input, placeholder, type, meta: { touched, error }, ...other }: any) => (
   <>
     <input {...input} {...other} placeholder={placeholder} type={type} />
-    <Button htmlType="submit" className="main-button" disabled={!touched}>
-      <Text className="main-button-text">Connect</Text>
-    </Button>
-    {touched && (error && <span><Text className="main-form-error">{error}</Text></span>)}
+    <button type="submit" className="main-button" disabled={!touched}>
+      Connect
+    </button>
+    {touched && (error && <span>{error}</span>)}
   </>
 )
 const handleSubmit = (event: any) => {
@@ -42,19 +40,19 @@ const MainForm:React.FC = ({ id, error }: any): JSX.Element => {
     <div className="main-page-wrapper">
       <div className="main-container">
         <div className="main-logo-image">
-          <Image src={logo} preview={false} />
+          <img src={logo} />
         </div>
 
         <div className="main-page-start">
-          <Text className="main-text">Start your planning:</Text>
+          Start your planning:
           <div className="main-create-session">
-            <Text className="main-subtext">Create session:</Text>
-            <Button className="main-button">
-              <Text className="main-button-text">Start new game</Text>
-            </Button>
+            Create session:
+            <button className="main-button">
+              Start new game
+            </button>
           </div>
-          <Text className="main-text">OR:</Text>
-          <Text className="main-subtext">Connect to lobby by ID:</Text>
+          OR:
+          Connect to lobby by ID:
           <form onSubmit={handleSubmit} className="main-connect-to-lobby">
             <Field
               name="name1"
