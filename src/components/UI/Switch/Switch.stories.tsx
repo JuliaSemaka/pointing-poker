@@ -15,7 +15,7 @@ export const ToggleOff = Template.bind({});
 ToggleOff.args = {
   check: false,
   label: 'Switcher:',
-  handleClick: action('onChange'),
+  // handleClick: () => console.log('click'),
 };
 
 export const ToggleOn = Template.bind({});
