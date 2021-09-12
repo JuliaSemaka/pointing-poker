@@ -5,9 +5,9 @@ import Switch from './Switch'
 test('show switchers label', () => {
   const label = 'Test Message'
   const check = true;
-  const handleClick = () => console.log(true);
+  const handleClick = () => { return true };
   const { getByText } = render(
-    <Switch check={check} label={label} handleClick={handleClick} />,
+    <Switch isChecked={check} label={label} handleClick={handleClick} />,
   )
 
   expect(getByText(label)).toBeInTheDocument()
