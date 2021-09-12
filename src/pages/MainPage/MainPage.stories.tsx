@@ -1,5 +1,4 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { createStore, combineReducers } from 'redux'
@@ -10,10 +9,6 @@ import { MemoryRouter } from 'react-router-dom'
 import MainPage from './MainPage';
 
 const reducer = combineReducers({ form: formReducer })
-
-const reducerWithFormError = combineReducers({
-  form: () => ({ lobbyId: { error: 'Error message' } }),
-})
 
 const props = {
   onSubmit: action('onSubmit'),
