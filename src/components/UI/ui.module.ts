@@ -11,7 +11,7 @@ export interface IButton {
 }
 
 export enum EInputType {
-  widthButton = 'with-button',
+  withButton = 'with-button',
   middle = 'middle',
   big = 'big',
 }

@@ -3,15 +3,11 @@ import { EInputType, IInput } from '../ui.module';
 
 import './Input.scss';
 
-export const Input: React.FC<IInput> = ({
-  value,
-  сhangeInput,
-  type,
-}) => (
+export const Input: React.FC<IInput> = ({ value, сhangeInput, type }) => (
   <input
     type="text"
     className={`text text-bold input input-${type}`}
-    disabled={type === EInputType.widthButton ? true : false}
+    disabled={type === EInputType.withButton ? true : false}
     onChange={сhangeInput}
     value={value}
   />

@@ -33,5 +33,5 @@ MiddleInput.args = {
 export const WidthButtonInput = Template.bind({});
 WidthButtonInput.args = {
   value: 'Julia',
-  type: EInputType.widthButton,
+  type: EInputType.withButton,
 };
