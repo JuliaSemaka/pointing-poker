@@ -6,19 +6,30 @@ export enum EButtonStyle {
 export interface IButton {
   text: string;
   isClick: () => void;
-  style: EButtonStyle;
-  isDisabled: boolean;
+  style?: EButtonStyle;
+  isDisabled?: boolean;
 }
 
-export enum EInputType {
+export enum ERenderFieldType {
   withButton = 'with-button',
   middle = 'middle',
   big = 'big',
 }
 
-export interface IInput {
-  value: string;
-  сhangeInput: (value: string) => void;
-  type: EInputType;
-  validateText: string | null;
+export enum EType {
+  text = 'text',
+  file = 'file',
+}
+
+export interface IMeta {
+  touched?: any;
+  error?: any;
+}
+
+export interface IRenderField {
+  input?: any;
+  meta: IMeta;
+  type?: EType;
+  style?: ERenderFieldType;
+  disabled?: boolean;
 }
