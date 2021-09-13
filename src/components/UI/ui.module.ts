@@ -20,5 +20,4 @@ export interface IInput {
   value: string;
   isChange: () => void;
   type: EInputType;
-  isDisabled: boolean;
 }
