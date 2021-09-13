@@ -1,19 +1,14 @@
-import React, { useState } from 'react'
+import React from 'react'
 import './Switch.scss';
 
 interface SwitchProps {
-  check: boolean,
+  isChecked: boolean,
   label: string,
-  // handleClick: React.ChangeEventHandler<HTMLInputElement>
+  handleClick: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-const Switch = ({ ...props }: SwitchProps) => {
-  const { check, label } = props;
-  const [isCheck, setIsCheck] = useState(check);
-
-  const handleClick = () => {
-    setIsCheck(!isCheck);
-  }
+const Switch = ({ ...props }: SwitchProps):JSX.Element => {
+  const { isChecked, label, handleClick  } = props;
 
   return (
     <div className="switch-wrapper">
@@ -21,7 +16,7 @@ const Switch = ({ ...props }: SwitchProps) => {
         {label}
       </div>
       <label className="switch">
-        <input type="checkbox" checked={isCheck} onChange={handleClick} />
+        <input type="checkbox" checked={isChecked} onChange={() => handleClick(!isChecked)} />
         <span className="slider round"></span>
       </label>
     </div>
