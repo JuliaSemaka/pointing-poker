@@ -5,14 +5,14 @@ import './Input.scss';
 
 export const Input: React.FC<IInput> = ({
   value,
-  isChange,
+  сhangeInput,
   type,
 }) => (
   <input
     type="text"
     className={`text text-bold input input-${type}`}
     disabled={type === EInputType.widthButton ? true : false}
-    onChange={isChange}
+    onChange={сhangeInput}
     value={value}
   />
 );

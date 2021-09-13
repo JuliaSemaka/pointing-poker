@@ -18,6 +18,6 @@ export enum EInputType {
 
 export interface IInput {
   value: string;
-  isChange: () => void;
+  сhangeInput: () => void;
   type: EInputType;
 }
