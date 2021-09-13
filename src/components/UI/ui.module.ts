@@ -9,3 +9,16 @@ export interface IButton {
   style: EButtonStyle;
   isDisabled: boolean;
 }
+
+export enum EInputType {
+  widthButton = 'with-button',
+  middle = 'middle',
+  big = 'big',
+}
+
+export interface IInput {
+  value: string;
+  isChange: () => void;
+  type: EInputType;
+  isDisabled: boolean;
+}
