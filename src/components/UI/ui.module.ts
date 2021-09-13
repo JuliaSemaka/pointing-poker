@@ -18,6 +18,7 @@ export enum EInputType {
 
 export interface IInput {
   value: string;
-  сhangeInput: () => void;
+  сhangeInput: (value: string) => void;
   type: EInputType;
+  validateText: string | null;
 }

@@ -20,4 +20,13 @@
   &-middle {
     width: 324px;
   }
+
+  &-error-text {
+    margin-left: 20px;
+  }
+
+  &-block {
+    display: flex;
+    align-items: center;
+  }
 }

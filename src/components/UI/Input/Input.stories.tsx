@@ -30,8 +30,16 @@ MiddleInput.args = {
   type: EInputType.middle,
 };
 
-export const WidthButtonInput = Template.bind({});
-WidthButtonInput.args = {
+export const WithButtonInput = Template.bind({});
+WithButtonInput.args = {
   value: 'Julia',
   type: EInputType.withButton,
+  validateText: null,
+};
+
+export const ErrorInput = Template.bind({});
+ErrorInput.args = {
+  value: 'Julia',
+  type: EInputType.big,
+  validateText: 'Enter your name',
 };

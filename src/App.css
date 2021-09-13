@@ -1,0 +1,109 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ruda:wght@400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.fade-enter {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  -webkit-transition: opacity 250ms ease-in;
+  transition: opacity 250ms ease-in;
+}
+
+body {
+  background-color: #e5e5e5;
+}
+
+.wrapper {
+  width: 100%;
+  max-width: 1440px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.text {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+  color: #000000;
+}
+
+.text-title {
+  font-weight: bold;
+  font-size: 64px;
+  line-height: 75px;
+  text-align: center;
+}
+
+.text-title-big {
+  font-weight: bold;
+  font-size: 70px;
+  line-height: 82px;
+}
+
+.text-big {
+  font-weight: bold;
+  font-size: 48px;
+  line-height: 56px;
+}
+
+.text-kick {
+  font-size: 36px;
+  line-height: 42px;
+}
+
+.text-ruda {
+  font-family: Ruda;
+  font-weight: bold;
+  line-height: 30px;
+}
+
+.text-ruda-small {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 15px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.text-position {
+  font-size: 10px;
+  line-height: 12px;
+}
+
+.text-small-uppercase {
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
+.text-dark-green {
+  color: #66999b;
+}
+
+.text-error {
+  color: #ff1818;
+}
+/*# sourceMappingURL=App.css.map */
