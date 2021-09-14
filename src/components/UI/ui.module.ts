@@ -43,3 +43,12 @@ export interface IAvatar {
   initials?: string | null;
   image?: string | null;
 }
+
+export interface IMemberCard {
+  firstName?: string;
+  lastName?: string;
+  position?: string;
+  image?: string | null;
+  isMyCard?: boolean;
+  isRemove?: boolean;
+}

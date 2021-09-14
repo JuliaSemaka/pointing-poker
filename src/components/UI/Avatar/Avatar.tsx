@@ -17,7 +17,6 @@ export const Avatar: React.FC<IAvatar> = ({
       ) : (
         <img src={unknownUser} alt="avatar" />
       )}
-      {}
     </div>
   );
 };

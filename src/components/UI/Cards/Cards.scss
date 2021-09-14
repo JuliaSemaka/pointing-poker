@@ -1,0 +1,40 @@
+.card {
+  position: relative;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  width: 300px;
+  height: 69px;
+  box-shadow: 1px 1px 4px 0px #c7bebeab;
+  padding: 8px 12px;
+  border-radius: 2px;
+
+  &-data {
+    position: relative;
+    width: 60%;
+    height: 100%;
+
+    &__you {
+      position: absolute;
+      top: 0;
+    }
+
+    &__name {
+      position: absolute;
+      top: 13px;
+    }
+
+    &__position {
+      position: absolute;
+      top: 42px;
+    }
+  }
+
+  &-remove {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+  }
+}
