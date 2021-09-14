@@ -38,3 +38,8 @@ export interface ISelect {
   options: string[];
   name: string;
 }
+
+export interface IAvatar {
+  initials?: string | null;
+  image?: string | null;
+}
