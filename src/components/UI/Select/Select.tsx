@@ -4,7 +4,7 @@ import { Field } from 'redux-form';
 import { ISelect } from '../ui.module';
 import './Select.scss';
 
-export const Select: React.FC<ISelect> = ({ optionArr, name }) => {
+export const Select: React.FC<ISelect> = ({ options, name }) => {
   return (
     <Field
       className="text text-bold custom-select"
@@ -12,7 +12,7 @@ export const Select: React.FC<ISelect> = ({ optionArr, name }) => {
       component="select"
       label={name}
     >
-      {optionArr.map((item, index) => (
+      {options.map((item, index) => (
         <option key={index} value={item}>
           {item}
         </option>

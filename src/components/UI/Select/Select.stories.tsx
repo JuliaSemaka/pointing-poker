@@ -11,15 +11,15 @@ import { reduxForm } from 'redux-form';
 
 const reducer = combineReducers({ form: formReducer });
 
-const propsDefault = {
-  optionArr: ['one', 'two', 'three'],
+const propsDefaultOne = {
+  options: ['one', 'two', 'three'],
   name: 'myName',
   initialValues: {
     myName: 'one',
   },
 };
 const propsDefaultValueThree = {
-  optionArr: ['one', 'two', 'three'],
+  options: ['one', 'two', 'three'],
   name: 'myName',
   initialValues: {
     myName: 'three',
@@ -37,7 +37,7 @@ storiesOf('UI/Select', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('Select default', () => (
     <Provider store={createStore(reducer)}>
-      <StoriesSelectFinish {...propsDefault} />
+      <StoriesSelectFinish {...propsDefaultOne} />
     </Provider>
   ))
   .add('Select default value three', () => (

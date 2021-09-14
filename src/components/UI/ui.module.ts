@@ -35,6 +35,6 @@ export interface IRenderField {
 }
 
 export interface ISelect {
-  optionArr: string[];
+  options: string[];
   name: string;
 }
