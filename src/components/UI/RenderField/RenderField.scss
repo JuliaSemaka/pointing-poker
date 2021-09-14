@@ -1,0 +1,52 @@
+.input {
+  background: #ffffff;
+  border: 1px solid #2b3a67;
+  box-sizing: border-box;
+  border-radius: 0px 0px 0px 10px;
+  outline: none;
+  padding: 2px 20px;
+  box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5),
+    1px 1px 5px rgba(255, 255, 255, 1);
+  width: 100%;
+  max-width: 466px;
+
+  &-with-button {
+    max-width: 276px;
+    font-weight: 300;
+  }
+
+  &-middle {
+    width: 324px;
+  }
+
+  &-error-text {
+    margin-left: 20px;
+  }
+
+  &-block {
+    display: flex;
+    align-items: center;
+  }
+
+  &-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  &-label {
+    box-shadow: 2px 4px 4px 0px #c7bebeab;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    box-shadow: 2px 4px 4px 0px #c7bebeab;
+  }
+}
