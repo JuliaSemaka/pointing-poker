@@ -8,6 +8,7 @@ import { MemoryRouter } from 'react-router-dom';
 import '../../../App.scss';
 import { RenderField } from './RenderField';
 import { ERenderFieldType, EType } from '../ui.module';
+import { Field, reduxForm } from 'redux-form';
 
 const reducer = combineReducers({ form: formReducer });
 const propsText = {
@@ -53,40 +54,49 @@ const propsMiddle = {
   meta: {},
 };
 
+const StoriesRenderField = (props: any) => {
+  return (
+    <Field name="name1" component={RenderField} label="name1" {...props} />
+  );
+};
+const StoriesRenderField2 = reduxForm({
+  form: 'formname',
+})(StoriesRenderField);
+
 storiesOf('UI/RenderField', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('InputTextBigWithDefaultValue', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <RenderField {...propsText} />
+        <StoriesRenderField2 {...propsText} />
       </Provider>
     </>
   ))
   .add('InputTextWithButton', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <RenderField {...propsTextWithButton} />
+        <StoriesRenderField2 {...propsTextWithButton} />
       </Provider>
     </>
   ))
   .add('InputTextWithButtonDisabled', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <RenderField {...propsTextDisabled} />
+        <StoriesRenderField2 {...propsTextDisabled} />
       </Provider>
     </>
   ))
   .add('InputFile', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <RenderField {...propsFile} />
+        <StoriesRenderField2 {...propsFile} />
       </Provider>
     </>
   ))
   .add('InputMiddle', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <RenderField {...propsMiddle} />
+        <StoriesRenderField2 {...propsMiddle} />
       </Provider>
     </>
   ));
