@@ -1,3 +1,5 @@
+import React from "react";
+
 export enum EButtonStyle {
   dark = 'dark',
   light = 'light',
@@ -37,4 +39,10 @@ export interface IRenderField {
 export interface ISelect {
   options: string[];
   name: string;
+}
+
+export interface IModalWindow {
+  children: React.ReactNode;
+  handleClick: () => void;
+  isChecked: boolean;
 }
