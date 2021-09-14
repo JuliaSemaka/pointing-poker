@@ -33,3 +33,8 @@ export interface IRenderField {
   style?: ERenderFieldType;
   disabled?: boolean;
 }
+
+export interface ISelect {
+  optionArr: string[];
+  name: string;
+}
