@@ -5,21 +5,15 @@ import './ModalWindow.scss';
 export const ModalWindow: React.FC<IModalWindow> = ({
   children,
   handleClick,
-  isChecked,
-}) => {
-  return (
+}) => (
+  <div className="modal" onClick={() => handleClick()}>
     <div
-      className={isChecked ? 'modal modal-checked' : 'modal'}
-      onClick={() => handleClick()}
+      className="modal-content"
+      onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
+        e.stopPropagation()
+      }
     >
-      <div
-        className="modal-content"
-        onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>
-          e.stopPropagation()
-        }
-      >
-        {children}
-      </div>
+      {children}
     </div>
-  );
-};
+  </div>
+);

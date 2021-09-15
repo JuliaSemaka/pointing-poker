@@ -5,7 +5,9 @@ import '../../../App.scss';
 import { ModalWindow } from './ModalWindow';
 
 const TestComponent: React.FC = () => (
-  <div className="text text-bold" style={{width: '200px',height: '200px'}}>Hello all</div>
+  <div className="text text-bold" style={{ width: '200px', height: '200px' }}>
+    Hello all
+  </div>
 );
 
 export default {
@@ -21,9 +23,13 @@ const TestModalWindow: React.FC = () => {
   };
 
   return (
-    <ModalWindow handleClick={changeIsState} isChecked={isState}>
-      <TestComponent />
-    </ModalWindow>
+    <>
+      {isState && (
+        <ModalWindow handleClick={changeIsState}>
+          <TestComponent />
+        </ModalWindow>
+      )}
+    </>
   );
 };
 const Template: ComponentStory<typeof ModalWindow> = (args) => (
@@ -31,5 +37,4 @@ const Template: ComponentStory<typeof ModalWindow> = (args) => (
 );
 
 export const ModalWindowOpen = Template.bind({});
-ModalWindowOpen.args = {
-};
+ModalWindowOpen.args = {};

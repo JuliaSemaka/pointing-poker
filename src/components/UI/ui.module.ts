@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 export enum EButtonStyle {
   dark = 'dark',
@@ -44,5 +44,4 @@ export interface ISelect {
 export interface IModalWindow {
   children: React.ReactNode;
   handleClick: () => void;
-  isChecked: boolean;
 }
