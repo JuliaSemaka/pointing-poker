@@ -12,8 +12,7 @@ export const MemberCard: React.FC<IMemberCard> = ({
   image = null,
   isMyCard = false,
   isRemove = false,
-}) => {
-  return (
+}) => (
     <div className="card">
       {image ? (
         <Avatar image={image} />
@@ -32,4 +31,3 @@ export const MemberCard: React.FC<IMemberCard> = ({
       {isRemove && <img className="card-cred" src={Remove} alt="remove" />}
     </div>
   );
-};

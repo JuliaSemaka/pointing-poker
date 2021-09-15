@@ -56,11 +56,18 @@ export interface IMemberCard {
 export enum ETypeCard {
   normal = 'normal',
   add = 'add',
-  remove = 'remove'
+  remove = 'remove',
 }
 
 export interface IIssueCard {
   title: string;
   priority: string | null;
   type: ETypeCard;
+}
+
+export interface IGameCard {
+  isAddCard?: boolean;
+  number?: string;
+  scoreType?: string | null;
+  isEdit?: boolean;
 }

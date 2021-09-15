@@ -7,16 +7,14 @@ import './Avatar.scss';
 export const Avatar: React.FC<IAvatar> = ({
   initials = null,
   image = null,
-}) => {
-  return (
-    <div className="initials">
-      {image ? (
-        <img src={`../../images/${image}`} alt="avatar" />
-      ) : initials ? (
-        <div className="text">{initials}</div>
-      ) : (
-        <img src={unknownUser} alt="avatar" />
-      )}
-    </div>
-  );
-};
+}) => (
+  <div className="initials">
+    {image ? (
+      <img src={`../../images/${image}`} alt="avatar" />
+    ) : initials ? (
+      <div className="text">{initials}</div>
+    ) : (
+      <img src={unknownUser} alt="avatar" />
+    )}
+  </div>
+);

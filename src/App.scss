@@ -71,9 +71,15 @@ $color5: #ffc482;
     font-weight: bold;
     line-height: 30px;
 
+    &-big {
+      font-weight: bold;
+      font-size: 58px;
+      line-height: 65px;
+    }
+
     &-small {
       font-weight: bold;
-      font-size: 12px;
+      font-size: 11px;
       line-height: 15px;
       color: rgba(0, 0, 0, 0.6);
     }
