@@ -38,9 +38,10 @@
     }
   }
 
-  &-remove {
+  &-cred {
     width: 30px;
     height: 30px;
+    margin-left: 10px;
     cursor: pointer;
 
     &:hover {
@@ -51,5 +52,11 @@
     &:active {
       transform: scale(0.6);
     }
+  }
+
+  &-editor {
+    display: flex;
+    justify-content: end;
+    width: 37%;
   }
 }

@@ -52,3 +52,15 @@ export interface IMemberCard {
   isMyCard?: boolean;
   isRemove?: boolean;
 }
+
+export enum ETypeCard {
+  normal = 'normal',
+  add = 'add',
+  remove = 'remove'
+}
+
+export interface IIssueCard {
+  title: string;
+  priority: string | null;
+  type: ETypeCard;
+}

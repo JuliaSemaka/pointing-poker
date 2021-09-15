@@ -29,7 +29,7 @@ export const MemberCard: React.FC<IMemberCard> = ({
         </p>
         <p className="text text-position card-data__position">{position}</p>
       </div>
-      {isRemove && <img className="card-remove" src={Remove} alt="remove" />}
+      {isRemove && <img className="card-cred" src={Remove} alt="remove" />}
     </div>
   );
 };
