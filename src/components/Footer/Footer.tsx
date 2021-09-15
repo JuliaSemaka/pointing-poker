@@ -15,19 +15,19 @@ export const Footer: React.FC = () => {
           <ul className="footer-github-list">
             <li className="footer-github-item">
               <span className="text text-ruda footer-github-text">Mentor: </span>
-              <a href="https://github.com/YekaterinaKarakulina" target="_blank" className="footer-github-text text">Yekaterina</a>
+              <a href="https://github.com/YekaterinaKarakulina" target="_blank" rel="noreferrer" className="footer-github-text text">Yekaterina</a>
             </li>
             <li className="footer-github-item">
               <span className="text text-ruda footer-github-text">Teamlead: </span>
-              <a href="https://github.com/JuliaSemaka" target="_blank" className="footer-github-text text">Julia</a>
+              <a href="https://github.com/JuliaSemaka" target="_blank" rel="noreferrer" className="footer-github-text text">Julia</a>
             </li>
             <li className="footer-github-item">
               <span className="text text-ruda footer-github-text">Developer: </span>
-              <a href="https://github.com/IvanYatsko" target="_blank" className="footer-github-text text">Ivan</a>
+              <a href="https://github.com/IvanYatsko" target="_blank" rel="noreferrer" className="footer-github-text text">Ivan</a>
             </li>
             <li className="footer-github-item">
               <span className="text text-ruda footer-github-text">Developer: </span>
-              <a href="https://github.com/Maxfri" target="_blank" className="footer-github-text text">Iaroslav</a>
+              <a href="https://github.com/Maxfri" target="_blank" rel="noreferrer" className="footer-github-text text">Iaroslav</a>
             </li>
           </ul>
         </div>

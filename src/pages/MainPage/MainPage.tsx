@@ -25,47 +25,46 @@ const validate = (values: { id: string }) => {
 const isValid: void = undefined
 export const isRequired: ValidationFunc<any> = value => (value ? isValid : 'Required')
 
-const renderField = ({ input, placeholder, type, meta: { touched, error }, ...other }: any) => (
-  <>
-    <input {...input} {...other} placeholder={placeholder} type={type} />
-    <button type="submit" className="main-button" disabled={!touched}>
-      Connect
-    </button>
-    {touched && (error && <span>{error}</span>)}
-  </>
-)
-const handleSubmit = (event: any) => {
-  event.preventDefault();
-  console.log('Form send')
+const handleStartGame = () => {
+  return;
+}
+const handleSubmit = () => {
+  return;
 }
 const MainForm: React.FC = ({ id, error }: any): JSX.Element => {
+  const fieldProps = {
+    name: "lobbyID",
+    type: EType.text,
+    className: "main-lobby-url",
+    placeholder: "Type lobby ID",
+    validate: [isRequired],
+    disabled: false,
+    meta: {}
+  }
   return (
     <div className="main-page-wrapper">
       <div className="main-container">
         <div className="main-logo-image">
           <img src={logo} />
         </div>
-
         <div className="main-page-start">
-          Start your planning:
+          <span className="text text-big text-dark-green">Start your planning:</span>
           <div className="main-create-session">
-            Create session:
+            <span className="text">Create session:</span>
             <Button
               text="Start New Game"
-              isClick={() => console.log('start new game')}
+              isClick={handleStartGame}
             />
           </div>
-          OR:
-          Connect to lobby by ID:
+          <span className="text text-big text-dark-green">OR:</span>
+          <span className="text"> Connect to lobby by <span className="text text-kick text-dark-green">ID:</span></span>
           <form onSubmit={handleSubmit} className="main-connect-to-lobby">
             <RenderField
-              type={EType.text}
-              meta={{}}
-              disabled={false}
+              {...fieldProps}
             />
             <Button
               text="Connect"
-              isClick={() => console.log('start new game')}
+              isClick={handleSubmit}
               isDisabled={false}
             />
           </form>
