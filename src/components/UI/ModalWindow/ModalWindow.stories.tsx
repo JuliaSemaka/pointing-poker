@@ -16,15 +16,15 @@ export default {
 } as ComponentMeta<typeof ModalWindow>;
 
 const TestModalWindow: React.FC = () => {
-  const [isState, setIsState] = useState(true);
+  const [isOpened , setIsOpened ] = useState(true);
 
   const changeIsState = () => {
-    setIsState((state) => !state);
+    setIsOpened((state) => !state);
   };
 
   return (
     <>
-      {isState && (
+      {isOpened && (
         <ModalWindow handleClick={changeIsState}>
           <TestComponent />
         </ModalWindow>
