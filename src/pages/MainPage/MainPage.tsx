@@ -1,8 +1,11 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import type { FormProps } from 'redux-form'
+import { ERenderFieldType, EType, IRenderField } from '../../components/UI/ui.module';
 import logo from './PokerPlanningTitle.png'
 import './MainPage.scss';
+import { Button } from '../../components/UI/Button/Button';
+import { RenderField } from '../../components/UI/RenderField/RenderField';
 
 interface Props {
   error?: string,
@@ -35,7 +38,7 @@ const handleSubmit = (event: any) => {
   event.preventDefault();
   console.log('Form send')
 }
-const MainForm:React.FC = ({ id, error }: any): JSX.Element => {
+const MainForm: React.FC = ({ id, error }: any): JSX.Element => {
   return (
     <div className="main-page-wrapper">
       <div className="main-container">
@@ -47,20 +50,23 @@ const MainForm:React.FC = ({ id, error }: any): JSX.Element => {
           Start your planning:
           <div className="main-create-session">
             Create session:
-            <button className="main-button">
-              Start new game
-            </button>
+            <Button
+              text="Start New Game"
+              isClick={() => console.log('start new game')}
+            />
           </div>
           OR:
           Connect to lobby by ID:
           <form onSubmit={handleSubmit} className="main-connect-to-lobby">
-            <Field
-              name="name1"
-              type="string"
-              component={renderField}
-              className="main-lobby-url"
-              placeholder="Type lobby ID"
-              validate={[isRequired]}
+            <RenderField
+              type={EType.text}
+              meta={{}}
+              disabled={false}
+            />
+            <Button
+              text="Connect"
+              isClick={() => console.log('start new game')}
+              isDisabled={false}
             />
           </form>
         </div>
@@ -69,5 +75,5 @@ const MainForm:React.FC = ({ id, error }: any): JSX.Element => {
   )
 }
 
-export const MainPage = reduxForm({ form: 'connectToLobby'})(MainForm)
+export const MainPage = reduxForm({ form: 'connectToLobby' })(MainForm)
 export default MainPage
