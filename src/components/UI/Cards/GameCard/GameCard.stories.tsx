@@ -28,3 +28,10 @@ export const AddCard = Template.bind({});
 AddCard.args = {
   isAddCard: true,
 };
+
+export const CardCheck = Template.bind({});
+CardCheck.args = {
+  number: '12',
+  scoreType: 'sp',
+  isCheck: true,
+};

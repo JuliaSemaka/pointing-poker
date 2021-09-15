@@ -72,6 +72,7 @@ export interface IGameCard {
   number?: string;
   scoreType?: string | null;
   isEdit?: boolean;
+  isCheck?: boolean;
 }
 
 export interface IModalWindow {
