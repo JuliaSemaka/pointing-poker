@@ -32,3 +32,9 @@ RemoveCard.args = {
   priority: 'Low prority',
   type: ETypeCard.remove,
 };
+
+export const CheckCard = Template.bind({});
+CheckCard.args = {
+  title: 'Issue 542',
+  isCheck: true,
+};

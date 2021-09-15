@@ -28,9 +28,9 @@ export const GameCard: React.FC<IGameCard> = ({
         <img className="game-card__edit card-cred" src={Edit} alt="edit" />
       )}
       {isCheck && (
-        <div className="game-card__check">
-          <div className="game-card__check-circle">
-            <img className="game-card__check-img" src={Check} alt="check" />
+        <div className="card__check">
+          <div className="card__check-circle">
+            <img className="card__check-img" src={Check} alt="check" />
           </div>
         </div>
       )}

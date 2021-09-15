@@ -11,6 +11,7 @@ export const IssueCard: React.FC<IIssueCard> = ({
   title,
   priority = null,
   type = ETypeCard.normal,
+  isCheck = false,
 }) => {
   const cardEditorContent = () => {
     switch (type) {
@@ -30,6 +31,10 @@ export const IssueCard: React.FC<IIssueCard> = ({
 
   return (
     <div className="card">
+      {isCheck && (
+        <div className="card__check">
+        </div>
+      )}
       <div className="card-data">
         <p className="text card-data__name">{title}</p>
         <p className="text text-position card-data__position">{priority}</p>

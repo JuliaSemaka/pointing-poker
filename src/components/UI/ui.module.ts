@@ -63,8 +63,9 @@ export enum ETypeCard {
 
 export interface IIssueCard {
   title: string;
-  priority: string | null;
-  type: ETypeCard;
+  priority?: string | null;
+  type?: ETypeCard;
+  isCheck?: boolean;
 }
 
 export interface IGameCard {
@@ -85,5 +86,5 @@ export interface IRoundTime {
   seconds?: number;
   isChange?: boolean;
   changeMinute?: (value: string) => void | null;
-  changeSeconds?: (value: string) => void | null,
+  changeSeconds?: (value: string) => void | null;
 }
