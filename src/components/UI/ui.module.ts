@@ -79,3 +79,8 @@ export interface IModalWindow {
   children: React.ReactNode;
   handleClick: () => void;
 }
+
+export interface IRoundTime {
+  minute?: number;
+  seconds?: number;
+}
