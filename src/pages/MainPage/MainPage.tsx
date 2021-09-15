@@ -57,7 +57,7 @@ const MainForm: React.FC = ({ id, error }: any): JSX.Element => {
             />
           </div>
           <span className="text text-big text-dark-green">OR:</span>
-          <span className="text"> Connect to lobby by <span className="text text-kick text-dark-green">ID:</span></span>
+          <span className="text"> Connect to lobby by <span className="text text-kick text-dark-green text-bold">ID:</span></span>
           <form onSubmit={handleSubmit} className="main-connect-to-lobby">
             <RenderField
               {...fieldProps}
