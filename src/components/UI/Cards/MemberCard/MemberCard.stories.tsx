@@ -22,9 +22,9 @@ DefaultCard.args = {
 
 export const MyCard = Template.bind({});
 MyCard.args = {
-  firstName: 'Julia',
-  lastName: 'Yatsko',
-  position: 'lead software engeneer',
+  firstName: 'JuliaJulia',
+  lastName: 'YatskoYatsko',
+  position: 'lead software engeneer lead software engeneer',
   isMyCard: true,
 };
 
