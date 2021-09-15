@@ -35,13 +35,12 @@ export const GameCard: React.FC<IGameCard> = ({
         </div>
       )}
       <p className="text text-ruda text-ruda-small game-card__top">{number}</p>
-      {!scoreType && (
-        <img className="game-card__img" src={UnknownCard} alt="unknown-card" />
-      )}
-      {scoreType && (
+      {scoreType ? (
         <div className="text text-ruda text-ruda-big game-card__scote-type">
           {scoreType}
         </div>
+      ) : (
+        <img className="game-card__img" src={UnknownCard} alt="unknown-card" />
       )}
       <p className="text text-ruda text-ruda-small game-card__bottom">
         {number}

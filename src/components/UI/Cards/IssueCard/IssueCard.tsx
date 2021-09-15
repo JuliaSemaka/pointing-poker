@@ -11,25 +11,30 @@ export const IssueCard: React.FC<IIssueCard> = ({
   title,
   priority = null,
   type = ETypeCard.normal,
-}) => (
-  <div className="card">
-    <div className="card-data">
-      <p className="text card-data__name">{title}</p>
-      <p className="text text-position card-data__position">{priority}</p>
+}) => {
+  const cardEditorContent = () => {
+    switch (type) {
+      case ETypeCard.normal:
+        return (
+          <div>
+            <img className="card-cred" src={Edit} alt="edit" />
+            <img className="card-cred" src={Delete} alt="delete" />
+          </div>
+        );
+      case ETypeCard.add:
+        return <img className="card-cred" src={Add} alt="add" />;
+      case ETypeCard.remove:
+        return <img className="card-cred" src={Remove} alt="remove" />;
+    }
+  };
+
+  return (
+    <div className="card">
+      <div className="card-data">
+        <p className="text card-data__name">{title}</p>
+        <p className="text text-position card-data__position">{priority}</p>
+      </div>
+      <div className="card-editor">{cardEditorContent()}</div>
     </div>
-    <div className="card-editor">
-      {type === ETypeCard.normal && (
-        <div>
-          <img className="card-cred" src={Edit} alt="edit" />
-          <img className="card-cred" src={Delete} alt="delete" />
-        </div>
-      )}
-      {type === ETypeCard.add && (
-        <img className="card-cred" src={Add} alt="add" />
-      )}
-      {type === ETypeCard.remove && (
-        <img className="card-cred" src={Remove} alt="remove" />
-      )}
-    </div>
-  </div>
-);
+  );
+};
