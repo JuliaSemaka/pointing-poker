@@ -1,3 +1,5 @@
+import React from 'react';
+
 export enum EButtonStyle {
   dark = 'dark',
   light = 'light',
@@ -70,4 +72,9 @@ export interface IGameCard {
   number?: string;
   scoreType?: string | null;
   isEdit?: boolean;
+}
+
+export interface IModalWindow {
+  children: React.ReactNode;
+  handleClick: () => void;
 }
