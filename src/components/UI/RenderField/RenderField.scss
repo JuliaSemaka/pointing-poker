@@ -4,7 +4,8 @@
   box-sizing: border-box;
   border-radius: 0px 0px 0px 10px;
   outline: none;
-  padding: 2px 20px;
+  line-height: 29px;
+  padding: 8px 20px;
   box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5),
     1px 1px 5px rgba(255, 255, 255, 1);
   width: 100%;
@@ -13,10 +14,12 @@
   &-with-button {
     max-width: 276px;
     font-weight: 300;
+    text-overflow: ellipsis;
   }
 
   &-middle {
     width: 324px;
+    padding: 3px 20px;
   }
 
   &-error-text {

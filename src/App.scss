@@ -71,23 +71,29 @@ $color5: #ffc482;
     font-weight: bold;
     line-height: 30px;
 
+    &-big {
+      font-weight: bold;
+      font-size: 58px;
+      line-height: 65px;
+    }
+
     &-small {
       font-weight: bold;
-      font-size: 12px;
+      font-size: 11px;
       line-height: 15px;
       color: rgba(0, 0, 0, 0.6);
     }
   }
 
   &-position {
-    font-size: 10px;
-    line-height: 12px;
+    font-size: 9px;
+    line-height: 10px;
   }
 
   &-small-uppercase {
     font-weight: bold;
-    font-size: 12px;
-    line-height: 14px;
+    font-size: 10px;
+    line-height: 12px;
     text-transform: uppercase;
   }
 

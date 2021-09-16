@@ -7,7 +7,7 @@ export enum EButtonStyle {
 
 export interface IButton {
   text: string;
-  isClick: () => void;
+  clickButton: () => void;
   style?: EButtonStyle;
   isDisabled?: boolean;
 }
@@ -34,6 +34,7 @@ export interface IRenderField {
   type?: EType;
   style?: ERenderFieldType;
   disabled?: boolean;
+  other: any;
 }
 
 export interface ISelect {
@@ -41,7 +42,50 @@ export interface ISelect {
   name: string;
 }
 
+export interface IAvatar {
+  initials?: string | null;
+  image?: string | null;
+}
+
+export interface IMemberCard {
+  firstName?: string;
+  lastName?: string;
+  position?: string;
+  image?: string | null;
+  isMyCard?: boolean;
+  isRemove?: boolean;
+}
+
+export enum ETypeCard {
+  normal = 'normal',
+  add = 'add',
+  remove = 'remove',
+}
+
+export interface IIssueCard {
+  title: string;
+  priority?: string | null;
+  type?: ETypeCard;
+  isCheck?: boolean;
+}
+
+export interface IGameCard {
+  isAddCard?: boolean;
+  number?: string;
+  scoreType?: string | null;
+  isEdit?: boolean;
+  isCheck?: boolean;
+}
+
 export interface IModalWindow {
   children: React.ReactNode;
   handleClick: () => void;
+}
+
+export interface IRoundTime {
+  minute?: number;
+  seconds?: number;
+  isChange?: boolean;
+  changeMinute?: (value: string) => void | null;
+  changeSeconds?: (value: string) => void | null;
 }
