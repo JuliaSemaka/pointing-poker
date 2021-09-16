@@ -188,3 +188,7 @@ export enum EHandleIssue {
   edit = 'edit',
   delete = 'delete',
 }
+
+export interface IModalKickPlayer {
+  playerName: string;
+}
