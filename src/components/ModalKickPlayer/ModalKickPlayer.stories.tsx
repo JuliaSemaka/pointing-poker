@@ -5,7 +5,7 @@ import '../../App.scss';
 import { ModalKickPlayer } from "./ModalKickPlayer";
 
 export default {
-  title: 'ModalWindow',
+  title: 'ModalKickPlayer',
   component: ModalKickPlayer
 } as ComponentMeta<typeof ModalKickPlayer>;
 
