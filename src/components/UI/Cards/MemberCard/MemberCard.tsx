@@ -13,16 +13,15 @@ export const MemberCard: React.FC<IMemberCard> = ({
   isMyCard = false,
   isRemove = false,
 }) => {
-  const cardAvatar = () => {
-    return image ? (
-      <Avatar image={image} />
-    ) : (
-      <Avatar initials={firstName?.slice(0, 1) + lastName?.slice(0, 1)} />
-    );
-  };
+  const cardAvatar = image ? (
+    <Avatar image={image} />
+  ) : (
+    <Avatar initials={firstName?.slice(0, 1) + lastName?.slice(0, 1)} />
+  );
+
   return (
     <div className="card">
-      {cardAvatar()}
+      {cardAvatar}
       <div className="card-data">
         {isMyCard && (
           <p className="text text-small-uppercase card-data__you">its you</p>

@@ -13,33 +13,34 @@ export const IssueCard: React.FC<IIssueCard> = ({
   type = ETypeCard.normal,
   isCheck = false,
 }) => {
-  const cardEditorContent = () => {
-    switch (type) {
-      case ETypeCard.normal:
-        return (
-          <div>
-            <img className="card-cred" src={Edit} alt="edit" />
-            <img className="card-cred" src={Delete} alt="delete" />
-          </div>
-        );
-      case ETypeCard.add:
-        return <img className="card-cred" src={Add} alt="add" />;
-      case ETypeCard.remove:
-        return <img className="card-cred" src={Remove} alt="remove" />;
-    }
-  };
+  let cardEditorContent;
+  switch (type) {
+    case ETypeCard.normal:
+      cardEditorContent = (
+        <div>
+          <img className="card-cred" src={Edit} alt="edit" />
+          <img className="card-cred" src={Delete} alt="delete" />
+        </div>
+      );
+      break;
+    case ETypeCard.add:
+      cardEditorContent = <img className="card-cred" src={Add} alt="add" />;
+      break;
+    case ETypeCard.remove:
+      cardEditorContent = (
+        <img className="card-cred" src={Remove} alt="remove" />
+      );
+      break;
+  }
 
   return (
     <div className="card">
-      {isCheck && (
-        <div className="card__check">
-        </div>
-      )}
+      {isCheck && <div className="card__check"></div>}
       <div className="card-data">
         <p className="text card-data__name">{title}</p>
         <p className="text text-position card-data__position">{priority}</p>
       </div>
-      <div className="card-editor">{cardEditorContent()}</div>
+      <div className="card-editor">{cardEditorContent}</div>
     </div>
   );
 };
