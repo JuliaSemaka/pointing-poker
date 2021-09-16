@@ -7,7 +7,7 @@ export enum EButtonStyle {
 
 export interface IButton {
   text: string;
-  isClick: () => void;
+  clickButton: () => void;
   style?: EButtonStyle;
   isDisabled?: boolean;
 }
