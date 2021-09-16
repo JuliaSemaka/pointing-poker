@@ -8,21 +8,18 @@ export default {
 } as ComponentMeta<typeof Switch>;
 
 interface SwitchWrapperProps {
-  isChecked: boolean,
-  label: string
+  isChecked: boolean;
+  label?: string;
 }
 
-const SwitchWrapper = ({isChecked, label}: SwitchWrapperProps) => {
+const SwitchWrapper = ({ isChecked, label }: SwitchWrapperProps) => {
   const [isCheck, setIsCheck] = useState(isChecked);
 
-  return  <Switch 
-    label={label}
-    isChecked={isCheck}
-    handleClick={setIsCheck}
-  />
-
-}
-const Template: ComponentStory<typeof Switch> = (args) => <SwitchWrapper {...args} />;
+  return <Switch label={label} isChecked={isCheck} handleClick={setIsCheck} />;
+};
+const Template: ComponentStory<typeof Switch> = (args) => (
+  <SwitchWrapper {...args} />
+);
 
 export const ToggleOff = Template.bind({});
 
@@ -36,4 +33,4 @@ export const ToggleOn = Template.bind({});
 ToggleOn.args = {
   ...ToggleOff.args,
   isChecked: true,
-}; 
+};

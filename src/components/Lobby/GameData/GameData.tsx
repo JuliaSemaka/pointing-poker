@@ -33,7 +33,12 @@ export const GameDataForm: React.FC = () => {
       <div className="key-lobby">
         <p className="text text-italic">Link to lobby:</p>
         <div className="key-lobby__copy">
-          <Field name="copyId" component={RenderField} label="CopyId" />
+          <Field
+            name="copyId"
+            component={RenderField}
+            label="CopyId"
+            disabled={true}
+          />
           <Button text="Copy" clickButton={handleSubmit} />
         </div>
       </div>

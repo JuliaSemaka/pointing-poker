@@ -1,28 +1,11 @@
-.lobby-item {
-  &__title {
-    display: flex;
-    justify-content: center;
-    align-self: center;
-
-    & > img {
-      width: 18px;
-      height: 18px;
-      margin-left: 15px;
-    }
-  }
-}
-
-.scram-master,
-.key-lobby,
-.game-control {
-  margin-top: 20px;
+.key-lobby {
+  margin-top: 30px;
+  margin-bottom: 30px;
 
   & > p {
     margin-bottom: 6px;
   }
-}
 
-.key-lobby {
   &__copy {
     display: flex;
     align-items: center;

@@ -3,7 +3,7 @@ import './Switch.scss';
 
 interface SwitchProps {
   isChecked: boolean;
-  label: string;
+  label?: string;
   handleClick: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
@@ -12,7 +12,7 @@ export const Switch = ({ ...props }: SwitchProps): JSX.Element => {
 
   return (
     <div className="switch-wrapper">
-      <div className="switch-label">{label}</div>
+      {label && <div className="switch-label">{label}</div>}
       <label className="switch">
         <input
           type="checkbox"

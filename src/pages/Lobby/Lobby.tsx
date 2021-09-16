@@ -1,6 +1,12 @@
 import React from 'react';
 
-import { Chat, GameData, GameSettings, Issues, Members } from '../../components';
+import {
+  Chat,
+  GameData,
+  GameSettings,
+  Issues,
+  Members,
+} from '../../components';
 import './Lobby.scss';
 
 export const Lobby: React.FC = () => (
@@ -12,7 +18,7 @@ export const Lobby: React.FC = () => (
       <GameSettings />
     </main>
     <aside className="lobby-chat">
-    <Chat />
+      <Chat />
     </aside>
   </div>
 );
