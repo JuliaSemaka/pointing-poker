@@ -12,14 +12,23 @@ const reducer = combineReducers({ form: formReducer })
 
 const props = {
   onSubmit: action('onSubmit'),
+  handleStartGame: action('handleStartGame'),
   initialValues: {
     name1: ''
   }
 }
 const props2 = {
   onSubmit: action('onSubmit'),
+  handleStartGame: action('handleStartGame'),
   initialValues: {
     name1: '12211234'
+  }
+}
+const props3 = {
+  onSubmit: action('onSubmit'),
+  handleStartGame: action('handleStartGame'),
+  initialValues: {
+    name1: '12weq211eqweq234'
   }
 }
 storiesOf('Pages/Main page', module)
@@ -41,7 +50,7 @@ storiesOf('Pages/Main page', module)
   .add('Main page unauthorized - Wrong Id', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <MainPage />
+        <MainPage {...props3} />
       </Provider>
     </>
   ))
