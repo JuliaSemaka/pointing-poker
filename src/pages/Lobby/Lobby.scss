@@ -1,0 +1,21 @@
+.lobby {
+  &-main {
+    width: 70%;
+    height: 500px;
+    border: 1px solid #454545;
+  }
+
+  &-chat {
+    width: 30%;
+    height: 200px;
+    border: 1px solid #d68e8e;
+    background: inherit;
+  }
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    padding: 3rem;
+  }
+}
