@@ -5,14 +5,14 @@ import './Button.scss';
 
 export const Button: React.FC<IButton> = ({
   text,
-  clickButton,
+  handleClick,
   style = EButtonStyle.dark,
   isDisabled = false,
 }) => (
   <button
     className={`text text-ruda button button-${style}`}
     disabled={isDisabled}
-    onClick={clickButton}
+    onClick={handleClick}
   >
     {text}
   </button>
