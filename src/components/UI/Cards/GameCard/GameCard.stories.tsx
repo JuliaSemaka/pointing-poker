@@ -5,7 +5,7 @@ import '../../../../App.scss';
 import { GameCard } from './GameCard';
 
 export default {
-  title: 'GameCard',
+  title: 'UI Components/GameCard',
   component: GameCard,
 } as ComponentMeta<typeof GameCard>;
 

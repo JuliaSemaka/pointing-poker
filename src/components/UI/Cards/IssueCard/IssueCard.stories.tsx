@@ -6,7 +6,7 @@ import { IssueCard } from './IssueCard';
 import { ETypeCard } from '../../ui.module';
 
 export default {
-  title: 'IssueCard',
+  title: 'UI Components/IssueCard',
   component: IssueCard,
 } as ComponentMeta<typeof IssueCard>;
 
