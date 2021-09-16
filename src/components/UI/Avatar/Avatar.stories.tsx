@@ -5,7 +5,7 @@ import '../../../App.scss';
 import { Avatar } from './Avatar';
 
 export default {
-  title: 'Avatar',
+  title: 'UI Components/Avatar',
   component: Avatar,
 } as ComponentMeta<typeof Avatar>;
 

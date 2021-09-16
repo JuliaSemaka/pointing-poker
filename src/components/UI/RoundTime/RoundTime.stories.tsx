@@ -5,7 +5,7 @@ import '../../../App.scss';
 import { RoundTime } from './RoundTime';
 
 export default {
-  title: 'RoundTime',
+  title: 'UI Components/RoundTime',
   component: RoundTime,
 } as ComponentMeta<typeof RoundTime>;
 

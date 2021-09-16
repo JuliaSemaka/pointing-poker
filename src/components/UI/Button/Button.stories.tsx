@@ -6,7 +6,7 @@ import { Button } from './Button';
 import { EButtonStyle } from '../ui.module';
 
 export default {
-  title: 'Button',
+  title: 'UI Components/Button',
   component: Button,
 } as ComponentMeta<typeof Button>;
 

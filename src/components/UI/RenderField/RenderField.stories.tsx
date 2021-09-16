@@ -68,7 +68,7 @@ const StoriesRenderField2 = reduxForm({
   form: 'formname',
 })(StoriesRenderField);
 
-storiesOf('UI/RenderField', module)
+storiesOf('UI Components/RenderField', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('InputTextBigWithDefaultValue', () => (
     <Provider store={createStore(reducer)}>

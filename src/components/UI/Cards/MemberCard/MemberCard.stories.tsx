@@ -5,7 +5,7 @@ import '../../../../App.scss';
 import { MemberCard } from './MemberCard';
 
 export default {
-  title: 'MemberCard',
+  title: 'UI Components/MemberCard',
   component: MemberCard,
 } as ComponentMeta<typeof MemberCard>;
 

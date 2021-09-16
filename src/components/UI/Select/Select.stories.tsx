@@ -33,7 +33,7 @@ const StoriesSelectFinish = reduxForm({
   form: 'formname',
 })(StoriesSelect);
 
-storiesOf('UI/Select', module)
+storiesOf('UI Components/Select', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('Select default value one', () => (
     <Provider store={createStore(reducer)}>
