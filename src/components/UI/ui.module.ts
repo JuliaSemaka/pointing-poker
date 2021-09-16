@@ -34,6 +34,7 @@ export interface IRenderField {
   type?: EType;
   style?: ERenderFieldType;
   disabled?: boolean;
+  other: any;
 }
 
 export interface ISelect {
