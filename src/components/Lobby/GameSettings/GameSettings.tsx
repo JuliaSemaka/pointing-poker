@@ -4,7 +4,6 @@ import { GameCard } from '../../UI/Cards/GameCard/GameCard';
 import { RenderField } from '../../UI/RenderField/RenderField';
 import { RoundTime } from '../../UI/RoundTime/RoundTime';
 import Switch from '../../UI/Switch/Switch';
-import { IGameSettingsForm } from '../../UI/ui.module';
 
 import './GameSettings.scss';
 
@@ -28,7 +27,7 @@ export const GameSettingsForm: React.FC<any> = ({
       <div className="lobby-item__title">
         <h3 className="text text-ruda">Game settings:</h3>
       </div>
-      <div className="settings">
+      <form className="settings">
         <div className="settings-item">
           <p className="text text-ruda">Scram master as player:</p>
           <Switch isChecked={getIsPlayer} handleClick={setIsPlayer} />
@@ -63,7 +62,7 @@ export const GameSettingsForm: React.FC<any> = ({
             name="scoreType"
             component={RenderField}
             label="ScoreType"
-            initialValues={{ scoreType: { scoreType } }}
+            initialValues={{ scoreType: 'jhhjh' }}
           />
         </div>
         <div className="settings-item">
@@ -86,7 +85,7 @@ export const GameSettingsForm: React.FC<any> = ({
             <GameCard isAddCard={true} />
           </div>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
