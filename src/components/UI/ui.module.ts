@@ -52,6 +52,7 @@ export interface IMemberCard {
   image?: string | null;
   isMyCard?: boolean;
   isRemove?: boolean;
+  handleRemoveMember?: () => void;
 }
 
 export enum ETypeCard {
@@ -65,14 +66,17 @@ export interface IIssueCard {
   priority?: string | null;
   type?: ETypeCard;
   isCheck?: boolean;
+  handleIssue: (value: EHandleIssue) => void;
 }
 
 export interface IGameCard {
   isAddCard?: boolean;
-  number?: string;
+  number?: string | null;
   scoreType?: string | null;
   isEdit?: boolean;
   isCheck?: boolean;
+  handleAddCard?: () => void;
+  handleEditCard?: () => void;
 }
 
 export interface IModalWindow {
@@ -88,30 +92,93 @@ export interface IRoundTime {
   changeSeconds?: (value: string) => void | null;
 }
 
+export interface ICardsValues {
+  scoreType: string | null;
+  number: string | null;
+}
+
 export interface IGameSettingsForm {
   isPlayer?: boolean;
   isChangeEnable?: boolean;
   isTimerEnable?: boolean;
   isTurnAuto?: boolean;
   isLetAuto?: boolean;
+  cardsValues?: ICardsValues[];
+  handleAddCard: () => void;
+  handleEditCard: () => void;
+}
+
+export interface IChatMessage {
+  idUser: string;
+  userData: IUsers;
+  message: string;
+}
+
+export interface IUsers {
+  id: string;
+  firstName: string;
+  lastName: string;
+  jobTitle: string;
+  image: string | null;
+  role: string;
 }
 
 export interface ILobby {
   isDealer?: boolean;
-  handleSubmit: () => void;
   sendMessageChat: () => void;
-  members: number[];
+  members: IUsers[];
+  chatMessage: IChatMessage[];
+  title: string;
+  dealerData: IUsers;
+  handleEditTitle: () => void;
+  handleCopy: () => void;
+  handleStartGame: () => void;
+  handleCancelGame: () => void;
+  handleExit: () => void;
+  cardsValues?: ICardsValues[];
+  handleAddCard: () => void;
+  handleEditCard: () => void;
+  issues: IIssue[];
+  handleIssue: (value: EHandleIssue) => void;
+  handleRemoveMember: () => void;
 }
 
 export interface IGameDataForm {
   isDealer: boolean;
-  handleSubmit: () => void;
+  title: string;
+  dealerData: IUsers;
+  handleEditTitle: () => void;
+  handleCopy: () => void;
+  handleStartGame: () => void;
+  handleCancelGame: () => void;
+  handleExit: () => void;
 }
 
 export interface IMembers {
-  members: number[];
+  members: IUsers[];
+  handleRemoveMember: () => void;
 }
 
 export interface IChat {
   sendMessageChat: () => void;
+  chatMessage?: IChatMessage[];
+  handleRemoveMember: () => void;
+}
+
+export interface IIssue {
+  title: string;
+  priority: string;
+}
+
+export interface IIssues {
+  issues: IIssue[];
+  handleIssue: (value: EHandleIssue) => void;
+}
+
+export enum EHandleIssue {
+  show = 'show',
+  add = 'add',
+  remove = 'remove',
+  edit = 'edit',
+  delete = 'delete',
 }

@@ -10,21 +10,35 @@ import './GameData.scss';
 
 export const GameDataForm: React.FC<
   IGameDataForm & InjectedFormProps<any, IGameDataForm>
-> = ({ isDealer, handleSubmit }) => {
+> = ({
+  isDealer,
+  title,
+  dealerData,
+  handleEditTitle,
+  handleCopy,
+  handleStartGame,
+  handleCancelGame,
+  handleExit,
+}) => {
   return (
     <div className="lobby-item">
       <div className="lobby-item__title">
-        <h3 className="text text-ruda">
-          Spring 23 planning (issues 13, 533, 5623, 3252, 6623, ...)
-        </h3>
-        {isDealer && <img className="crud-item" src={Edit} alt="edit" />}
+        <h3 className="text text-ruda">{title}</h3>
+        {isDealer && (
+          <img
+            className="crud-item"
+            src={Edit}
+            alt="edit"
+            onClick={handleEditTitle}
+          />
+        )}
       </div>
       <div className="scram-master">
         <p className="text text-ruda text-ruda-small">Scram master:</p>
         <MemberCard
-          firstName="Juli"
-          lastName="Yatsko"
-          position="web developer"
+          firstName={dealerData.firstName}
+          lastName={dealerData.lastName}
+          position={dealerData.jobTitle}
           isMyCard={isDealer}
         />
       </div>
@@ -38,25 +52,25 @@ export const GameDataForm: React.FC<
               label="CopyId"
               disabled={true}
             />
-            <Button text="Copy" handleClick={handleSubmit} />
+            <Button text="Copy" handleClick={handleCopy} />
           </div>
         </div>
       )}
       <div className="game-control">
         {isDealer ? (
           <>
-            <Button text="Start Game" handleClick={handleSubmit} />
+            <Button text="Start Game" handleClick={handleStartGame} />
             <Button
               style={EButtonStyle.light}
               text="Cancel game"
-              handleClick={handleSubmit}
+              handleClick={handleCancelGame}
             />
           </>
         ) : (
           <Button
             style={EButtonStyle.light}
             text="Exit"
-            handleClick={handleSubmit}
+            handleClick={handleExit}
           />
         )}
       </div>

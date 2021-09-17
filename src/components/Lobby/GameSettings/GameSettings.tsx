@@ -16,12 +16,15 @@ export const GameSettingsForm: React.FC<
   isTimerEnable = true,
   isTurnAuto = true,
   isLetAuto = true,
+  cardsValues = [],
+  handleAddCard,
+  handleEditCard,
 }) => {
-  const [getIsPlayer, setIsPlayer] = useState(isPlayer);
-  const [getIsChangeEnable, setIsChangeEnable] = useState(isChangeEnable);
-  const [getIsTimerEnable, setIsTimerEnable] = useState(isTimerEnable);
-  const [getIsTurnAuto, setIsTurnAuto] = useState(isTurnAuto);
-  const [getIsLetAuto, setIsLetAuto] = useState(isLetAuto);
+  const [isPlayerState, setIsPlayer] = useState(isPlayer);
+  const [isChangeEnableState, setIsChangeEnable] = useState(isChangeEnable);
+  const [isTimerEnableState, setIsTimerEnable] = useState(isTimerEnable);
+  const [isTurnAutoState, setIsTurnAuto] = useState(isTurnAuto);
+  const [isLetAutoState, setIsLetAuto] = useState(isLetAuto);
 
   return (
     <div className="lobby-item">
@@ -31,22 +34,22 @@ export const GameSettingsForm: React.FC<
       <form className="settings">
         <div className="settings-item">
           <p className="text text-ruda">Scram master as player:</p>
-          <Switch isChecked={getIsPlayer} handleClick={setIsPlayer} />
+          <Switch isChecked={isPlayerState} handleClick={setIsPlayer} />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Changing card in round end:</p>
           <Switch
-            isChecked={getIsChangeEnable}
+            isChecked={isChangeEnableState}
             handleClick={setIsChangeEnable}
           />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Сards turn over automatically:</p>
-          <Switch isChecked={getIsTurnAuto} handleClick={setIsTurnAuto} />
+          <Switch isChecked={isTimerEnableState} handleClick={setIsTurnAuto} />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Automatically admit all new members:</p>
-          <Switch isChecked={getIsLetAuto} handleClick={setIsLetAuto} />
+          <Switch isChecked={isTurnAutoState} handleClick={setIsLetAuto} />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Score type:</p>
@@ -58,9 +61,9 @@ export const GameSettingsForm: React.FC<
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Is timer needed:</p>
-          <Switch isChecked={getIsTimerEnable} handleClick={setIsTimerEnable} />
+          <Switch isChecked={isLetAutoState} handleClick={setIsTimerEnable} />
         </div>
-        {getIsTimerEnable && (
+        {isLetAutoState && (
           <div className="settings-item">
             <p className="text text-ruda">Round time:</p>
             <RoundTime isChange={true} />
@@ -69,11 +72,16 @@ export const GameSettingsForm: React.FC<
         <div className="settings-item-cards">
           <p className="text text-ruda">Add card values:</p>
           <div className="lobby-item__wrap">
-            <GameCard isEdit={true} />
-            <GameCard isEdit={true} scoreType="sp" number="12" />
-            <GameCard isEdit={true} scoreType="sp" number="1" />
-            <GameCard isEdit={true} scoreType="sp" number="6" />
-            <GameCard isAddCard={true} />
+            {cardsValues.map((item, index) => (
+              <GameCard
+                key={index}
+                isEdit={true}
+                scoreType={item.scoreType}
+                number={item.number}
+                handleEditCard={handleEditCard}
+              />
+            ))}
+            <GameCard isAddCard={true} handleAddCard={handleAddCard} />
           </div>
         </div>
       </form>

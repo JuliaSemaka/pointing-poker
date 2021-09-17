@@ -7,7 +7,14 @@
 
   &-scroll {
     height: 80vh;
-    overflow-y: scroll;
+    overflow-y: auto;
+    border-right: 1px solid #2b3a67;
+  }
+
+  &-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &-line {
