@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Button } from '../UI/Button/Button';
 import { ModalWindow } from '../UI/ModalWindow/ModalWindow';
-import { EButtonStyle, IModalKickPlayer } from '../UI/ui.module';
-import './ModalKickPlayer.scss';
+import { EButtonStyle, IKickPlayerModal } from '../UI/ui.module';
+import './KickPlayerModal.scss';
 
-export const ModalKickPlayer: React.FC<IModalKickPlayer> = ({
+export const KickPlayerModal: React.FC<IKickPlayerModal> = ({
   playerName,
   actionKickButton,
   authorKick = null,
@@ -34,10 +34,10 @@ export const ModalKickPlayer: React.FC<IModalKickPlayer> = ({
           </>
         )}
         <div className="kick-player__block">
-          <Button text="Yes" clickButton={() => actionKickButton(true)} />
+          <Button text="Yes" handleClick={() => actionKickButton(true)} />
           <Button
             text="No"
-            clickButton={() => actionKickButton(false)}
+            handleClick={() => actionKickButton(false)}
             style={EButtonStyle.light}
           />
         </div>

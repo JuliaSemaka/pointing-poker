@@ -189,7 +189,7 @@ export enum EHandleIssue {
   delete = 'delete',
 }
 
-export interface IModalKickPlayer {
+export interface IKickPlayerModal {
   playerName: string;
   actionKickButton: (value: boolean) => void;
   authorKick: string | null;
