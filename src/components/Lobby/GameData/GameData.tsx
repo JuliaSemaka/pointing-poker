@@ -9,7 +9,7 @@ import { EButtonStyle, IGameDataForm } from '../../UI/ui.module';
 import './GameData.scss';
 
 export const GameDataForm: React.FC<
-  IGameDataForm & InjectedFormProps<{}, IGameDataForm>
+  IGameDataForm & InjectedFormProps<any, IGameDataForm>
 > = ({ isDealer, handleSubmit }) => {
   return (
     <div className="lobby-item">
@@ -64,6 +64,6 @@ export const GameDataForm: React.FC<
   );
 };
 
-export const GameData = reduxForm<{}, IGameDataForm>({ form: 'copyId' })(
+export const GameData = reduxForm<any, IGameDataForm>({ form: 'copyId' })(
   GameDataForm
 );

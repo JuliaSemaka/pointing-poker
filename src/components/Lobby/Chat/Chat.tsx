@@ -7,7 +7,7 @@ import { IChat } from '../../UI/ui.module';
 
 import './Chat.scss';
 
-export const ChatForm: React.FC<IChat & InjectedFormProps<{}, IChat>> = ({
+export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
   sendMessageChat,
 }) => (
   <div className="chat">
@@ -82,4 +82,4 @@ export const ChatForm: React.FC<IChat & InjectedFormProps<{}, IChat>> = ({
   </div>
 );
 
-export const Chat = reduxForm<{}, IChat>({ form: 'chat' })(ChatForm);
+export const Chat = reduxForm<any, IChat>({ form: 'chat' })(ChatForm);

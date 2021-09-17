@@ -9,7 +9,7 @@ import { IGameSettingsForm } from '../../UI/ui.module';
 import './GameSettings.scss';
 
 export const GameSettingsForm: React.FC<
-  IGameSettingsForm & InjectedFormProps<{}, IGameSettingsForm>
+  IGameSettingsForm & InjectedFormProps<any, IGameSettingsForm>
 > = ({
   isPlayer = true,
   isChangeEnable = true,
@@ -81,6 +81,6 @@ export const GameSettingsForm: React.FC<
   );
 };
 
-export const GameSettings = reduxForm<{}, IGameSettingsForm>({
+export const GameSettings = reduxForm<any, IGameSettingsForm>({
   form: 'gameSettings',
 })(GameSettingsForm);
