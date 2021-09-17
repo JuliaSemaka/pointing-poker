@@ -88,8 +88,8 @@ export interface IRoundTime {
   minute?: number;
   seconds?: number;
   isChange?: boolean;
-  changeMinute?: (value: string) => void | null;
-  changeSeconds?: (value: string) => void | null;
+  handleChangeMinute?: (value: string) => void | null;
+  handleChangeSeconds?: (value: string) => void | null;
 }
 
 export interface ICardsValues {

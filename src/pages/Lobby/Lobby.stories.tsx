@@ -1,21 +1,15 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta, storiesOf } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
 import { combineReducers, createStore } from 'redux';
 import formReducer from 'redux-form/lib/reducer';
+import { action } from '@storybook/addon-actions';
 
 import { Lobby } from './Lobby';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { EHandleIssue } from '../../components/UI/ui.module';
 
 const reducer = combineReducers({ form: formReducer });
 
-const handleSubmit = () => {
-  const a = 1;
-};
-const handleIssue = (value: EHandleIssue) => {
-  const a = value;
-};
 const members = [
   {
     id: '1',
@@ -160,62 +154,62 @@ const issues = [
 
 const propsDealer = {
   members,
-  sendMessageChat: handleSubmit,
+  sendMessageChat: action('sendMessageChat'),
   chatMessage,
   isDealer: true,
   title,
   dealerData,
-  handleEditTitle: handleSubmit,
-  handleCopy: handleSubmit,
-  handleStartGame: handleSubmit,
-  handleCancelGame: handleSubmit,
-  handleExit: handleSubmit,
+  handleEditTitle: action('handleEditTitle'),
+  handleCopy: action('handleCopy'),
+  handleStartGame: action('handleStartGame'),
+  handleCancelGame: action('handleCancelGame'),
+  handleExit: action('handleExit'),
   cardsValues,
-  handleAddCard: handleSubmit,
-  handleEditCard: handleSubmit,
+  handleAddCard: action('handleAddCard'),
+  handleEditCard: action('handleEditCard'),
   issues,
-  handleIssue: handleIssue,
-  handleRemoveMember: handleSubmit,
+  handleIssue: action('handleIssue'),
+  handleRemoveMember: action('handleRemoveMember'),
 };
 
 const propsDealerEmptyChat = {
   members: [],
-  sendMessageChat: handleSubmit,
+  sendMessageChat: action('sendMessageChat'),
   chatMessage: [],
   isDealer: true,
   title,
   dealerData,
-  handleEditTitle: handleSubmit,
-  handleCopy: handleSubmit,
-  handleStartGame: handleSubmit,
-  handleCancelGame: handleSubmit,
-  handleExit: handleSubmit,
+  handleEditTitle: action('handleEditTitle'),
+  handleCopy: action('handleCopy'),
+  handleStartGame: action('handleStartGame'),
+  handleCancelGame: action('handleCancelGame'),
+  handleExit: action('handleExit'),
   cardsValues: [],
-  handleAddCard: handleSubmit,
-  handleEditCard: handleSubmit,
+  handleAddCard: action('handleAddCard'),
+  handleEditCard: action('handleEditCard'),
   issues: [],
-  handleIssue: handleIssue,
-  handleRemoveMember: handleSubmit,
+  handleIssue: action('handleIssue'),
+  handleRemoveMember: action('handleRemoveMember'),
 };
 
 const propsPlayer = {
   members,
-  sendMessageChat: handleSubmit,
+  sendMessageChat: action('sendMessageChat'),
   chatMessage: [],
   isDealer: true,
   title,
   dealerData,
-  handleEditTitle: handleSubmit,
-  handleCopy: handleSubmit,
-  handleStartGame: handleSubmit,
-  handleCancelGame: handleSubmit,
-  handleExit: handleSubmit,
+  handleEditTitle: action('handleEditTitle'),
+  handleCopy: action('handleCopy'),
+  handleStartGame: action('handleStartGame'),
+  handleCancelGame: action('handleCancelGame'),
+  handleExit: action('handleExit'),
   cardsValues,
-  handleAddCard: handleSubmit,
-  handleEditCard: handleSubmit,
+  handleAddCard: action('handleAddCard'),
+  handleEditCard: action('handleEditCard'),
   issues,
-  handleIssue: handleIssue,
-  handleRemoveMember: handleSubmit,
+  handleIssue: action('handleIssue'),
+  handleRemoveMember: action('handleRemoveMember'),
 };
 
 storiesOf('Pages/Lobby', module)
