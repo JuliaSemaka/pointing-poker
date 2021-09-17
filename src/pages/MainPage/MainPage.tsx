@@ -13,13 +13,13 @@ export const isRequired: ValidationFunc<any> = value => (value ? isValid : 'Requ
 const MainForm: React.FC = ({ handleSubmit, handleStartGame }: any): JSX.Element => {
   return (
     <div className="main-page-wrapper">
-      <div className="main-container">
-        <div className="main-logo-image">
+      <div className="main-page-container">
+        <div className="main-page-logo-image">
           <img src={logo} />
         </div>
         <div className="main-page-start">
           <span className="text text-big text-dark-green">Start your planning:</span>
-          <div className="main-create-session">
+          <div className="main-page-create-session">
             <span className="text">Create session:</span>
             <Button
               text="Start New Game"
@@ -30,7 +30,7 @@ const MainForm: React.FC = ({ handleSubmit, handleStartGame }: any): JSX.Element
           <span className="text"> Connect to lobby by
             <span className="text text-kick text-dark-green text-bold">ID:</span>
           </span>
-          <form onSubmit={handleSubmit} className="main-connect-to-lobby">
+          <form onSubmit={handleSubmit} className="main-page-connect-to-lobby">
             <Field
               name="name1"
               type="string"
