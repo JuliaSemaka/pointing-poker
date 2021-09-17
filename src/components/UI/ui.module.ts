@@ -81,7 +81,7 @@ export interface IGameCard {
 
 export interface IModalWindow {
   children: React.ReactNode;
-  handleClick: () => void;
+  handleClick: (value: boolean) => void;
 }
 
 export interface IRoundTime {
@@ -191,4 +191,6 @@ export enum EHandleIssue {
 
 export interface IModalKickPlayer {
   playerName: string;
+  actionKickButton: (value: boolean) => void;
+  authorKick: string | null;
 }
