@@ -33,7 +33,6 @@ const MainForm: React.FC = ({ handleSubmit, handleStartGame }: any): JSX.Element
           <form onSubmit={handleSubmit} className="main-page-connect-to-lobby">
             <Field
               name="name1"
-              type="string"
               component={RenderField}
               className="main-lobby-url"
               placeholder="Type lobby ID"
