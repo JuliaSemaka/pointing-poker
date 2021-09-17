@@ -13,8 +13,6 @@ export const GameSettingsForm: React.FC<any> = ({
   isTimerEnable = true,
   isTurnAuto = true,
   isLetAuto = true,
-  cardsSet = 'story point',
-  scoreType = 'SP',
 }) => {
   const [getIsPlayer, setIsPlayer] = useState(isPlayer);
   const [getIsChangeEnable, setIsChangeEnable] = useState(isChangeEnable);
@@ -49,21 +47,11 @@ export const GameSettingsForm: React.FC<any> = ({
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Score type:</p>
-          <Field
-            name="cardsSet"
-            component={RenderField}
-            label="CardsSet"
-            initialValues={{ cardsSet: { cardsSet } }}
-          />
+          <Field name="cardsSet" component={RenderField} label="CardsSet" />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Score type (Short):</p>
-          <Field
-            name="scoreType"
-            component={RenderField}
-            label="ScoreType"
-            initialValues={{ scoreType: 'jhhjh' }}
-          />
+          <Field name="scoreType" component={RenderField} label="ScoreType" />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Is timer needed:</p>
@@ -90,6 +78,6 @@ export const GameSettingsForm: React.FC<any> = ({
   );
 };
 
-export const GameSettings = reduxForm({ form: 'gameSettings' })(
-  GameSettingsForm
-);
+export const GameSettings = reduxForm({
+  form: 'gameSettings',
+})(GameSettingsForm);

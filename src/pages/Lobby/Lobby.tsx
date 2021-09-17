@@ -7,15 +7,20 @@ import {
   Issues,
   Members,
 } from '../../components';
+import { ILobby } from '../../components/UI/ui.module';
 import './Lobby.scss';
 
-export const Lobby: React.FC = () => (
+export const Lobby: React.FC<ILobby> = ({ isDealer = true, handleSubmit }) => (
   <div className="lobby wrapper">
     <main className="lobby-main">
-      <GameData />
+      <GameData isDealer={isDealer} handleSubmit={handleSubmit} />
       <Members />
-      <Issues />
-      <GameSettings />
+      {isDealer && (
+        <>
+          <Issues />
+          <GameSettings />
+        </>
+      )}
     </main>
     <aside className="lobby-chat">
       <Chat />

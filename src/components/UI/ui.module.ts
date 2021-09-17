@@ -1,5 +1,3 @@
-import React from 'react';
-
 export enum EButtonStyle {
   dark = 'dark',
   light = 'light',
@@ -96,4 +94,18 @@ export interface IGameSettingsForm {
   isTimerEnable?: boolean;
   isTurnAuto?: boolean;
   isLetAuto?: boolean;
+}
+
+export interface ILobby {
+  isDealer?: boolean;
+  handleSubmit: () => void;
+}
+
+interface InitialValuesProps {
+  name: string;
+}
+
+export interface IGameDataForm {
+  isDealer: boolean;
+  handleSubmit: () => void;
 }

@@ -9,12 +9,23 @@ import { Provider } from 'react-redux';
 
 const reducer = combineReducers({ form: formReducer });
 
+const handleSubmit = () => {
+  const a = 1;
+};
+
 storiesOf('Pages/Lobby', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
-  .add('Lobby default', () => (
+  .add('Lobby dealer', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <Lobby />
+        <Lobby handleSubmit={handleSubmit} />
+      </Provider>
+    </>
+  ))
+  .add('Lobby player', () => (
+    <>
+      <Provider store={createStore(reducer)}>
+        <Lobby isDealer={false} handleSubmit={handleSubmit} />
       </Provider>
     </>
   ));
