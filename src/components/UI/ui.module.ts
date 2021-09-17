@@ -99,13 +99,19 @@ export interface IGameSettingsForm {
 export interface ILobby {
   isDealer?: boolean;
   handleSubmit: () => void;
-}
-
-interface InitialValuesProps {
-  name: string;
+  sendMessageChat: () => void;
+  members: number[];
 }
 
 export interface IGameDataForm {
   isDealer: boolean;
   handleSubmit: () => void;
+}
+
+export interface IMembers {
+  members: number[];
+}
+
+export interface IChat {
+  sendMessageChat: () => void;
 }

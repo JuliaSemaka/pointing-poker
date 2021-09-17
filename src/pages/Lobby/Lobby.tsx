@@ -10,11 +10,11 @@ import {
 import { ILobby } from '../../components/UI/ui.module';
 import './Lobby.scss';
 
-export const Lobby: React.FC<ILobby> = ({ isDealer = true, handleSubmit }) => (
+export const Lobby: React.FC<ILobby> = ({ isDealer = true, handleSubmit, members, sendMessageChat }) => (
   <div className="lobby wrapper">
     <main className="lobby-main">
       <GameData isDealer={isDealer} handleSubmit={handleSubmit} />
-      <Members />
+      <Members members={members} />
       {isDealer && (
         <>
           <Issues />
@@ -23,7 +23,7 @@ export const Lobby: React.FC<ILobby> = ({ isDealer = true, handleSubmit }) => (
       )}
     </main>
     <aside className="lobby-chat">
-      <Chat />
+      <Chat sendMessageChat={sendMessageChat} />
     </aside>
   </div>
 );

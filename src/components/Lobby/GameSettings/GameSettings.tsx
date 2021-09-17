@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { GameCard } from '../../UI/Cards/GameCard/GameCard';
 import { RenderField } from '../../UI/RenderField/RenderField';
 import { RoundTime } from '../../UI/RoundTime/RoundTime';
 import Switch from '../../UI/Switch/Switch';
+import { IGameSettingsForm } from '../../UI/ui.module';
 
 import './GameSettings.scss';
 
-export const GameSettingsForm: React.FC<any> = ({
+export const GameSettingsForm: React.FC<
+  IGameSettingsForm & InjectedFormProps<{}, IGameSettingsForm>
+> = ({
   isPlayer = true,
   isChangeEnable = true,
   isTimerEnable = true,
@@ -78,6 +81,6 @@ export const GameSettingsForm: React.FC<any> = ({
   );
 };
 
-export const GameSettings = reduxForm({
+export const GameSettings = reduxForm<{}, IGameSettingsForm>({
   form: 'gameSettings',
 })(GameSettingsForm);

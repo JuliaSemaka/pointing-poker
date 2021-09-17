@@ -12,20 +12,30 @@ const reducer = combineReducers({ form: formReducer });
 const handleSubmit = () => {
   const a = 1;
 };
+const members = new Array(8).fill(1);
 
 storiesOf('Pages/Lobby', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('Lobby dealer', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <Lobby handleSubmit={handleSubmit} />
+        <Lobby
+          handleSubmit={handleSubmit}
+          members={members}
+          sendMessageChat={handleSubmit}
+        />
       </Provider>
     </>
   ))
   .add('Lobby player', () => (
     <>
       <Provider store={createStore(reducer)}>
-        <Lobby isDealer={false} handleSubmit={handleSubmit} />
+        <Lobby
+          isDealer={false}
+          handleSubmit={handleSubmit}
+          members={members}
+          sendMessageChat={handleSubmit}
+        />
       </Provider>
     </>
   ));

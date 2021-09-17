@@ -9,9 +9,8 @@ import { EButtonStyle, IGameDataForm } from '../../UI/ui.module';
 import './GameData.scss';
 
 export const GameDataForm: React.FC<
-  IGameDataForm & InjectedFormProps<any, IGameDataForm>
+  IGameDataForm & InjectedFormProps<{}, IGameDataForm>
 > = ({ isDealer, handleSubmit }) => {
-
   return (
     <div className="lobby-item">
       <div className="lobby-item__title">
@@ -39,25 +38,25 @@ export const GameDataForm: React.FC<
               label="CopyId"
               disabled={true}
             />
-            <Button text="Copy" clickButton={handleSubmit} />
+            <Button text="Copy" handleClick={handleSubmit} />
           </div>
         </div>
       )}
       <div className="game-control">
         {isDealer ? (
           <>
-            <Button text="Start Game" clickButton={handleSubmit} />
+            <Button text="Start Game" handleClick={handleSubmit} />
             <Button
               style={EButtonStyle.light}
               text="Cancel game"
-              clickButton={handleSubmit}
+              handleClick={handleSubmit}
             />
           </>
         ) : (
           <Button
             style={EButtonStyle.light}
             text="Exit"
-            clickButton={handleSubmit}
+            handleClick={handleSubmit}
           />
         )}
       </div>
@@ -65,6 +64,6 @@ export const GameDataForm: React.FC<
   );
 };
 
-export const GameData = reduxForm<any, IGameDataForm>({ form: 'copyId' })(
+export const GameData = reduxForm<{}, IGameDataForm>({ form: 'copyId' })(
   GameDataForm
 );
