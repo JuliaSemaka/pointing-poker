@@ -90,3 +90,10 @@ export interface IRoundTime {
   changeSeconds?: (value: string) => void | null;
 }
 
+export interface IGameSettingsForm {
+  isPlayer?: boolean;
+  isChangeEnable?: boolean;
+  isTimerEnable?: boolean;
+  isTurnAuto?: boolean;
+  isLetAuto?: boolean;
+}

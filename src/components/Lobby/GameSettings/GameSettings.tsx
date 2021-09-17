@@ -4,15 +4,24 @@ import { GameCard } from '../../UI/Cards/GameCard/GameCard';
 import { RenderField } from '../../UI/RenderField/RenderField';
 import { RoundTime } from '../../UI/RoundTime/RoundTime';
 import Switch from '../../UI/Switch/Switch';
+import { IGameSettingsForm } from '../../UI/ui.module';
 
 import './GameSettings.scss';
 
-export const GameSettingsForm: React.FC = () => {
-  const [getIsPlayer, setIsPlayer] = useState(true);
-  const [getIsChangeEnable, setIsChangeEnable] = useState(false);
-  const [getIsTimerEnable, setIsTimerEnable] = useState(false);
-  const [getIsTurnAuto, setIsTurnAuto] = useState(false);
-  const [getIsLetAuto, setIsLetAuto] = useState(false);
+export const GameSettingsForm: React.FC<any> = ({
+  isPlayer = true,
+  isChangeEnable = true,
+  isTimerEnable = true,
+  isTurnAuto = true,
+  isLetAuto = true,
+  cardsSet = 'story point',
+  scoreType = 'SP',
+}) => {
+  const [getIsPlayer, setIsPlayer] = useState(isPlayer);
+  const [getIsChangeEnable, setIsChangeEnable] = useState(isChangeEnable);
+  const [getIsTimerEnable, setIsTimerEnable] = useState(isTimerEnable);
+  const [getIsTurnAuto, setIsTurnAuto] = useState(isTurnAuto);
+  const [getIsLetAuto, setIsLetAuto] = useState(isLetAuto);
 
   return (
     <div className="lobby-item">
@@ -41,11 +50,21 @@ export const GameSettingsForm: React.FC = () => {
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Score type:</p>
-          <Field name="cardsSet" component={RenderField} label="CardsSet" />
+          <Field
+            name="cardsSet"
+            component={RenderField}
+            label="CardsSet"
+            initialValues={{ cardsSet: { cardsSet } }}
+          />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Score type (Short):</p>
-          <Field name="scoreType" component={RenderField} label="ScoreType" />
+          <Field
+            name="scoreType"
+            component={RenderField}
+            label="ScoreType"
+            initialValues={{ scoreType: { scoreType } }}
+          />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Is timer needed:</p>
