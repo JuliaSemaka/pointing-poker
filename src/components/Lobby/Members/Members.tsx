@@ -2,7 +2,10 @@ import React from 'react';
 import { MemberCard } from '../../UI/Cards/MemberCard/MemberCard';
 import { IMembers } from '../../UI/ui.module';
 
-export const Members: React.FC<IMembers> = ({ members, handleRemoveMember }) => (
+export const Members: React.FC<IMembers> = ({
+  members,
+  handleRemoveMember,
+}) => (
   <div className="lobby-item">
     <div className="lobby-item__title">
       <h3 className="text text-ruda">Members:</h3>
