@@ -14,21 +14,21 @@ const props = {
   onSubmit: action('onSubmit'),
   handleStartGame: action('handleStartGame'),
   initialValues: {
-    name1: ''
+    lobbyId: ''
   }
 }
 const props2 = {
   onSubmit: action('onSubmit'),
   handleStartGame: action('handleStartGame'),
   initialValues: {
-    name1: '12211234'
+    lobbyId: '12211234'
   }
 }
 const props3 = {
   onSubmit: action('onSubmit'),
   handleStartGame: action('handleStartGame'),
   initialValues: {
-    name1: '12weq211eqweq234'
+    lobbyId: '12weq211eqweq234'
   }
 }
 storiesOf('Pages/Main page', module)
@@ -40,14 +40,14 @@ storiesOf('Pages/Main page', module)
       </Provider>
     </>
   ))
-  .add('Main page unauthorized - Right Id', () => (
+  .add('Main page unauthorized - Valid Id', () => (
     <>
       <Provider store={createStore(reducer)}>
         <MainPage {...props2} />
       </Provider>
     </>
   ))
-  .add('Main page unauthorized - Wrong Id', () => (
+  .add('Main page unauthorized - Invalid Id', () => (
     <>
       <Provider store={createStore(reducer)}>
         <MainPage {...props3} />
