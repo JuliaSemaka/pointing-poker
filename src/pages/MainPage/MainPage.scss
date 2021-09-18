@@ -25,11 +25,18 @@
     gap: 50px;
   }
 
+  &-or {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+  }
   &-create-session {
     display: flex;
     flex-direction: row;
     justify-content: start;
     align-items: center;
+    gap: 10rem;
   }
 
   &-connect-to-lobby {

@@ -9,6 +9,7 @@ type ValidationFunc<T> = (value: T) => void | string
 
 const isValid: void = undefined
 export const isRequired: ValidationFunc<any> = value => (value ? isValid : 'Required')
+const isNumber: ValidationFunc<any> = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
 
 const MainForm: React.FC = ({ handleSubmit, handleStartGame }: any): JSX.Element => {
   return (
@@ -26,17 +27,17 @@ const MainForm: React.FC = ({ handleSubmit, handleStartGame }: any): JSX.Element
               handleClick={handleStartGame}
             />
           </div>
-          <span className="text text-big text-dark-green">OR:</span>
+          <span className="text text-big text-dark-green main-page-or">OR:</span>
           <span className="text"> Connect to lobby by
-            <span className="text text-kick text-dark-green text-bold">ID:</span>
+            <span className="text text-kick text-dark-green text-bold"> ID:</span>
           </span>
           <form onSubmit={handleSubmit} className="main-page-connect-to-lobby">
             <Field
-              name="name1"
+              name="lobbyId"
               component={RenderField}
               className="main-lobby-url"
               placeholder="Type lobby ID"
-              validate={[isRequired]}
+              validate={[isRequired, isNumber]}
             />
             <Button
               text="Connect"

@@ -35,6 +35,7 @@ export interface IRenderField {
   style?: ERenderFieldType;
   disabled?: boolean;
   other: any;
+  placeholder: string;
 }
 
 export interface ISelect {

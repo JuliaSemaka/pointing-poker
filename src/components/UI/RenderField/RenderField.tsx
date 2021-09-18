@@ -9,6 +9,7 @@ export const RenderField: React.FC<IRenderField> = ({
   type = EType.text,
   style = ERenderFieldType.big,
   disabled = false,
+  placeholder = ''
 }) => {
   if (type === EType.file) {
     return (
@@ -26,6 +27,7 @@ export const RenderField: React.FC<IRenderField> = ({
         type={type}
         className={`text text-bold input input-${style}`}
         disabled={disabled}
+        placeholder={placeholder}
       />
       {touched && error && <p className="text text-error">{error}</p>}
     </div>
