@@ -8,9 +8,12 @@ export interface IGameData {
 }
 
 export interface IIssue {
+  id: string;
   title: string;
+  link: string;
   priority: string;
   isChecked: boolean;
+  mark: string | null;
 }
 
 export interface ICardsValues {
@@ -34,6 +37,12 @@ export enum EGameStatus {
   closed = 'closed',
 }
 
+export interface IMarksCurrentTask {
+  idUser: string;
+  mark: string;
+}
+
 export interface IStatistics {
   cardsValues: ICardsValues[];
+  marksCurrentTask: IMarksCurrentTask[],
 }

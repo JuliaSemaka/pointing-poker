@@ -21,9 +21,30 @@ const dealerData = {
   role: 'dealer',
 };
 const issues = [
-  { title: 'Issue 505', priority: 'Low', isChecked: true },
-  { title: 'Issue 745', priority: 'Middle', isChecked: false },
-  { title: 'Issue 325', priority: 'Hight', isChecked: false },
+  {
+    id: '1',
+    title: 'Issue 505',
+    priority: 'Low',
+    isChecked: true,
+    link: 'http://drgerdssb',
+    mark: '6',
+  },
+  {
+    id: '2',
+    title: 'Issue 745',
+    priority: 'Middle',
+    isChecked: false,
+    link: 'http://drgerdssb',
+    mark: null,
+  },
+  {
+    id: '3',
+    title: 'Issue 325',
+    priority: 'Hight',
+    isChecked: false,
+    link: 'http://drgerdssb',
+    mark: null,
+  },
 ];
 const cardsValues = [
   {
@@ -54,6 +75,13 @@ const propsDealer = {
   issues,
   handleGameIssue: action('handleGameIssue'),
   cardsValues: cardsValues,
+  marksCurrentTask: [
+    { idUser: '1', mark: '2' },
+    { idUser: '2', mark: '2' },
+    { idUser: '3', mark: '12' },
+    { idUser: '4', mark: '6' },
+    { idUser: '5', mark: '12' },
+  ],
 };
 
 const propsDealerInProgress = {
@@ -66,6 +94,14 @@ const propsDealerInProgress = {
   issues,
   handleGameIssue: action('handleGameIssue'),
   cardsValues: cardsValues,
+  marksCurrentTask: [
+    { idUser: '1', mark: '2' },
+    { idUser: '2', mark: '2' },
+    { idUser: '3', mark: '12' },
+    { idUser: '3', mark: '12' },
+    { idUser: '4', mark: '6' },
+    { idUser: '5', mark: '12' },
+  ],
 };
 
 const propsPlayer = {
@@ -78,6 +114,13 @@ const propsPlayer = {
   issues,
   handleGameIssue: action('handleGameIssue'),
   cardsValues: cardsValues,
+  marksCurrentTask: [
+    { idUser: '1', mark: '2' },
+    { idUser: '2', mark: '2' },
+    { idUser: '3', mark: '12' },
+    { idUser: '4', mark: '6' },
+    { idUser: '5', mark: '12' },
+  ],
 };
 
 storiesOf('Pages/Game', module)

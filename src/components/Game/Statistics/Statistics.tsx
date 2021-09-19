@@ -5,23 +5,36 @@ import { IStatistics } from '../game.module';
 
 import './Statistics.scss';
 
-export const Statistics: React.FC<IStatistics> = ({ cardsValues }) => (
-  <div className="game-item">
-    <div>
-      <div className="game-item__title">
-        <h3 className="text text-ruda">Statistics:</h3>
-      </div>
-      <div className="game-item__cards">
-        {cardsValues.map((item, index) => (
-          <div className="game-item__card" key={index}>
-            <GameCard
-              scoreType={item.scoreType}
-              // number={item.number}
-            />
-            <div className="text text-ruda">43,5 %</div>
-          </div>
-        ))}
+export const Statistics: React.FC<IStatistics> = ({
+  cardsValues,
+  marksCurrentTask,
+}) => {
+  const percentTask = (number: string | null) => {
+    return (
+      (marksCurrentTask.filter(({ mark }) => mark === number).length /
+        marksCurrentTask.length) *
+      100
+    ).toFixed(1);
+  };
+
+  return (
+    <div className="game-item">
+      <div>
+        <div className="game-item__title">
+          <h3 className="text text-ruda">Statistics:</h3>
+        </div>
+        <div className="game-item__cards">
+          {cardsValues.map(({ number, scoreType }) => (
+            <div className="game-item__card" key={number}>
+              <GameCard
+                scoreType={scoreType}
+                // number={number}
+              />
+              <div className="text text-ruda">{percentTask(number)}%</div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
-  </div>
-);
+  );
+};

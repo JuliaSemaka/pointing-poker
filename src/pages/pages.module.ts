@@ -2,6 +2,7 @@ import {
   EGameStatus,
   ICardsValues,
   IIssue,
+  IMarksCurrentTask,
 } from '../components/Game/game.module';
 
 export interface IUsers {
@@ -23,4 +24,5 @@ export interface IGame {
   issues: IIssue[];
   handleGameIssue: (value: string) => void;
   cardsValues: ICardsValues[];
+  marksCurrentTask: IMarksCurrentTask[];
 }

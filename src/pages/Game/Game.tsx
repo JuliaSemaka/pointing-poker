@@ -15,6 +15,7 @@ export const Game: React.FC<IGame> = ({
   issues,
   handleGameIssue,
   cardsValues,
+  marksCurrentTask,
 }) => (
   <div className="game wrapper">
     <main className="game-main">
@@ -33,7 +34,7 @@ export const Game: React.FC<IGame> = ({
         cardsValues={cardsValues}
       />
       {isDealer && gameStatus === EGameStatus.inProgress && (
-        <Statistics cardsValues={cardsValues} />
+        <Statistics cardsValues={cardsValues} marksCurrentTask={marksCurrentTask} />
       )}
     </main>
     <aside className="game-score">
