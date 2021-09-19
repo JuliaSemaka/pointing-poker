@@ -3,18 +3,16 @@ import './Switch.scss';
 
 interface SwitchProps {
   isChecked: boolean,
-  label: string,
+  label?: string,
   handleClick: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 const Switch = ({ ...props }: SwitchProps):JSX.Element => {
   const { isChecked, label, handleClick  } = props;
 
-  return (
+  return ( 
     <div className="switch-wrapper">
-      <div className="switch-label">
-        {label}
-      </div>
+      {label && <div className="switch-label">{label}</div>}
       <label className="switch">
         <input type="checkbox" checked={isChecked} onChange={() => handleClick(!isChecked)} />
         <span className="slider round"></span>

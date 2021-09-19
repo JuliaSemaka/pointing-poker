@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { createStore, combineReducers } from 'redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { Provider } from 'react-redux';
 import formReducer from 'redux-form/lib/reducer';
 import { MemoryRouter } from 'react-router-dom';
 import Switch from './Switch';
 
+interface SwitchWrapper {
+  label: string,
+  isChecked: boolean
+}
 const propsToggleOff = {
   isChecked: false,
   label: 'Switcher:',
@@ -19,7 +23,9 @@ const propsToggleOn = {
 
 const reducer = combineReducers({ form: formReducer });
 
-const SwitchWrapper = ({label, isChecked}: any) => {
+const SwitchWrapper: React.FC<
+SwitchWrapper & InjectedFormProps<any, SwitchWrapper>
+> = ({label, isChecked}) => {
   const [isCheck, setIsCheck] = useState(isChecked);
   return <Field
     name="switcher"
@@ -29,7 +35,7 @@ const SwitchWrapper = ({label, isChecked}: any) => {
     isChecked={isCheck}
   />
 }
-const StoriesSwitch: any = reduxForm({
+const StoriesSwitch = reduxForm<any, SwitchWrapper>({
   form: 'formname',
 })(SwitchWrapper);
 
