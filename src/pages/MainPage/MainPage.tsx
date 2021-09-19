@@ -8,8 +8,8 @@ import { RenderField } from '../../components/UI/RenderField/RenderField';
 type ValidationFunc<T> = (value: T) => void | string
 
 const isValid: void = undefined
-export const isRequired: ValidationFunc<any> = value => (value ? isValid : 'Required')
-const isNumber: ValidationFunc<any> = value => value && isNaN(Number(value)) ? 'Must be a number' : undefined
+const isRequired: ValidationFunc<any> = value => (value ? isValid : 'Required')
+const isValidId: ValidationFunc<any> = value => value && !/^(?=.*[a-z])(?=.*[0-9])[a-z0-9]/i.test(value) ? 'Must be a valid ID' : undefined
 
 const MainForm: React.FC = ({ handleSubmit, handleStartGame }: any): JSX.Element => {
   return (
@@ -37,7 +37,7 @@ const MainForm: React.FC = ({ handleSubmit, handleStartGame }: any): JSX.Element
               component={RenderField}
               className="main-lobby-url"
               placeholder="Type lobby ID"
-              validate={[isRequired, isNumber]}
+              validate={[isRequired, isValidId]}
             />
             <Button
               text="Connect"

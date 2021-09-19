@@ -34,24 +34,18 @@ const props3 = {
 storiesOf('Pages/Main page', module)
   .addDecorator(story => <MemoryRouter>{story()}</MemoryRouter>)
   .add('Main page unauthorized - Empty', () => (
-    <>
-      <Provider store={createStore(reducer)}>
-        <MainPage {...props} />
-      </Provider>
-    </>
+    <Provider store={createStore(reducer)}>
+      <MainPage {...props} />
+    </Provider>
   ))
   .add('Main page unauthorized - Valid Id', () => (
-    <>
-      <Provider store={createStore(reducer)}>
-        <MainPage {...props2} />
-      </Provider>
-    </>
+    <Provider store={createStore(reducer)}>
+      <MainPage {...props2} />
+    </Provider>
   ))
   .add('Main page unauthorized - Invalid Id', () => (
-    <>
-      <Provider store={createStore(reducer)}>
-        <MainPage {...props3} />
-      </Provider>
-    </>
+    <Provider store={createStore(reducer)}>
+      <MainPage {...props3} />
+    </Provider>
   ))
 
