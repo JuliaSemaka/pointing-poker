@@ -12,12 +12,12 @@ export const Members: React.FC<IMembers> = ({
     </div>
     <div className="lobby-item__wrap">
       {!members.length && <p className="text">Members is empty</p>}
-      {members.map((item) => (
+      {members.map(({ jobTitle, lastName, firstName, id }) => (
         <MemberCard
-          key={item.id}
-          firstName={item.firstName}
-          lastName={item.lastName}
-          position={item.jobTitle}
+          key={id}
+          firstName={firstName}
+          lastName={lastName}
+          position={jobTitle}
           isRemove={true}
           handleRemoveMember={handleRemoveMember}
         />

@@ -106,6 +106,9 @@ export interface IGameSettingsForm {
   cardsValues?: ICardsValues[];
   handleAddCard: () => void;
   handleEditCard: () => void;
+  handleSubmitGameSettings: () => void;
+  handleChangeMinute: () => void;
+  handleChangeSeconds: () => void;
 }
 
 export interface IChatMessage {
@@ -141,6 +144,9 @@ export interface ILobby {
   issues: IIssue[];
   handleIssue: (value: EHandleIssue) => void;
   handleRemoveMember: () => void;
+  handleSubmitGameSettings: () => void;
+  handleChangeMinute: () => void;
+  handleChangeSeconds: () => void;
 }
 
 export interface IGameDataForm {

@@ -28,6 +28,9 @@ export const Lobby: React.FC<ILobby> = ({
   issues,
   handleIssue,
   handleRemoveMember,
+  handleSubmitGameSettings,
+  handleChangeMinute,
+  handleChangeSeconds,
 }) => (
   <div className="lobby wrapper">
     <main className="lobby-main">
@@ -49,6 +52,9 @@ export const Lobby: React.FC<ILobby> = ({
             cardsValues={cardsValues}
             handleAddCard={handleAddCard}
             handleEditCard={handleEditCard}
+            handleSubmitGameSettings={handleSubmitGameSettings}
+            handleChangeMinute={handleChangeMinute}
+            handleChangeSeconds={handleChangeSeconds}
           />
         </>
       )}

@@ -10,30 +10,30 @@ import './Chat.scss';
 export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
   sendMessageChat,
   chatMessage = [],
-  handleRemoveMember
+  handleRemoveMember,
 }) => (
   <div className="chat">
     <div className={`chat-scroll ${!chatMessage.length && 'chat-center'}`}>
       {!chatMessage.length && <div className="text">Chat is empty</div>}
-      {chatMessage.map((item, index) => (
+      {chatMessage.map(({ userData, message }, index) => (
         <div className="chat-line" key={index}>
           <MemberCard
-            firstName={item.userData.firstName}
-            lastName={item.userData.lastName}
-            position={item.userData.jobTitle}
+            firstName={userData.firstName}
+            lastName={userData.lastName}
+            position={userData.jobTitle}
             isRemove={true}
             handleRemoveMember={handleRemoveMember}
           />
           <div className="chat-message">
-            <p className="text">{item.message}</p>
+            <p className="text">{message}</p>
           </div>
         </div>
       ))}
     </div>
-    <div className="chat-input">
+    <form className="chat-input" onSubmit={sendMessageChat}>
       <Field name="chatMessage" component={RenderField} label="ChatMessage" />
       <Button text="Send" handleClick={sendMessageChat} />
-    </div>
+    </form>
   </div>
 );
 

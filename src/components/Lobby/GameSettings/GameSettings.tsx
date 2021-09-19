@@ -19,6 +19,9 @@ export const GameSettingsForm: React.FC<
   cardsValues = [],
   handleAddCard,
   handleEditCard,
+  handleSubmitGameSettings,
+  handleChangeMinute,
+  handleChangeSeconds,
 }) => {
   const [isPlayerState, setIsPlayer] = useState(isPlayer);
   const [isChangeEnableState, setIsChangeEnable] = useState(isChangeEnable);
@@ -31,7 +34,7 @@ export const GameSettingsForm: React.FC<
       <div className="lobby-item__title">
         <h3 className="text text-ruda">Game settings:</h3>
       </div>
-      <form className="settings">
+      <form className="settings" onSubmit={handleSubmitGameSettings}>
         <div className="settings-item">
           <p className="text text-ruda">Scram master as player:</p>
           <Switch isChecked={isPlayerState} handleClick={setIsPlayer} />
@@ -66,7 +69,7 @@ export const GameSettingsForm: React.FC<
         {isLetAutoState && (
           <div className="settings-item">
             <p className="text text-ruda">Round time:</p>
-            <RoundTime isChange={true} />
+            <RoundTime isChange={true} handleChangeMinute={handleChangeMinute} handleChangeSeconds={handleChangeSeconds} />
           </div>
         )}
         <div className="settings-item-cards">

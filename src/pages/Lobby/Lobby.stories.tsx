@@ -170,6 +170,9 @@ const propsDealer = {
   issues,
   handleIssue: action('handleIssue'),
   handleRemoveMember: action('handleRemoveMember'),
+  handleSubmitGameSettings: action('handleSubmitGameSettings'),
+  handleChangeMinute: action('handleChangeMinute'),
+  handleChangeSeconds: action('handleChangeSeconds'),
 };
 
 const propsDealerEmptyChat = {
@@ -190,6 +193,9 @@ const propsDealerEmptyChat = {
   issues: [],
   handleIssue: action('handleIssue'),
   handleRemoveMember: action('handleRemoveMember'),
+  handleSubmitGameSettings: action('handleSubmitGameSettings'),
+  handleChangeMinute: action('handleChangeMinute'),
+  handleChangeSeconds: action('handleChangeSeconds'),
 };
 
 const propsPlayer = {
@@ -210,6 +216,9 @@ const propsPlayer = {
   issues,
   handleIssue: action('handleIssue'),
   handleRemoveMember: action('handleRemoveMember'),
+  handleSubmitGameSettings: action('handleSubmitGameSettings'),
+  handleChangeMinute: action('handleChangeMinute'),
+  handleChangeSeconds: action('handleChangeSeconds'),
 };
 
 storiesOf('Pages/Lobby', module)
