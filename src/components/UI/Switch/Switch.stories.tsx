@@ -1,36 +1,53 @@
 import React, { useState } from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { storiesOf } from '@storybook/react';
+import { createStore, combineReducers } from 'redux';
+import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import { Provider } from 'react-redux';
+import formReducer from 'redux-form/lib/reducer';
+import { MemoryRouter } from 'react-router-dom';
 import Switch from './Switch';
 
-export default {
-  component: Switch,
-  title: 'UI Components/Switch',
-} as ComponentMeta<typeof Switch>;
-
-interface SwitchWrapperProps {
-  isChecked: boolean;
-  label?: string;
+interface SwitchWrapper {
+  label: string,
+  isChecked: boolean
 }
-
-const SwitchWrapper = ({ isChecked, label }: SwitchWrapperProps) => {
-  const [isCheck, setIsCheck] = useState(isChecked);
-
-  return <Switch label={label} isChecked={isCheck} handleClick={setIsCheck} />;
-};
-const Template: ComponentStory<typeof Switch> = (args) => (
-  <SwitchWrapper {...args} />
-);
-
-export const ToggleOff = Template.bind({});
-
-ToggleOff.args = {
+const propsToggleOff = {
   isChecked: false,
   label: 'Switcher:',
 };
 
-export const ToggleOn = Template.bind({});
-
-ToggleOn.args = {
-  ...ToggleOff.args,
+const propsToggleOn = {
   isChecked: true,
+  label: 'Switcher:',
 };
+
+const reducer = combineReducers({ form: formReducer });
+
+const SwitchWrapper: React.FC<
+SwitchWrapper & InjectedFormProps<any, SwitchWrapper>
+> = ({label, isChecked}) => {
+  const [isCheck, setIsCheck] = useState(isChecked);
+  return <Field
+    name="switcher"
+    component={Switch}
+    handleClick={setIsCheck}
+    label={label}
+    isChecked={isCheck}
+  />
+}
+const StoriesSwitch = reduxForm<any, SwitchWrapper>({
+  form: 'formname',
+})(SwitchWrapper);
+
+storiesOf('UI Components/Switch', module)
+  .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
+  .add('ToggleOff', () => (
+    <Provider store={createStore(reducer)}>
+      <StoriesSwitch {...propsToggleOff} />
+    </Provider>
+  ))
+  .add('ToggleOn', () => (
+    <Provider store={createStore(reducer)}>
+      <StoriesSwitch {...propsToggleOn} />
+    </Provider>
+  ));
