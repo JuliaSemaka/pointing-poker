@@ -192,5 +192,5 @@ export enum EHandleIssue {
 export interface IKickPlayerModal {
   playerName: string;
   actionKickButton: (value: boolean) => void;
-  authorKick: string | null;
+  authorKick?: string | null;
 }
