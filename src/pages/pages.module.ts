@@ -18,8 +18,11 @@ export interface IGame {
   isDealer: boolean;
   title: string;
   dealerData: IUsers;
-  handleStopGame: (value: string) => void;
-  handleRunRound: (value: string) => void;
+  handleGameStopGame: () => void;
+  handleGameExit: () => void;
+  handleRunRound: () => void;
+  handleRestartRound: () => void;
+  handleNextIssye: () => void;
   gameStatus: EGameStatus;
   issues: IIssue[];
   handleGameIssue: (value: string) => void;

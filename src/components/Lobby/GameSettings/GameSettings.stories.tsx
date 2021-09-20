@@ -39,7 +39,7 @@ const propsDefault = {
   handleChangeSeconds: action('handleChangeSeconds'),
 };
 
-storiesOf('UI Components/GameSettings', module)
+storiesOf('UI Components/Lobby-GameSettings', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('InputTextBigWithDefaultValue', () => (
     <Provider store={createStore(reducer)}>

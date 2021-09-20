@@ -32,7 +32,7 @@ const propsDefault = {
   handleExit: action('handleExit'),
 };
 
-storiesOf('UI Components/GameData', module)
+storiesOf('UI Components/Lobby-GameData', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('InputTextBigWithDefaultValue', () => (
     <Provider store={createStore(reducer)}>

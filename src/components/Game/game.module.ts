@@ -4,7 +4,8 @@ export interface IGameData {
   isDealer: boolean;
   title: string;
   dealerData: IUsers;
-  handleStopGame: (value: string) => void;
+  handleGameStopGame: () => void;
+  handleGameExit: () => void;
 }
 
 export interface IIssue {
@@ -23,7 +24,9 @@ export interface ICardsValues {
 
 export interface IIssues {
   isDealer: boolean;
-  handleRunRound: (value: string) => void;
+  handleRunRound: () => void;
+  handleRestartRound: () => void;
+  handleNextIssye: () => void;
   gameStatus: EGameStatus;
   issues: IIssue[];
   handleGameIssue: (value: string) => void;

@@ -9,7 +9,7 @@ export const Statistics: React.FC<IStatistics> = ({
   cardsValues,
   marksCurrentTask,
 }) => {
-  const percentTask = (number: string | null) => {
+  const countPercentTask = (number: string | null) => {
     return (
       (marksCurrentTask.filter(({ mark }) => mark === number).length /
         marksCurrentTask.length) *
@@ -27,7 +27,7 @@ export const Statistics: React.FC<IStatistics> = ({
           {cardsValues.map(({ number, scoreType }) => (
             <div className="game-item__card" key={number}>
               <GameCard scoreType={scoreType} number={number} />
-              <div className="text text-ruda">{percentTask(number)}%</div>
+              <div className="text text-ruda">{countPercentTask(number)}%</div>
             </div>
           ))}
         </div>

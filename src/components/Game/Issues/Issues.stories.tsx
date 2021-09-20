@@ -33,7 +33,7 @@ const issues = [
 ];
 
 export default {
-  title: 'UI Components/Issues',
+  title: 'UI Components/Game-Issues',
   component: IssuesGame,
 } as ComponentMeta<typeof IssuesGame>;
 

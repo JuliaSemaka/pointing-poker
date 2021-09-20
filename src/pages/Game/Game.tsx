@@ -9,8 +9,11 @@ export const Game: React.FC<IGame> = ({
   isDealer,
   title,
   dealerData,
-  handleStopGame,
+  handleGameStopGame,
+  handleGameExit,
   handleRunRound,
+  handleRestartRound,
+  handleNextIssye,
   gameStatus,
   issues,
   handleGameIssue,
@@ -24,18 +27,24 @@ export const Game: React.FC<IGame> = ({
         isDealer={isDealer}
         title={title}
         dealerData={dealerData}
-        handleStopGame={handleStopGame}
+        handleGameStopGame={handleGameStopGame}
+        handleGameExit={handleGameExit}
       />
       <IssuesGame
         isDealer={isDealer}
         handleRunRound={handleRunRound}
+        handleRestartRound={handleRestartRound}
+        handleNextIssye={handleNextIssye}
         gameStatus={gameStatus}
         issues={issues}
         handleGameIssue={handleGameIssue}
         cardsValues={cardsValues}
       />
       {isDealer && gameStatus === EGameStatus.inProgress && (
-        <Statistics cardsValues={cardsValues} marksCurrentTask={marksCurrentTask} />
+        <Statistics
+          cardsValues={cardsValues}
+          marksCurrentTask={marksCurrentTask}
+        />
       )}
     </main>
     <aside className="game-score">

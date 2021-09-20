@@ -11,6 +11,8 @@ import './Issues.scss';
 export const IssuesGame: React.FC<IIssues> = ({
   isDealer,
   handleRunRound,
+  handleRestartRound,
+  handleNextIssye,
   gameStatus,
   issues,
   handleGameIssue,
@@ -44,21 +46,19 @@ export const IssuesGame: React.FC<IIssues> = ({
           <Button
             style={EButtonStyle.dark}
             text={
-              gameStatus === EGameStatus.created ? 'Run Round' : 'Restrt Round'
+              gameStatus === EGameStatus.created ? 'Run Round' : 'Restart Round'
             }
-            handleClick={() =>
-              handleRunRound(
-                gameStatus === EGameStatus.created
-                  ? 'Run Round'
-                  : 'Restrt Round'
-              )
+            handleClick={
+              gameStatus === EGameStatus.created
+                ? handleRunRound
+                : handleRestartRound
             }
           />
           {gameStatus !== EGameStatus.created && (
             <Button
               style={EButtonStyle.dark}
               text={'Next ISSUE'}
-              handleClick={() => handleRunRound('Next ISSUE')}
+              handleClick={handleNextIssye}
             />
           )}
         </div>
@@ -66,12 +66,8 @@ export const IssuesGame: React.FC<IIssues> = ({
     </div>
     {!isDealer && (
       <div className="game-item__cards">
-        {cardsValues.map((item, index) => (
-          <GameCard
-            key={index}
-            scoreType={item.scoreType}
-            number={item.number}
-          />
+        {cardsValues.map(({ number, scoreType }, index) => (
+          <GameCard key={index} scoreType={scoreType} number={number} />
         ))}
       </div>
     )}

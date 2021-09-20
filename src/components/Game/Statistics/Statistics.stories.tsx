@@ -25,11 +25,12 @@ const propsDefault = {
     {
       idUser: '1',
       mark: '12',
+      scoreType: 'sp',
     },
   ],
 };
 
-storiesOf('UI Components/Statistics', module)
+storiesOf('UI Components/Game-Statistics', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('InputTextBigWithDefaultValue', () => (
     <Provider store={createStore(reducer)}>

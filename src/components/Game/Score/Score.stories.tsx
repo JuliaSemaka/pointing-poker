@@ -67,7 +67,7 @@ const propsDefault = {
   marksCurrentTask,
 };
 
-storiesOf('UI Components/Score', module)
+storiesOf('UI Components/Game-Score', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('InputTextBigWithDefaultValue', () => (
     <Provider store={createStore(reducer)}>

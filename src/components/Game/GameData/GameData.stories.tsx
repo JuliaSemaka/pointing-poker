@@ -25,10 +25,11 @@ const propsDefault = {
   isDealer: true,
   title,
   dealerData,
-  handleStopGame: action('handleStopGame'),
+  handleGameStopGame: action('handleGameStopGame'),
+  handleGameExit: action('handleGameExit'),
 };
 
-storiesOf('UI Components/GameData', module)
+storiesOf('UI Components/Game-GameData', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('InputTextBigWithDefaultValue', () => (
     <Provider store={createStore(reducer)}>

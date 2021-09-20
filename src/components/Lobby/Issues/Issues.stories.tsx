@@ -11,7 +11,7 @@ const issues = [
 ];
 
 export default {
-  title: 'UI Components/Issues',
+  title: 'UI Components/Lobby-Issues',
   component: Issues,
 } as ComponentMeta<typeof Issues>;
 

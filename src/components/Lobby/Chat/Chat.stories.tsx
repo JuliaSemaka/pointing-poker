@@ -93,7 +93,7 @@ const propsDefault = {
   handleRemoveMember: action('handleRemoveMember'),
 };
 
-storiesOf('UI Components/Chat', module)
+storiesOf('UI Components/Lobby-Chat', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('InputTextBigWithDefaultValue', () => (
     <Provider store={createStore(reducer)}>
