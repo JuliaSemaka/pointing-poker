@@ -26,10 +26,7 @@ export const Statistics: React.FC<IStatistics> = ({
         <div className="game-item__cards">
           {cardsValues.map(({ number, scoreType }) => (
             <div className="game-item__card" key={number}>
-              <GameCard
-                scoreType={scoreType}
-                // number={number}
-              />
+              <GameCard scoreType={scoreType} number={number} />
               <div className="text text-ruda">{percentTask(number)}%</div>
             </div>
           ))}
