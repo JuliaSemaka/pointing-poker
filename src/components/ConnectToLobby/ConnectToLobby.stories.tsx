@@ -16,8 +16,8 @@ const reducerWithFormError = combineReducers({
 })
 
 const props = {
-  lable: 'Connect ToLobby'
-  // onSubmit: action('onSubmit'),
+  lable: 'Connect To Lobby',
+  onSubmit: action('onSubmit'),
 }
 
 storiesOf('Modal/Connect to lobby', module)

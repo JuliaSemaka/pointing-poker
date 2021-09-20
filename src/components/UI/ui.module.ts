@@ -32,6 +32,7 @@ export interface IRenderField {
   type?: EType;
   style?: ERenderFieldType;
   disabled?: boolean;
+  placeholder?: string;
   other?: any;
 }
 
