@@ -32,6 +32,11 @@ $color5: #ffc482;
   max-width: 1440px;
   display: flex;
   justify-content: center;
+  padding-bottom: 30px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
 }
 
 .text {
@@ -102,6 +107,7 @@ $color5: #ffc482;
   }
 
   &-italic {
+    font-weight: 400;
     font-style: italic;
   }
 
@@ -111,5 +117,18 @@ $color5: #ffc482;
 
   &-error {
     color: #ff1818;
+  }
+}
+
+.crud-item {
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2);
+    transition: 0.5s;
+  }
+
+  &:active {
+    transform: scale(0.6);
   }
 }
