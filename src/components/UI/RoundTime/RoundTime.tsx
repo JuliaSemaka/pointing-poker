@@ -7,20 +7,20 @@ export const RoundTime: React.FC<IRoundTime> = ({
   minute = 0,
   seconds = 0,
   isChange = false,
-  changeMinute = null,
-  changeSeconds = null,
+  handleChangeMinute = null,
+  handleChangeSeconds = null,
 }) => {
   return (
     <div className="round-time">
       <div className="round-time__half">
         <span className="round-time__text text text-ruda-small">minutes</span>
-        {isChange && changeMinute ? (
+        {isChange && handleChangeMinute ? (
           <input
             type="number"
             className="text text-ruda text-ruda-big"
             value={minute}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              changeMinute(e.target.value)
+              handleChangeMinute(e.target.value)
             }
           />
         ) : (
@@ -30,13 +30,13 @@ export const RoundTime: React.FC<IRoundTime> = ({
       <div className="round-time__half">
         <span className="round-time__text text text-ruda-small">secons</span>
         <span className="round-time__separator text text-ruda">:</span>
-        {isChange && changeSeconds ? (
+        {isChange && handleChangeSeconds ? (
           <input
             type="number"
             className="text text-ruda text-ruda-big"
             value={seconds}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              changeSeconds(e.target.value)
+              handleChangeSeconds(e.target.value)
             }
           />
         ) : (

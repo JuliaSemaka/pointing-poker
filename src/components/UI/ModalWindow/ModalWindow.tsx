@@ -6,7 +6,7 @@ export const ModalWindow: React.FC<IModalWindow> = ({
   children,
   handleClick,
 }) => (
-  <div className="modal" onClick={handleClick}>
+  <div className="modal" onClick={() => handleClick(false)}>
     <div
       className="modal-content"
       onClick={(e: React.MouseEvent<HTMLDivElement, MouseEvent>) =>

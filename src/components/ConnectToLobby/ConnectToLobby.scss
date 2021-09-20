@@ -1,7 +1,14 @@
-.modal-connect-to-lobby {
+.modal-connect-lobby {
   background-color: rosybrown;
   width: 876px;
   height: auto;
+  display: flex;
+  flex-direction: column;
+
+  &-item {
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 .form-buttons{

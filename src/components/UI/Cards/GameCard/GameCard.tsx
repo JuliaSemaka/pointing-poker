@@ -9,14 +9,16 @@ import '../Cards.scss';
 
 export const GameCard: React.FC<IGameCard> = ({
   isAddCard = false,
-  number = 'Unknown',
+  number = null,
   scoreType = null,
   isEdit = false,
   isCheck = false,
+  handleEditCard,
+  handleAddCard,
 }) => {
   if (isAddCard) {
     return (
-      <div className="game-card game-card__add">
+      <div className="game-card game-card__add" onClick={handleAddCard}>
         <img className="game-card__img" src={AddCard} alt="add-card" />
       </div>
     );
@@ -25,7 +27,12 @@ export const GameCard: React.FC<IGameCard> = ({
   return (
     <div className="game-card">
       {isEdit && (
-        <img className="game-card__edit card-cred" src={Edit} alt="edit" />
+        <img
+          className="game-card__edit card-cred"
+          src={Edit}
+          alt="edit"
+          onClick={handleEditCard}
+        />
       )}
       {isCheck && (
         <div className="card__check">
@@ -34,7 +41,9 @@ export const GameCard: React.FC<IGameCard> = ({
           </div>
         </div>
       )}
-      <p className="text text-ruda text-ruda-small game-card__top">{number}</p>
+      <p className="text text-ruda text-ruda-small game-card__top">
+        {number || 'Unknown'}
+      </p>
       {scoreType ? (
         <div className="text text-ruda text-ruda-big game-card__scote-type">
           {scoreType}
@@ -43,7 +52,7 @@ export const GameCard: React.FC<IGameCard> = ({
         <img className="game-card__img" src={UnknownCard} alt="unknown-card" />
       )}
       <p className="text text-ruda text-ruda-small game-card__bottom">
-        {number}
+        {number ?? 'Unknown'}
       </p>
     </div>
   );

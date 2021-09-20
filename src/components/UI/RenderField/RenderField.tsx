@@ -9,25 +9,25 @@ export const RenderField: React.FC<IRenderField> = ({
   type = EType.text,
   style = ERenderFieldType.big,
   disabled = false,
-  ...other
+  placeholder = ''
 }) => {
   if (type === EType.file) {
     return (
       <label className={`text text-bold input input-label input-${style}`}>
-        <input type="file" className="input-file" {...other} />
+        <input type="file" className="input-file" />
         Choose file
       </label>
     );
   }
 
   return (
-    <div className="input-block">
+    <div>
       <input
         {...input}
         type={type}
         className={`text text-bold input input-${style}`}
         disabled={disabled}
-        {...other}
+        placeholder={placeholder}
       />
       {touched && error && <p className="text text-error">{error}</p>}
     </div>

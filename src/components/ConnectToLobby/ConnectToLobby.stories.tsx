@@ -16,8 +16,8 @@ const reducerWithFormError = combineReducers({
 })
 
 const props = {
-  lable: 'Connect ToLobby'
-  // onSubmit: action('onSubmit'),
+  lable: 'Connect To Lobby',
+  onSubmit: action('onSubmit'),
 }
 
 storiesOf('Modal/Connect to lobby', module)
@@ -25,35 +25,35 @@ storiesOf('Modal/Connect to lobby', module)
   .add('Modal Connect to lobby - Empty', () => (
     <div>
       <Provider store={createStore(reducer)}>
-        <ConnectToLobby />
+        <ConnectToLobby {...props} />
       </Provider>
     </div>
   ))
   .add('Modal Connect to lobby - Fill Name', () => (
     <div>
       <Provider store={createStore(reducer)}>
-        <ConnectToLobby />
+        <ConnectToLobby {...props} />
       </Provider>
     </div>
   ))
   .add('Modal Connect to lobby - Fill Last Name', () => (
     <div>
       <Provider store={createStore(reducer)}>
-        <ConnectToLobby />
+        <ConnectToLobby {...props} />
       </Provider>
     </div>
   ))
   .add('Modal Connect to lobby - Fill Job Position', () => (
     <div>
       <Provider store={createStore(reducerWithFormError)}>
-        <ConnectToLobby />
+        <ConnectToLobby {...props} />
       </Provider>
     </div>
   ))
   .add('Modal Connect to lobby - Fill All', () => (
     <div>
       <Provider store={createStore(reducerWithFormError)}>
-        <ConnectToLobby />
+        <ConnectToLobby {...props} />
       </Provider>
     </div>
   ))
