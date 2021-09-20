@@ -102,6 +102,11 @@ $color5: #ffc482;
     text-transform: uppercase;
   }
 
+  &-chat {
+    font-size: 18px;
+    line-height: 20px;
+  }
+
   &-bold {
     font-weight: bold;
   }
@@ -117,6 +122,10 @@ $color5: #ffc482;
 
   &-error {
     color: #ff1818;
+  }
+
+  &-uppercase {
+    text-transform: uppercase;
   }
 }
 

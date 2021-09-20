@@ -25,4 +25,5 @@ export interface IGame {
   handleGameIssue: (value: string) => void;
   cardsValues: ICardsValues[];
   marksCurrentTask: IMarksCurrentTask[];
+  members: IUsers[];
 }

@@ -34,6 +34,9 @@ const propsDefault = {
   handleAddCard: action('handleAddCard'),
   handleEditCard: action('handleEditCard'),
   cardsValues,
+  handleSubmitGameSettings: action('handleSubmitGameSettings'),
+  handleChangeMinute: action('handleChangeMinute'),
+  handleChangeSeconds: action('handleChangeSeconds'),
 };
 
 storiesOf('UI Components/GameSettings', module)

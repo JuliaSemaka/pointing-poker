@@ -1,5 +1,5 @@
 import React from 'react';
-import { GameData, Issues, Score, Statistics } from '../../components';
+import { GameDataGame, IssuesGame, Score, Statistics } from '../../components';
 import { EGameStatus } from '../../components/Game/game.module';
 import { IGame } from '../pages.module';
 
@@ -16,16 +16,17 @@ export const Game: React.FC<IGame> = ({
   handleGameIssue,
   cardsValues,
   marksCurrentTask,
+  members,
 }) => (
   <div className="game wrapper">
     <main className="game-main">
-      <GameData
+      <GameDataGame
         isDealer={isDealer}
         title={title}
         dealerData={dealerData}
         handleStopGame={handleStopGame}
       />
-      <Issues
+      <IssuesGame
         isDealer={isDealer}
         handleRunRound={handleRunRound}
         gameStatus={gameStatus}
@@ -38,7 +39,7 @@ export const Game: React.FC<IGame> = ({
       )}
     </main>
     <aside className="game-score">
-      <Score />
+      <Score members={members} marksCurrentTask={marksCurrentTask} />
     </aside>
   </div>
 );

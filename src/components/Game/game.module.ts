@@ -40,9 +40,15 @@ export enum EGameStatus {
 export interface IMarksCurrentTask {
   idUser: string;
   mark: string;
+  scoreType: string | null;
 }
 
 export interface IStatistics {
   cardsValues: ICardsValues[];
-  marksCurrentTask: IMarksCurrentTask[],
+  marksCurrentTask: IMarksCurrentTask[];
+}
+
+export interface IScore {
+  marksCurrentTask: IMarksCurrentTask[];
+  members: IUsers[];
 }

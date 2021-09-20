@@ -53,6 +53,7 @@ export interface IMemberCard {
   isMyCard?: boolean;
   isRemove?: boolean;
   handleRemoveMember?: () => void;
+  isSmall?: boolean;
 }
 
 export enum ETypeCard {
@@ -95,6 +96,11 @@ export interface IRoundTime {
 export interface ICardsValues {
   scoreType: string | null;
   number: string | null;
+}
+
+export interface IScoreCard {
+  scoreType?: string | null;
+  number?: string | null;
 }
 
 export interface IGameSettingsForm {
