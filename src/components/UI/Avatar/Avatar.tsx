@@ -10,7 +10,7 @@ export const Avatar: React.FC<IAvatar> = ({
 }) => (
   <div className="initials">
     {image ? (
-      <img src={`../../images/${image}`} alt="avatar" />
+      <img src={image} alt="avatar" />
     ) : initials ? (
       <div className="text">{initials}</div>
     ) : (

@@ -4,18 +4,23 @@ import { Field, reduxForm } from 'redux-form'
 import { RenderField, Button, ModalWindow, Switch, Avatar } from '..';
 import { EButtonStyle } from '../UI/ui.module';
 
+const isRequired = (value: boolean) => value ? undefined : 'Required'
+const maxLength = (max: number) => (value: string) =>
+  value && value.length > max ? `Must be ${max} characters or less` : undefined
+const maxLength15 = maxLength(15)
+
 const ConnectToLobbyForm = ({ ...props }: any) => {
-  const { label, handleCloseModal, handleStartGame } = props;
+  const { title, handleCloseModal, handleStartGame, avatar } = props;
   return (
     <ModalWindow handleClick={handleCloseModal}>
       <div className="modal-connect-lobby">
-        <div>
-          <h3>
-            Connect to Lobby
+        <div className="modal-connect-lobby-title">
+          <h3 className="text text-title">
+            {title}
           </h3>
 
           <label htmlFor="switch">
-            Connect as Observer
+            <span className="text text-bold">Connect as Observer</span>
             <Field
               name="switch"
               id="switch"
@@ -24,54 +29,58 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
           </label>
 
         </div>
-        <div className="modal-connect-lobby-item">
+        <div className="modal-connect-lobby-name">
           <label htmlFor="firstName">
-            Your first name:
+            <span className="text text-bold">Your first name:</span>
             <Field
               name="firstName"
               component={RenderField}
-              // className="main-lobby-url"
               placeholder="Type your first name"
+              validate={[ isRequired, maxLength15 ]}
             />
           </label>
         </div>
-        <div className="modal-connect-lobby-item">
+        <div className="modal-connect-lobby-last-name">
           <label htmlFor="lastName">
-            Your last name:
+            <span className="text text-bold">Your last name:</span>
             <Field
               name="lastName"
               component={RenderField}
-              // className="main-lobby-url"
               placeholder="Type your last name"
+              validate={[ maxLength15 ]}
             />
           </label>
         </div>
-        <div className="modal-connect-lobby-item">
+        <div className="modal-connect-lobby-job">
           <label htmlFor="jobPosition">
-            Your job position:
+            <span className="text text-bold">Your job position:</span>
             <Field
               name="jobPosition"
               component={RenderField}
-              className="main-lobby-url"
               placeholder="Type your job position"
             />
           </label>
         </div>
-        <div className="modal-connect-lobby-item">
-          <label htmlFor="image">
-            Image:
+        <div className="modal-connect-lobby-image">
+          <span className="text text-bold">Image:</span>
+          <div className="modal-connect-lobby-file">
             <Field
               name="image"
               component={RenderField}
               type="file"
             />
             <Button text="Button" handleClick={handleStartGame} />
-            <Avatar />
-          </label>
+          </div>
         </div>
-
-        <div className="modal-connect-lobby-item">
-          <Button text="Confirm" handleClick={handleStartGame} />
+        <div className="modal-connect-lobby-avatar">
+          <Avatar image={avatar} />
+        </div>
+        <div className="modal-connect-lobby-buttons">
+          <Button
+            text="Confirm"
+            handleClick={handleStartGame}
+            style={EButtonStyle.dark}
+          />
           <Button
             text="Cancel"
             handleClick={handleCloseModal}

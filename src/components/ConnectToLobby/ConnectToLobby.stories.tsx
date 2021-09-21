@@ -1,5 +1,4 @@
-import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import React, { useState } from 'react';
 import ConnectToLobby  from './ConnectToLobby';
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
@@ -8,52 +7,106 @@ import { Provider } from 'react-redux'
 import formReducer from 'redux-form/lib/reducer'
 import { MemoryRouter } from 'react-router-dom'
 
+import testAvatar from '../../assets/images/test-avatar.jpg';
 
 const reducer = combineReducers({ form: formReducer })
 
-const reducerWithFormError = combineReducers({
-  form: () => ({ otpEmail: { error: 'Error message' } }),
-})
-
-const props = {
-  lable: 'Connect To Lobby',
+const props = { 
   onSubmit: action('onSubmit'),
+  handleStartGame: action('handleStartGame'),
+  title: 'Connect to lobby',
+  initialValues: {
+    firstName: '',
+    lastName: '',
+    jobPosition: ''
+  }
 }
+
+const propsWithName = {
+  ...props,
+  initialValues: {
+    firstName: 'Iaroslav',
+  }
+}
+
+const propsWithLastName = {
+  ...props,
+  initialValues: {
+    firstName: 'Iaroslav',
+    lastName: 'Silkin',
+    jobPosition: ''
+  }
+}
+
+const propsWithJob = {
+  ...props,
+  initialValues: {
+    firstName: 'Iaroslav',
+    lastName: 'Silkin',
+    jobPosition: 'developer'
+  }
+}
+
+const propsWithImage = {
+  ...props,
+  initialValues: {
+    firstName: 'Iaroslav',
+    lastName: 'Silkin',
+    jobPosition: 'developer',
+  },
+  avatar: testAvatar
+}
+
+const ConnectToLobbyModal: React.FC<any> = (props) => {
+  const [isOpened, setIsOpened] = useState(true);
+
+  const handleCloseModal = () => {
+    setIsOpened((state) => !state);
+  }
+
+  return (
+    <>
+      {isOpened && (
+        <ConnectToLobby {...props} handleCloseModal={handleCloseModal} />
+      )}
+    </>
+  );
+};
 
 storiesOf('Modal/Connect to lobby', module)
   .addDecorator(story => <MemoryRouter>{story()}</MemoryRouter>)
   .add('Modal Connect to lobby - Empty', () => (
     <div>
       <Provider store={createStore(reducer)}>
-        <ConnectToLobby {...props} />
+        <ConnectToLobbyModal {...props} />
       </Provider>
     </div>
   ))
   .add('Modal Connect to lobby - Fill Name', () => (
     <div>
       <Provider store={createStore(reducer)}>
-        <ConnectToLobby {...props} />
+        <ConnectToLobbyModal {...propsWithName} />
       </Provider>
     </div>
   ))
   .add('Modal Connect to lobby - Fill Last Name', () => (
     <div>
       <Provider store={createStore(reducer)}>
-        <ConnectToLobby {...props} />
+        <ConnectToLobbyModal {...propsWithLastName} />
       </Provider>
     </div>
   ))
   .add('Modal Connect to lobby - Fill Job Position', () => (
     <div>
-      <Provider store={createStore(reducerWithFormError)}>
-        <ConnectToLobby {...props} />
+      <Provider store={createStore(reducer)}>
+        <ConnectToLobbyModal {...propsWithJob} />
       </Provider>
     </div>
   ))
   .add('Modal Connect to lobby - Fill All', () => (
     <div>
-      <Provider store={createStore(reducerWithFormError)}>
-        <ConnectToLobby {...props} />
+      <Provider store={createStore(reducer)}>
+        <ConnectToLobbyModal {...propsWithImage} />
       </Provider>
     </div>
   ))
