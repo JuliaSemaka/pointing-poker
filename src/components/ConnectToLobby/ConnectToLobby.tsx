@@ -10,7 +10,7 @@ const maxLength = (max: number) => (value: string) =>
 const maxLength15 = maxLength(15)
 
 const ConnectToLobbyForm = ({ ...props }: any) => {
-  const { title, handleCloseModal, handleStartGame, avatar } = props;
+  const { title, handleCloseModal, handleStartGame, handleClickSwitch, avatar } = props;
   return (
     <ModalWindow handleClick={handleCloseModal}>
       <div className="modal-connect-lobby">
@@ -24,6 +24,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
             <Field
               name="switch"
               id="switch"
+              handleClick={handleClickSwitch}
               component={Switch}
             />
           </label>

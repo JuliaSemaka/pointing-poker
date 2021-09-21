@@ -59,6 +59,11 @@ const propsWithImage = {
 
 const ConnectToLobbyModal: React.FC<any> = (props) => {
   const [isOpened, setIsOpened] = useState(true);
+  const [isCheck, setIsCheck] = useState(false);
+
+  const handleClickSwitch = () => {
+    setIsCheck((state) => !state);
+  }
 
   const handleCloseModal = () => {
     setIsOpened((state) => !state);
@@ -67,7 +72,7 @@ const ConnectToLobbyModal: React.FC<any> = (props) => {
   return (
     <>
       {isOpened && (
-        <ConnectToLobby {...props} handleCloseModal={handleCloseModal} />
+        <ConnectToLobby {...props} handleCloseModal={handleCloseModal} handleClickSwitch={handleClickSwitch} />
       )}
     </>
   );
