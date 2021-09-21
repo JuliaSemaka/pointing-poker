@@ -7,11 +7,14 @@ const PORT = process.env.PORT || 5000;
 const { addUser, connectionHandler, delUser } = require('./game/index');
 const { addMessage } = require('./chat/index');
 
+// app.use(cors());
+// app.use(express.json({ limit: '15mb' }));
+
 // const staticFiles = path.resolve(__dirname, '../static');
 
-app.use(json({limit: '50mb'}));
+app.use(express.json({ limit: '50mb' }));
 app.use(cors());
-// app.use(/^(?!\/api\/)/, express.static(staticFiles));
+app.use(/^(?!\/api\/)/, express.static('../static'));
 
 app.ws('/', (ws, req) => {
   console.log('Подключилось');
