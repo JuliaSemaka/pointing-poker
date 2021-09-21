@@ -7,8 +7,6 @@ import { Provider } from 'react-redux'
 import formReducer from 'redux-form/lib/reducer'
 import { MemoryRouter } from 'react-router-dom'
 
-import testAvatar from '../../assets/images/test-avatar.jpg';
-
 const reducer = combineReducers({ form: formReducer })
 
 const props = { 
@@ -55,7 +53,7 @@ const propsWithImage = {
     lastName: 'Silkin',
     jobPosition: 'developer',
   },
-  avatar: testAvatar
+  avatar: '../images/avatar.jpg'
 }
 
 const ConnectToLobbyModal: React.FC<any> = (props) => {
