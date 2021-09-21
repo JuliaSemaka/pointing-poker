@@ -9,9 +9,9 @@ const { addMessage } = require('./chat/index');
 
 const staticFiles = path.resolve(__dirname, '../static');
 
-app.use(json({ limit: '50mb' }));
+app.use(json({limit: '50mb'}));
 app.use(cors());
-app.use('/', express.static(staticFiles));
+app.use(/^(?!\/api\/)/, express.static(staticFiles));
 
 app.ws('/', (ws, req) => {
   console.log('Подключилось');
