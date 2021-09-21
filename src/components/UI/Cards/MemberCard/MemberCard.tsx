@@ -12,6 +12,7 @@ export const MemberCard: React.FC<IMemberCard> = ({
   image = null,
   isMyCard = false,
   isRemove = false,
+  isSmall = false,
   handleRemoveMember,
 }) => {
   const cardAvatar = image ? (
@@ -21,9 +22,9 @@ export const MemberCard: React.FC<IMemberCard> = ({
   );
 
   return (
-    <div className="card">
+    <div className={`card ${isSmall && 'card-small'}`}>
       {cardAvatar}
-      <div className="card-data">
+      <div className={`card-data ${isSmall && 'card-data__small'}`}>
         {isMyCard && (
           <p className="text text-small-uppercase card-data__you">its you</p>
         )}

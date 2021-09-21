@@ -6,7 +6,7 @@ import formReducer from 'redux-form/lib/reducer';
 import { MemoryRouter } from 'react-router-dom';
 
 import '../../../App.scss';
-import { GameData } from './GameData';
+import { GameDataGame } from './GameData';
 import { action } from '@storybook/addon-actions';
 
 const title = 'Spring 23 planning (issues 13, 533, 5623, 3252, 6623, ...)';
@@ -25,17 +25,14 @@ const propsDefault = {
   isDealer: true,
   title,
   dealerData,
-  handleEditTitle: action('handleEditTitle'),
-  handleCopy: action('handleCopy'),
-  handleStartGame: action('handleStartGame'),
-  handleCancelGame: action('handleCancelGame'),
-  handleExit: action('handleExit'),
+  handleGameStopGame: action('handleGameStopGame'),
+  handleGameExit: action('handleGameExit'),
 };
 
-storiesOf('UI Components/Lobby-GameData', module)
+storiesOf('UI Components/Game-GameData', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('InputTextBigWithDefaultValue', () => (
     <Provider store={createStore(reducer)}>
-      <GameData {...propsDefault} />
+      <GameDataGame {...propsDefault} />
     </Provider>
   ));
