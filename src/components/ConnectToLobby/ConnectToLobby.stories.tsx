@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import ConnectToLobby  from './ConnectToLobby';
+import React, { useState } from 'react'
+import ConnectToLobby  from './ConnectToLobby'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { createStore, combineReducers } from 'redux'
@@ -7,7 +7,7 @@ import { Provider } from 'react-redux'
 import formReducer from 'redux-form/lib/reducer'
 import { MemoryRouter } from 'react-router-dom'
 
-import '../../../App.scss';
+import '../../App.scss'
 
 const reducer = combineReducers({ form: formReducer })
 
