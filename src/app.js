@@ -26,7 +26,6 @@ app.ws('/', (ws, req) => {
   console.log('Подключилось');
   ws.on('message', (msg) => {
     msg = JSON.parse(msg);
-    ws.send('hello');
     console.log(msg);
     switch (msg.method) {
       case 'connection':
