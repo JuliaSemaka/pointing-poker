@@ -34,9 +34,12 @@ const propsDefault = {
   handleAddCard: action('handleAddCard'),
   handleEditCard: action('handleEditCard'),
   cardsValues,
+  handleSubmitGameSettings: action('handleSubmitGameSettings'),
+  handleChangeMinute: action('handleChangeMinute'),
+  handleChangeSeconds: action('handleChangeSeconds'),
 };
 
-storiesOf('UI Components/GameSettings', module)
+storiesOf('UI Components/Lobby-GameSettings', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
   .add('InputTextBigWithDefaultValue', () => (
     <Provider store={createStore(reducer)}>

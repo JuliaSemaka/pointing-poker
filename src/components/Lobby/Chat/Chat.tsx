@@ -23,9 +23,10 @@ export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
             position={userData.jobTitle}
             isRemove={true}
             handleRemoveMember={handleRemoveMember}
+            isSmall={true}
           />
           <div className="chat-message">
-            <p className="text">{message}</p>
+            <p className="text text-chat">{message}</p>
           </div>
         </div>
       ))}

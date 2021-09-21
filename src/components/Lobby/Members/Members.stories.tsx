@@ -39,7 +39,7 @@ const members = [
 ];
 
 export default {
-  title: 'UI Components/Members',
+  title: 'UI Components/Lobby-Members',
   component: Members,
 } as ComponentMeta<typeof Members>;
 

@@ -16,7 +16,11 @@ export const Issues: React.FC<IIssues> = ({ issues, handleIssue }) => (
           handleIssue={handleIssue}
         />
       ))}
-      <IssueCard title="Create new Issue" type={ETypeCard.add} handleIssue={handleIssue} />
+      <IssueCard
+        title="Create new Issue"
+        type={ETypeCard.add}
+        handleIssue={handleIssue}
+      />
     </div>
   </div>
 );

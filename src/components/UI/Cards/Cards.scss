@@ -9,10 +9,51 @@
   padding: 8px 12px;
   border-radius: 2px;
 
+  &-small {
+    width: 180px;
+    height: 50px;
+    padding: 5px 8px;
+
+    & .initials {
+      width: 35px;
+      height: 35px;
+      margin-right: 8px;
+
+      & > div {
+        font-size: 22px;
+      }
+    }
+
+    & .card-cred {
+      width: 20px;
+      height: 20px;
+      margin-left: 3px;
+    }
+  }
+
+  &-score {
+    justify-content: center;
+
+    & p:first-child {
+      margin-right: 4px;
+    }
+  }
+
   &-data {
     position: relative;
     width: 63%;
     height: 100%;
+
+    &__small {
+      & .card-data__name {
+        top: 5px;
+        font-size: 15px;
+      }
+
+      & .card-data__position {
+        top: 30px;
+      }
+    }
 
     &__you {
       position: absolute;
@@ -58,6 +99,7 @@
     display: flex;
     justify-content: end;
     width: 37%;
+    z-index: 2;
   }
 
   &__check {

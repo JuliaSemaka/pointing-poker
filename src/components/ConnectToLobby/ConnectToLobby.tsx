@@ -10,10 +10,17 @@ const maxLength = (max: number) => (value: string) =>
 const maxLength15 = maxLength(15)
 
 const ConnectToLobbyForm = ({ ...props }: any) => {
-  const { title, handleCloseModal, handleStartGame, handleClickSwitch, avatar } = props;
+  const { 
+    title, 
+    handleCloseModal, 
+    handleStartGame, 
+    handleClickSwitch,
+    handleUploadImage,
+    avatar 
+  } = props;
   return (
     <ModalWindow handleClick={handleCloseModal}>
-      <div className="modal-connect-lobby">
+      <form onSubmit={handleStartGame} className="modal-connect-lobby">
         <div className="modal-connect-lobby-title">
           <h3 className="text text-title">
             {title}
@@ -70,7 +77,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
               component={RenderField}
               type="file"
             />
-            <Button text="Button" handleClick={handleStartGame} />
+            <Button text="Button" handleClick={handleUploadImage} />
           </div>
         </div>
         <div className="modal-connect-lobby-avatar">
@@ -88,7 +95,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
             style={EButtonStyle.light}
           />
         </div>
-      </div>
+      </form>
     </ModalWindow>
   )
 }
