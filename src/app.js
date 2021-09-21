@@ -10,11 +10,11 @@ const { addMessage } = require('./chat/index');
 // app.use(cors());
 // app.use(express.json({ limit: '15mb' }));
 
-// const staticFiles = path.resolve(__dirname, '../static');
+const staticFiles = path.resolve(__dirname, '../static');
 
 app.use(express.json({ limit: '50mb' }));
 app.use(cors());
-app.use(/^(?!\/api\/)/, express.static('../static'));
+app.use(/^(?!\/api\/)/, express.static(staticFiles));
 
 app.ws('/', (ws, req) => {
   console.log('Подключилось');
