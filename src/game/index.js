@@ -1,6 +1,6 @@
 let idUser = 1;
 let agreeUsers = [];
-const games = {};
+const games = [];
 
 module.exports = {
   connectionHandler: (ws, msg) => {
