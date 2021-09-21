@@ -7,20 +7,14 @@ import { Provider } from 'react-redux'
 import formReducer from 'redux-form/lib/reducer'
 import { MemoryRouter } from 'react-router-dom'
 
-<<<<<<< HEAD
-import testAvatar from '../../assets/images/test-avatar.jpg';
+import '../../../App.scss';
 
-=======
->>>>>>> 29d4ca1be22d1895f0f4589af0aa9558b687d858
 const reducer = combineReducers({ form: formReducer })
 
 const props = { 
   onSubmit: action('onSubmit'),
   handleStartGame: action('handleStartGame'),
-<<<<<<< HEAD
-=======
   handleUploadImage: action('handleUploadImage'),
->>>>>>> 29d4ca1be22d1895f0f4589af0aa9558b687d858
   title: 'Connect to lobby',
   initialValues: {
     firstName: '',
