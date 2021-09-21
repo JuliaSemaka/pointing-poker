@@ -24,7 +24,6 @@ app.use(express.json({ limit: '15mb' }));
 
 app.ws('/', (ws, req) => {
   console.log('Подключилось');
-  ws.send('hellohello');
   ws.on('message', (msg) => {
     msg = JSON.parse(msg);
     console.log(msg);
