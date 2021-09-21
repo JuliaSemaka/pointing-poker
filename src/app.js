@@ -1,3 +1,4 @@
+const path = require('path');
 const express = require('express');
 const app = express();
 const WSServer = require('express-ws')(app);
@@ -7,12 +8,9 @@ const PORT = process.env.PORT || 5000;
 const { addUser, connectionHandler, delUser } = require('./game/index');
 const { addMessage } = require('./chat/index');
 
-// app.use(cors());
-// app.use(express.json({ limit: '15mb' }));
-
 const staticFiles = path.resolve(__dirname, '../static');
 
-app.use(express.json({ limit: '50mb' }));
+app.use(express.json({ limit: '30mb' }));
 app.use(cors());
 app.use(/^(?!\/api\/)/, express.static(staticFiles));
 
