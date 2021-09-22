@@ -2,7 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import { Button } from '../UI/Button/Button';
 import { RenderField, ModalWindow, Switch, Avatar } from '..';
-import { EButtonStyle } from '../UI/ui.module';
+import { EButtonStyle, EButtonType } from '../UI/ui.module';
 
 import './ConnectToLobby.scss'
 
@@ -14,17 +14,12 @@ const maxLength15 = maxLength(15)
 const ConnectToLobbyForm = ({ ...props }: any) => {
   const { 
     title, 
+    handleSubmit, 
     handleCloseModal, 
-    onSubmit, 
     handleClickSwitch,
     handleUploadImage,
     avatar 
   } = props;
-
-  const handleSubmit = (event: any) => {
-    event.preventDefault();
-    onSubmit();
-  }
 
   return (
     <ModalWindow handleClick={handleCloseModal}>
@@ -97,11 +92,13 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
             text="Confirm"
             handleClick={handleSubmit}
             style={EButtonStyle.dark}
+            type={EButtonType.submit}
           />
           <Button
             text="Cancel"
             handleClick={handleCloseModal}
             style={EButtonStyle.light}
+            type={EButtonType.reset}
           />
         </div>
       </form>

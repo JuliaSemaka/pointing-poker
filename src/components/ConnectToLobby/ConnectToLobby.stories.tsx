@@ -57,7 +57,7 @@ const propsWithImage = {
 }
 
 const ConnectToLobbyModal: React.FC<any> = (props) => {
-  const { defaultAvatar } = props;
+  const { defaultAvatar, onSubmit } = props;
   const [isOpened, setIsOpened] = useState(true);
   const [isObserver, setIsObserver] = useState(false);
   const [avatar, setAvatar] = useState(defaultAvatar);
@@ -87,11 +87,17 @@ const ConnectToLobbyModal: React.FC<any> = (props) => {
     uploadFile(file, setAvatar);
   }
 
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    onSubmit();
+  }
+
   return (
     <>
       {isOpened && (
         <ConnectToLobby
           {...props}
+          handleSubmit={handleSubmit}
           handleCloseModal={handleCloseModal}
           handleClickSwitch={handleClickSwitch}
           handleUploadImage={handleUploadImage}

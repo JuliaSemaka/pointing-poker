@@ -5,9 +5,16 @@ export enum EButtonStyle {
 
 export interface IButton {
   text: string;
-  handleClick: (event: React.ChangeEvent) => void;
+  handleClick: (event: React.MouseEvent) => void;
   style?: EButtonStyle;
   isDisabled?: boolean;
+  type?: EButtonType;
+}
+
+export enum EButtonType {
+  button = 'button',
+  reset = 'reset',
+  submit = 'submit'
 }
 
 export enum ERenderFieldType {
