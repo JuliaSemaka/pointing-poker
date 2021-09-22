@@ -3,25 +3,29 @@ import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 import { Button } from '../../UI/Button/Button';
 import { MemberCard } from '../../UI/Cards/MemberCard/MemberCard';
 import { RenderField } from '../../UI/RenderField/RenderField';
-import { IChat } from '../../UI/ui.module';
+import { EButtonType, IChat } from '../../UI/ui.module';
 
 import './Chat.scss';
 
 export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
-  sendMessageChat,
+  myId,
+  dillerId,
+  handleSubmit,
   chatMessage = [],
+  members,
   handleRemoveMember,
 }) => (
   <div className="chat">
     <div className={`chat-scroll ${!chatMessage.length && 'chat-center'}`}>
       {!chatMessage.length && <div className="text">Chat is empty</div>}
-      {chatMessage.map(({ userData, message }, index) => (
+      {chatMessage.map(({ idUser, message }, index) => (
         <div className="chat-line" key={index}>
           <MemberCard
-            firstName={userData.firstName}
-            lastName={userData.lastName}
-            position={userData.jobTitle}
-            isRemove={true}
+            firstName={members.find(({id}) => id === idUser)?.firstName}
+            lastName={members.find(({id}) => id === idUser)?.lastName}
+            position={members.find(({id}) => id === idUser)?.jobTitle}
+            isRemove={members.find(({id}) => id === idUser)?.id !== dillerId}
+            isMyCard={members.find(({id}) => id === idUser)?.id === myId}
             handleRemoveMember={handleRemoveMember}
             isSmall={true}
           />
@@ -31,9 +35,13 @@ export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
         </div>
       ))}
     </div>
-    <form className="chat-input" onSubmit={sendMessageChat}>
+    <form className="chat-input" onSubmit={handleSubmit}>
       <Field name="chatMessage" component={RenderField} label="ChatMessage" />
-      <Button text="Send" handleClick={sendMessageChat} />
+      <Button
+        text="Send"
+        type={EButtonType.submit}
+        handleClick={handleSubmit}
+      />
     </form>
   </div>
 );

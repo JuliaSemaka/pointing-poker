@@ -13,7 +13,7 @@ import { Field, reduxForm } from 'redux-form';
 const reducer = combineReducers({ form: formReducer });
 const propsText = {
   type: EType.text,
-  style: ERenderFieldType.big,
+  styles: ERenderFieldType.big,
   initialValues: {
     testName: 'Lala',
   },
@@ -22,7 +22,7 @@ const propsText = {
 };
 const propsTextDisabled = {
   type: EType.text,
-  style: ERenderFieldType.withButton,
+  styles: ERenderFieldType.withButton,
   initialValues: {
     testName: 'http://pockerplanning.chgjbhkj/rdbesrgw/dergw',
   },
@@ -31,7 +31,7 @@ const propsTextDisabled = {
 };
 const propsFile = {
   type: EType.file,
-  style: ERenderFieldType.withButton,
+  styles: ERenderFieldType.withButton,
   initialValues: {
     testName: 'Choose file',
   },
@@ -39,7 +39,7 @@ const propsFile = {
 };
 const propsTextWithButton = {
   type: EType.text,
-  style: ERenderFieldType.withButton,
+  styles: ERenderFieldType.withButton,
   initialValues: {
     testName: '',
   },
@@ -47,7 +47,7 @@ const propsTextWithButton = {
 };
 const propsMiddle = {
   type: EType.text,
-  style: ERenderFieldType.middle,
+  styles: ERenderFieldType.middle,
   initialValues: {
     testName: '',
   },

@@ -3,6 +3,8 @@ import { MemberCard } from '../../UI/Cards/MemberCard/MemberCard';
 import { IMembers } from '../../UI/ui.module';
 
 export const Members: React.FC<IMembers> = ({
+  myId,
+  dillerId,
   members,
   handleRemoveMember,
 }) => (
@@ -18,7 +20,8 @@ export const Members: React.FC<IMembers> = ({
           firstName={firstName}
           lastName={lastName}
           position={jobTitle}
-          isRemove={true}
+          isRemove={id !== dillerId}
+          isMyCard={id === myId}
           handleRemoveMember={handleRemoveMember}
         />
       ))}

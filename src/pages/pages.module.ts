@@ -33,8 +33,10 @@ export interface IGame {
 }
 
 export interface ILobby {
-  isDealer?: boolean;
-  sendMessageChat: () => void;
+  myId: string;
+  dillerId: string;
+  isDealer: boolean;
+  sendMessageChat: (event?: React.MouseEvent) => void;
   members: IUsers[];
   chatMessage: IChatMessage[];
   title: string;
@@ -53,4 +55,5 @@ export interface ILobby {
   handleSubmitGameSettings: () => void;
   handleChangeMinute: () => void;
   handleChangeSeconds: () => void;
+  initialValuesCopy: { copyId: string };
 }

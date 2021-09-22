@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Edit from '../../../assets/images/cards/edit.svg';
 import { Button } from '../../UI/Button/Button';
 import { MemberCard } from '../../UI/Cards/MemberCard/MemberCard';
 import { RenderField } from '../../UI/RenderField/RenderField';
-import { EButtonStyle, IGameDataForm } from '../../UI/ui.module';
+import {
+  EButtonStyle,
+  ERenderFieldType,
+  EType,
+  IGameDataForm,
+} from '../../UI/ui.module';
 import './GameData.scss';
 
 export const GameDataForm: React.FC<
@@ -45,15 +51,21 @@ export const GameDataForm: React.FC<
       {isDealer && (
         <div className="key-lobby">
           <p className="text text-italic">Link to lobby:</p>
-          <div className="key-lobby__copy">
+          <CopyToClipboard text="wwwww">
+            <p className="copy-clipboard">Copy to clipboard</p>
+          </CopyToClipboard>
+          <form className="key-lobby__copy" onSubmit={handleCopy}>
             <Field
               name="copyId"
               component={RenderField}
+              styles={ERenderFieldType.withButton}
               label="CopyId"
               disabled={true}
             />
-            <Button text="Copy" handleClick={handleCopy} />
-          </div>
+            <CopyToClipboard text="234567876543">
+              <Button text="Copy" handleClick={handleCopy} />
+            </CopyToClipboard>
+          </form>
         </div>
       )}
       <div className="game-control">

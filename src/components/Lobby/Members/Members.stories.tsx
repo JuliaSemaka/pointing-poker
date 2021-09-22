@@ -49,6 +49,8 @@ const Template: ComponentStory<typeof Members> = (args) => (
 
 export const DefaultMembers = Template.bind({});
 DefaultMembers.args = {
+  myId: '1',
+  dillerId: '1',
   members,
   handleRemoveMember: action('handleRemoveMember'),
 };

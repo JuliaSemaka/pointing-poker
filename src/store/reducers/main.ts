@@ -1,4 +1,10 @@
-import { ADD_GAME, ADD_MY_ID, ADD_WEB_SOCKET, IAction, IMainState } from '../store.module';
+import {
+  ADD_GAME,
+  ADD_MY_ID,
+  ADD_WEB_SOCKET,
+  IAction,
+  IMainState,
+} from '../store.module';
 
 const defaultState = {
   socket: null,

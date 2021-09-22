@@ -84,12 +84,49 @@ const chatMessage = [
     message: 'Parsing error: Property assignment expected',
   },
 ];
+const members = [
+  {
+    id: '1',
+    firstName: 'Julia',
+    lastName: 'Yatsko',
+    jobTitle: 'web developer',
+    image: null,
+    role: 'dealer',
+  },
+  {
+    id: '3',
+    firstName: 'Ivan',
+    lastName: 'Yatsko',
+    jobTitle: 'junior developer',
+    image: null,
+    role: 'gamer',
+  },
+  {
+    id: '4',
+    firstName: 'Alex',
+    lastName: 'Radchenko',
+    jobTitle: 'lead',
+    image: null,
+    role: 'gamer',
+  },
+  {
+    id: '3',
+    firstName: 'Sasha',
+    lastName: 'Bolshakov',
+    jobTitle: 'project manager',
+    image: null,
+    role: 'gamer',
+  },
+];
 
 const reducer = combineReducers({ form: formReducer });
 
 const propsDefault = {
-  sendMessageChat: action('sendMessageChat'),
+  myId: '1',
+  dillerId: '1',
+  handleSubmit: action('handleSubmit'),
   chatMessage,
+  members,
   handleRemoveMember: action('handleRemoveMember'),
 };
 

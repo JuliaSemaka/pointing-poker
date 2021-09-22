@@ -1,17 +1,19 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { addChatMessage } from '../actions/chat';
 import { addGame, addMyId, addWebSocket } from '../actions/main';
 
 export const useWebSocket = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:5000/');
+    const socket = new WebSocket('ws://obscure-wave-90492.herokuapp.com/');
+    // const socket = new WebSocket('ws://localhost:5000/');
     dispatch(addWebSocket(socket));
     socket.onopen = () => {
       console.log('Подключение установлено');
       const id = (+new Date()).toString(16);
-      addMyId(id);
+      dispatch(addMyId(id));
 
       const userData = {
         firstName: 'July',
@@ -26,8 +28,6 @@ export const useWebSocket = () => {
       socket.send(JSON.stringify(userData));
       socket.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        console.log(data);
-
         if (data.id) {
           switch (data.method) {
             case 'connection':
@@ -49,9 +49,11 @@ export const useWebSocket = () => {
             //         console.log('WebSocket is closed now.');
             //       };
             //       break;
-            //     case 'add-message':
-            //       setChat((pref) => pref.concat({ idUser: data.idUser, message: data.message }));
-            //       break;
+            case 'add-message':
+              dispatch(
+                addChatMessage({ idUser: data.idUser, message: data.message })
+              );
+              break;
           }
         }
       };

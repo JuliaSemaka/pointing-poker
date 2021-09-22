@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { reset } from 'redux-form';
 
 import { EHandleIssue } from '../components/UI/ui.module';
 import { Lobby } from '../pages';
 import { IReducer } from '../store/store.module';
 
 export const LobbyContainer: React.FC = () => {
-  const { socket, game } = useSelector((state: IReducer) => state.main);
+  const { socket, game, myId } = useSelector((state: IReducer) => state.main);
   const chat = useSelector((state: IReducer) => state.chat);
   const dispatch = useDispatch();
 
-  if (!game) {
+  if (!game || !myId) {
     return <></>;
   }
 
@@ -35,13 +36,28 @@ export const LobbyContainer: React.FC = () => {
     console.log(value);
   };
 
+  const sendMessageChat = ({ chatMessage }: any) => {
+    console.log(chatMessage);
+    dispatch(reset('chat'));
+    const message = {
+      id: id,
+      idUser: myId,
+      message: chatMessage,
+      method: 'add-message',
+    };
+    socket!.send(JSON.stringify(message));
+  };
+
+  const initialValuesCopy = { copyId: id };
+
   const propsDealer = {
+    myId,
+    dillerId,
     members: users,
-    sendMessageChat: funcTest,
+    sendMessageChat,
     chatMessage: chat,
-    isDealer: true,
-    title:
-      'Какое название???????????????????????????????????????????????????????????????????',
+    isDealer: dillerId === myId,
+    title,
     dealerData: users.find(({ id }) => id === dillerId)!,
     handleEditTitle: funcTest,
     handleCopy: funcTest,
@@ -57,7 +73,8 @@ export const LobbyContainer: React.FC = () => {
     handleSubmitGameSettings: funcTest,
     handleChangeMinute: funcTest,
     handleChangeSeconds: funcTest,
+    initialValuesCopy,
   };
 
-  return <div>{game && <Lobby {...propsDealer} />}</div>;
+  return <>{game && <Lobby {...propsDealer} />}</>;
 };

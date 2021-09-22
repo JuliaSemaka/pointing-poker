@@ -172,8 +172,13 @@ const issues = [
     mark: null,
   },
 ];
+const myId = '1';
+const dillerId = '1';
+const initialValuesCopy = { copyId: '123' };
 
 const propsDealer = {
+  myId,
+  dillerId,
   members,
   sendMessageChat: action('sendMessageChat'),
   chatMessage,
@@ -194,9 +199,12 @@ const propsDealer = {
   handleSubmitGameSettings: action('handleSubmitGameSettings'),
   handleChangeMinute: action('handleChangeMinute'),
   handleChangeSeconds: action('handleChangeSeconds'),
+  initialValuesCopy,
 };
 
 const propsDealerEmptyChat = {
+  myId,
+  dillerId,
   members: [],
   sendMessageChat: action('sendMessageChat'),
   chatMessage: [],
@@ -217,9 +225,12 @@ const propsDealerEmptyChat = {
   handleSubmitGameSettings: action('handleSubmitGameSettings'),
   handleChangeMinute: action('handleChangeMinute'),
   handleChangeSeconds: action('handleChangeSeconds'),
+  initialValuesCopy,
 };
 
 const propsPlayer = {
+  myId,
+  dillerId,
   members,
   sendMessageChat: action('sendMessageChat'),
   chatMessage: [],
@@ -240,6 +251,7 @@ const propsPlayer = {
   handleSubmitGameSettings: action('handleSubmitGameSettings'),
   handleChangeMinute: action('handleChangeMinute'),
   handleChangeSeconds: action('handleChangeSeconds'),
+  initialValuesCopy,
 };
 
 storiesOf('Pages/Lobby', module)

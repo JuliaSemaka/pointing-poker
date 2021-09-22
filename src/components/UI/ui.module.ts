@@ -40,7 +40,7 @@ export interface IRenderField {
   input?: any;
   meta: IMeta;
   type?: EType;
-  style?: ERenderFieldType;
+  styles?: ERenderFieldType;
   disabled?: boolean;
   placeholder?: string;
   other?: any;
@@ -125,7 +125,6 @@ export interface IGameSettingsForm {
 
 export interface IChatMessage {
   idUser: string;
-  userData: IUsers;
   message: string;
 }
 
@@ -141,13 +140,19 @@ export interface IGameDataForm {
 }
 
 export interface IMembers {
+  myId: string;
+  dillerId: string;
   members: IUsers[];
   handleRemoveMember: () => void;
 }
 
 export interface IChat {
-  sendMessageChat: () => void;
+  myId: string;
+  dillerId: string;
+  handleSubmit?: () => void;
+  onSubmit?: () => void;
   chatMessage?: IChatMessage[];
+  members: IUsers[];
   handleRemoveMember: () => void;
 }
 

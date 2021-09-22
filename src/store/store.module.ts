@@ -1,6 +1,7 @@
 export const ADD_WEB_SOCKET = 'ADD_WEB_SOCKET';
 export const ADD_GAME = 'ADD_GAME';
 export const ADD_MY_ID = 'ADD_MY_ID';
+export const ADD_CHAT_MESSAGE = 'ADD_CHAT_MESSAGE';
 
 import {
   EGameStatus,
