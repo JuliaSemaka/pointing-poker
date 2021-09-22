@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import ConnectToLobby  from './ConnectToLobby'
+import ConnectToLobby from './ConnectToLobby'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { createStore, combineReducers } from 'redux'
@@ -11,10 +11,9 @@ import '../../App.scss'
 
 const reducer = combineReducers({ form: formReducer })
 
-const props = { 
+const props = {
   onSubmit: action('onSubmit'),
   handleStartGame: action('handleStartGame'),
-  handleUploadImage: action('handleUploadImage'),
   title: 'Connect to lobby',
   initialValues: {
     firstName: '',
@@ -55,12 +54,14 @@ const propsWithImage = {
     lastName: 'Silkin',
     jobPosition: 'developer',
   },
-  avatar: '../images/avatar.jpg'
+  defaultAvatar: '../images/avatar.jpg'
 }
 
 const ConnectToLobbyModal: React.FC<any> = (props) => {
+  const { defaultAvatar } = props;
   const [isOpened, setIsOpened] = useState(true);
   const [isCheck, setIsCheck] = useState(false);
+  const [avatar, setAvatar] = useState(defaultAvatar);
 
   const handleClickSwitch = () => {
     setIsCheck((state) => !state);
@@ -70,10 +71,33 @@ const ConnectToLobbyModal: React.FC<any> = (props) => {
     setIsOpened((state) => !state);
   }
 
+  const uploadFile = (
+    file: File,
+    setValueState: React.Dispatch<React.SetStateAction<string>>
+  ): void => {
+    const reader: FileReader = new FileReader();
+    reader.onload = () => {
+      const res = reader.result as string;
+      setValueState(res);
+    };
+    reader.readAsDataURL(file);
+  }
+
+  const handleUploadImage = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const file: File = (event.target.files as FileList)[0];
+    uploadFile(file, setAvatar);
+  }
+
   return (
     <>
       {isOpened && (
-        <ConnectToLobby {...props} handleCloseModal={handleCloseModal} handleClickSwitch={handleClickSwitch} />
+        <ConnectToLobby
+          {...props}
+          handleCloseModal={handleCloseModal}
+          handleClickSwitch={handleClickSwitch}
+          handleUploadImage={handleUploadImage}
+          avatar={avatar}
+        />
       )}
     </>
   );

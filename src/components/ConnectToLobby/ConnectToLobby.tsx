@@ -82,6 +82,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
             <Field
               name="image"
               component={RenderField}
+              onChange={handleUploadImage}
               type="file"
             />
             <Button text="Button" handleClick={handleUploadImage} />
