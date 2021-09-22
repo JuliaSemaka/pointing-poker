@@ -3,7 +3,8 @@ import { Switch, Route, useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { Footer, Header } from '../components';
-import { Start, Game, Lobby, Settings, ErrorPage } from '../pages';
+import { LobbyContainer } from '../containers';
+import { Start, Game, ErrorPage } from '../pages';
 
 export const Routes: React.FC = () => {
   const location = useLocation();
@@ -16,8 +17,7 @@ export const Routes: React.FC = () => {
           <Switch location={location}>
             <Route component={Start} path="/" exact />
             <Route component={Game} path="/game" />
-            <Route component={Settings} path="/settings" />
-            <Route component={Lobby} path="/lobby" />
+            <Route component={LobbyContainer} path="/lobby" />
             <Route component={ErrorPage} path="*" />
           </Switch>
         </CSSTransition>

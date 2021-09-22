@@ -4,6 +4,7 @@ import {
   IIssue,
   IMarksCurrentTask,
 } from '../components/Game/game.module';
+import { EHandleIssue, IChatMessage } from '../components/UI/ui.module';
 
 export interface IUsers {
   id: string;
@@ -29,4 +30,27 @@ export interface IGame {
   cardsValues: ICardsValues[];
   marksCurrentTask: IMarksCurrentTask[];
   members: IUsers[];
+}
+
+export interface ILobby {
+  isDealer?: boolean;
+  sendMessageChat: () => void;
+  members: IUsers[];
+  chatMessage: IChatMessage[];
+  title: string;
+  dealerData: IUsers;
+  handleEditTitle: () => void;
+  handleCopy: () => void;
+  handleStartGame: () => void;
+  handleCancelGame: () => void;
+  handleExit: () => void;
+  cardsValues?: ICardsValues[];
+  handleAddCard: () => void;
+  handleEditCard: () => void;
+  issues: IIssue[];
+  handleIssue: (value: EHandleIssue) => void;
+  handleRemoveMember: () => void;
+  handleSubmitGameSettings: () => void;
+  handleChangeMinute: () => void;
+  handleChangeSeconds: () => void;
 }

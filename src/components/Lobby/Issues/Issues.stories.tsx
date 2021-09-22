@@ -5,11 +5,31 @@ import { action } from '@storybook/addon-actions';
 import { Issues } from './Issues';
 
 const issues = [
-  { title: 'Issue 505', priority: 'Low' },
-  { title: 'Issue 745', priority: 'Middle' },
-  { title: 'Issue 325', priority: 'Hight' },
+  {
+    id: '1',
+    title: 'Issue 505',
+    priority: 'Low',
+    link: 'http://drbredbrd',
+    isChecked: false,
+    mark: null,
+  },
+  {
+    id: '2',
+    title: 'Issue 745',
+    priority: 'Middle',
+    link: 'http://drbredbrd',
+    isChecked: false,
+    mark: null,
+  },
+  {
+    id: '3',
+    title: 'Issue 325',
+    priority: 'Hight',
+    link: 'http://drbredbrd',
+    isChecked: false,
+    mark: null,
+  },
 ];
-
 export default {
   title: 'UI Components/Lobby-Issues',
   component: Issues,

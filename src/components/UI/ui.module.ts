@@ -1,3 +1,6 @@
+import { IUsers } from '../../pages/pages.module';
+import { ICardsValues, IIssue } from '../Game/game.module';
+
 export enum EButtonStyle {
   dark = 'dark',
   light = 'light',
@@ -14,7 +17,7 @@ export interface IButton {
 export enum EButtonType {
   button = 'button',
   reset = 'reset',
-  submit = 'submit'
+  submit = 'submit',
 }
 
 export enum ERenderFieldType {
@@ -101,11 +104,6 @@ export interface IRoundTime {
   handleChangeSeconds?: (value: string) => void | null;
 }
 
-export interface ICardsValues {
-  scoreType: string | null;
-  number: string | null;
-}
-
 export interface IScoreCard {
   scoreType?: string | null;
   number?: string | null;
@@ -131,38 +129,6 @@ export interface IChatMessage {
   message: string;
 }
 
-export interface IUsers {
-  id: string;
-  firstName: string;
-  lastName: string;
-  jobTitle: string;
-  image: string | null;
-  role: string;
-}
-
-export interface ILobby {
-  isDealer?: boolean;
-  sendMessageChat: () => void;
-  members: IUsers[];
-  chatMessage: IChatMessage[];
-  title: string;
-  dealerData: IUsers;
-  handleEditTitle: () => void;
-  handleCopy: () => void;
-  handleStartGame: () => void;
-  handleCancelGame: () => void;
-  handleExit: () => void;
-  cardsValues?: ICardsValues[];
-  handleAddCard: () => void;
-  handleEditCard: () => void;
-  issues: IIssue[];
-  handleIssue: (value: EHandleIssue) => void;
-  handleRemoveMember: () => void;
-  handleSubmitGameSettings: () => void;
-  handleChangeMinute: () => void;
-  handleChangeSeconds: () => void;
-}
-
 export interface IGameDataForm {
   isDealer: boolean;
   title: string;
@@ -183,11 +149,6 @@ export interface IChat {
   sendMessageChat: () => void;
   chatMessage?: IChatMessage[];
   handleRemoveMember: () => void;
-}
-
-export interface IIssue {
-  title: string;
-  priority: string;
 }
 
 export interface IIssues {

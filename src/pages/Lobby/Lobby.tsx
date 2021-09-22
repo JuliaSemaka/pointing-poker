@@ -7,7 +7,7 @@ import {
   Issues,
   Members,
 } from '../../components';
-import { ILobby } from '../../components/UI/ui.module';
+import { ILobby } from '../pages.module';
 import './Lobby.scss';
 
 export const Lobby: React.FC<ILobby> = ({
