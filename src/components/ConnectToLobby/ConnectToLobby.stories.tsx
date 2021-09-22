@@ -13,7 +13,6 @@ const reducer = combineReducers({ form: formReducer })
 
 const props = {
   onSubmit: action('onSubmit'),
-  handleStartGame: action('handleStartGame'),
   title: 'Connect to lobby',
   initialValues: {
     firstName: '',
@@ -60,11 +59,11 @@ const propsWithImage = {
 const ConnectToLobbyModal: React.FC<any> = (props) => {
   const { defaultAvatar } = props;
   const [isOpened, setIsOpened] = useState(true);
-  const [isCheck, setIsCheck] = useState(false);
+  const [isObserver, setIsObserver] = useState(false);
   const [avatar, setAvatar] = useState(defaultAvatar);
 
   const handleClickSwitch = () => {
-    setIsCheck((state) => !state);
+    setIsObserver((state) => !state);
   }
 
   const handleCloseModal = () => {
@@ -106,37 +105,27 @@ const ConnectToLobbyModal: React.FC<any> = (props) => {
 storiesOf('Modal/Connect to lobby', module)
   .addDecorator(story => <MemoryRouter>{story()}</MemoryRouter>)
   .add('Modal Connect to lobby - Empty', () => (
-    <div>
-      <Provider store={createStore(reducer)}>
-        <ConnectToLobbyModal {...props} />
-      </Provider>
-    </div>
+    <Provider store={createStore(reducer)}>
+      <ConnectToLobbyModal {...props} />
+    </Provider>
   ))
   .add('Modal Connect to lobby - Fill Name', () => (
-    <div>
-      <Provider store={createStore(reducer)}>
-        <ConnectToLobbyModal {...propsWithName} />
-      </Provider>
-    </div>
+    <Provider store={createStore(reducer)}>
+      <ConnectToLobbyModal {...propsWithName} />
+    </Provider>
   ))
   .add('Modal Connect to lobby - Fill Last Name', () => (
-    <div>
-      <Provider store={createStore(reducer)}>
-        <ConnectToLobbyModal {...propsWithLastName} />
-      </Provider>
-    </div>
+    <Provider store={createStore(reducer)}>
+      <ConnectToLobbyModal {...propsWithLastName} />
+    </Provider>
   ))
   .add('Modal Connect to lobby - Fill Job Position', () => (
-    <div>
-      <Provider store={createStore(reducer)}>
-        <ConnectToLobbyModal {...propsWithJob} />
-      </Provider>
-    </div>
+    <Provider store={createStore(reducer)}>
+      <ConnectToLobbyModal {...propsWithJob} />
+    </Provider>
   ))
   .add('Modal Connect to lobby - Fill All', () => (
-    <div>
-      <Provider store={createStore(reducer)}>
-        <ConnectToLobbyModal {...propsWithImage} />
-      </Provider>
-    </div>
+    <Provider store={createStore(reducer)}>
+      <ConnectToLobbyModal {...propsWithImage} />
+    </Provider>
   ))

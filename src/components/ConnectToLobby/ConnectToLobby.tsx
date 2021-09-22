@@ -1,9 +1,10 @@
 import React from 'react'
-import './ConnectToLobby.scss'
 import { Field, reduxForm } from 'redux-form'
 import { Button } from '../UI/Button/Button';
 import { RenderField, ModalWindow, Switch, Avatar } from '..';
 import { EButtonStyle } from '../UI/ui.module';
+
+import './ConnectToLobby.scss'
 
 const isRequired = (value: boolean) => value ? undefined : 'Required'
 const maxLength = (max: number) => (value: string) =>
@@ -14,7 +15,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
   const { 
     title, 
     handleCloseModal, 
-    handleStartGame, 
+    onSubmit, 
     handleClickSwitch,
     handleUploadImage,
     avatar 
@@ -22,7 +23,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-    handleStartGame();
+    onSubmit();
   }
 
   return (
@@ -62,7 +63,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
               name="lastName"
               component={RenderField}
               placeholder="Type your last name"
-              validate={[ maxLength15 ]}
+              validate={[ isRequired, maxLength15 ]}
             />
           </label>
         </div>
