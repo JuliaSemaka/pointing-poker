@@ -5,7 +5,7 @@ export enum EButtonStyle {
 
 export interface IButton {
   text: string;
-  handleClick: (event: React.MouseEvent) => void;
+  handleClick: (event?: React.MouseEvent) => void;
   style?: EButtonStyle;
   isDisabled?: boolean;
   type?: EButtonType;
