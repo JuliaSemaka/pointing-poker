@@ -1,0 +1,42 @@
+.modal-connect-lobby {
+  max-width: 876px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+
+  &-name, &-last-name, &-job {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 3rem;
+
+    label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
+  &-file {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}

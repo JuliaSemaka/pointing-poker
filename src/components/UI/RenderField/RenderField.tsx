@@ -12,9 +12,10 @@ export const RenderField: React.FC<IRenderField> = ({
   placeholder = ''
 }) => {
   if (type === EType.file) {
+    const { onChange } = input
     return (
       <label className={`text text-bold input input-label input-${style}`}>
-        <input type="file" className="input-file" />
+        <input type="file" className="input-file" onChange={onChange} />
         Choose file
       </label>
     );
