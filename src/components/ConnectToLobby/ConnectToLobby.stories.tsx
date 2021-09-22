@@ -88,8 +88,8 @@ const ConnectToLobbyModal: React.FC<any> = (props) => {
   }
 
   const handleSubmit = (event: any) => {
-    event.preventDefault();
     onSubmit();
+    console.log('Форма отправлена')
   }
 
   return (
@@ -97,7 +97,7 @@ const ConnectToLobbyModal: React.FC<any> = (props) => {
       {isOpened && (
         <ConnectToLobby
           {...props}
-          handleSubmit={handleSubmit}
+          onSubmit={handleSubmit}
           handleCloseModal={handleCloseModal}
           handleClickSwitch={handleClickSwitch}
           handleUploadImage={handleUploadImage}
