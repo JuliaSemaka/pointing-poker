@@ -1,7 +1,8 @@
 import React from 'react'
 import './ConnectToLobby.scss'
 import { Field, reduxForm } from 'redux-form'
-import { RenderField, Button, ModalWindow, Switch, Avatar } from '..';
+import { Button } from '../UI/Button/Button';
+import { RenderField, ModalWindow, Switch, Avatar } from '..';
 import { EButtonStyle } from '../UI/ui.module';
 
 const isRequired = (value: boolean) => value ? undefined : 'Required'
@@ -18,9 +19,15 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
     handleUploadImage,
     avatar 
   } = props;
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+    handleStartGame();
+  }
+
   return (
     <ModalWindow handleClick={handleCloseModal}>
-      <form onSubmit={handleStartGame} className="modal-connect-lobby">
+      <form onSubmit={handleSubmit} className="modal-connect-lobby">
         <div className="modal-connect-lobby-title">
           <h3 className="text text-title">
             {title}
@@ -86,7 +93,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
         <div className="modal-connect-lobby-buttons">
           <Button
             text="Confirm"
-            handleClick={handleStartGame}
+            handleClick={handleSubmit}
             style={EButtonStyle.dark}
           />
           <Button
