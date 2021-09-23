@@ -9,7 +9,7 @@ import { EButtonStyle } from '../UI/ui.module';
 import './CreateIssueModal.scss';
 
 export interface ICreateIssueModal {
-  actionSubmit: (value: boolean) => void;
+  handleCloseModal: (value: boolean) => void;
 }
 
 const required = (value: undefined | string) =>
@@ -17,12 +17,17 @@ const required = (value: undefined | string) =>
 
 const CreateIssueModal: React.FC<
   ICreateIssueModal & InjectedFormProps<any, ICreateIssueModal>
-> = ({ actionSubmit, handleSubmit, submitting, pristine }) => {
+> = ({ handleCloseModal, handleSubmit, submitting, pristine }) => {
   const arrayOptions = ['Low', 'Middle', 'Hight'];
+  const handleOnSubmit = () => {
+
+    handleSubmit
+    handleCloseModal
+  }
 
   return (
-    <ModalWindow handleClick={actionSubmit}>
-      <form className="create-issue" onSubmit={handleSubmit}>
+    <ModalWindow handleClick={handleCloseModal}>
+      <form className="create-issue" onSubmit={handleSubmit} >
         <h2 className="text text-title create-issue__title">Create Issue</h2>
         <div className="create-issue__row">
           <p className="text text-ruda">Title:</p>
@@ -40,12 +45,13 @@ const CreateIssueModal: React.FC<
           <Button
             text="Yes"
             isDisabled={submitting}
-            handleClick={() => actionSubmit(true)}
+            handleClick={() => handleSubmit}
+            typeButton="submit"
           />
           <Button
             isDisabled={pristine || submitting}
             text="No"
-            handleClick={() => actionSubmit(false)}
+            handleClick={handleCloseModal}
             style={EButtonStyle.light}
           />
         </div>
