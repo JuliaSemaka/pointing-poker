@@ -81,7 +81,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
               onChange={handleUploadImage}
               type="file"
             />
-            <Button text="Button" handleClick={handleUploadImage} />
+            {/* <Button text="Button" handleClick={handleUploadImage} /> */}
           </div>
         </div>
         <div className="modal-connect-lobby-avatar">
