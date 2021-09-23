@@ -7,10 +7,12 @@ import {
   Issues,
   Members,
 } from '../../components';
-import { ILobby } from '../../components/UI/ui.module';
+import { ILobby } from '../pages.module';
 import './Lobby.scss';
 
 export const Lobby: React.FC<ILobby> = ({
+  myId,
+  dillerId,
   isDealer = true,
   members,
   sendMessageChat,
@@ -31,6 +33,7 @@ export const Lobby: React.FC<ILobby> = ({
   handleSubmitGameSettings,
   handleChangeMinute,
   handleChangeSeconds,
+  initialValuesCopy,
 }) => (
   <div className="lobby wrapper">
     <main className="lobby-main">
@@ -43,8 +46,14 @@ export const Lobby: React.FC<ILobby> = ({
         handleStartGame={handleStartGame}
         handleCancelGame={handleCancelGame}
         handleExit={handleExit}
+        initialValues={initialValuesCopy}
       />
-      <Members members={members} handleRemoveMember={handleRemoveMember} />
+      <Members
+        dillerId={dillerId}
+        myId={myId}
+        members={members}
+        handleRemoveMember={handleRemoveMember}
+      />
       {isDealer && (
         <>
           <Issues issues={issues} handleIssue={handleIssue} />
@@ -60,7 +69,14 @@ export const Lobby: React.FC<ILobby> = ({
       )}
     </main>
     <aside className="lobby-chat">
-      <Chat sendMessageChat={sendMessageChat} chatMessage={chatMessage} handleRemoveMember={handleRemoveMember} />
+      <Chat
+        dillerId={dillerId}
+        myId={myId}
+        onSubmit={sendMessageChat}
+        chatMessage={chatMessage}
+        members={members}
+        handleRemoveMember={handleRemoveMember}
+      />
     </aside>
   </div>
 );

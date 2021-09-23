@@ -4,7 +4,7 @@ import { GameCard } from '../../UI/Cards/GameCard/GameCard';
 import { RenderField } from '../../UI/RenderField/RenderField';
 import { RoundTime } from '../../UI/RoundTime/RoundTime';
 import Switch from '../../UI/Switch/Switch';
-import { IGameSettingsForm } from '../../UI/ui.module';
+import { ERenderFieldType, IGameSettingsForm } from '../../UI/ui.module';
 
 import './GameSettings.scss';
 
@@ -56,11 +56,11 @@ export const GameSettingsForm: React.FC<
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Score type:</p>
-          <Field name="cardsSet" component={RenderField} label="CardsSet" />
+          <Field name="cardsSet" component={RenderField} styles={ERenderFieldType.middle} label="CardsSet" />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Score type (Short):</p>
-          <Field name="scoreType" component={RenderField} label="ScoreType" />
+          <Field name="scoreType" component={RenderField} styles={ERenderFieldType.middle} label="ScoreType" />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Is timer needed:</p>

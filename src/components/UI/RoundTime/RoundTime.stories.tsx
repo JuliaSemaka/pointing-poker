@@ -31,6 +31,6 @@ ChangeRoundTimeWithTime.args = {
   minute: 12,
   seconds: 32,
   isChange: true,
-  changeMinute: testFunc,
-  changeSeconds: testFunc,
+  handleChangeMinute: testFunc,
+  handleChangeSeconds: testFunc,
 };

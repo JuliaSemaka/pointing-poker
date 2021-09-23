@@ -147,12 +147,38 @@ const cardsValues = [
   },
 ];
 const issues = [
-  { title: 'Issue 505', priority: 'Low' },
-  { title: 'Issue 745', priority: 'Middle' },
-  { title: 'Issue 325', priority: 'Hight' },
+  {
+    id: '1',
+    title: 'Issue 505',
+    priority: 'Low',
+    link: 'http://drbredbrd',
+    isChecked: false,
+    mark: null,
+  },
+  {
+    id: '2',
+    title: 'Issue 745',
+    priority: 'Middle',
+    link: 'http://drbredbrd',
+    isChecked: false,
+    mark: null,
+  },
+  {
+    id: '3',
+    title: 'Issue 325',
+    priority: 'Hight',
+    link: 'http://drbredbrd',
+    isChecked: false,
+    mark: null,
+  },
 ];
+const myId = '1';
+const dillerId = '1';
+const initialValuesCopy = { copyId: '123' };
 
 const propsDealer = {
+  myId,
+  dillerId,
   members,
   sendMessageChat: action('sendMessageChat'),
   chatMessage,
@@ -173,9 +199,12 @@ const propsDealer = {
   handleSubmitGameSettings: action('handleSubmitGameSettings'),
   handleChangeMinute: action('handleChangeMinute'),
   handleChangeSeconds: action('handleChangeSeconds'),
+  initialValuesCopy,
 };
 
 const propsDealerEmptyChat = {
+  myId,
+  dillerId,
   members: [],
   sendMessageChat: action('sendMessageChat'),
   chatMessage: [],
@@ -196,9 +225,12 @@ const propsDealerEmptyChat = {
   handleSubmitGameSettings: action('handleSubmitGameSettings'),
   handleChangeMinute: action('handleChangeMinute'),
   handleChangeSeconds: action('handleChangeSeconds'),
+  initialValuesCopy,
 };
 
 const propsPlayer = {
+  myId,
+  dillerId,
   members,
   sendMessageChat: action('sendMessageChat'),
   chatMessage: [],
@@ -219,6 +251,7 @@ const propsPlayer = {
   handleSubmitGameSettings: action('handleSubmitGameSettings'),
   handleChangeMinute: action('handleChangeMinute'),
   handleChangeSeconds: action('handleChangeSeconds'),
+  initialValuesCopy,
 };
 
 storiesOf('Pages/Lobby', module)
