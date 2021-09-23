@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addChatMessage } from '../actions/chat';
-import { addGame, addMyId, addWebSocket } from '../actions/main';
+import { addGame, setTitle } from '../actions/game';
+import { addMyId, addWebSocket } from '../actions/main';
 
 export const useWebSocket = () => {
   const dispatch = useDispatch();
@@ -28,11 +29,14 @@ export const useWebSocket = () => {
       socket.send(JSON.stringify(userData));
       socket.onmessage = (event) => {
         const data = JSON.parse(event.data);
-        if (data.id) {
+        if (data.method) {
           switch (data.method) {
             case 'connection':
               console.log(data);
               dispatch(addGame(data));
+              break;
+            case 'set-title':
+              dispatch(setTitle(data.title));
               break;
             //     case 'add-user':
             //       console.log('userId: ', userId);

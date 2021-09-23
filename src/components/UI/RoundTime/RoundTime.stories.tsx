@@ -3,6 +3,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import '../../../App.scss';
 import { RoundTime } from './RoundTime';
+import { action } from '@storybook/addon-actions';
 
 export default {
   title: 'UI Components/RoundTime',
@@ -18,19 +19,15 @@ DefaultRoundTime.args = {};
 
 export const RoundTimeWithTime = Template.bind({});
 RoundTimeWithTime.args = {
-  minute: 12,
-  seconds: 32,
-};
-
-const testFunc = () => {
-  const num = 1;
+  minute: '12',
+  seconds: '32',
 };
 
 export const ChangeRoundTimeWithTime = Template.bind({});
 ChangeRoundTimeWithTime.args = {
-  minute: 12,
-  seconds: 32,
+  minute: '12',
+  seconds: '32',
   isChange: true,
-  handleChangeMinute: testFunc,
-  handleChangeSeconds: testFunc,
+  handleChangeMinute: action('handleChangeMinute'),
+  handleChangeSeconds: action('handleChangeSeconds'),
 };

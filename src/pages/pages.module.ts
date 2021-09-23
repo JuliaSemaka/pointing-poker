@@ -4,7 +4,11 @@ import {
   IIssue,
   IMarksCurrentTask,
 } from '../components/Game/game.module';
-import { EHandleIssue, IChatMessage } from '../components/UI/ui.module';
+import {
+  EHandleIssue,
+  IChatMessage,
+  IInitialValuesCopy,
+} from '../components/UI/ui.module';
 
 export interface IUsers {
   id: string;
@@ -32,6 +36,20 @@ export interface IGame {
   members: IUsers[];
 }
 
+export interface IInitialSettings {
+  isPlayer: boolean;
+  isChangeEnable: boolean;
+  isTurnAuto: boolean;
+  isLetAuto: boolean;
+  cardsSet: string;
+  scoreType: string;
+}
+
+export interface ITime {
+  minute: string | null;
+  seconds: string | null;
+}
+
 export interface ILobby {
   myId: string;
   dillerId: string;
@@ -41,8 +59,9 @@ export interface ILobby {
   chatMessage: IChatMessage[];
   title: string;
   dealerData: IUsers;
-  handleEditTitle: () => void;
-  handleCopy: () => void;
+  editTitle: boolean;
+  setEditTitle: React.Dispatch<React.SetStateAction<boolean>>;
+  handleEditTitle: (value: string) => void;
   handleStartGame: () => void;
   handleCancelGame: () => void;
   handleExit: () => void;
@@ -52,8 +71,13 @@ export interface ILobby {
   issues: IIssue[];
   handleIssue: (value: EHandleIssue) => void;
   handleRemoveMember: () => void;
-  handleSubmitGameSettings: () => void;
-  handleChangeMinute: () => void;
-  handleChangeSeconds: () => void;
-  initialValuesCopy: { copyId: string };
+  handleSubmitGameSettings: (event?: React.MouseEvent) => void;
+  handleChangeMinute: React.Dispatch<React.SetStateAction<string>>;
+  handleChangeSeconds: React.Dispatch<React.SetStateAction<string>>;
+  initialValuesCopy: IInitialValuesCopy;
+  initialSettings: IInitialSettings;
+  roundTime: ITime;
+  isTimerEnableState: boolean;
+  setIsTimerEnable: React.Dispatch<React.SetStateAction<boolean>>;
+  successSettings: boolean;
 }

@@ -18,7 +18,7 @@
 }
 
 body {
-  background-color: #e5e5e5;
+  background-color: #f3f1f1;
 }
 
 $color1: #2b3a67;
@@ -127,6 +127,10 @@ $color5: #ffc482;
 
   &-error {
     color: #ff1818;
+  }
+
+  &-success {
+    color: #8bc34a;
   }
 
   &-uppercase {

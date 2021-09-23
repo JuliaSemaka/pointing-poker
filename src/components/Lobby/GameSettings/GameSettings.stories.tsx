@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { createStore, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
@@ -8,6 +8,8 @@ import { MemoryRouter } from 'react-router-dom';
 import '../../../App.scss';
 import { GameSettings } from './GameSettings';
 import { action } from '@storybook/addon-actions';
+
+const [isTimerEnableState, setIsTimerEnable] = useState(true);
 
 const cardsValues = [
   {
@@ -28,6 +30,11 @@ const cardsValues = [
   },
 ];
 
+const roundTime = {
+  minute: '1',
+  seconds: '1',
+};
+
 const reducer = combineReducers({ form: formReducer });
 
 const propsDefault = {
@@ -37,6 +44,10 @@ const propsDefault = {
   handleSubmitGameSettings: action('handleSubmitGameSettings'),
   handleChangeMinute: action('handleChangeMinute'),
   handleChangeSeconds: action('handleChangeSeconds'),
+  roundTime,
+  isTimerEnableState,
+  setIsTimerEnable,
+  successSettings: false,
 };
 
 storiesOf('UI Components/Lobby-GameSettings', module)

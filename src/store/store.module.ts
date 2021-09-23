@@ -2,6 +2,8 @@ export const ADD_WEB_SOCKET = 'ADD_WEB_SOCKET';
 export const ADD_GAME = 'ADD_GAME';
 export const ADD_MY_ID = 'ADD_MY_ID';
 export const ADD_CHAT_MESSAGE = 'ADD_CHAT_MESSAGE';
+export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
+export const SET_TITLE = 'SET_TITLE';
 
 import {
   EGameStatus,
@@ -16,17 +18,17 @@ export interface ISettings {
   isPlayer: boolean;
   cardsSet: string;
   scoreType: string;
-  letAuto: boolean;
-  turnAuto: boolean;
+  isLetAuto: boolean;
+  isTurnAuto: boolean;
   isChangeEnable: boolean;
   isTimerEnable: boolean;
-  roundTime: null | string;
+  minute: null | string;
+  seconds: null | string;
 }
 
 export interface IMainState {
   socket: WebSocket | null;
   myId: string | null;
-  game: IGameState | null;
 }
 
 export interface IGameState {
@@ -50,5 +52,6 @@ export interface IAction {
 export interface IReducer {
   main: IMainState;
   chat: IChatMessage[];
+  game: IGameState;
   form: any;
 }

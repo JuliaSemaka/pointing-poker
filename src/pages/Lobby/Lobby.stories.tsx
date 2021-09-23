@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { storiesOf } from '@storybook/react';
 import { combineReducers, createStore } from 'redux';
 import formReducer from 'redux-form/lib/reducer';
@@ -9,6 +9,9 @@ import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 const reducer = combineReducers({ form: formReducer });
+
+const [isTimerEnableState, setIsTimerEnable] = useState(true);
+const [editTitle, setEditTitle] = useState(false);
 
 const members = [
   {
@@ -175,6 +178,18 @@ const issues = [
 const myId = '1';
 const dillerId = '1';
 const initialValuesCopy = { copyId: '123' };
+const initialSettings = {
+  isPlayer: true,
+  isChangeEnable: true,
+  isTurnAuto: true,
+  isLetAuto: true,
+  cardsSet: '',
+  scoreType: '',
+};
+const roundTime = {
+  minute: '1',
+  seconds: '1',
+};
 
 const propsDealer = {
   myId,
@@ -185,8 +200,9 @@ const propsDealer = {
   isDealer: true,
   title,
   dealerData,
+  editTitle,
+  setEditTitle,
   handleEditTitle: action('handleEditTitle'),
-  handleCopy: action('handleCopy'),
   handleStartGame: action('handleStartGame'),
   handleCancelGame: action('handleCancelGame'),
   handleExit: action('handleExit'),
@@ -200,6 +216,11 @@ const propsDealer = {
   handleChangeMinute: action('handleChangeMinute'),
   handleChangeSeconds: action('handleChangeSeconds'),
   initialValuesCopy,
+  initialSettings,
+  roundTime,
+  isTimerEnableState,
+  setIsTimerEnable,
+  successSettings: false,
 };
 
 const propsDealerEmptyChat = {
@@ -211,8 +232,9 @@ const propsDealerEmptyChat = {
   isDealer: true,
   title,
   dealerData,
+  editTitle,
+  setEditTitle,
   handleEditTitle: action('handleEditTitle'),
-  handleCopy: action('handleCopy'),
   handleStartGame: action('handleStartGame'),
   handleCancelGame: action('handleCancelGame'),
   handleExit: action('handleExit'),
@@ -226,6 +248,11 @@ const propsDealerEmptyChat = {
   handleChangeMinute: action('handleChangeMinute'),
   handleChangeSeconds: action('handleChangeSeconds'),
   initialValuesCopy,
+  initialSettings,
+  roundTime,
+  isTimerEnableState,
+  setIsTimerEnable,
+  successSettings: true,
 };
 
 const propsPlayer = {
@@ -237,8 +264,9 @@ const propsPlayer = {
   isDealer: true,
   title,
   dealerData,
+  editTitle,
+  setEditTitle,
   handleEditTitle: action('handleEditTitle'),
-  handleCopy: action('handleCopy'),
   handleStartGame: action('handleStartGame'),
   handleCancelGame: action('handleCancelGame'),
   handleExit: action('handleExit'),
@@ -252,6 +280,11 @@ const propsPlayer = {
   handleChangeMinute: action('handleChangeMinute'),
   handleChangeSeconds: action('handleChangeSeconds'),
   initialValuesCopy,
+  initialSettings,
+  roundTime,
+  isTimerEnableState,
+  setIsTimerEnable,
+  successSettings: false,
 };
 
 storiesOf('Pages/Lobby', module)

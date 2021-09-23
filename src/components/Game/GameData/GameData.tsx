@@ -29,7 +29,7 @@ export const GameDataGame: React.FC<IGameData> = ({
             isMyCard={isDealer}
           />
         </div>
-        {!isDealer && <RoundTime />}
+        {!isDealer && <RoundTime minute="2" seconds="0" />}
         <Button
           style={EButtonStyle.light}
           text={isDealer ? 'Stop Game' : 'Exit'}

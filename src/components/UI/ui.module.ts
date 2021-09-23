@@ -1,4 +1,4 @@
-import { IUsers } from '../../pages/pages.module';
+import { ITime, IUsers } from '../../pages/pages.module';
 import { ICardsValues, IIssue } from '../Game/game.module';
 
 export enum EButtonStyle {
@@ -29,6 +29,7 @@ export enum ERenderFieldType {
 export enum EType {
   text = 'text',
   file = 'file',
+  number = 'number',
 }
 
 export interface IMeta {
@@ -38,12 +39,13 @@ export interface IMeta {
 
 export interface IRenderField {
   input?: any;
-  meta: IMeta;
+  meta?: IMeta;
   type?: EType;
   styles?: ERenderFieldType;
   disabled?: boolean;
   placeholder?: string;
-  other?: any;
+  value?: string;
+  setTitleGame?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface ISelect {
@@ -97,11 +99,11 @@ export interface IModalWindow {
 }
 
 export interface IRoundTime {
-  minute?: number;
-  seconds?: number;
+  minute: string;
+  seconds: string;
   isChange?: boolean;
-  handleChangeMinute?: (value: string) => void | null;
-  handleChangeSeconds?: (value: string) => void | null;
+  handleChangeMinute?: React.Dispatch<React.SetStateAction<string>>;
+  handleChangeSeconds?: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export interface IScoreCard {
@@ -110,17 +112,18 @@ export interface IScoreCard {
 }
 
 export interface IGameSettingsForm {
-  isPlayer?: boolean;
-  isChangeEnable?: boolean;
   isTimerEnable?: boolean;
-  isTurnAuto?: boolean;
-  isLetAuto?: boolean;
   cardsValues?: ICardsValues[];
   handleAddCard: () => void;
   handleEditCard: () => void;
-  handleSubmitGameSettings: () => void;
-  handleChangeMinute: () => void;
-  handleChangeSeconds: () => void;
+  handleSubmit?: () => void;
+  onSubmit?: () => void;
+  handleChangeMinute: React.Dispatch<React.SetStateAction<string>>;
+  handleChangeSeconds: React.Dispatch<React.SetStateAction<string>>;
+  roundTime: ITime;
+  isTimerEnableState: boolean;
+  setIsTimerEnable: React.Dispatch<React.SetStateAction<boolean>>;
+  successSettings: boolean;
 }
 
 export interface IChatMessage {
@@ -128,15 +131,21 @@ export interface IChatMessage {
   message: string;
 }
 
+export interface IInitialValuesCopy {
+  copyId: string;
+}
+
 export interface IGameDataForm {
   isDealer: boolean;
   title: string;
   dealerData: IUsers;
-  handleEditTitle: () => void;
-  handleCopy: () => void;
+  editTitle: boolean;
+  setEditTitle: React.Dispatch<React.SetStateAction<boolean>>;
+  handleEditTitle: (value: string) => void;
   handleStartGame: () => void;
   handleCancelGame: () => void;
   handleExit: () => void;
+  initialValues: IInitialValuesCopy;
 }
 
 export interface IMembers {

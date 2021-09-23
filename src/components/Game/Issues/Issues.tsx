@@ -42,7 +42,7 @@ export const IssuesGame: React.FC<IIssues> = ({
       </div>
       {isDealer && (
         <div className="game-item__column game-item__control">
-          <RoundTime />
+          <RoundTime minute="2" seconds="0" />
           <Button
             style={EButtonStyle.dark}
             text={
