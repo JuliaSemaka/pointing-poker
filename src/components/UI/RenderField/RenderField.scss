@@ -11,6 +11,13 @@
   width: 100%;
   max-width: 466px;
 
+  &-card {
+    font-size: 11px;
+    line-height: 15px;
+    padding: 0;
+    color: gray;
+  }
+
   &-inherit {
     background: inherit;
     box-shadow: none;

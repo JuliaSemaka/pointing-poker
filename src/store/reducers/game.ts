@@ -1,4 +1,5 @@
 import {
+  ADD_CARD,
   ADD_GAME,
   CHANGE_SETTINGS,
   IAction,
@@ -19,6 +20,8 @@ export const game = (
       return { ...state, title: action.payload };
     case CHANGE_SETTINGS:
       return { ...state, settings: { ...state.settings, ...action.payload } };
+    case ADD_CARD:
+      return { ...state, cards: action.payload };
     default:
       return state;
   }

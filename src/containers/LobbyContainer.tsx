@@ -112,6 +112,50 @@ export const LobbyContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
+  const handleEditCard = (value: string, index: number | undefined) => {
+    console.log(value, index);
+    let newCards;
+    if (index !== undefined) {
+      newCards = cards.map((item, ind) => {
+        if (ind === index) {
+          return {
+            scoreType: isNaN(+value) ? null : scoreType,
+            number: value,
+          };
+        } else {
+          return item;
+        }
+      });
+    } else {
+      newCards = cards.concat([
+        {
+          scoreType: isNaN(+value) ? null : scoreType,
+          number: value,
+        },
+      ]);
+    }
+    const data = {
+      id,
+      newCards,
+      method: 'change-cards',
+    };
+    socket!.send(JSON.stringify(data));
+  };
+
+  const handleDeleteCard = (index: number) => {
+    const newCards = cards.filter((item, ind) => {
+      if (ind !== index) {
+        return item;
+      }
+    });
+    const data = {
+      id,
+      newCards,
+      method: 'change-cards',
+    };
+    socket!.send(JSON.stringify(data));
+  };
+
   const propsDealer = {
     myId,
     dillerId,
@@ -124,12 +168,12 @@ export const LobbyContainer: React.FC = () => {
     editTitle,
     setEditTitle,
     handleEditTitle,
+    handleDeleteCard,
     handleStartGame,
     handleCancelGame: funcTest,
     handleExit: funcTest,
     cardsValues: cards,
-    handleAddCard: funcTest,
-    handleEditCard: funcTest,
+    handleEditCard,
     issues: tasks,
     handleIssue: funcTestParam,
     handleRemoveMember: funcTest,

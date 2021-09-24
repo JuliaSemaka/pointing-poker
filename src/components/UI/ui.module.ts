@@ -24,6 +24,7 @@ export enum ERenderFieldType {
   withButton = 'with-button',
   middle = 'middle',
   big = 'big',
+  card = 'card',
 }
 
 export enum EType {
@@ -87,10 +88,13 @@ export interface IGameCard {
   isAddCard?: boolean;
   number?: string | null;
   scoreType?: string | null;
+  index?: number;
   isEdit?: boolean;
   isCheck?: boolean;
   handleAddCard?: () => void;
-  handleEditCard?: () => void;
+  handleEditCard?: (value: string, index?: number) => void;
+  handleDeleteCard?: (index: number) => void;
+  setAddCard?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 export interface IModalWindow {
@@ -112,10 +116,9 @@ export interface IScoreCard {
 }
 
 export interface IGameSettingsForm {
-  isTimerEnable?: boolean;
   cardsValues?: ICardsValues[];
-  handleAddCard: () => void;
-  handleEditCard: () => void;
+  handleEditCard: (value: string, index?: number) => void;
+  handleDeleteCard?: (index: number) => void;
   handleSubmit?: () => void;
   onSubmit?: () => void;
   handleChangeMinute: React.Dispatch<React.SetStateAction<string>>;
