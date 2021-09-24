@@ -4,11 +4,11 @@ import { IRoundTime } from '../ui.module';
 import './RoundTime.scss';
 
 export const RoundTime: React.FC<IRoundTime> = ({
-  minute = 0,
-  seconds = 0,
+  minute,
+  seconds,
   isChange = false,
-  handleChangeMinute = null,
-  handleChangeSeconds = null,
+  handleChangeMinute,
+  handleChangeSeconds,
 }) => {
   return (
     <div className="round-time">
@@ -18,6 +18,7 @@ export const RoundTime: React.FC<IRoundTime> = ({
           <input
             type="number"
             className="text text-ruda text-ruda-big"
+            min="0"
             value={minute}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleChangeMinute(e.target.value)
@@ -34,6 +35,7 @@ export const RoundTime: React.FC<IRoundTime> = ({
           <input
             type="number"
             className="text text-ruda text-ruda-big"
+            min="0"
             value={seconds}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleChangeSeconds(e.target.value)

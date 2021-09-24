@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Edit from '../../../assets/images/cards/edit.svg';
 import { Button } from '../../UI/Button/Button';
@@ -20,23 +19,45 @@ export const GameDataForm: React.FC<
   isDealer,
   title,
   dealerData,
+  editTitle,
+  setEditTitle,
   handleEditTitle,
-  handleCopy,
   handleStartGame,
   handleCancelGame,
   handleExit,
+  initialValues,
+
 }) => {
+  const [titleGame, setTitleGame] = useState(title);
+  const clickSave = () => {
+    setEditTitle((prev) => !prev);
+    handleEditTitle(titleGame);
+  }
+
   return (
     <div className="lobby-item">
       <div className="lobby-item__title">
-        <h3 className="text text-ruda">{title}</h3>
-        {isDealer && (
-          <img
-            className="crud-item"
-            src={Edit}
-            alt="edit"
-            onClick={handleEditTitle}
-          />
+        {editTitle ? (
+          <>
+            <RenderField value={titleGame} setTitleGame={setTitleGame} styles={ERenderFieldType.withButton} />
+            <Button
+              text="Save"
+              style={EButtonStyle.light}
+              handleClick={clickSave}
+            />
+          </>
+        ) : (
+          <>
+            <h3 className="text text-ruda">{title}</h3>
+            {isDealer && (
+              <img
+                className="crud-item"
+                src={Edit}
+                alt="edit"
+                onClick={() => setEditTitle((prev) => !prev)}
+              />
+            )}
+          </>
         )}
       </div>
       <div className="scram-master">
@@ -51,10 +72,7 @@ export const GameDataForm: React.FC<
       {isDealer && (
         <div className="key-lobby">
           <p className="text text-italic">Link to lobby:</p>
-          <CopyToClipboard text="wwwww">
-            <p className="copy-clipboard">Copy to clipboard</p>
-          </CopyToClipboard>
-          <form className="key-lobby__copy" onSubmit={handleCopy}>
+          <form className="key-lobby__copy">
             <Field
               name="copyId"
               component={RenderField}
@@ -62,9 +80,12 @@ export const GameDataForm: React.FC<
               label="CopyId"
               disabled={true}
             />
-            <CopyToClipboard text="234567876543">
-              <Button text="Copy" handleClick={handleCopy} />
-            </CopyToClipboard>
+            <Button
+              text="Copy"
+              handleClick={() => {
+                navigator.clipboard.writeText(initialValues.copyId);
+              }}
+            />
           </form>
         </div>
       )}

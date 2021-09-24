@@ -19,8 +19,9 @@ export const Lobby: React.FC<ILobby> = ({
   chatMessage,
   title,
   dealerData,
+  editTitle,
+  setEditTitle,
   handleEditTitle,
-  handleCopy,
   handleStartGame,
   handleCancelGame,
   handleExit,
@@ -34,6 +35,11 @@ export const Lobby: React.FC<ILobby> = ({
   handleChangeMinute,
   handleChangeSeconds,
   initialValuesCopy,
+  initialSettings,
+  roundTime,
+  isTimerEnableState,
+  setIsTimerEnable,
+  successSettings,
 }) => (
   <div className="lobby wrapper">
     <main className="lobby-main">
@@ -41,8 +47,9 @@ export const Lobby: React.FC<ILobby> = ({
         isDealer={isDealer}
         title={title}
         dealerData={dealerData}
+        editTitle={editTitle}
+        setEditTitle={setEditTitle}
         handleEditTitle={handleEditTitle}
-        handleCopy={handleCopy}
         handleStartGame={handleStartGame}
         handleCancelGame={handleCancelGame}
         handleExit={handleExit}
@@ -61,9 +68,14 @@ export const Lobby: React.FC<ILobby> = ({
             cardsValues={cardsValues}
             handleAddCard={handleAddCard}
             handleEditCard={handleEditCard}
-            handleSubmitGameSettings={handleSubmitGameSettings}
+            onSubmit={handleSubmitGameSettings}
             handleChangeMinute={handleChangeMinute}
             handleChangeSeconds={handleChangeSeconds}
+            initialValues={initialSettings}
+            roundTime={roundTime}
+            isTimerEnableState={isTimerEnableState}
+            setIsTimerEnable={setIsTimerEnable}
+            successSettings={successSettings}
           />
         </>
       )}

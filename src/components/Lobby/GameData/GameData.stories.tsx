@@ -18,6 +18,7 @@ const dealerData = {
   image: null,
   role: 'dealer',
 };
+const initialValuesCopy = { copyId: '1' };
 
 const reducer = combineReducers({ form: formReducer });
 
@@ -25,11 +26,13 @@ const propsDefault = {
   isDealer: true,
   title,
   dealerData,
+  editTitle: false,
+  setEditTitle: action('setEditTitle'),
   handleEditTitle: action('handleEditTitle'),
-  handleCopy: action('handleCopy'),
   handleStartGame: action('handleStartGame'),
   handleCancelGame: action('handleCancelGame'),
   handleExit: action('handleExit'),
+  initialValues: initialValuesCopy,
 };
 
 storiesOf('UI Components/Lobby-GameData', module)

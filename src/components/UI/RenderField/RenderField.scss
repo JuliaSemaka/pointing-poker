@@ -11,6 +11,12 @@
   width: 100%;
   max-width: 466px;
 
+  &-inherit {
+    background: inherit;
+    box-shadow: none;
+    border: none;
+  }
+
   &-with-button {
     max-width: 276px;
     font-weight: 300;
