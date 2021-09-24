@@ -26,20 +26,31 @@ export const GameDataForm: React.FC<
   handleCancelGame,
   handleExit,
   initialValues,
-
 }) => {
   const [titleGame, setTitleGame] = useState(title);
+  const [successCopy, setSuccessCopy] = useState(false);
   const clickSave = () => {
     setEditTitle((prev) => !prev);
     handleEditTitle(titleGame);
-  }
+  };
+  const handleCopy = () => {
+    setSuccessCopy(true);
+    navigator.clipboard.writeText(initialValues.copyId);
+    setTimeout(() => {
+      setSuccessCopy(false);
+    }, 2000);
+  };
 
   return (
     <div className="lobby-item">
       <div className="lobby-item__title">
         {editTitle ? (
           <>
-            <RenderField value={titleGame} setTitleGame={setTitleGame} styles={ERenderFieldType.withButton} />
+            <RenderField
+              value={titleGame}
+              setTitleGame={setTitleGame}
+              styles={ERenderFieldType.withButton}
+            />
             <Button
               text="Save"
               style={EButtonStyle.light}
@@ -82,10 +93,10 @@ export const GameDataForm: React.FC<
             />
             <Button
               text="Copy"
-              handleClick={() => {
-                navigator.clipboard.writeText(initialValues.copyId);
-              }}
+              handleClick={handleCopy}
+              isDisabled={successCopy}
             />
+            {successCopy && <p className="text text-success">Copy created!</p>}
           </form>
         </div>
       )}

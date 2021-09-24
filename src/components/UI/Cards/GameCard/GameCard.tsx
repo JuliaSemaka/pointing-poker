@@ -1,21 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-import { IGameCard } from '../../ui.module';
+import { ERenderFieldType, IGameCard } from '../../ui.module';
 import Edit from '../../../../assets/images/cards/edit.svg';
+import Delete from '../../../../assets/images/cards/delete.svg';
+import CheckMark from '../../../../assets/images/cards/check.svg';
 import UnknownCard from '../../../../assets/images/unknown-сard.jpg';
 import AddCard from '../../../../assets/images/add-card.jpg';
 import Check from '../../../../assets/images/check.svg';
 import '../Cards.scss';
+import { RenderField } from '../../..';
 
 export const GameCard: React.FC<IGameCard> = ({
   isAddCard = false,
   number = null,
   scoreType = null,
+  index,
   isEdit = false,
   isCheck = false,
   handleEditCard,
+  handleDeleteCard,
   handleAddCard,
+  setAddCard,
 }) => {
+  const [editCard, setEditCard] = useState(false);
+  const [numberCard, setNumberCard] = useState(number || 'Unknown');
+
+  const saveChange = () => {
+    if (index !== undefined) {
+      handleEditCard!(numberCard, index);
+    } else {
+      handleEditCard!(numberCard);
+    }
+    setEditCard(false);
+    if (setAddCard) {
+      setAddCard(false);
+    }
+  };
+  const deleteCard = () => {
+    if (setAddCard) {
+      setAddCard(false);
+    } else {
+      handleDeleteCard!(index!);
+    }
+  };
+
   if (isAddCard) {
     return (
       <div className="game-card game-card__add" onClick={handleAddCard}>
@@ -26,13 +54,28 @@ export const GameCard: React.FC<IGameCard> = ({
 
   return (
     <div className="game-card">
-      {isEdit && (
+      {isEdit && !editCard ? (
         <img
           className="game-card__edit card-cred"
           src={Edit}
           alt="edit"
-          onClick={handleEditCard}
+          onClick={() => setEditCard(true)}
         />
+      ) : (
+        <div className="game-card__block">
+          <img
+            className="card-cred"
+            src={CheckMark}
+            alt="check-mark"
+            onClick={saveChange}
+          />
+          <img
+            className="card-cred"
+            src={Delete}
+            alt="delete"
+            onClick={deleteCard}
+          />
+        </div>
       )}
       {isCheck && (
         <div className="card__check">
@@ -41,18 +84,30 @@ export const GameCard: React.FC<IGameCard> = ({
           </div>
         </div>
       )}
-      <p className="text text-ruda text-ruda-small game-card__top">
-        {number || 'Unknown'}
-      </p>
+      {!editCard ? (
+        <p className="text text-ruda text-ruda-small game-card__top">
+          {number || 'Unknown'}
+        </p>
+      ) : (
+        <RenderField
+          value={numberCard}
+          setTitleGame={setNumberCard}
+          styles={ERenderFieldType.card}
+        />
+      )}
       {scoreType ? (
         <div className="text text-ruda text-ruda-big game-card__scote-type">
           {scoreType}
         </div>
       ) : (
-        <img className="game-card__img" src={UnknownCard} alt="unknown-card" />
+        <img
+          className="game-card__img game-card__scote-type"
+          src={UnknownCard}
+          alt="unknown-card"
+        />
       )}
       <p className="text text-ruda text-ruda-small game-card__bottom">
-        {number ?? 'Unknown'}
+        {numberCard}
       </p>
     </div>
   );

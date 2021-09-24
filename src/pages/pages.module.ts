@@ -62,12 +62,12 @@ export interface ILobby {
   editTitle: boolean;
   setEditTitle: React.Dispatch<React.SetStateAction<boolean>>;
   handleEditTitle: (value: string) => void;
+  handleDeleteCard?: (index: number) => void;
   handleStartGame: () => void;
   handleCancelGame: () => void;
   handleExit: () => void;
   cardsValues?: ICardsValues[];
-  handleAddCard: () => void;
-  handleEditCard: () => void;
+  handleEditCard: (value: string, index?: number) => void;
   issues: IIssue[];
   handleIssue: (value: EHandleIssue) => void;
   handleRemoveMember: () => void;

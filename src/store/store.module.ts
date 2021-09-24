@@ -4,6 +4,7 @@ export const ADD_MY_ID = 'ADD_MY_ID';
 export const ADD_CHAT_MESSAGE = 'ADD_CHAT_MESSAGE';
 export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
 export const SET_TITLE = 'SET_TITLE';
+export const ADD_CARD = 'ADD_CARD';
 
 import {
   EGameStatus,

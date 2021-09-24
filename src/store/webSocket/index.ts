@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addChatMessage } from '../actions/chat';
-import { addGame, setTitle } from '../actions/game';
+import { addCard, addGame, setTitle } from '../actions/game';
 import { addMyId, addWebSocket } from '../actions/main';
 
 export const useWebSocket = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socket = new WebSocket('ws://obscure-wave-90492.herokuapp.com/');
-    // const socket = new WebSocket('ws://localhost:5000/');
+    // const socket = new WebSocket('ws://obscure-wave-90492.herokuapp.com/');
+    const socket = new WebSocket('ws://localhost:5000/');
     dispatch(addWebSocket(socket));
     socket.onopen = () => {
       console.log('Подключение установлено');
@@ -37,6 +37,10 @@ export const useWebSocket = () => {
               break;
             case 'set-title':
               dispatch(setTitle(data.title));
+              break;
+            case 'change-cards':
+              console.log(data);
+              dispatch(addCard(data.cards));
               break;
             //     case 'add-user':
             //       console.log('userId: ', userId);

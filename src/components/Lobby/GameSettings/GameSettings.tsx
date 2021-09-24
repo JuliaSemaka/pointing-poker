@@ -23,10 +23,9 @@ import './GameSettings.scss';
 export const GameSettingsForm: React.FC<
   IGameSettingsForm & InjectedFormProps<any, IGameSettingsForm>
 > = ({
-  isTimerEnable = true,
   cardsValues = [],
-  handleAddCard,
   handleEditCard,
+  handleDeleteCard,
   handleSubmit,
   handleChangeMinute,
   handleChangeSeconds,
@@ -35,6 +34,8 @@ export const GameSettingsForm: React.FC<
   setIsTimerEnable,
   successSettings,
 }) => {
+  const [addCard, setAddCard] = useState(false);
+
   return (
     <div className="lobby-item">
       <div className="lobby-item__title">
@@ -112,13 +113,18 @@ export const GameSettingsForm: React.FC<
           {cardsValues.map((item, index) => (
             <GameCard
               key={index}
+              index={index}
               isEdit={true}
               scoreType={item.scoreType}
               number={item.number}
               handleEditCard={handleEditCard}
+              handleDeleteCard={handleDeleteCard}
             />
           ))}
-          <GameCard isAddCard={true} handleAddCard={handleAddCard} />
+          {addCard && (
+            <GameCard handleEditCard={handleEditCard} isEdit={true} setAddCard={setAddCard} />
+          )}
+          <GameCard isAddCard={true} handleAddCard={() => setAddCard(true)} />
         </div>
       </div>
     </div>

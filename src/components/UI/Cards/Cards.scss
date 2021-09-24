@@ -149,12 +149,26 @@
   align-items: center;
   overflow: hidden;
 
+  &__block {
+    position: absolute;
+    display: flex;
+    right: 3px;
+
+    & > img {
+      width: 16px;
+      height: 16px;
+      margin: 0;
+    }
+  }
+
   &__top {
     align-self: flex-start;
   }
 
   &__scote-type {
     text-transform: uppercase;
+    position: absolute;
+    top: 29%;
   }
 
   &__bottom {

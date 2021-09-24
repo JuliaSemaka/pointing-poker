@@ -40,6 +40,7 @@ const reducer = combineReducers({ form: formReducer });
 const propsDefault = {
   handleAddCard: action('handleAddCard'),
   handleEditCard: action('handleEditCard'),
+  handleDeleteCard: action('handleDeleteCard'),
   cardsValues,
   handleSubmitGameSettings: action('handleSubmitGameSettings'),
   handleChangeMinute: action('handleChangeMinute'),

@@ -23,7 +23,7 @@ export const RenderField: React.FC<IRenderField> = ({
     );
   }
 
-  if (value) {
+  if (value !== undefined) {
     return (
       <input
         type={type}
