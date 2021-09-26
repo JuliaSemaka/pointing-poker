@@ -9,27 +9,36 @@ import { MainPage } from '../pages';
 
 export const MainPageContainer: React.FC = () => {
   const { socket, myId } = useSelector((state: IReducer) => state.main);
+  const form = useSelector((state: IReducer) => state.form);
   const history = useHistory();
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isObserver, setIsObserver] = useState(false);
+  const [isDealler, setIsDealler] = useState(true);
   const [avatar, setAvatar] = useState('');
   const dispatch = useDispatch();
 
   const onSubmit = () => {
     const id = (+new Date()).toString(16);
     dispatch(addMyId(id));
-
+    console.log(form.connectToLobbyModal.values);
+    const { 
+      firstName,
+      lastName,
+      jobPosition,
+      image,
+      title
+     } = form.connectToLobbyModal.values;
     const userData = {
-      firstName: 'July',
+      firstName: firstName,
       myId: id,
-      lastName: 'Yatsko',
-      jobTitle: 'web',
-      image: '',
+      lastName: lastName,
+      jobTitle: jobPosition,
+      image: image,
       player: 'diller',
-      title: 'Title 123456',
+      title: title,
       method: 'connection',
     };
-    socket.send(JSON.stringify(userData));
+    socket!.send(JSON.stringify(userData));
     history.push("/lobby")
     console.log('Подключение к игре')
   }
@@ -37,11 +46,17 @@ export const MainPageContainer: React.FC = () => {
   const handleStartGame = () => {
     handleCloseModal();
   }
+  const handleConnectToLobby = () => {
+    setIsDealler(false);
+    handleCloseModal();
+  }
 
   const props = {
-    onSubmit,
+    onSubmit: handleConnectToLobby,
     handleStartGame
   }
+  
+
 
   const handleClickSwitch = () => {
     setIsObserver((state) => !state);
@@ -81,6 +96,7 @@ export const MainPageContainer: React.FC = () => {
     handleClickSwitch: handleClickSwitch,
     handleUploadImage: handleUploadImage,
     avatar: avatar,
+    isDealler
   }
 
   return (
