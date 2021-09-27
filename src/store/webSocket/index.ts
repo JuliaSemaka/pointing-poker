@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addChatMessage } from '../actions/chat';
-import { addCard, addGame, setTitle } from '../actions/game';
+import { addCard, addGame, setTitle, addUserToLobby } from '../actions/game';
 import { addMyId, addWebSocket } from '../actions/main';
 
 export const useWebSocket = () => {
@@ -32,7 +32,7 @@ export const useWebSocket = () => {
         if (data.method) {
           switch (data.method) {
             case 'connection':
-              console.log(data);
+              console.log(data.id);
               dispatch(addGame(data));
               break;
             case 'set-title':
@@ -42,13 +42,17 @@ export const useWebSocket = () => {
               console.log(data);
               dispatch(addCard(data.cards));
               break;
-            //     case 'add-user':
-            //       console.log('userId: ', userId);
-            //       console.log(data);
-            //       if (userId === null) {
-            //         setUserId(data.users[data.users.length - 1].id);
-            //       }
-            //       break;
+            case 'add-user':
+              console.log(data.id);
+              // dispatch(addUserToLobby(data));
+              break;
+            // case 'add-user':
+            //   console.log('userId: ', userId);
+            //   console.log(data);
+            //   if (userId === null) {
+            //     setUserId(data.users[data.users.length - 1].id);
+            //   }
+            //   break;
             //     case 'del-user':
             //       console.log('userId: ', userId);
             //       console.log(data);

@@ -9,6 +9,7 @@ import { MainPage } from '../pages';
 
 export const MainPageContainer: React.FC = () => {
   const { socket, myId } = useSelector((state: IReducer) => state.main);
+  const game = useSelector((state: IReducer) => state.game);
   const form = useSelector((state: IReducer) => state.form);
   const history = useHistory();
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -19,8 +20,8 @@ export const MainPageContainer: React.FC = () => {
 
   const onSubmit = () => {
     const id = (+new Date()).toString(16);
+    // const gameId = isDealler ? null : form.connectToLobby.values.lobbyId;
     dispatch(addMyId(id));
-    console.log(form.connectToLobbyModal.values);
     const { 
       firstName,
       lastName,
@@ -28,6 +29,7 @@ export const MainPageContainer: React.FC = () => {
       image,
       title
      } = form.connectToLobbyModal.values;
+     
     const userData = {
       firstName: firstName,
       myId: id,
@@ -36,8 +38,12 @@ export const MainPageContainer: React.FC = () => {
       image: image,
       player: 'diller',
       title: title,
-      method: 'connection',
+      // id: isDealler ? null : gameId,
+      method: isDealler ? 'connection' : 'add-user',
+      // method:'connection',
     };
+    console.log(userData);
+
     socket!.send(JSON.stringify(userData));
     history.push("/lobby")
     console.log('Подключение к игре')
@@ -56,8 +62,6 @@ export const MainPageContainer: React.FC = () => {
     handleStartGame
   }
   
-
-
   const handleClickSwitch = () => {
     setIsObserver((state) => !state);
   }
@@ -83,7 +87,7 @@ export const MainPageContainer: React.FC = () => {
     uploadFile(file, setAvatar);
   }
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = () => {
     onSubmit();
     handleCloseModal();
     console.log('Форма отправлена')

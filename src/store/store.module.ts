@@ -5,6 +5,7 @@ export const ADD_CHAT_MESSAGE = 'ADD_CHAT_MESSAGE';
 export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
 export const SET_TITLE = 'SET_TITLE';
 export const ADD_CARD = 'ADD_CARD';
+export const ADD_USER_TO_LOBBY = 'ADD_USER_TO_LOBBY'
 
 import {
   EGameStatus,
