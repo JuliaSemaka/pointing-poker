@@ -36,7 +36,7 @@ export const RoundTime: React.FC<IRoundTime> = ({
   };
 
   useEffect(() => {
-    if (minuteRound === 0 && secondsRound === 0) {
+    if (minuteRound === 0 && secondsRound === 0 && handleTimeFinish) {
       clearInterval(foo.current);
       handleTimeFinish!();
     }
