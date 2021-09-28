@@ -5,11 +5,10 @@ import {
   CHANGE_SETTINGS,
   IAction,
   IMainState,
-  SET_TITLE,
-  ADD_USER_TO_LOBBY
+  SET_TITLE
 } from '../store.module';
 
-export function addGame(value: IMainState): IAction {
+export function enterTheGame(value: IMainState): IAction {
   return { type: ADD_GAME, payload: value };
 }
 
@@ -23,8 +22,4 @@ export function setTitle(value: any): IAction {
 
 export function addCard(value: ICardsValues[]): IAction {
   return { type: ADD_CARD, payload: value };
-}
-
-export function addUserToLobby(value: IMainState): IAction {
-  return { type: ADD_USER_TO_LOBBY, payload: value }
 }

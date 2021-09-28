@@ -8,8 +8,7 @@ import { addMyId } from '../store/actions/main';
 import { MainPage } from '../pages';
 
 export const MainPageContainer: React.FC = () => {
-  const { socket, myId } = useSelector((state: IReducer) => state.main);
-  const game = useSelector((state: IReducer) => state.game);
+  const { socket } = useSelector((state: IReducer) => state.main);
   const form = useSelector((state: IReducer) => state.form);
   const history = useHistory();
   const [isModalOpened, setIsModalOpened] = useState(false);
@@ -40,7 +39,6 @@ export const MainPageContainer: React.FC = () => {
       title: title,
       id: gameId,
       method: isDealler ? 'connection' : 'add-user',
-      // method:'connection',
     };
     console.log(userData);
 
