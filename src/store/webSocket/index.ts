@@ -43,7 +43,8 @@ export const useWebSocket = () => {
               dispatch(addCard(data.cards));
               break;
             case 'add-user':
-              console.log(data.id);
+              console.log(data);
+              dispatch(addGame(data));
               // dispatch(addUserToLobby(data));
               break;
             // case 'add-user':

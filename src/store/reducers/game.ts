@@ -24,7 +24,7 @@ export const game = (
     case ADD_CARD:
       return { ...state, cards: action.payload };
     case ADD_USER_TO_LOBBY: 
-      return { ...state, users: action.payload };
+      return action.payload;
     default:
       return state;
   }

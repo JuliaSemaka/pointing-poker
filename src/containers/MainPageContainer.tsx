@@ -15,18 +15,18 @@ export const MainPageContainer: React.FC = () => {
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isObserver, setIsObserver] = useState(false);
   const [isDealler, setIsDealler] = useState(true);
+  const [gameId, setGameId] = useState(null)
   const [avatar, setAvatar] = useState('');
   const dispatch = useDispatch();
 
   const onSubmit = () => {
     const id = (+new Date()).toString(16);
-    // const gameId = isDealler ? null : form.connectToLobby.values.lobbyId;
+
     dispatch(addMyId(id));
     const { 
       firstName,
       lastName,
       jobPosition,
-      image,
       title
      } = form.connectToLobbyModal.values;
      
@@ -35,10 +35,10 @@ export const MainPageContainer: React.FC = () => {
       myId: id,
       lastName: lastName,
       jobTitle: jobPosition,
-      image: image,
-      player: 'diller',
+      image: avatar,
+      player: isDealler ? 'diller' : 'player',
       title: title,
-      // id: isDealler ? null : gameId,
+      id: gameId,
       method: isDealler ? 'connection' : 'add-user',
       // method:'connection',
     };
@@ -54,6 +54,7 @@ export const MainPageContainer: React.FC = () => {
   }
   const handleConnectToLobby = () => {
     setIsDealler(false);
+    setGameId(form.connectToLobby.values.lobbyId);
     handleCloseModal();
   }
 
