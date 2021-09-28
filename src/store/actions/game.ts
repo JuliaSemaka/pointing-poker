@@ -5,10 +5,10 @@ import {
   CHANGE_SETTINGS,
   IAction,
   IMainState,
-  SET_TITLE,
+  SET_TITLE
 } from '../store.module';
 
-export function addGame(value: IMainState): IAction {
+export function enterTheGame(value: IMainState): IAction {
   return { type: ADD_GAME, payload: value };
 }
 

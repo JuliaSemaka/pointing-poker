@@ -5,6 +5,7 @@ import {
   IAction,
   IGameState,
   SET_TITLE,
+  ADD_USER_TO_LOBBY
 } from '../store.module';
 
 const defaultGame: IGameState = {} as IGameState;

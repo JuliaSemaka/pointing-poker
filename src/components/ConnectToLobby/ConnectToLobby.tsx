@@ -12,23 +12,35 @@ const maxLength = (max: number) => (value: string) =>
 const maxLength15 = maxLength(15)
 
 const ConnectToLobbyForm = ({ ...props }: any) => {
-  const { 
-    title, 
-    handleSubmit, 
-    handleCloseModal, 
+  const {
+    title,
+    handleSubmit,
+    handleCloseModal,
     handleClickSwitch,
     handleUploadImage,
-    avatar 
+    avatar,
+    isDealler
   } = props;
+
+  const gameTitle = isDealler ? <div className="modal-connect-lobby-job">
+    <label htmlFor="title">
+      <span className="text text-bold">Title:</span>
+      <Field
+        name="title"
+        component={RenderField}
+        placeholder="Type your title"
+      />
+    </label>
+  </div> : null;
 
   return (
     <ModalWindow handleClick={handleCloseModal}>
       <form onSubmit={handleSubmit} className="modal-connect-lobby">
+
         <div className="modal-connect-lobby-title">
           <h3 className="text text-title">
             {title}
           </h3>
-
           <label htmlFor="switch">
             <span className="text text-bold">Connect as Observer</span>
             <Field
@@ -38,8 +50,8 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
               component={Switch}
             />
           </label>
-
         </div>
+
         <div className="modal-connect-lobby-name">
           <label htmlFor="firstName">
             <span className="text text-bold">Your first name:</span>
@@ -47,10 +59,11 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
               name="firstName"
               component={RenderField}
               placeholder="Type your first name"
-              validate={[ isRequired, maxLength15 ]}
+              validate={[isRequired, maxLength15]}
             />
           </label>
         </div>
+
         <div className="modal-connect-lobby-last-name">
           <label htmlFor="lastName">
             <span className="text text-bold">Your last name:</span>
@@ -58,10 +71,11 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
               name="lastName"
               component={RenderField}
               placeholder="Type your last name"
-              validate={[ isRequired, maxLength15 ]}
+              validate={[isRequired, maxLength15]}
             />
           </label>
         </div>
+
         <div className="modal-connect-lobby-job">
           <label htmlFor="jobPosition">
             <span className="text text-bold">Your job position:</span>
@@ -72,6 +86,9 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
             />
           </label>
         </div>
+
+        {gameTitle}
+
         <div className="modal-connect-lobby-image">
           <span className="text text-bold">Image:</span>
           <div className="modal-connect-lobby-file">
@@ -81,7 +98,6 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
               onChange={handleUploadImage}
               type="file"
             />
-            <Button text="Button" handleClick={handleUploadImage} />
           </div>
         </div>
         <div className="modal-connect-lobby-avatar">
