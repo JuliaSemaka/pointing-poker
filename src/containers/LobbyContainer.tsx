@@ -8,6 +8,7 @@ import { Lobby } from '../pages';
 import { changeSettings } from '../store/actions/game';
 import { IReducer } from '../store/store.module';
 import { EGameStatus } from '../components/Game/game.module';
+import { Spinners } from '../components';
 
 export const LobbyContainer: React.FC = () => {
   const { socket, myId } = useSelector((state: IReducer) => state.main);
@@ -40,7 +41,11 @@ export const LobbyContainer: React.FC = () => {
   }, [game.gameStatus]);
 
   if (Object.keys(game).length === 0 || !myId) {
-    return <></>;
+    return (
+      <>
+        <Spinners />
+      </>
+    );
   }
 
   const {
