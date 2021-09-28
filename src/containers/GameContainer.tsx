@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Spinners } from '../components';
 
 import { EGameStatus, ERoundStatus } from '../components/Game/game.module';
 import { Game } from '../pages';
@@ -31,7 +32,11 @@ export const GameContainer: React.FC = () => {
   }, [gameStatus]);
 
   if (!id) {
-    return <></>;
+    return (
+      <>
+        <Spinners />
+      </>
+    );
   }
 
   const { isTimerEnable, minute, seconds } = settings;
