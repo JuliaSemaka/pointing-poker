@@ -65,6 +65,8 @@ const reducer = combineReducers({ form: formReducer });
 const propsDefault = {
   members,
   marksCurrentTask,
+  myId: '1',
+  dealerId: '1',
 };
 
 storiesOf('UI Components/Game-Score', module)

@@ -22,6 +22,7 @@ const dealerData = {
 const reducer = combineReducers({ form: formReducer });
 
 const propsDefault = {
+  myId: '1',
   isDealer: true,
   title,
   dealerData,

@@ -19,13 +19,19 @@ export const RoundTime: React.FC<IRoundTime> = ({
             type="number"
             className="text text-ruda text-ruda-big"
             min="0"
-            value={minute}
+            value={minute!}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleChangeMinute(e.target.value)
             }
           />
         ) : (
-          <p className="text text-ruda text-ruda-big">{minute}</p>
+          <p
+            className={`text text-ruda text-ruda-big ${
+              !minute && +seconds! < 10 && 'text-error'
+            }`}
+          >
+            {minute}
+          </p>
         )}
       </div>
       <div className="round-time__half">
@@ -36,13 +42,19 @@ export const RoundTime: React.FC<IRoundTime> = ({
             type="number"
             className="text text-ruda text-ruda-big"
             min="0"
-            value={seconds}
+            value={seconds!}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               handleChangeSeconds(e.target.value)
             }
           />
         ) : (
-          <p className="text text-ruda text-ruda-big">{seconds}</p>
+          <p
+            className={`text text-ruda text-ruda-big ${
+              !minute && +seconds! < 10 && 'text-error'
+            }`}
+          >
+            {seconds}
+          </p>
         )}
       </div>
     </div>

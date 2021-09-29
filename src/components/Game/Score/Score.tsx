@@ -5,7 +5,12 @@ import { ScoreCard } from '../../UI/Cards/Score/Score';
 import { IScore } from '../game.module';
 import './Score.scss';
 
-export const Score: React.FC<IScore> = ({ marksCurrentTask, members }) => (
+export const Score: React.FC<IScore> = ({
+  marksCurrentTask,
+  members,
+  myId,
+  dealerId,
+}) => (
   <div className="score">
     <div className="game-item__row">
       <div className="game-item__column">
@@ -29,11 +34,12 @@ export const Score: React.FC<IScore> = ({ marksCurrentTask, members }) => (
         {members?.map(({ id, firstName, lastName, jobTitle }) => (
           <MemberCard
             key={id}
+            isMyCard={myId === id}
             firstName={firstName}
             lastName={lastName}
             position={jobTitle}
             isSmall={true}
-            isRemove={true}
+            isRemove={id !== dealerId}
           />
         ))}
       </div>

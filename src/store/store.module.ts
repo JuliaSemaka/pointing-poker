@@ -5,7 +5,8 @@ export const ADD_CHAT_MESSAGE = 'ADD_CHAT_MESSAGE';
 export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
 export const SET_TITLE = 'SET_TITLE';
 export const ADD_CARD = 'ADD_CARD';
-export const ADD_USER_TO_LOBBY = 'ADD_USER_TO_LOBBY'
+export const ADD_USER_TO_LOBBY = 'ADD_USER_TO_LOBBY';
+export const SET_GAME_STATUS = 'SET_GAME_STATUS';
 
 import {
   EGameStatus,
@@ -35,7 +36,7 @@ export interface IMainState {
 
 export interface IGameState {
   id: string;
-  dillerId: string;
+  dealerId: string;
   title: string;
   gameStatus: EGameStatus;
   users: IUsers[];

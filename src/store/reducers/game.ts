@@ -4,6 +4,7 @@ import {
   CHANGE_SETTINGS,
   IAction,
   IGameState,
+  SET_GAME_STATUS,
   SET_TITLE,
   ADD_USER_TO_LOBBY
 } from '../store.module';
@@ -23,6 +24,8 @@ export const game = (
       return { ...state, settings: { ...state.settings, ...action.payload } };
     case ADD_CARD:
       return { ...state, cards: action.payload };
+    case SET_GAME_STATUS:
+      return { ...state, gameStatus: action.payload };
     default:
       return state;
   }

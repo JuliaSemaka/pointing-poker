@@ -8,7 +8,7 @@ export enum EButtonStyle {
 
 export interface IButton {
   text: string;
-  handleClick: (event?: React.MouseEvent) => void;
+  handleClick: (event?: React.MouseEvent | boolean) => void;
   style?: EButtonStyle;
   isDisabled?: boolean;
   type?: EButtonType;
@@ -103,8 +103,8 @@ export interface IModalWindow {
 }
 
 export interface IRoundTime {
-  minute: string;
-  seconds: string;
+  minute: string | null | number;
+  seconds: string | null | number;
   isChange?: boolean;
   handleChangeMinute?: React.Dispatch<React.SetStateAction<string>>;
   handleChangeSeconds?: React.Dispatch<React.SetStateAction<string>>;
@@ -153,14 +153,14 @@ export interface IGameDataForm {
 
 export interface IMembers {
   myId: string;
-  dillerId: string;
+  dealerId: string;
   members: IUsers[];
   handleRemoveMember: () => void;
 }
 
 export interface IChat {
   myId: string;
-  dillerId: string;
+  dealerId: string;
   handleSubmit?: () => void;
   onSubmit?: () => void;
   chatMessage?: IChatMessage[];

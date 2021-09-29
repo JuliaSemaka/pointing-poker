@@ -6,6 +6,7 @@ import ConnectToLobby from '../components/ConnectToLobby/ConnectToLobby';
 import { IReducer } from '../store/store.module';
 import { addMyId } from '../store/actions/main';
 import { MainPage } from '../pages';
+import { ERole } from '../components/components.module';
 
 export const MainPageContainer: React.FC = () => {
   const { socket } = useSelector((state: IReducer) => state.main);
@@ -22,20 +23,20 @@ export const MainPageContainer: React.FC = () => {
     const id = (+new Date()).toString(16);
 
     dispatch(addMyId(id));
-    const { 
+    const {
       firstName,
       lastName,
       jobPosition,
       title
      } = form.connectToLobbyModal.values;
-     
+
     const userData = {
       firstName: firstName,
       myId: id,
       lastName: lastName,
       jobTitle: jobPosition,
       image: avatar,
-      player: isDealler ? 'diller' : 'player',
+      player: isDealler ? ERole.dealer : ERole.player,
       title: title,
       id: gameId,
       method: isDealler ? 'connection' : 'add-user',
@@ -60,7 +61,7 @@ export const MainPageContainer: React.FC = () => {
     onSubmit: handleConnectToLobby,
     handleStartGame
   }
-  
+
   const handleClickSwitch = () => {
     setIsObserver((state) => !state);
   }

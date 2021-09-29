@@ -1,7 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addChatMessage } from '../actions/chat';
-import { addCard, enterTheGame, setTitle } from '../actions/game';
+import {
+  addCard,
+  enterTheGame,
+  setTitle,
+  setGameStatus,
+} from '../actions/game';
 import { addMyId, addWebSocket } from '../actions/main';
 
 export const useWebSocket = () => {
@@ -13,20 +18,6 @@ export const useWebSocket = () => {
     dispatch(addWebSocket(socket));
     socket.onopen = () => {
       console.log('Подключение установлено');
-      // const id = (+new Date()).toString(16);
-      // dispatch(addMyId(id));
-
-      // const userData = {
-      //   firstName: 'July',
-      //   myId: id,
-      //   lastName: 'Yatsko',
-      //   jobTitle: 'web',
-      //   image: '',
-      //   player: 'diller',
-      //   title: 'Title 123456',
-      //   method: 'connection',
-      // };
-      // socket.send(JSON.stringify(userData));
       socket.onmessage = (event) => {
         const data = JSON.parse(event.data);
         if (data.method) {
@@ -39,20 +30,15 @@ export const useWebSocket = () => {
               dispatch(setTitle(data.title));
               break;
             case 'change-cards':
-              console.log(data);
               dispatch(addCard(data.cards));
               break;
             case 'add-user':
               console.log(data);
               dispatch(enterTheGame(data));
               break;
-            // case 'add-user':
-            //   console.log('userId: ', userId);
-            //   console.log(data);
-            //   if (userId === null) {
-            //     setUserId(data.users[data.users.length - 1].id);
-            //   }
-            //   break;
+            case 'set-game-status':
+              dispatch(setGameStatus(data.gameStatus));
+              break;
             //     case 'del-user':
             //       console.log('userId: ', userId);
             //       console.log(data);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { reset } from 'redux-form';
 import { useHistory } from 'react-router-dom';
@@ -20,6 +20,16 @@ export const LobbyContainer: React.FC = () => {
   const [editTitle, setEditTitle] = useState(false);
   const [successSettings, setSuccessSettings] = useState(false);
 
+  useEffect(() => {
+    return () => {
+      setIsTimerEnable(false);
+      handleChangeMinute('0');
+      handleChangeSeconds('0');
+      setEditTitle(false);
+      setSuccessSettings(false);
+    };
+  }, []);
+
   if (Object.keys(game).length === 0 || !myId) {
     return <></>;
   }
@@ -27,7 +37,7 @@ export const LobbyContainer: React.FC = () => {
   const {
     cards,
     delUser,
-    dillerId,
+    dealerId,
     title,
     gameStatus,
     id,
@@ -113,7 +123,6 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const handleEditCard = (value: string, index: number | undefined) => {
-    console.log(value, index);
     let newCards;
     if (index !== undefined) {
       newCards = cards.map((item, ind) => {
@@ -158,13 +167,13 @@ export const LobbyContainer: React.FC = () => {
 
   const propsDealer = {
     myId,
-    dillerId,
+    dealerId,
     members: users,
     sendMessageChat,
     chatMessage: chat,
-    isDealer: dillerId === myId,
+    isDealer: dealerId === myId,
     title,
-    dealerData: users.find(({ id }) => id === dillerId)!,
+    dealerData: users.find(({ id }) => id === dealerId)!,
     editTitle,
     setEditTitle,
     handleEditTitle,

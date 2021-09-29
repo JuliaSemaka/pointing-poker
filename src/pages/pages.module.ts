@@ -20,6 +20,8 @@ export interface IUsers {
 }
 
 export interface IGame {
+  myId: string;
+  dealerId: string;
   isDealer: boolean;
   title: string;
   dealerData: IUsers;
@@ -34,6 +36,9 @@ export interface IGame {
   cardsValues: ICardsValues[];
   marksCurrentTask: IMarksCurrentTask[];
   members: IUsers[];
+  isTimerEnable: boolean;
+  minute: string | null;
+  seconds: string | null;
 }
 
 export interface IInitialSettings {
@@ -52,7 +57,7 @@ export interface ITime {
 
 export interface ILobby {
   myId: string;
-  dillerId: string;
+  dealerId: string;
   isDealer: boolean;
   sendMessageChat: (event?: React.MouseEvent) => void;
   members: IUsers[];

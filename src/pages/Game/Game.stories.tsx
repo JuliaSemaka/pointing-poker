@@ -115,8 +115,13 @@ const marksCurrentTask = [
     scoreType: null,
   },
 ];
+const isTimerEnable = true;
+const minute = '2';
+const seconds = '0';
 
 const propsDealer = {
+  myId: '1',
+  dealerId: '1',
   isDealer: true,
   title,
   dealerData,
@@ -131,9 +136,14 @@ const propsDealer = {
   cardsValues: cardsValues,
   marksCurrentTask,
   members,
+  isTimerEnable,
+  minute,
+  seconds,
 };
 
 const propsDealerInProgress = {
+  myId: '1',
+  dealerId: '1',
   isDealer: true,
   title,
   dealerData,
@@ -148,9 +158,14 @@ const propsDealerInProgress = {
   cardsValues: cardsValues,
   marksCurrentTask,
   members,
+  isTimerEnable,
+  minute,
+  seconds,
 };
 
 const propsPlayer = {
+  myId: '1',
+  dealerId: '1',
   isDealer: false,
   title,
   dealerData,
@@ -165,6 +180,9 @@ const propsPlayer = {
   cardsValues: cardsValues,
   marksCurrentTask,
   members,
+  isTimerEnable,
+  minute,
+  seconds,
 };
 
 storiesOf('Pages/Game', module)

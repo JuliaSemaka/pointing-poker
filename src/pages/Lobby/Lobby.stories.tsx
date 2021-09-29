@@ -176,7 +176,7 @@ const issues = [
   },
 ];
 const myId = '1';
-const dillerId = '1';
+const dealerId = '1';
 const initialValuesCopy = { copyId: '123' };
 const initialSettings = {
   isPlayer: true,
@@ -193,7 +193,7 @@ const roundTime = {
 
 const propsDealer = {
   myId,
-  dillerId,
+  dealerId,
   members,
   sendMessageChat: action('sendMessageChat'),
   chatMessage,
@@ -225,7 +225,7 @@ const propsDealer = {
 
 const propsDealerEmptyChat = {
   myId,
-  dillerId,
+  dealerId,
   members: [],
   sendMessageChat: action('sendMessageChat'),
   chatMessage: [],
@@ -257,7 +257,7 @@ const propsDealerEmptyChat = {
 
 const propsPlayer = {
   myId,
-  dillerId,
+  dealerId,
   members,
   sendMessageChat: action('sendMessageChat'),
   chatMessage: [],

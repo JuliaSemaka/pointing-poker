@@ -6,6 +6,8 @@ import { IGame } from '../pages.module';
 import './Game.scss';
 
 export const Game: React.FC<IGame> = ({
+  myId,
+  dealerId,
   isDealer,
   title,
   dealerData,
@@ -20,10 +22,14 @@ export const Game: React.FC<IGame> = ({
   cardsValues,
   marksCurrentTask,
   members,
+  isTimerEnable,
+  minute,
+  seconds,
 }) => (
   <div className="game wrapper">
     <main className="game-main">
       <GameDataGame
+        myId={myId}
         isDealer={isDealer}
         title={title}
         dealerData={dealerData}
@@ -39,6 +45,9 @@ export const Game: React.FC<IGame> = ({
         issues={issues}
         handleGameIssue={handleGameIssue}
         cardsValues={cardsValues}
+        isTimerEnable={isTimerEnable}
+        minute={minute}
+        seconds={seconds}
       />
       {isDealer && gameStatus === EGameStatus.inProgress && (
         <Statistics
@@ -48,7 +57,12 @@ export const Game: React.FC<IGame> = ({
       )}
     </main>
     <aside className="game-score">
-      <Score members={members} marksCurrentTask={marksCurrentTask} />
+      <Score
+        members={members}
+        marksCurrentTask={marksCurrentTask}
+        myId={myId}
+        dealerId={dealerId}
+      />
     </aside>
   </div>
 );

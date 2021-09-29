@@ -7,13 +7,14 @@ import { EButtonStyle } from '../../UI/ui.module';
 import { IGameData } from '../game.module';
 
 export const GameDataGame: React.FC<IGameData> = ({
+  myId,
   isDealer,
   title,
   dealerData,
   handleGameStopGame,
   handleGameExit,
 }) => {
-  const { firstName, lastName, jobTitle } = dealerData;
+  const { firstName, lastName, jobTitle, id } = dealerData;
   return (
     <div className="game-item">
       <div className="game-item__title">
@@ -26,7 +27,7 @@ export const GameDataGame: React.FC<IGameData> = ({
             firstName={firstName}
             lastName={lastName}
             position={jobTitle}
-            isMyCard={isDealer}
+            isMyCard={myId === id}
           />
         </div>
         {!isDealer && <RoundTime minute="2" seconds="0" />}

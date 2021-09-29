@@ -1,6 +1,7 @@
 import { IUsers } from '../../pages/pages.module';
 
 export interface IGameData {
+  myId: string;
   isDealer: boolean;
   title: string;
   dealerData: IUsers;
@@ -31,6 +32,9 @@ export interface IIssues {
   issues: IIssue[];
   handleGameIssue: (value: string) => void;
   cardsValues: ICardsValues[];
+  isTimerEnable: boolean;
+  minute: string | null;
+  seconds: string | null;
 }
 
 export enum EGameStatus {
@@ -54,4 +58,6 @@ export interface IStatistics {
 export interface IScore {
   marksCurrentTask: IMarksCurrentTask[];
   members: IUsers[];
+  myId: string;
+  dealerId: string;
 }

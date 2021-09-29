@@ -1,11 +1,12 @@
-import { ICardsValues } from '../../components/Game/game.module';
+import { EGameStatus, ICardsValues } from '../../components/Game/game.module';
 import {
   ADD_CARD,
   ADD_GAME,
   CHANGE_SETTINGS,
   IAction,
   IMainState,
-  SET_TITLE
+  SET_GAME_STATUS,
+  SET_TITLE,
 } from '../store.module';
 
 export function enterTheGame(value: IMainState): IAction {
@@ -22,4 +23,8 @@ export function setTitle(value: any): IAction {
 
 export function addCard(value: ICardsValues[]): IAction {
   return { type: ADD_CARD, payload: value };
+}
+
+export function setGameStatus(value: EGameStatus): IAction {
+  return { type: SET_GAME_STATUS, payload: value };
 }
