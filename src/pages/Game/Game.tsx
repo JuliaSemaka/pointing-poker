@@ -6,6 +6,8 @@ import { IGame } from '../pages.module';
 import './Game.scss';
 
 export const Game: React.FC<IGame> = ({
+  myId,
+  dealerId,
   isDealer,
   title,
   dealerData,
@@ -15,30 +17,44 @@ export const Game: React.FC<IGame> = ({
   handleRestartRound,
   handleNextIssye,
   gameStatus,
+  roundStatus,
   issues,
   handleGameIssue,
   cardsValues,
   marksCurrentTask,
   members,
+  isTimerEnable,
+  minute,
+  seconds,
+  handleTimeFinish,
 }) => (
   <div className="game wrapper">
     <main className="game-main">
       <GameDataGame
+        myId={myId}
         isDealer={isDealer}
         title={title}
         dealerData={dealerData}
         handleGameStopGame={handleGameStopGame}
         handleGameExit={handleGameExit}
+        roundStatus={roundStatus}
+        minute={minute}
+        seconds={seconds}
+        handleTimeFinish={handleTimeFinish}
       />
       <IssuesGame
         isDealer={isDealer}
         handleRunRound={handleRunRound}
         handleRestartRound={handleRestartRound}
         handleNextIssye={handleNextIssye}
-        gameStatus={gameStatus}
+        roundStatus={roundStatus}
         issues={issues}
         handleGameIssue={handleGameIssue}
         cardsValues={cardsValues}
+        isTimerEnable={isTimerEnable}
+        minute={minute}
+        seconds={seconds}
+        handleTimeFinish={handleTimeFinish}
       />
       {isDealer && gameStatus === EGameStatus.inProgress && (
         <Statistics
@@ -48,7 +64,12 @@ export const Game: React.FC<IGame> = ({
       )}
     </main>
     <aside className="game-score">
-      <Score members={members} marksCurrentTask={marksCurrentTask} />
+      <Score
+        members={members}
+        marksCurrentTask={marksCurrentTask}
+        myId={myId}
+        dealerId={dealerId}
+      />
     </aside>
   </div>
 );

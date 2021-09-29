@@ -123,7 +123,7 @@ const reducer = combineReducers({ form: formReducer });
 
 const propsDefault = {
   myId: '1',
-  dillerId: '1',
+  dealerId: '1',
   handleSubmit: action('handleSubmit'),
   chatMessage,
   members,

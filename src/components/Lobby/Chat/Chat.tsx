@@ -9,7 +9,7 @@ import './Chat.scss';
 
 export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
   myId,
-  dillerId,
+  dealerId,
   handleSubmit,
   chatMessage = [],
   members,
@@ -24,7 +24,7 @@ export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
             firstName={members.find(({id}) => id === idUser)?.firstName}
             lastName={members.find(({id}) => id === idUser)?.lastName}
             position={members.find(({id}) => id === idUser)?.jobTitle}
-            isRemove={members.find(({id}) => id === idUser)?.id !== dillerId}
+            isRemove={members.find(({id}) => id === idUser)?.id !== dealerId}
             isMyCard={members.find(({id}) => id === idUser)?.id === myId}
             handleRemoveMember={handleRemoveMember}
             isSmall={true}

@@ -4,7 +4,7 @@ import { IMembers } from '../../UI/ui.module';
 
 export const Members: React.FC<IMembers> = ({
   myId,
-  dillerId,
+  dealerId,
   members,
   handleRemoveMember,
 }) => (
@@ -20,7 +20,7 @@ export const Members: React.FC<IMembers> = ({
           firstName={firstName}
           lastName={lastName}
           position={jobTitle}
-          isRemove={id !== dillerId}
+          isRemove={id !== dealerId}
           isMyCard={id === myId}
           handleRemoveMember={handleRemoveMember}
         />

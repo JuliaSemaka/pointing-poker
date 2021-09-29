@@ -1,11 +1,16 @@
 import { IUsers } from '../../pages/pages.module';
 
 export interface IGameData {
+  myId: string;
   isDealer: boolean;
   title: string;
   dealerData: IUsers;
   handleGameStopGame: () => void;
   handleGameExit: () => void;
+  handleTimeFinish: () => void;
+  minute?: string | null;
+  seconds?: string | null;
+  roundStatus: ERoundStatus;
 }
 
 export interface IIssue {
@@ -27,10 +32,14 @@ export interface IIssues {
   handleRunRound: () => void;
   handleRestartRound: () => void;
   handleNextIssye: () => void;
-  gameStatus: EGameStatus;
+  roundStatus: ERoundStatus;
   issues: IIssue[];
   handleGameIssue: (value: string) => void;
   cardsValues: ICardsValues[];
+  isTimerEnable: boolean;
+  minute: string | null;
+  seconds: string | null;
+  handleTimeFinish: () => void;
 }
 
 export enum EGameStatus {
@@ -38,6 +47,12 @@ export enum EGameStatus {
   inProgress = 'inProgress',
   finished = 'finished',
   closed = 'closed',
+}
+
+export enum ERoundStatus {
+  start = 'start',
+  inProgress = 'inProgress',
+  finish = 'finish',
 }
 
 export interface IMarksCurrentTask {
@@ -54,4 +69,6 @@ export interface IStatistics {
 export interface IScore {
   marksCurrentTask: IMarksCurrentTask[];
   members: IUsers[];
+  myId: string;
+  dealerId: string;
 }

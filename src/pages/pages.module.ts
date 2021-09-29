@@ -1,5 +1,6 @@
 import {
   EGameStatus,
+  ERoundStatus,
   ICardsValues,
   IIssue,
   IMarksCurrentTask,
@@ -20,6 +21,8 @@ export interface IUsers {
 }
 
 export interface IGame {
+  myId: string;
+  dealerId: string;
   isDealer: boolean;
   title: string;
   dealerData: IUsers;
@@ -28,12 +31,17 @@ export interface IGame {
   handleRunRound: () => void;
   handleRestartRound: () => void;
   handleNextIssye: () => void;
+  handleTimeFinish: () => void;
   gameStatus: EGameStatus;
+  roundStatus: ERoundStatus;
   issues: IIssue[];
   handleGameIssue: (value: string) => void;
   cardsValues: ICardsValues[];
   marksCurrentTask: IMarksCurrentTask[];
   members: IUsers[];
+  isTimerEnable: boolean;
+  minute: string | null;
+  seconds: string | null;
 }
 
 export interface IInitialSettings {
@@ -52,7 +60,7 @@ export interface ITime {
 
 export interface ILobby {
   myId: string;
-  dillerId: string;
+  dealerId: string;
   isDealer: boolean;
   sendMessageChat: (event?: React.MouseEvent) => void;
   members: IUsers[];
@@ -66,7 +74,7 @@ export interface ILobby {
   handleStartGame: () => void;
   handleCancelGame: () => void;
   handleExit: () => void;
-  cardsValues?: ICardsValues[];
+  cards?: ICardsValues[];
   handleEditCard: (value: string, index?: number) => void;
   issues: IIssue[];
   handleIssue: (value: EHandleIssue) => void;

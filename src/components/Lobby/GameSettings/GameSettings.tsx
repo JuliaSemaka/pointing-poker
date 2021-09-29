@@ -122,7 +122,12 @@ export const GameSettingsForm: React.FC<
             />
           ))}
           {addCard && (
-            <GameCard handleEditCard={handleEditCard} isEdit={true} setAddCard={setAddCard} />
+            <GameCard
+              handleEditCard={handleEditCard}
+              isEdit={true}
+              setAddCard={setAddCard}
+              isNewCard={true}
+            />
           )}
           <GameCard isAddCard={true} handleAddCard={() => setAddCard(true)} />
         </div>

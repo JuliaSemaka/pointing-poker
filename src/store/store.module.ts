@@ -5,10 +5,14 @@ export const ADD_CHAT_MESSAGE = 'ADD_CHAT_MESSAGE';
 export const CHANGE_SETTINGS = 'CHANGE_SETTINGS';
 export const SET_TITLE = 'SET_TITLE';
 export const ADD_CARD = 'ADD_CARD';
-export const ADD_USER_TO_LOBBY = 'ADD_USER_TO_LOBBY'
+export const ADD_USER_TO_LOBBY = 'ADD_USER_TO_LOBBY';
+export const SET_GAME_STATUS = 'SET_GAME_STATUS';
+export const SET_ROUND_STATUS = 'SET_ROUND_STATUS';
+export const SET_MARK_CURRENT_TASK = 'SET_MARK_CURRENT_TASK';
 
 import {
   EGameStatus,
+  ERoundStatus,
   ICardsValues,
   IIssue,
   IMarksCurrentTask,
@@ -35,9 +39,10 @@ export interface IMainState {
 
 export interface IGameState {
   id: string;
-  dillerId: string;
+  dealerId: string;
   title: string;
   gameStatus: EGameStatus;
+  roundStatus: ERoundStatus;
   users: IUsers[];
   settings: ISettings;
   cards: ICardsValues[];

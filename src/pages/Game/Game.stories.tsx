@@ -7,7 +7,7 @@ import { action } from '@storybook/addon-actions';
 import { Game } from './Game';
 import { MemoryRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import { EGameStatus } from '../../components/Game/game.module';
+import { EGameStatus, ERoundStatus } from '../../components/Game/game.module';
 
 const reducer = combineReducers({ form: formReducer });
 
@@ -115,8 +115,13 @@ const marksCurrentTask = [
     scoreType: null,
   },
 ];
+const isTimerEnable = true;
+const minute = '2';
+const seconds = '0';
 
 const propsDealer = {
+  myId: '1',
+  dealerId: '1',
   isDealer: true,
   title,
   dealerData,
@@ -128,12 +133,19 @@ const propsDealer = {
   gameStatus: EGameStatus.created,
   issues,
   handleGameIssue: action('handleGameIssue'),
+  handleTimeFinish: action('handleTimeFinish'),
   cardsValues: cardsValues,
   marksCurrentTask,
   members,
+  isTimerEnable,
+  minute,
+  seconds,
+  roundStatus: ERoundStatus.start,
 };
 
 const propsDealerInProgress = {
+  myId: '1',
+  dealerId: '1',
   isDealer: true,
   title,
   dealerData,
@@ -145,12 +157,19 @@ const propsDealerInProgress = {
   gameStatus: EGameStatus.inProgress,
   issues,
   handleGameIssue: action('handleGameIssue'),
+  handleTimeFinish: action('handleTimeFinish'),
   cardsValues: cardsValues,
   marksCurrentTask,
   members,
+  isTimerEnable,
+  minute,
+  seconds,
+  roundStatus: ERoundStatus.start,
 };
 
 const propsPlayer = {
+  myId: '1',
+  dealerId: '1',
   isDealer: false,
   title,
   dealerData,
@@ -162,9 +181,14 @@ const propsPlayer = {
   gameStatus: EGameStatus.created,
   issues,
   handleGameIssue: action('handleGameIssue'),
+  handleTimeFinish: action('handleTimeFinish'),
   cardsValues: cardsValues,
   marksCurrentTask,
   members,
+  isTimerEnable,
+  minute,
+  seconds,
+  roundStatus: ERoundStatus.start,
 };
 
 storiesOf('Pages/Game', module)

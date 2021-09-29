@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { reset } from 'redux-form';
 import { useHistory } from 'react-router-dom';
@@ -7,6 +7,8 @@ import { EHandleIssue } from '../components/UI/ui.module';
 import { Lobby } from '../pages';
 import { changeSettings } from '../store/actions/game';
 import { IReducer } from '../store/store.module';
+import { EGameStatus } from '../components/Game/game.module';
+import { Spinners } from '../components';
 
 export const LobbyContainer: React.FC = () => {
   const { socket, myId } = useSelector((state: IReducer) => state.main);
@@ -20,14 +22,36 @@ export const LobbyContainer: React.FC = () => {
   const [editTitle, setEditTitle] = useState(false);
   const [successSettings, setSuccessSettings] = useState(false);
 
+  useEffect(() => {
+    return () => {
+      setIsTimerEnable(false);
+      handleChangeMinute('0');
+      handleChangeSeconds('0');
+      setEditTitle(false);
+      setSuccessSettings(false);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (game.gameStatus === EGameStatus.inProgress) {
+      history.push('/game');
+    } else if (!game.gameStatus || game.gameStatus === EGameStatus.closed) {
+      history.push('/');
+    }
+  }, [game.gameStatus]);
+
   if (Object.keys(game).length === 0 || !myId) {
-    return <></>;
+    return (
+      <>
+        <Spinners />
+      </>
+    );
   }
 
   const {
     cards,
     delUser,
-    dillerId,
+    dealerId,
     title,
     gameStatus,
     id,
@@ -36,6 +60,7 @@ export const LobbyContainer: React.FC = () => {
     tasks,
     users,
   } = game;
+  console.log(dealerId, users);
 
   const {
     isPlayer,
@@ -58,7 +83,6 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const sendMessageChat = ({ chatMessage }: any) => {
-    console.log(chatMessage);
     dispatch(reset('chat'));
     const message = {
       id: id,
@@ -81,7 +105,21 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const handleStartGame = () => {
-    history.push('/game');
+    const data = {
+      id,
+      gameStatus: EGameStatus.inProgress,
+      method: 'set-game-status',
+    };
+    socket!.send(JSON.stringify(data));
+  };
+
+  const handleCancelGame = () => {
+    const data = {
+      id,
+      gameStatus: EGameStatus.closed,
+      method: 'set-game-status',
+    };
+    socket!.send(JSON.stringify(data));
   };
 
   const handleSubmitGameSettings = (props: any) => {
@@ -113,7 +151,6 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const handleEditCard = (value: string, index: number | undefined) => {
-    console.log(value, index);
     let newCards;
     if (index !== undefined) {
       newCards = cards.map((item, ind) => {
@@ -143,11 +180,13 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const handleDeleteCard = (index: number) => {
+    console.log(index);
     const newCards = cards.filter((item, ind) => {
       if (ind !== index) {
         return item;
       }
     });
+    console.log(newCards);
     const data = {
       id,
       newCards,
@@ -158,21 +197,21 @@ export const LobbyContainer: React.FC = () => {
 
   const propsDealer = {
     myId,
-    dillerId,
+    dealerId,
     members: users,
     sendMessageChat,
     chatMessage: chat,
-    isDealer: dillerId === myId,
+    isDealer: dealerId === myId,
     title,
-    dealerData: users.find(({ id }) => id === dillerId)!,
+    dealerData: users.find(({ id }) => id === dealerId)!,
     editTitle,
     setEditTitle,
     handleEditTitle,
     handleDeleteCard,
     handleStartGame,
-    handleCancelGame: funcTest,
+    handleCancelGame,
     handleExit: funcTest,
-    cardsValues: cards,
+    cards,
     handleEditCard,
     issues: tasks,
     handleIssue: funcTestParam,

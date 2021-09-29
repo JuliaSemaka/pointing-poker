@@ -1,5 +1,5 @@
 import { ITime, IUsers } from '../../pages/pages.module';
-import { ICardsValues, IIssue } from '../Game/game.module';
+import { ERoundStatus, ICardsValues, IIssue } from '../Game/game.module';
 
 export enum EButtonStyle {
   dark = 'dark',
@@ -8,7 +8,7 @@ export enum EButtonStyle {
 
 export interface IButton {
   text: string;
-  handleClick: (event?: React.MouseEvent) => void;
+  handleClick: (event?: React.MouseEvent | boolean) => void;
   style?: EButtonStyle;
   isDisabled?: boolean;
   type?: EButtonType;
@@ -95,6 +95,7 @@ export interface IGameCard {
   handleEditCard?: (value: string, index?: number) => void;
   handleDeleteCard?: (index: number) => void;
   setAddCard?: React.Dispatch<React.SetStateAction<boolean>>;
+  isNewCard?: boolean;
 }
 
 export interface IModalWindow {
@@ -103,11 +104,13 @@ export interface IModalWindow {
 }
 
 export interface IRoundTime {
-  minute: string;
-  seconds: string;
+  minute: string | null | number;
+  seconds: string | null | number;
   isChange?: boolean;
   handleChangeMinute?: React.Dispatch<React.SetStateAction<string>>;
   handleChangeSeconds?: React.Dispatch<React.SetStateAction<string>>;
+  roundStatus?: ERoundStatus;
+  handleTimeFinish?: () => void;
 }
 
 export interface IScoreCard {
@@ -153,14 +156,14 @@ export interface IGameDataForm {
 
 export interface IMembers {
   myId: string;
-  dillerId: string;
+  dealerId: string;
   members: IUsers[];
   handleRemoveMember: () => void;
 }
 
 export interface IChat {
   myId: string;
-  dillerId: string;
+  dealerId: string;
   handleSubmit?: () => void;
   onSubmit?: () => void;
   chatMessage?: IChatMessage[];

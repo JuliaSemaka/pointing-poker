@@ -21,8 +21,9 @@ export const GameCard: React.FC<IGameCard> = ({
   handleDeleteCard,
   handleAddCard,
   setAddCard,
+  isNewCard,
 }) => {
-  const [editCard, setEditCard] = useState(false);
+  const [editCard, setEditCard] = useState(isNewCard ?? false);
   const [numberCard, setNumberCard] = useState(number || 'Unknown');
 
   const saveChange = () => {
@@ -54,14 +55,15 @@ export const GameCard: React.FC<IGameCard> = ({
 
   return (
     <div className="game-card">
-      {isEdit && !editCard ? (
+      {isEdit && !editCard && (
         <img
           className="game-card__edit card-cred"
           src={Edit}
           alt="edit"
           onClick={() => setEditCard(true)}
         />
-      ) : (
+      )}
+      {isEdit && editCard && (
         <div className="game-card__block">
           <img
             className="card-cred"

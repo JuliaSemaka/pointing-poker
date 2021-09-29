@@ -12,7 +12,7 @@ import './Lobby.scss';
 
 export const Lobby: React.FC<ILobby> = ({
   myId,
-  dillerId,
+  dealerId,
   isDealer = true,
   members,
   sendMessageChat,
@@ -26,7 +26,7 @@ export const Lobby: React.FC<ILobby> = ({
   handleStartGame,
   handleCancelGame,
   handleExit,
-  cardsValues,
+  cards,
   handleEditCard,
   issues,
   handleIssue,
@@ -56,7 +56,7 @@ export const Lobby: React.FC<ILobby> = ({
         initialValues={initialValuesCopy}
       />
       <Members
-        dillerId={dillerId}
+        dealerId={dealerId}
         myId={myId}
         members={members}
         handleRemoveMember={handleRemoveMember}
@@ -65,7 +65,7 @@ export const Lobby: React.FC<ILobby> = ({
         <>
           <Issues issues={issues} handleIssue={handleIssue} />
           <GameSettings
-            cardsValues={cardsValues}
+            cardsValues={cards}
             handleEditCard={handleEditCard}
             handleDeleteCard={handleDeleteCard}
             onSubmit={handleSubmitGameSettings}
@@ -82,7 +82,7 @@ export const Lobby: React.FC<ILobby> = ({
     </main>
     <aside className="lobby-chat">
       <Chat
-        dillerId={dillerId}
+        dealerId={dealerId}
         myId={myId}
         onSubmit={sendMessageChat}
         chatMessage={chatMessage}

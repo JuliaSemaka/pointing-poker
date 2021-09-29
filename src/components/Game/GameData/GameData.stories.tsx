@@ -8,6 +8,7 @@ import { MemoryRouter } from 'react-router-dom';
 import '../../../App.scss';
 import { GameDataGame } from './GameData';
 import { action } from '@storybook/addon-actions';
+import { ERoundStatus } from '../game.module';
 
 const title = 'Spring 23 planning (issues 13, 533, 5623, 3252, 6623, ...)';
 const dealerData = {
@@ -22,11 +23,14 @@ const dealerData = {
 const reducer = combineReducers({ form: formReducer });
 
 const propsDefault = {
+  myId: '1',
   isDealer: true,
   title,
   dealerData,
   handleGameStopGame: action('handleGameStopGame'),
   handleGameExit: action('handleGameExit'),
+  handleTimeFinish: action('handleTimeFinish'),
+  roundStatus: ERoundStatus.start,
 };
 
 storiesOf('UI Components/Game-GameData', module)

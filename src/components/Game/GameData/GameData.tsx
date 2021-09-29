@@ -7,13 +7,19 @@ import { EButtonStyle } from '../../UI/ui.module';
 import { IGameData } from '../game.module';
 
 export const GameDataGame: React.FC<IGameData> = ({
+  myId,
   isDealer,
   title,
   dealerData,
   handleGameStopGame,
   handleGameExit,
+  roundStatus,
+  minute,
+  seconds,
+  handleTimeFinish,
 }) => {
-  const { firstName, lastName, jobTitle } = dealerData;
+  const { firstName, lastName, jobTitle, id } = dealerData;
+
   return (
     <div className="game-item">
       <div className="game-item__title">
@@ -26,10 +32,17 @@ export const GameDataGame: React.FC<IGameData> = ({
             firstName={firstName}
             lastName={lastName}
             position={jobTitle}
-            isMyCard={isDealer}
+            isMyCard={myId === id}
           />
         </div>
-        {!isDealer && <RoundTime minute="2" seconds="0" />}
+        {!isDealer && (
+          <RoundTime
+            minute={minute!}
+            seconds={seconds!}
+            roundStatus={roundStatus}
+            handleTimeFinish={handleTimeFinish}
+          />
+        )}
         <Button
           style={EButtonStyle.light}
           text={isDealer ? 'Stop Game' : 'Exit'}

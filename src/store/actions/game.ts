@@ -1,11 +1,19 @@
-import { ICardsValues } from '../../components/Game/game.module';
+import {
+  EGameStatus,
+  ERoundStatus,
+  ICardsValues,
+  IMarksCurrentTask,
+} from '../../components/Game/game.module';
 import {
   ADD_CARD,
   ADD_GAME,
   CHANGE_SETTINGS,
   IAction,
   IMainState,
-  SET_TITLE
+  SET_GAME_STATUS,
+  SET_MARK_CURRENT_TASK,
+  SET_ROUND_STATUS,
+  SET_TITLE,
 } from '../store.module';
 
 export function enterTheGame(value: IMainState): IAction {
@@ -22,4 +30,16 @@ export function setTitle(value: any): IAction {
 
 export function addCard(value: ICardsValues[]): IAction {
   return { type: ADD_CARD, payload: value };
+}
+
+export function setGameStatus(value: EGameStatus): IAction {
+  return { type: SET_GAME_STATUS, payload: value };
+}
+
+export function setRoundStatus(value: ERoundStatus): IAction {
+  return { type: SET_ROUND_STATUS, payload: value };
+}
+
+export function setMarksCurrentTask(value: IMarksCurrentTask[]): IAction {
+  return { type: SET_MARK_CURRENT_TASK, payload: value };
 }

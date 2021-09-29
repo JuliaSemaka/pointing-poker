@@ -42,6 +42,19 @@ $color5: #ffc482;
 .main-page {
   display: flex;
   justify-content: center;
+  overflow-x: hidden;
+}
+
+.page-error {
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  background: #fff;
+
+  & > img {
+    object-fit: contain;
+  }
 }
 
 .text {
