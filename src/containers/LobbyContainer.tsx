@@ -7,6 +7,7 @@ import { EHandleIssue } from '../components/UI/ui.module';
 import { Lobby } from '../pages';
 import { changeSettings } from '../store/actions/game';
 import { IReducer } from '../store/store.module';
+import { EGameStatus } from '../components/Game/game.module';
 
 export const LobbyContainer: React.FC = () => {
   const { socket, myId } = useSelector((state: IReducer) => state.main);
@@ -29,6 +30,14 @@ export const LobbyContainer: React.FC = () => {
       setSuccessSettings(false);
     };
   }, []);
+
+  useEffect(() => {
+    if (game.gameStatus === EGameStatus.inProgress) {
+      history.push('/game');
+    } else if (game.gameStatus === EGameStatus.closed) {
+      history.push('/');
+    }
+  }, [game.gameStatus]);
 
   if (Object.keys(game).length === 0 || !myId) {
     return <></>;
@@ -68,7 +77,6 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const sendMessageChat = ({ chatMessage }: any) => {
-    console.log(chatMessage);
     dispatch(reset('chat'));
     const message = {
       id: id,
@@ -91,7 +99,21 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const handleStartGame = () => {
-    history.push('/game');
+    const data = {
+      id,
+      gameStatus: EGameStatus.inProgress,
+      method: 'set-game-status',
+    };
+    socket!.send(JSON.stringify(data));
+  };
+
+  const handleCancelGame = () => {
+    const data = {
+      id,
+      gameStatus: EGameStatus.closed,
+      method: 'set-game-status',
+    };
+    socket!.send(JSON.stringify(data));
   };
 
   const handleSubmitGameSettings = (props: any) => {
@@ -152,11 +174,13 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const handleDeleteCard = (index: number) => {
+    console.log(index);
     const newCards = cards.filter((item, ind) => {
       if (ind !== index) {
         return item;
       }
     });
+    console.log(newCards);
     const data = {
       id,
       newCards,
@@ -179,9 +203,9 @@ export const LobbyContainer: React.FC = () => {
     handleEditTitle,
     handleDeleteCard,
     handleStartGame,
-    handleCancelGame: funcTest,
+    handleCancelGame,
     handleExit: funcTest,
-    cardsValues: cards,
+    cards,
     handleEditCard,
     issues: tasks,
     handleIssue: funcTestParam,

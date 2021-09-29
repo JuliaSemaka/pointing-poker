@@ -47,6 +47,5 @@ DefaultIssues.args = {
   handleRunRound: action('handleRunRound'),
   handleGameIssue: action('handleGameIssue'),
   isDealer: true,
-  gameStatus: EGameStatus.created,
   cardsValues: [],
 };

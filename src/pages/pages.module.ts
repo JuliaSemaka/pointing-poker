@@ -1,5 +1,6 @@
 import {
   EGameStatus,
+  ERoundStatus,
   ICardsValues,
   IIssue,
   IMarksCurrentTask,
@@ -30,7 +31,9 @@ export interface IGame {
   handleRunRound: () => void;
   handleRestartRound: () => void;
   handleNextIssye: () => void;
+  handleTimeFinish: () => void;
   gameStatus: EGameStatus;
+  roundStatus: ERoundStatus;
   issues: IIssue[];
   handleGameIssue: (value: string) => void;
   cardsValues: ICardsValues[];
@@ -71,7 +74,7 @@ export interface ILobby {
   handleStartGame: () => void;
   handleCancelGame: () => void;
   handleExit: () => void;
-  cardsValues?: ICardsValues[];
+  cards?: ICardsValues[];
   handleEditCard: (value: string, index?: number) => void;
   issues: IIssue[];
   handleIssue: (value: EHandleIssue) => void;

@@ -4,7 +4,7 @@ import { GameCard } from '../../UI/Cards/GameCard/GameCard';
 import { IssueCard } from '../../UI/Cards/IssueCard/IssueCard';
 import { RoundTime } from '../../UI/RoundTime/RoundTime';
 import { EButtonStyle, ETypeCard } from '../../UI/ui.module';
-import { EGameStatus, IIssues } from '../game.module';
+import { EGameStatus, ERoundStatus, IIssues } from '../game.module';
 
 import './Issues.scss';
 
@@ -13,46 +13,15 @@ export const IssuesGame: React.FC<IIssues> = ({
   handleRunRound,
   handleRestartRound,
   handleNextIssye,
-  gameStatus,
+  roundStatus,
   issues,
   handleGameIssue,
   cardsValues,
   isTimerEnable,
   minute,
   seconds,
+  handleTimeFinish,
 }) => {
-  const [minuteRound, setMinuteRound] = useState(+minute!);
-  const [secondsRound, setSecondsRound] = useState(+seconds!);
-  const foo: any = useRef();
-
-  const tick = () => {
-    setSecondsRound((prev) => {
-      if (prev === 0) {
-        setMinuteRound((prev) => prev - 1);
-        return 59;
-      } else {
-        return prev - 1;
-      }
-    });
-  };
-
-  useEffect(() => {
-    if (minuteRound === 0 && secondsRound === 0) {
-      clearInterval(foo.current);
-    }
-  }, [secondsRound]);
-
-  useEffect(() => {
-    if (gameStatus === EGameStatus.inProgress) {
-      foo.current = setInterval(tick, 1000);
-    }
-    return () => clearInterval(foo.current);
-  }, [gameStatus]);
-
-  const runRound = () => {
-    handleRunRound();
-  };
-
   return (
     <div className="game-item">
       <div className="game-item__row game-item__issues">
@@ -79,22 +48,27 @@ export const IssuesGame: React.FC<IIssues> = ({
         {isDealer && (
           <div className="game-item__column game-item__control">
             {isTimerEnable && (
-              <RoundTime minute={minuteRound} seconds={secondsRound} />
+              <RoundTime
+                minute={minute}
+                seconds={seconds}
+                roundStatus={roundStatus}
+                handleTimeFinish={handleTimeFinish}
+              />
             )}
             <Button
               style={EButtonStyle.dark}
               text={
-                gameStatus === EGameStatus.created
+                roundStatus === ERoundStatus.start
                   ? 'Run Round'
                   : 'Restart Round'
               }
               handleClick={
-                gameStatus === EGameStatus.created
-                  ? runRound
+                roundStatus === ERoundStatus.start
+                  ? handleRunRound
                   : handleRestartRound
               }
             />
-            {gameStatus !== EGameStatus.created && (
+            {roundStatus !== ERoundStatus.start && (
               <Button
                 style={EButtonStyle.dark}
                 text={'Next ISSUE'}

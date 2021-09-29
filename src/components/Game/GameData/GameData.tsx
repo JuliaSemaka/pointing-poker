@@ -13,8 +13,13 @@ export const GameDataGame: React.FC<IGameData> = ({
   dealerData,
   handleGameStopGame,
   handleGameExit,
+  roundStatus,
+  minute,
+  seconds,
+  handleTimeFinish,
 }) => {
   const { firstName, lastName, jobTitle, id } = dealerData;
+
   return (
     <div className="game-item">
       <div className="game-item__title">
@@ -30,7 +35,14 @@ export const GameDataGame: React.FC<IGameData> = ({
             isMyCard={myId === id}
           />
         </div>
-        {!isDealer && <RoundTime minute="2" seconds="0" />}
+        {!isDealer && (
+          <RoundTime
+            minute={minute!}
+            seconds={seconds!}
+            roundStatus={roundStatus}
+            handleTimeFinish={handleTimeFinish}
+          />
+        )}
         <Button
           style={EButtonStyle.light}
           text={isDealer ? 'Stop Game' : 'Exit'}

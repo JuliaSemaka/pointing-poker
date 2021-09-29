@@ -3,9 +3,17 @@ import { useDispatch } from 'react-redux';
 import { addChatMessage } from '../actions/chat';
 import {
   addCard,
+<<<<<<< HEAD
   enterTheGame,
   setTitle,
   setGameStatus,
+=======
+  addGame,
+  setGameStatus,
+  setMarksCurrentTask,
+  setRoundStatus,
+  setTitle,
+>>>>>>> ad6a3d5 (feat: correct game page)
 } from '../actions/game';
 import { addMyId, addWebSocket } from '../actions/main';
 
@@ -39,6 +47,22 @@ export const useWebSocket = () => {
             case 'set-game-status':
               dispatch(setGameStatus(data.gameStatus));
               break;
+<<<<<<< HEAD
+=======
+            case 'set-round-status':
+              dispatch(setRoundStatus(data.roundStatus));
+              break;
+            case 'set-mark-current-task':
+              dispatch(setMarksCurrentTask(data.marksCurrentTask));
+              break;
+            //     case 'add-user':
+            //       console.log('userId: ', userId);
+            //       console.log(data);
+            //       if (userId === null) {
+            //         setUserId(data.users[data.users.length - 1].id);
+            //       }
+            //       break;
+>>>>>>> ad6a3d5 (feat: correct game page)
             //     case 'del-user':
             //       console.log('userId: ', userId);
             //       console.log(data);

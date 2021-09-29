@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
+import { ERoundStatus } from '../../Game/game.module';
 
 import { IRoundTime } from '../ui.module';
 import './RoundTime.scss';
@@ -9,7 +10,45 @@ export const RoundTime: React.FC<IRoundTime> = ({
   isChange = false,
   handleChangeMinute,
   handleChangeSeconds,
+  roundStatus,
+  handleTimeFinish,
 }) => {
+  const [minuteRound, setMinuteRound] = useState(+minute!);
+  const [secondsRound, setSecondsRound] = useState(+seconds!);
+  const foo: any = useRef();
+
+  useEffect(() => {
+    if (roundStatus === ERoundStatus.start) {
+      setMinuteRound(+minute!);
+      setSecondsRound(+seconds!);
+    }
+  }, [roundStatus]);
+
+  const tick = () => {
+    setSecondsRound((prev) => {
+      if (prev === 0) {
+        setMinuteRound((prev) => prev - 1);
+        return 59;
+      } else {
+        return prev - 1;
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (minuteRound === 0 && secondsRound === 0) {
+      clearInterval(foo.current);
+      handleTimeFinish!();
+    }
+  }, [secondsRound]);
+
+  useEffect(() => {
+    if (roundStatus === ERoundStatus.inProgress && minute) {
+      foo.current = setInterval(tick, 1000);
+    }
+    return () => clearInterval(foo.current);
+  }, [roundStatus]);
+
   return (
     <div className="round-time">
       <div className="round-time__half">
@@ -27,10 +66,10 @@ export const RoundTime: React.FC<IRoundTime> = ({
         ) : (
           <p
             className={`text text-ruda text-ruda-big ${
-              !minute && +seconds! < 10 && 'text-error'
+              !minuteRound && secondsRound < 10 && 'text-error'
             }`}
           >
-            {minute}
+            {minuteRound}
           </p>
         )}
       </div>
@@ -50,10 +89,10 @@ export const RoundTime: React.FC<IRoundTime> = ({
         ) : (
           <p
             className={`text text-ruda text-ruda-big ${
-              !minute && +seconds! < 10 && 'text-error'
+              !minuteRound && secondsRound < 10 && 'text-error'
             }`}
           >
-            {seconds}
+            {secondsRound}
           </p>
         )}
       </div>

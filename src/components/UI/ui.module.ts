@@ -1,5 +1,5 @@
 import { ITime, IUsers } from '../../pages/pages.module';
-import { ICardsValues, IIssue } from '../Game/game.module';
+import { ERoundStatus, ICardsValues, IIssue } from '../Game/game.module';
 
 export enum EButtonStyle {
   dark = 'dark',
@@ -95,6 +95,7 @@ export interface IGameCard {
   handleEditCard?: (value: string, index?: number) => void;
   handleDeleteCard?: (index: number) => void;
   setAddCard?: React.Dispatch<React.SetStateAction<boolean>>;
+  isNewCard?: boolean;
 }
 
 export interface IModalWindow {
@@ -108,6 +109,8 @@ export interface IRoundTime {
   isChange?: boolean;
   handleChangeMinute?: React.Dispatch<React.SetStateAction<string>>;
   handleChangeSeconds?: React.Dispatch<React.SetStateAction<string>>;
+  roundStatus?: ERoundStatus;
+  handleTimeFinish?: () => void;
 }
 
 export interface IScoreCard {

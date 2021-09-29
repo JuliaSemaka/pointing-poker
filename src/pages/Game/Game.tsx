@@ -17,6 +17,7 @@ export const Game: React.FC<IGame> = ({
   handleRestartRound,
   handleNextIssye,
   gameStatus,
+  roundStatus,
   issues,
   handleGameIssue,
   cardsValues,
@@ -25,6 +26,7 @@ export const Game: React.FC<IGame> = ({
   isTimerEnable,
   minute,
   seconds,
+  handleTimeFinish,
 }) => (
   <div className="game wrapper">
     <main className="game-main">
@@ -35,19 +37,24 @@ export const Game: React.FC<IGame> = ({
         dealerData={dealerData}
         handleGameStopGame={handleGameStopGame}
         handleGameExit={handleGameExit}
+        roundStatus={roundStatus}
+        minute={minute}
+        seconds={seconds}
+        handleTimeFinish={handleTimeFinish}
       />
       <IssuesGame
         isDealer={isDealer}
         handleRunRound={handleRunRound}
         handleRestartRound={handleRestartRound}
         handleNextIssye={handleNextIssye}
-        gameStatus={gameStatus}
+        roundStatus={roundStatus}
         issues={issues}
         handleGameIssue={handleGameIssue}
         cardsValues={cardsValues}
         isTimerEnable={isTimerEnable}
         minute={minute}
         seconds={seconds}
+        handleTimeFinish={handleTimeFinish}
       />
       {isDealer && gameStatus === EGameStatus.inProgress && (
         <Statistics

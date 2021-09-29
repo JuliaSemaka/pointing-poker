@@ -26,7 +26,7 @@ export const Lobby: React.FC<ILobby> = ({
   handleStartGame,
   handleCancelGame,
   handleExit,
-  cardsValues,
+  cards,
   handleEditCard,
   issues,
   handleIssue,
@@ -65,7 +65,7 @@ export const Lobby: React.FC<ILobby> = ({
         <>
           <Issues issues={issues} handleIssue={handleIssue} />
           <GameSettings
-            cardsValues={cardsValues}
+            cardsValues={cards}
             handleEditCard={handleEditCard}
             handleDeleteCard={handleDeleteCard}
             onSubmit={handleSubmitGameSettings}
