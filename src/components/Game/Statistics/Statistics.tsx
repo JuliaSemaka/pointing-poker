@@ -28,8 +28,8 @@ export const Statistics: React.FC<IStatistics> = ({
           <h3 className="text text-ruda">Statistics:</h3>
         </div>
         <div className="game-item__cards">
-          {cardsValues.map(({ number, scoreType }) => (
-            <div className="game-item__card" key={number}>
+          {cardsValues.map(({ number, scoreType }, index) => (
+            <div className="game-item__card" key={index}>
               <GameCard scoreType={scoreType} number={number} />
               <div className="text text-ruda">{countPercentTask(number)}</div>
             </div>

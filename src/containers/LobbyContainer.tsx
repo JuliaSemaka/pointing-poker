@@ -35,7 +35,7 @@ export const LobbyContainer: React.FC = () => {
   useEffect(() => {
     if (game.gameStatus === EGameStatus.inProgress) {
       history.push('/game');
-    } else if (game.gameStatus === EGameStatus.closed) {
+    } else if (!game.gameStatus || game.gameStatus === EGameStatus.closed) {
       history.push('/');
     }
   }, [game.gameStatus]);
@@ -60,6 +60,7 @@ export const LobbyContainer: React.FC = () => {
     tasks,
     users,
   } = game;
+  console.log(dealerId, users);
 
   const {
     isPlayer,

@@ -93,13 +93,8 @@ export const GameContainer: React.FC = () => {
     dealerId,
     isDealer: dealerId === myId,
     title,
-<<<<<<< HEAD
     dealerData: users.find(({ id }) => id === dealerId)!,
-    handleGameStopGame: testFunc,
-=======
-    dealerData: users.find(({ id }) => id === dillerId)!,
     handleGameStopGame,
->>>>>>> ad6a3d5 (feat: correct game page)
     handleGameExit: testFunc,
     handleRunRound,
     handleRestartRound,

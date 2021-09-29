@@ -7,28 +7,45 @@ import { IReducer } from '../store/store.module';
 import { addMyId } from '../store/actions/main';
 import { MainPage } from '../pages';
 import { ERole } from '../components/components.module';
+import { EGameStatus } from '../components/Game/game.module';
+import { Spinners } from '../components';
 
 export const MainPageContainer: React.FC = () => {
   const { socket } = useSelector((state: IReducer) => state.main);
   const form = useSelector((state: IReducer) => state.form);
+  const game = useSelector((state: IReducer) => state.game);
   const history = useHistory();
   const [isModalOpened, setIsModalOpened] = useState(false);
   const [isObserver, setIsObserver] = useState(false);
   const [isDealler, setIsDealler] = useState(true);
-  const [gameId, setGameId] = useState(null)
+  const [gameId, setGameId] = useState(null);
   const [avatar, setAvatar] = useState('');
+  const [isLoader, setiIsLoader] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setiIsLoader(false);
+    if (game?.gameStatus === EGameStatus.created) {
+      history.push('/lobby');
+    } else if (game?.gameStatus === EGameStatus.inProgress) {
+      history.push('/game');
+    }
+  }, [game]);
+
+  if (isLoader) {
+    return (
+      <>
+        <Spinners />
+      </>
+    );
+  }
 
   const onSubmit = () => {
     const id = (+new Date()).toString(16);
 
     dispatch(addMyId(id));
-    const {
-      firstName,
-      lastName,
-      jobPosition,
-      title
-     } = form.connectToLobbyModal.values;
+    const { firstName, lastName, jobPosition, title } =
+      form.connectToLobbyModal.values;
 
     const userData = {
       firstName: firstName,
@@ -44,31 +61,30 @@ export const MainPageContainer: React.FC = () => {
     console.log(userData);
 
     socket!.send(JSON.stringify(userData));
-    history.push("/lobby")
-    console.log('Подключение к игре')
-  }
+    setiIsLoader(true);
+  };
 
   const handleStartGame = () => {
     handleCloseModal();
-  }
+  };
   const handleConnectToLobby = () => {
     setIsDealler(false);
     setGameId(form.connectToLobby.values.lobbyId);
     handleCloseModal();
-  }
+  };
 
   const props = {
     onSubmit: handleConnectToLobby,
-    handleStartGame
-  }
+    handleStartGame,
+  };
 
   const handleClickSwitch = () => {
     setIsObserver((state) => !state);
-  }
+  };
 
   const handleCloseModal = () => {
     setIsModalOpened((state) => !state);
-  }
+  };
 
   const uploadFile = (
     file: File,
@@ -80,18 +96,20 @@ export const MainPageContainer: React.FC = () => {
       setValueState(res);
     };
     reader.readAsDataURL(file);
-  }
+  };
 
-  const handleUploadImage = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  const handleUploadImage = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     const file: File = (event.target.files as FileList)[0];
     uploadFile(file, setAvatar);
-  }
+  };
 
   const handleSubmit = () => {
     onSubmit();
     handleCloseModal();
-    console.log('Форма отправлена')
-  }
+    console.log('Форма отправлена');
+  };
 
   const propsModal = {
     title: 'Connect to lobby',
@@ -100,19 +118,15 @@ export const MainPageContainer: React.FC = () => {
     handleClickSwitch: handleClickSwitch,
     handleUploadImage: handleUploadImage,
     avatar: avatar,
-    isDealler
-  }
+    isDealler,
+  };
 
   return (
     <>
       <MainPage {...props} />
-      {isModalOpened && (
-        <ConnectToLobby
-          {...propsModal}
-        />
-      )}
+      {isModalOpened && <ConnectToLobby {...propsModal} />}
     </>
-  )
+  );
 };
 
-export default MainPageContainer
+export default MainPageContainer;
