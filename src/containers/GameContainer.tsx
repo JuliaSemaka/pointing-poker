@@ -26,7 +26,7 @@ export const GameContainer: React.FC = () => {
   useEffect(() => {
     if (gameStatus === EGameStatus.created) {
       history.push('/lobby');
-    } else if (gameStatus === EGameStatus.closed) {
+    } else if (!gameStatus || gameStatus === EGameStatus.closed) {
       history.push('/');
     }
   }, [gameStatus]);
@@ -88,6 +88,15 @@ export const GameContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
+  const handleGameExit = () => {
+    const data = {
+      id,
+      exitUserId: myId,
+      method: 'exit-from-game',
+    };
+    socket!.send(JSON.stringify(data));
+  };
+
   const propsGme = {
     myId: myId!,
     dealerId,
@@ -95,7 +104,7 @@ export const GameContainer: React.FC = () => {
     title,
     dealerData: users.find(({ id }) => id === dealerId)!,
     handleGameStopGame,
-    handleGameExit: testFunc,
+    handleGameExit,
     handleRunRound,
     handleRestartRound,
     handleNextIssye: testFunc,

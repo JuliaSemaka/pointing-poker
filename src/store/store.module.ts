@@ -9,6 +9,7 @@ export const ADD_USER_TO_LOBBY = 'ADD_USER_TO_LOBBY';
 export const SET_GAME_STATUS = 'SET_GAME_STATUS';
 export const SET_ROUND_STATUS = 'SET_ROUND_STATUS';
 export const SET_MARK_CURRENT_TASK = 'SET_MARK_CURRENT_TASK';
+export const SET_USERS = 'SET_USERS';
 
 import {
   EGameStatus,

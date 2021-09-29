@@ -4,7 +4,7 @@ import { Button } from '../../UI/Button/Button';
 import { MemberCard } from '../../UI/Cards/MemberCard/MemberCard';
 import { RoundTime } from '../../UI/RoundTime/RoundTime';
 import { EButtonStyle } from '../../UI/ui.module';
-import { IGameData } from '../game.module';
+import { ERoundStatus, IGameData } from '../game.module';
 
 export const GameDataGame: React.FC<IGameData> = ({
   myId,
@@ -17,6 +17,10 @@ export const GameDataGame: React.FC<IGameData> = ({
   minute,
   seconds,
   handleTimeFinish,
+  handleRunRound,
+  handleRestartRound,
+  handleNextIssye,
+  isTimerEnable,
 }) => {
   const { firstName, lastName, jobTitle, id } = dealerData;
 
@@ -35,13 +39,45 @@ export const GameDataGame: React.FC<IGameData> = ({
             isMyCard={myId === id}
           />
         </div>
-        {!isDealer && (
+        {!isDealer && (seconds || minute) && (
           <RoundTime
             minute={minute!}
             seconds={seconds!}
             roundStatus={roundStatus}
             handleTimeFinish={handleTimeFinish}
           />
+        )}
+        {isDealer && (
+          <div className="game-item__column game-item__control">
+            {isTimerEnable && (
+              <RoundTime
+                minute={minute!}
+                seconds={seconds!}
+                roundStatus={roundStatus}
+                handleTimeFinish={handleTimeFinish}
+              />
+            )}
+            <Button
+              style={EButtonStyle.dark}
+              text={
+                roundStatus === ERoundStatus.start
+                  ? 'Run Round'
+                  : 'Restart Round'
+              }
+              handleClick={
+                roundStatus === ERoundStatus.start
+                  ? handleRunRound
+                  : handleRestartRound
+              }
+            />
+            {roundStatus !== ERoundStatus.start && (
+              <Button
+                style={EButtonStyle.dark}
+                text={'Next ISSUE'}
+                handleClick={handleNextIssye}
+              />
+            )}
+          </div>
         )}
         <Button
           style={EButtonStyle.light}

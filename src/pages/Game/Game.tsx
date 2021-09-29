@@ -41,20 +41,16 @@ export const Game: React.FC<IGame> = ({
         minute={minute}
         seconds={seconds}
         handleTimeFinish={handleTimeFinish}
-      />
-      <IssuesGame
-        isDealer={isDealer}
         handleRunRound={handleRunRound}
         handleRestartRound={handleRestartRound}
         handleNextIssye={handleNextIssye}
-        roundStatus={roundStatus}
+        isTimerEnable={isTimerEnable}
+      />
+      <IssuesGame
+        isDealer={isDealer}
         issues={issues}
         handleGameIssue={handleGameIssue}
         cardsValues={cardsValues}
-        isTimerEnable={isTimerEnable}
-        minute={minute}
-        seconds={seconds}
-        handleTimeFinish={handleTimeFinish}
       />
       {isDealer && gameStatus === EGameStatus.inProgress && (
         <Statistics

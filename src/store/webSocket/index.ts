@@ -8,6 +8,8 @@ import {
   setGameStatus,
   setMarksCurrentTask,
   setRoundStatus,
+  setUsers,
+  changeSettings,
 } from '../actions/game';
 import { addMyId, addWebSocket } from '../actions/main';
 
@@ -15,8 +17,8 @@ export const useWebSocket = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socket = new WebSocket('ws://obscure-wave-90492.herokuapp.com/');
-    // const socket = new WebSocket('ws://localhost:5000/');
+    // const socket = new WebSocket('ws://obscure-wave-90492.herokuapp.com/');
+    const socket = new WebSocket('ws://localhost:5000/');
     dispatch(addWebSocket(socket));
     socket.onopen = () => {
       console.log('Подключение установлено');
@@ -25,7 +27,6 @@ export const useWebSocket = () => {
         if (data.method) {
           switch (data.method) {
             case 'connection':
-              console.log(data.id);
               dispatch(enterTheGame(data));
               break;
             case 'set-title':
@@ -35,7 +36,6 @@ export const useWebSocket = () => {
               dispatch(addCard(data.cards));
               break;
             case 'add-user':
-              console.log(data);
               dispatch(enterTheGame(data));
               break;
             case 'set-game-status':
@@ -46,6 +46,12 @@ export const useWebSocket = () => {
               break;
             case 'set-mark-current-task':
               dispatch(setMarksCurrentTask(data.marksCurrentTask));
+              break;
+            case 'exit-from-game':
+              dispatch(setUsers(data.users));
+              break;
+            case 'set-settings':
+              dispatch(changeSettings(data.settings));
               break;
             //     case 'add-user':
             //       console.log('userId: ', userId);

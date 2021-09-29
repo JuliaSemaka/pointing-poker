@@ -11,6 +11,10 @@ export interface IGameData {
   minute?: string | null;
   seconds?: string | null;
   roundStatus: ERoundStatus;
+  handleRunRound: () => void;
+  handleRestartRound: () => void;
+  handleNextIssye: () => void;
+  isTimerEnable: boolean;
 }
 
 export interface IIssue {
@@ -29,17 +33,9 @@ export interface ICardsValues {
 
 export interface IIssues {
   isDealer: boolean;
-  handleRunRound: () => void;
-  handleRestartRound: () => void;
-  handleNextIssye: () => void;
-  roundStatus: ERoundStatus;
   issues: IIssue[];
   handleGameIssue: (value: string) => void;
   cardsValues: ICardsValues[];
-  isTimerEnable: boolean;
-  minute: string | null;
-  seconds: string | null;
-  handleTimeFinish: () => void;
 }
 
 export enum EGameStatus {

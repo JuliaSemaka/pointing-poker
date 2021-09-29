@@ -31,6 +31,10 @@ const propsDefault = {
   handleGameExit: action('handleGameExit'),
   handleTimeFinish: action('handleTimeFinish'),
   roundStatus: ERoundStatus.start,
+  handleRunRound: action('handleRunRound'),
+  handleRestartRound: action('handleRestartRound'),
+  handleNextIssye: action('handleNextIssye'),
+  isTimerEnable: true,
 };
 
 storiesOf('UI Components/Game-GameData', module)

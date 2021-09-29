@@ -5,8 +5,8 @@ import { useHistory } from 'react-router-dom';
 
 import { EHandleIssue } from '../components/UI/ui.module';
 import { Lobby } from '../pages';
-import { changeSettings } from '../store/actions/game';
-import { IReducer } from '../store/store.module';
+import { changeSettings, enterTheGame } from '../store/actions/game';
+import { IGameState, IReducer } from '../store/store.module';
 import { EGameStatus } from '../components/Game/game.module';
 import { Spinners } from '../components';
 
@@ -31,6 +31,11 @@ export const LobbyContainer: React.FC = () => {
       setSuccessSettings(false);
     };
   }, []);
+  useEffect(() => {
+    if (!game?.users?.some((item) => item.id === myId)) {
+      dispatch(enterTheGame({} as IGameState));
+    }
+  }, [game.users]);
 
   useEffect(() => {
     if (game.gameStatus === EGameStatus.inProgress) {
@@ -60,7 +65,6 @@ export const LobbyContainer: React.FC = () => {
     tasks,
     users,
   } = game;
-  console.log(dealerId, users);
 
   const {
     isPlayer,
@@ -130,7 +134,13 @@ export const LobbyContainer: React.FC = () => {
       minute: getMinute,
       seconds: getSeconds,
     };
-    dispatch(changeSettings(newSettings));
+    console.log('newSettings', newSettings);
+    const data = {
+      id,
+      newSettings,
+      method: 'set-settings',
+    };
+    socket!.send(JSON.stringify(data));
     setTimeout(() => {
       setSuccessSettings(false);
     }, 3000);
@@ -195,6 +205,15 @@ export const LobbyContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
+  const handleExit = () => {
+    const data = {
+      id,
+      exitUserId: myId,
+      method: 'exit-from-game',
+    };
+    socket!.send(JSON.stringify(data));
+  };
+
   const propsDealer = {
     myId,
     dealerId,
@@ -210,7 +229,7 @@ export const LobbyContainer: React.FC = () => {
     handleDeleteCard,
     handleStartGame,
     handleCancelGame,
-    handleExit: funcTest,
+    handleExit,
     cards,
     handleEditCard,
     issues: tasks,

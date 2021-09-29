@@ -10,17 +10,9 @@ import './Issues.scss';
 
 export const IssuesGame: React.FC<IIssues> = ({
   isDealer,
-  handleRunRound,
-  handleRestartRound,
-  handleNextIssye,
-  roundStatus,
   issues,
   handleGameIssue,
   cardsValues,
-  isTimerEnable,
-  minute,
-  seconds,
-  handleTimeFinish,
 }) => {
   return (
     <div className="game-item">
@@ -45,38 +37,6 @@ export const IssuesGame: React.FC<IIssues> = ({
             handleIssue={handleGameIssue}
           />
         </div>
-        {isDealer && (
-          <div className="game-item__column game-item__control">
-            {isTimerEnable && (
-              <RoundTime
-                minute={minute}
-                seconds={seconds}
-                roundStatus={roundStatus}
-                handleTimeFinish={handleTimeFinish}
-              />
-            )}
-            <Button
-              style={EButtonStyle.dark}
-              text={
-                roundStatus === ERoundStatus.start
-                  ? 'Run Round'
-                  : 'Restart Round'
-              }
-              handleClick={
-                roundStatus === ERoundStatus.start
-                  ? handleRunRound
-                  : handleRestartRound
-              }
-            />
-            {roundStatus !== ERoundStatus.start && (
-              <Button
-                style={EButtonStyle.dark}
-                text={'Next ISSUE'}
-                handleClick={handleNextIssye}
-              />
-            )}
-          </div>
-        )}
       </div>
       {!isDealer && (
         <div className="game-item__cards">

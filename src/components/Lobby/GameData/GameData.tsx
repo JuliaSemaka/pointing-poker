@@ -78,6 +78,7 @@ export const GameDataForm: React.FC<
           lastName={dealerData?.lastName}
           position={dealerData?.jobTitle}
           isMyCard={isDealer}
+          image={dealerData?.image}
         />
       </div>
       {isDealer && (

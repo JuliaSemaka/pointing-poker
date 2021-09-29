@@ -8,7 +8,8 @@ import {
   SET_MARK_CURRENT_TASK,
   SET_ROUND_STATUS,
   SET_TITLE,
-  ADD_USER_TO_LOBBY
+  ADD_USER_TO_LOBBY,
+  SET_USERS,
 } from '../store.module';
 
 const defaultGame: IGameState = {} as IGameState;
@@ -23,7 +24,7 @@ export const game = (
     case SET_TITLE:
       return { ...state, title: action.payload };
     case CHANGE_SETTINGS:
-      return { ...state, settings: { ...state.settings, ...action.payload } };
+      return { ...state, settings: action.payload };
     case ADD_CARD:
       return { ...state, cards: [...action.payload] };
     case SET_GAME_STATUS:
@@ -32,6 +33,8 @@ export const game = (
       return { ...state, roundStatus: action.payload };
     case SET_MARK_CURRENT_TASK:
       return { ...state, marksCurrentTask: action.payload };
+    case SET_USERS:
+      return { ...state, users: action.payload };
     default:
       return state;
   }

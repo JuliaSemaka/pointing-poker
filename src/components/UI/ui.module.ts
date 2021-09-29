@@ -104,8 +104,8 @@ export interface IModalWindow {
 }
 
 export interface IRoundTime {
-  minute: string | null | number;
-  seconds: string | null | number;
+  minute: string | null;
+  seconds: string | null;
   isChange?: boolean;
   handleChangeMinute?: React.Dispatch<React.SetStateAction<string>>;
   handleChangeSeconds?: React.Dispatch<React.SetStateAction<string>>;
