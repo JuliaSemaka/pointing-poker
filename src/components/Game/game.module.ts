@@ -63,7 +63,7 @@ export interface IMarksCurrentTask {
 
 export interface IStatistics {
   cardsValues: ICardsValues[];
-  marksCurrentTask: IMarksCurrentTask[];
+  countPercentTask: (value: string | null) => string | undefined;
 }
 
 export interface IScore {

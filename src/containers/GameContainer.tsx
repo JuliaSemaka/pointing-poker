@@ -88,6 +88,18 @@ export const GameContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
+  const countPercentTask = (number: string | null): string | undefined => {
+    if (!marksCurrentTask.length) {
+      return;
+    }
+
+    return `${(
+      (marksCurrentTask.filter(({ mark }) => mark === number).length /
+        marksCurrentTask.length) *
+      100
+    ).toFixed(1)}%`;
+  };
+
   const propsGme = {
     myId: myId!,
     dealerId,
@@ -110,6 +122,7 @@ export const GameContainer: React.FC = () => {
     minute,
     seconds,
     handleTimeFinish,
+    countPercentTask,
   };
 
   return <Game {...propsGme} />;

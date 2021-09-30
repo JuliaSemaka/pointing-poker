@@ -1,10 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import { Button } from '../../UI/Button/Button';
 import { GameCard } from '../../UI/Cards/GameCard/GameCard';
 import { IssueCard } from '../../UI/Cards/IssueCard/IssueCard';
 import { RoundTime } from '../../UI/RoundTime/RoundTime';
 import { EButtonStyle, ETypeCard } from '../../UI/ui.module';
-import { EGameStatus, ERoundStatus, IIssues } from '../game.module';
+import { ERoundStatus, IIssues } from '../game.module';
 
 import './Issues.scss';
 
