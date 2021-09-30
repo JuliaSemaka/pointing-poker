@@ -42,6 +42,7 @@ export interface IGame {
   isTimerEnable: boolean;
   minute: string | null;
   seconds: string | null;
+  countPercentTask: (value: string | null) => string | undefined;
 }
 
 export interface IInitialSettings {

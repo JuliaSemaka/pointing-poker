@@ -54,6 +54,9 @@ export const IssueCard: React.FC<IIssueCard> = ({
         />
       );
       break;
+    case ETypeCard.none:
+      cardEditorContent = '';
+      break;
   }
 
   return (
