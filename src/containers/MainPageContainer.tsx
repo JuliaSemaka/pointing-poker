@@ -4,14 +4,16 @@ import { useHistory } from 'react-router';
 import { reset } from 'redux-form';
 import ConnectToLobby from '../components/ConnectToLobby/ConnectToLobby';
 import { IReducer } from '../store/store.module';
-import { addMyId } from '../store/actions/main';
+import { addMyId, setDenied } from '../store/actions/main';
 import { MainPage } from '../pages';
 import { ERole } from '../components/components.module';
 import { EGameStatus } from '../components/Game/game.module';
 import { Spinners } from '../components';
 
 export const MainPageContainer: React.FC = () => {
-  const { socket } = useSelector((state: IReducer) => state.main);
+  const { socket, denied, myId, confirmedUser } = useSelector(
+    (state: IReducer) => state.main
+  );
   const form = useSelector((state: IReducer) => state.form);
   const game = useSelector((state: IReducer) => state.game);
   const history = useHistory();
@@ -20,17 +22,45 @@ export const MainPageContainer: React.FC = () => {
   const [isDealler, setIsDealler] = useState(true);
   const [gameId, setGameId] = useState(null);
   const [avatar, setAvatar] = useState('');
-  const [isLoader, setiIsLoader] = useState(false);
+  const [isLoader, setIsLoader] = useState(false);
+  const [isDeniedAccess, setDeniedAccess] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    setiIsLoader(false);
+    setIsLoader(false);
     if (game?.gameStatus === EGameStatus.created) {
       history.push('/lobby');
     } else if (game?.gameStatus === EGameStatus.inProgress) {
       history.push('/game');
     }
   }, [game]);
+
+  useEffect(() => {
+    if (denied && myId === denied.myId) {
+      setIsLoader(false);
+      dispatch(setDenied(null));
+      setDeniedAccess(true);
+    }
+  }, [denied]);
+
+  if (isDeniedAccess) {
+    return (
+      <div className="access text-ruda text-ruda-big">
+        You are denied access.
+      </div>
+    );
+  }
+
+  if (confirmedUser) {
+    return (
+      <div className="access">
+        <div className=" text-ruda text-ruda-big">
+          Wait, the dealer should give you access...
+        </div>
+        <Spinners />
+      </div>
+    );
+  }
 
   if (isLoader) {
     return (
@@ -58,10 +88,8 @@ export const MainPageContainer: React.FC = () => {
       id: gameId,
       method: isDealler ? 'connection' : 'add-user',
     };
-    console.log(userData);
-
     socket!.send(JSON.stringify(userData));
-    setiIsLoader(true);
+    setIsLoader(true);
   };
 
   const handleStartGame = () => {

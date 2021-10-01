@@ -11,6 +11,5 @@ export const CardsGame: React.FC<ICardsGame> = ({ cardsValues }) => (
         <GameCard key={index} scoreType={scoreType} number={number} />
       ))}
     </div>
-    )
   </div>
 );

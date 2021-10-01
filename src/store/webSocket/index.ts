@@ -11,7 +11,7 @@ import {
   setUsers,
   changeSettings,
 } from '../actions/game';
-import { addWebSocket, confirmedNewUser } from '../actions/main';
+import { addWebSocket, confirmedNewUser, setDenied } from '../actions/main';
 
 export const useWebSocket = () => {
   const dispatch = useDispatch();
@@ -36,6 +36,8 @@ export const useWebSocket = () => {
               dispatch(addCard(data.cards));
               break;
             case 'add-user':
+              console.log(data);
+
               if ('confirmed' in data && data.confirmed === false) {
                 dispatch(confirmedNewUser(data));
               } else {
@@ -56,6 +58,9 @@ export const useWebSocket = () => {
               break;
             case 'set-settings':
               dispatch(changeSettings(data.settings));
+              break;
+            case 'set-denied':
+              dispatch(setDenied(data.denied));
               break;
             //     case 'add-user':
             //       console.log('userId: ', userId);

@@ -19,6 +19,7 @@ export interface IUsers {
   image: string | null;
   role: string;
   confirmed?: boolean;
+  myId?: string;
 }
 
 export interface IGame {
@@ -46,6 +47,7 @@ export interface IGame {
   isPlayer: boolean;
   isTurnAuto: boolean;
   valueConfirmedUser: IUsers | null;
+  handleConfirmedUser: (value: boolean) => void;
 }
 
 export interface IInitialSettings {

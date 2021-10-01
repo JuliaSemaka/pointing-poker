@@ -21,3 +21,4 @@ export { Score } from './Game/Score/Score';
 export { Statistics } from './Game/Statistics/Statistics';
 export { Spinners } from './UI/Spinners/Spinners';
 export { CardsGame } from './Game/Cards/CardsGame';
+export { ConfirmedUser } from './ConfirmedUser/ConfirmedUser';

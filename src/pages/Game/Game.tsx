@@ -1,12 +1,13 @@
 import React from 'react';
 import {
   CardsGame,
+  ConfirmedUser,
   GameDataGame,
   IssuesGame,
   Score,
   Statistics,
 } from '../../components';
-import { EGameStatus, ERoundStatus } from '../../components/Game/game.module';
+import { ERoundStatus } from '../../components/Game/game.module';
 import { IGame } from '../pages.module';
 
 import './Game.scss';
@@ -36,6 +37,7 @@ export const Game: React.FC<IGame> = ({
   isPlayer,
   isTurnAuto,
   valueConfirmedUser,
+  handleConfirmedUser,
 }) => (
   <div className="game wrapper">
     <main className="game-main">
@@ -72,7 +74,12 @@ export const Game: React.FC<IGame> = ({
         dealerId={dealerId}
       />
     </aside>
-    {/* {isConfirmedUser && } */}
+    {valueConfirmedUser && isDealer && (
+      <ConfirmedUser
+        handleConfirmedUser={handleConfirmedUser}
+        valueConfirmedUser={valueConfirmedUser}
+      />
+    )}
   </div>
 );
 

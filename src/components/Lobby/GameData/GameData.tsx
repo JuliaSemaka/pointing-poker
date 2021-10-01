@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Field, InjectedFormProps, reduxForm } from 'redux-form';
 
 import Edit from '../../../assets/images/cards/edit.svg';
@@ -29,6 +29,7 @@ export const GameDataForm: React.FC<
 }) => {
   const [titleGame, setTitleGame] = useState(title);
   const [successCopy, setSuccessCopy] = useState(false);
+  const timer: any = useRef<NodeJS.Timeout>();
   const clickSave = () => {
     setEditTitle((prev) => !prev);
     handleEditTitle(titleGame);
@@ -36,10 +37,14 @@ export const GameDataForm: React.FC<
   const handleCopy = () => {
     setSuccessCopy(true);
     navigator.clipboard.writeText(initialValues.copyId);
-    setTimeout(() => {
+    timer.current = setTimeout(() => {
       setSuccessCopy(false);
     }, 2000);
   };
+
+  useEffect(() => {
+    return () => clearTimeout(timer.current);
+  }, []);
 
   return (
     <div className="lobby-item">

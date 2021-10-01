@@ -12,8 +12,7 @@ import { IReducer } from '../store/store.module';
 export const GameContainer: React.FC = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [valueConfirmedUser, setValueConfirmedUser] = useState<IUsers | null>(null);
-  const { socket, myId, confirmedUser } = useSelector(
+  const { socket, myId, confirmedUser, denied } = useSelector(
     (state: IReducer) => state.main
   );
   const {
@@ -29,6 +28,7 @@ export const GameContainer: React.FC = () => {
     tasks,
     users,
   } = useSelector((state: IReducer) => state.game);
+
   useEffect(() => {
     if (gameStatus === EGameStatus.created) {
       history.push('/lobby');
@@ -36,16 +36,18 @@ export const GameContainer: React.FC = () => {
       history.push('/');
     }
   }, [gameStatus]);
-  useEffect(() => {
-    if (confirmedUser && confirmedUser.confirmed) {
+
+  const handleConfirmedUser = (value: boolean) => {
+    if (value) {
       const userData = { ...confirmedUser, confirmed: true };
       socket!.send(JSON.stringify(userData));
       dispatch(confirmedNewUser(null));
-      setValueConfirmedUser(null);
     } else {
-      setValueConfirmedUser(confirmedUser);
+      const userData = { ...confirmedUser, method: 'set-denied' };
+      socket!.send(JSON.stringify(userData));
+      dispatch(confirmedNewUser(null));
     }
-  }, [confirmedUser]);
+  };
 
   if (!id) {
     return (
@@ -137,7 +139,8 @@ export const GameContainer: React.FC = () => {
     handleTimeFinish,
     isPlayer,
     isTurnAuto,
-    valueConfirmedUser,
+    valueConfirmedUser: confirmedUser,
+    handleConfirmedUser,
   };
 
   return <Game {...propsGme} />;

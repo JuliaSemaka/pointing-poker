@@ -144,6 +144,7 @@ const propsDealer = {
   isPlayer: true,
   isTurnAuto: false,
   valueConfirmedUser: null,
+  handleConfirmedUser: action('handleConfirmedUser'),
 };
 
 const propsDealerInProgress = {
@@ -171,6 +172,7 @@ const propsDealerInProgress = {
   isPlayer: true,
   isTurnAuto: false,
   valueConfirmedUser: null,
+  handleConfirmedUser: action('handleConfirmedUser'),
 };
 
 const propsPlayer = {
@@ -198,6 +200,7 @@ const propsPlayer = {
   isPlayer: true,
   isTurnAuto: false,
   valueConfirmedUser: null,
+  handleConfirmedUser: action('handleConfirmedUser'),
 };
 
 storiesOf('Pages/Game', module)

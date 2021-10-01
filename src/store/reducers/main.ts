@@ -5,13 +5,14 @@ import {
   CONFIRMED_USER,
   IAction,
   IMainState,
+  SET_DENIED,
 } from '../store.module';
 
 const defaultState = {
   socket: null,
   myId: null,
-  game: null,
   confirmedUser: null,
+  denied: null,
 };
 
 export const main = (
@@ -25,6 +26,8 @@ export const main = (
       return { ...state, myId: action.payload };
     case CONFIRMED_USER:
       return { ...state, confirmedUser: action.payload };
+    case SET_DENIED:
+      return { ...state, denied: action.payload };
     default:
       return state;
   }
