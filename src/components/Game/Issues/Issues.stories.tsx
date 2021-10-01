@@ -45,6 +45,4 @@ export const DefaultIssues = Template.bind({});
 DefaultIssues.args = {
   issues,
   handleGameIssue: action('handleGameIssue'),
-  isDealer: true,
-  cardsValues: [],
 };

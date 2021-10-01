@@ -9,6 +9,12 @@
   padding: 8px 12px;
   border-radius: 2px;
 
+  &-repeat {
+    position: absolute;
+    top: 20px;
+    left: 7px;
+  }
+
   &-small {
     width: 180px;
     height: 50px;
@@ -213,3 +219,4 @@
 .scram-master {
   margin-top: -15px;
 }
+

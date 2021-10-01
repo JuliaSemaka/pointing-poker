@@ -11,7 +11,6 @@ import {
   CHANGE_SETTINGS,
   IAction,
   IGameState,
-  IMainState,
   SET_GAME_STATUS,
   SET_MARK_CURRENT_TASK,
   SET_ROUND_STATUS,

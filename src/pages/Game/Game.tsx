@@ -1,6 +1,12 @@
 import React from 'react';
-import { GameDataGame, IssuesGame, Score, Statistics } from '../../components';
-import { EGameStatus } from '../../components/Game/game.module';
+import {
+  CardsGame,
+  GameDataGame,
+  IssuesGame,
+  Score,
+  Statistics,
+} from '../../components';
+import { EGameStatus, ERoundStatus } from '../../components/Game/game.module';
 import { IGame } from '../pages.module';
 
 import './Game.scss';
@@ -27,6 +33,9 @@ export const Game: React.FC<IGame> = ({
   minute,
   seconds,
   handleTimeFinish,
+  isPlayer,
+  isTurnAuto,
+  valueConfirmedUser,
 }) => (
   <div className="game wrapper">
     <main className="game-main">
@@ -46,13 +55,9 @@ export const Game: React.FC<IGame> = ({
         handleNextIssye={handleNextIssye}
         isTimerEnable={isTimerEnable}
       />
-      <IssuesGame
-        isDealer={isDealer}
-        issues={issues}
-        handleGameIssue={handleGameIssue}
-        cardsValues={cardsValues}
-      />
-      {isDealer && gameStatus === EGameStatus.inProgress && (
+      <IssuesGame issues={issues} handleGameIssue={handleGameIssue} />
+      {(!isDealer || isPlayer) && <CardsGame cardsValues={cardsValues} />}
+      {isDealer && roundStatus === ERoundStatus.finish && (
         <Statistics
           cardsValues={cardsValues}
           marksCurrentTask={marksCurrentTask}
@@ -67,6 +72,7 @@ export const Game: React.FC<IGame> = ({
         dealerId={dealerId}
       />
     </aside>
+    {/* {isConfirmedUser && } */}
   </div>
 );
 

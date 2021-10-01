@@ -2,14 +2,4 @@
   &__issues {
     align-items: flex-start;
   }
-
-  &__cards {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-
-    & > div {
-      margin: 30px 10px;
-    }
-  }
 }

@@ -1,19 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { Button } from '../../UI/Button/Button';
-import { GameCard } from '../../UI/Cards/GameCard/GameCard';
+import React from 'react';
 import { IssueCard } from '../../UI/Cards/IssueCard/IssueCard';
-import { RoundTime } from '../../UI/RoundTime/RoundTime';
-import { EButtonStyle, ETypeCard } from '../../UI/ui.module';
-import { EGameStatus, ERoundStatus, IIssues } from '../game.module';
+import { ETypeCard } from '../../UI/ui.module';
+import { IIssuesGame } from '../game.module';
 
 import './Issues.scss';
 
-export const IssuesGame: React.FC<IIssues> = ({
-  isDealer,
-  issues,
-  handleGameIssue,
-  cardsValues,
-}) => {
+export const IssuesGame: React.FC<IIssuesGame> = ({ issues, handleGameIssue }) => {
   return (
     <div className="game-item">
       <div className="game-item__row game-item__issues">
@@ -21,7 +13,7 @@ export const IssuesGame: React.FC<IIssues> = ({
           <div className="game-item__title">
             <h3 className="text text-ruda">Issues</h3>
           </div>
-          {issues.map(({ id, title, priority, isChecked }, index) => (
+          {issues.map(({ title, priority, isChecked }, index) => (
             <IssueCard
               key={index}
               title={title}
@@ -38,13 +30,6 @@ export const IssuesGame: React.FC<IIssues> = ({
           />
         </div>
       </div>
-      {!isDealer && (
-        <div className="game-item__cards">
-          {cardsValues.map(({ number, scoreType }, index) => (
-            <GameCard key={index} scoreType={scoreType} number={number} />
-          ))}
-        </div>
-      )}
     </div>
   );
 };

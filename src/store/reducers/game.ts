@@ -26,7 +26,7 @@ export const game = (
     case CHANGE_SETTINGS:
       return { ...state, settings: action.payload };
     case ADD_CARD:
-      return { ...state, cards: [...action.payload] };
+      return { ...state, cards: action.payload };
     case SET_GAME_STATUS:
       return { ...state, gameStatus: action.payload };
     case SET_ROUND_STATUS:

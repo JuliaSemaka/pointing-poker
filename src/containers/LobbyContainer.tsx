@@ -160,11 +160,11 @@ export const LobbyContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
-  const handleEditCard = (value: string, index: number | undefined) => {
+  const handleEditCard = (value: string, number: string | undefined) => {
     let newCards;
-    if (index !== undefined) {
-      newCards = cards.map((item, ind) => {
-        if (ind === index) {
+    if (number !== undefined) {
+      newCards = cards.map((item) => {
+        if (item.number === number) {
           return {
             scoreType: isNaN(+value) ? null : scoreType,
             number: value,
@@ -189,10 +189,10 @@ export const LobbyContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
-  const handleDeleteCard = (index: number) => {
-    console.log(index);
+  const handleDeleteCard = (number: string) => {
+    console.log(number);
     const newCards = cards.filter((item, ind) => {
-      if (ind !== index) {
+      if (item.number !== number) {
         return item;
       }
     });

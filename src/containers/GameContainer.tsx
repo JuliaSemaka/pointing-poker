@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Spinners } from '../components';
 
 import { EGameStatus, ERoundStatus } from '../components/Game/game.module';
 import { Game } from '../pages';
+import { IUsers } from '../pages/pages.module';
+import { confirmedNewUser } from '../store/actions/main';
 import { IReducer } from '../store/store.module';
 
 export const GameContainer: React.FC = () => {
   const history = useHistory();
-  const { socket, myId } = useSelector((state: IReducer) => state.main);
+  const dispatch = useDispatch();
+  const [valueConfirmedUser, setValueConfirmedUser] = useState<IUsers | null>(null);
+  const { socket, myId, confirmedUser } = useSelector(
+    (state: IReducer) => state.main
+  );
   const {
     cards,
     delUser,
@@ -30,6 +36,16 @@ export const GameContainer: React.FC = () => {
       history.push('/');
     }
   }, [gameStatus]);
+  useEffect(() => {
+    if (confirmedUser && confirmedUser.confirmed) {
+      const userData = { ...confirmedUser, confirmed: true };
+      socket!.send(JSON.stringify(userData));
+      dispatch(confirmedNewUser(null));
+      setValueConfirmedUser(null);
+    } else {
+      setValueConfirmedUser(confirmedUser);
+    }
+  }, [confirmedUser]);
 
   if (!id) {
     return (
@@ -39,7 +55,7 @@ export const GameContainer: React.FC = () => {
     );
   }
 
-  const { isTimerEnable, minute, seconds } = settings;
+  const { isTimerEnable, minute, seconds, isPlayer, isTurnAuto } = settings;
 
   const testFunc = () => {
     console.log(1);
@@ -119,6 +135,9 @@ export const GameContainer: React.FC = () => {
     minute,
     seconds,
     handleTimeFinish,
+    isPlayer,
+    isTurnAuto,
+    valueConfirmedUser,
   };
 
   return <Game {...propsGme} />;

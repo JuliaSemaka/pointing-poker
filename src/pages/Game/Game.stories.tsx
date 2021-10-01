@@ -141,6 +141,9 @@ const propsDealer = {
   minute,
   seconds,
   roundStatus: ERoundStatus.start,
+  isPlayer: true,
+  isTurnAuto: false,
+  valueConfirmedUser: null,
 };
 
 const propsDealerInProgress = {
@@ -165,6 +168,9 @@ const propsDealerInProgress = {
   minute,
   seconds,
   roundStatus: ERoundStatus.start,
+  isPlayer: true,
+  isTurnAuto: false,
+  valueConfirmedUser: null,
 };
 
 const propsPlayer = {
@@ -189,6 +195,9 @@ const propsPlayer = {
   minute,
   seconds,
   roundStatus: ERoundStatus.start,
+  isPlayer: true,
+  isTurnAuto: false,
+  valueConfirmedUser: null,
 };
 
 storiesOf('Pages/Game', module)

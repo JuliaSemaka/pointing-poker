@@ -10,6 +10,7 @@ export const SET_GAME_STATUS = 'SET_GAME_STATUS';
 export const SET_ROUND_STATUS = 'SET_ROUND_STATUS';
 export const SET_MARK_CURRENT_TASK = 'SET_MARK_CURRENT_TASK';
 export const SET_USERS = 'SET_USERS';
+export const CONFIRMED_USER = 'CONFIRMED_USER';
 
 import {
   EGameStatus,
@@ -36,6 +37,8 @@ export interface ISettings {
 export interface IMainState {
   socket: WebSocket | null;
   myId: string | null;
+  game: IGameState | null;
+  confirmedUser: IUsers | null;
 }
 
 export interface IGameState {

@@ -31,11 +31,9 @@ export interface ICardsValues {
   number: string | null;
 }
 
-export interface IIssues {
-  isDealer: boolean;
+export interface IIssuesGame {
   issues: IIssue[];
   handleGameIssue: (value: string) => void;
-  cardsValues: ICardsValues[];
 }
 
 export enum EGameStatus {
@@ -67,4 +65,8 @@ export interface IScore {
   members: IUsers[];
   myId: string;
   dealerId: string;
+}
+
+export interface ICardsGame {
+  cardsValues: ICardsValues[];
 }

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addChatMessage } from '../actions/chat';
 import {
@@ -11,7 +11,7 @@ import {
   setUsers,
   changeSettings,
 } from '../actions/game';
-import { addMyId, addWebSocket } from '../actions/main';
+import { addWebSocket, confirmedNewUser } from '../actions/main';
 
 export const useWebSocket = () => {
   const dispatch = useDispatch();
@@ -36,7 +36,11 @@ export const useWebSocket = () => {
               dispatch(addCard(data.cards));
               break;
             case 'add-user':
-              dispatch(enterTheGame(data));
+              if ('confirmed' in data && data.confirmed === false) {
+                dispatch(confirmedNewUser(data));
+              } else {
+                dispatch(enterTheGame(data));
+              }
               break;
             case 'set-game-status':
               dispatch(setGameStatus(data.gameStatus));
