@@ -113,6 +113,11 @@ $color5: #ffc482;
     line-height: 10px;
   }
 
+  &-small {
+    font-size: 10px;
+    line-height: 12px;
+  }
+
   &-small-uppercase {
     font-weight: bold;
     font-size: 10px;
@@ -161,5 +166,18 @@ $color5: #ffc482;
 
   &:active {
     transform: scale(0.6);
+  }
+}
+
+.access {
+  height: 77vh;
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+
+  & .loader {
+    margin-bottom: 0;
   }
 }

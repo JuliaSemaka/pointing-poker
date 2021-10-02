@@ -43,8 +43,5 @@ const Template: ComponentStory<typeof IssuesGame> = (args) => (
 export const DefaultIssues = Template.bind({});
 DefaultIssues.args = {
   issues,
-  handleRunRound: action('handleRunRound'),
   handleGameIssue: action('handleGameIssue'),
-  isDealer: true,
-  cardsValues: [],
 };

@@ -93,10 +93,11 @@ export interface IGameCard {
   isEdit?: boolean;
   isCheck?: boolean;
   handleAddCard?: () => void;
-  handleEditCard?: (value: string, index?: number) => void;
-  handleDeleteCard?: (index: number) => void;
+  handleEditCard?: (value: string, number?: string) => void;
+  handleDeleteCard?: (number: string) => void;
   setAddCard?: React.Dispatch<React.SetStateAction<boolean>>;
   isNewCard?: boolean;
+  cardsValues?: ICardsValues[];
 }
 
 export interface IModalWindow {
@@ -105,8 +106,8 @@ export interface IModalWindow {
 }
 
 export interface IRoundTime {
-  minute: string | null | number;
-  seconds: string | null | number;
+  minute: string | null;
+  seconds: string | null;
   isChange?: boolean;
   handleChangeMinute?: React.Dispatch<React.SetStateAction<string>>;
   handleChangeSeconds?: React.Dispatch<React.SetStateAction<string>>;
@@ -121,8 +122,8 @@ export interface IScoreCard {
 
 export interface IGameSettingsForm {
   cardsValues?: ICardsValues[];
-  handleEditCard: (value: string, index?: number) => void;
-  handleDeleteCard?: (index: number) => void;
+  handleEditCard: (value: string, number?: string) => void;
+  handleDeleteCard?: (number: string) => void;
   handleSubmit?: () => void;
   onSubmit?: () => void;
   handleChangeMinute: React.Dispatch<React.SetStateAction<string>>;

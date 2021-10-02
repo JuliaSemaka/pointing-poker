@@ -29,15 +29,14 @@
       display: flex;
       justify-content: center;
       align-self: center;
-      margin-bottom: 30px;
-      margin-top: 40px;
+      margin: 40px 0;
     }
 
     &__row {
       display: flex;
       justify-content: space-between;
       width: 100%;
-      align-items: flex-end;
+      align-items: flex-start;
     }
 
     &__column {

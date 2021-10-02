@@ -118,6 +118,9 @@ const marksCurrentTask = [
 const isTimerEnable = true;
 const minute = '2';
 const seconds = '0';
+const countPercentTask = (number: string | null): string | undefined => {
+  return;
+};
 
 const propsDealer = {
   myId: '1',
@@ -141,6 +144,11 @@ const propsDealer = {
   minute,
   seconds,
   roundStatus: ERoundStatus.start,
+  isPlayer: true,
+  isTurnAuto: false,
+  valueConfirmedUser: null,
+  handleConfirmedUser: action('handleConfirmedUser'),
+  countPercentTask
 };
 
 const propsDealerInProgress = {
@@ -165,6 +173,11 @@ const propsDealerInProgress = {
   minute,
   seconds,
   roundStatus: ERoundStatus.start,
+  isPlayer: true,
+  isTurnAuto: false,
+  valueConfirmedUser: null,
+  handleConfirmedUser: action('handleConfirmedUser'),
+  countPercentTask
 };
 
 const propsPlayer = {
@@ -189,6 +202,11 @@ const propsPlayer = {
   minute,
   seconds,
   roundStatus: ERoundStatus.start,
+  isPlayer: true,
+  isTurnAuto: false,
+  valueConfirmedUser: null,
+  handleConfirmedUser: action('handleConfirmedUser'),
+  countPercentTask
 };
 
 storiesOf('Pages/Game', module)

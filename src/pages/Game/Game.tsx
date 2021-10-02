@@ -1,5 +1,13 @@
 import React from 'react';
-import { GameDataGame, IssuesGame, Score, Statistics } from '../../components';
+import {
+  CardsGame,
+  ConfirmedUser,
+  GameDataGame,
+  IssuesGame,
+  Score,
+  Statistics,
+} from '../../components';
+import { ERoundStatus } from '../../components/Game/game.module';
 import { EGameStatus } from '../../components/Game/game.module';
 import { GameResult } from '../../components/GameResult/GameResult';
 import { IGame } from '../pages.module';
@@ -28,6 +36,10 @@ export const Game: React.FC<IGame> = ({
   minute,
   seconds,
   handleTimeFinish,
+  isPlayer,
+  isTurnAuto,
+  valueConfirmedUser,
+  handleConfirmedUser,
   countPercentTask,
 }) => {
   if (gameStatus === EGameStatus.finished) {
@@ -56,22 +68,14 @@ export const Game: React.FC<IGame> = ({
           minute={minute}
           seconds={seconds}
           handleTimeFinish={handleTimeFinish}
-        />
-        <IssuesGame
-          isDealer={isDealer}
           handleRunRound={handleRunRound}
           handleRestartRound={handleRestartRound}
           handleNextIssye={handleNextIssye}
-          roundStatus={roundStatus}
-          issues={issues}
-          handleGameIssue={handleGameIssue}
-          cardsValues={cardsValues}
           isTimerEnable={isTimerEnable}
-          minute={minute}
-          seconds={seconds}
-          handleTimeFinish={handleTimeFinish}
         />
-        {isDealer && gameStatus === EGameStatus.inProgress && (
+        <IssuesGame issues={issues} handleGameIssue={handleGameIssue} />
+        {(!isDealer || isPlayer) && <CardsGame cardsValues={cardsValues} />}
+        {isDealer && roundStatus === ERoundStatus.finish && (
           <Statistics
             cardsValues={cardsValues}
             countPercentTask={countPercentTask}
@@ -86,6 +90,12 @@ export const Game: React.FC<IGame> = ({
           dealerId={dealerId}
         />
       </aside>
+      {valueConfirmedUser && isDealer && (
+        <ConfirmedUser
+          handleConfirmedUser={handleConfirmedUser}
+          valueConfirmedUser={valueConfirmedUser}
+        />
+      )}
     </div>
   );
 };

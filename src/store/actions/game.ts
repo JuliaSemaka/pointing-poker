@@ -4,19 +4,21 @@ import {
   ICardsValues,
   IMarksCurrentTask,
 } from '../../components/Game/game.module';
+import { IUsers } from '../../pages/pages.module';
 import {
   ADD_CARD,
   ADD_GAME,
   CHANGE_SETTINGS,
   IAction,
-  IMainState,
+  IGameState,
   SET_GAME_STATUS,
   SET_MARK_CURRENT_TASK,
   SET_ROUND_STATUS,
   SET_TITLE,
+  SET_USERS,
 } from '../store.module';
 
-export function enterTheGame(value: IMainState): IAction {
+export function enterTheGame(value: IGameState): IAction {
   return { type: ADD_GAME, payload: value };
 }
 
@@ -42,4 +44,8 @@ export function setRoundStatus(value: ERoundStatus): IAction {
 
 export function setMarksCurrentTask(value: IMarksCurrentTask[]): IAction {
   return { type: SET_MARK_CURRENT_TASK, payload: value };
+}
+
+export function setUsers(value: IUsers[]): IAction {
+  return { type: SET_USERS, payload: value };
 }

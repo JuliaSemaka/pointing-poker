@@ -44,7 +44,7 @@ export const GameSettingsForm: React.FC<
       <form className="settings" onSubmit={handleSubmit}>
         <div className="settings-item">
           <p className="text text-ruda">Scram master as player:</p>
-          <Field name="isplayer" component={Switch} />
+          <Field name="isPlayer" component={Switch} />
         </div>
         <div className="settings-item">
           <p className="text text-ruda">Changing card in round end:</p>
@@ -110,15 +110,15 @@ export const GameSettingsForm: React.FC<
       <div className="settings-item-cards">
         <p className="text text-ruda">Add card values:</p>
         <div className="lobby-item__wrap">
-          {cardsValues.map((item, index) => (
+          {cardsValues.map(({ number, scoreType }, index) => (
             <GameCard
-              key={index}
-              index={index}
+              key={number}
               isEdit={true}
-              scoreType={item.scoreType}
-              number={item.number}
+              scoreType={scoreType}
+              number={number}
               handleEditCard={handleEditCard}
               handleDeleteCard={handleDeleteCard}
+              cardsValues={cardsValues}
             />
           ))}
           {addCard && (
@@ -127,6 +127,7 @@ export const GameSettingsForm: React.FC<
               isEdit={true}
               setAddCard={setAddCard}
               isNewCard={true}
+              cardsValues={cardsValues}
             />
           )}
           <GameCard isAddCard={true} handleAddCard={() => setAddCard(true)} />

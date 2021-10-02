@@ -21,11 +21,12 @@ export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
       {chatMessage.map(({ idUser, message }, index) => (
         <div className="chat-line" key={index}>
           <MemberCard
-            firstName={members.find(({id}) => id === idUser)?.firstName}
-            lastName={members.find(({id}) => id === idUser)?.lastName}
-            position={members.find(({id}) => id === idUser)?.jobTitle}
-            isRemove={members.find(({id}) => id === idUser)?.id !== dealerId}
-            isMyCard={members.find(({id}) => id === idUser)?.id === myId}
+            firstName={members.find(({ id }) => id === idUser)?.firstName}
+            lastName={members.find(({ id }) => id === idUser)?.lastName}
+            position={members.find(({ id }) => id === idUser)?.jobTitle}
+            image={members.find(({ id }) => id === idUser)?.image}
+            isRemove={members.find(({ id }) => id === idUser)?.id !== dealerId}
+            isMyCard={members.find(({ id }) => id === idUser)?.id === myId}
             handleRemoveMember={handleRemoveMember}
             isSmall={true}
           />

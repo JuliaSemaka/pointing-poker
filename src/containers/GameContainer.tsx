@@ -1,15 +1,20 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Spinners } from '../components';
 
 import { EGameStatus, ERoundStatus } from '../components/Game/game.module';
 import { Game } from '../pages';
+import { IUsers } from '../pages/pages.module';
+import { confirmedNewUser } from '../store/actions/main';
 import { IReducer } from '../store/store.module';
 
 export const GameContainer: React.FC = () => {
   const history = useHistory();
-  const { socket, myId } = useSelector((state: IReducer) => state.main);
+  const dispatch = useDispatch();
+  const { socket, myId, confirmedUser, denied } = useSelector(
+    (state: IReducer) => state.main
+  );
   const {
     cards,
     delUser,
@@ -23,13 +28,26 @@ export const GameContainer: React.FC = () => {
     tasks,
     users,
   } = useSelector((state: IReducer) => state.game);
+
   useEffect(() => {
     if (gameStatus === EGameStatus.created) {
       history.push('/lobby');
-    } else if (gameStatus === EGameStatus.closed) {
+    } else if (!gameStatus || gameStatus === EGameStatus.closed) {
       history.push('/');
     }
   }, [gameStatus]);
+
+  const handleConfirmedUser = (value: boolean) => {
+    if (value) {
+      const userData = { ...confirmedUser, confirmed: true };
+      socket!.send(JSON.stringify(userData));
+      dispatch(confirmedNewUser(null));
+    } else {
+      const userData = { ...confirmedUser, method: 'set-denied' };
+      socket!.send(JSON.stringify(userData));
+      dispatch(confirmedNewUser(null));
+    }
+  };
 
   if (!id) {
     return (
@@ -39,7 +57,7 @@ export const GameContainer: React.FC = () => {
     );
   }
 
-  const { isTimerEnable, minute, seconds } = settings;
+  const { isTimerEnable, minute, seconds, isPlayer, isTurnAuto } = settings;
 
   const testFunc = () => {
     console.log(1);
@@ -88,6 +106,15 @@ export const GameContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
+  const handleGameExit = () => {
+    const data = {
+      id,
+      exitUserId: myId,
+      method: 'exit-from-game',
+    };
+    socket!.send(JSON.stringify(data));
+  };
+
   const countPercentTask = (number: string | null): string | undefined => {
     if (!marksCurrentTask.length) {
       return;
@@ -107,7 +134,7 @@ export const GameContainer: React.FC = () => {
     title,
     dealerData: users.find(({ id }) => id === dealerId)!,
     handleGameStopGame,
-    handleGameExit: testFunc,
+    handleGameExit,
     handleRunRound,
     handleRestartRound,
     handleNextIssye: testFunc,
@@ -122,6 +149,10 @@ export const GameContainer: React.FC = () => {
     minute,
     seconds,
     handleTimeFinish,
+    isPlayer,
+    isTurnAuto,
+    valueConfirmedUser: confirmedUser,
+    handleConfirmedUser,
     countPercentTask,
   };
 

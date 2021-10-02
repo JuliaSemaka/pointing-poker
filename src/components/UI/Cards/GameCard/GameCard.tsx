@@ -14,7 +14,6 @@ export const GameCard: React.FC<IGameCard> = ({
   isAddCard = false,
   number = null,
   scoreType = null,
-  index,
   isEdit = false,
   isCheck = false,
   handleEditCard,
@@ -22,26 +21,36 @@ export const GameCard: React.FC<IGameCard> = ({
   handleAddCard,
   setAddCard,
   isNewCard,
+  cardsValues,
 }) => {
   const [editCard, setEditCard] = useState(isNewCard ?? false);
   const [numberCard, setNumberCard] = useState(number || 'Unknown');
+  const [isRepeat, setIsRepeat] = useState(false);
 
   const saveChange = () => {
-    if (index !== undefined) {
-      handleEditCard!(numberCard, index);
+    if (
+      !cardsValues!.some((item) => item.number === numberCard) ||
+      numberCard === number
+    ) {
+      if (number !== null) {
+        handleEditCard!(numberCard, number!);
+      } else {
+        handleEditCard!(numberCard);
+      }
+      setEditCard(false);
+      setIsRepeat(false);
+      if (setAddCard) {
+        setAddCard(false);
+      }
     } else {
-      handleEditCard!(numberCard);
-    }
-    setEditCard(false);
-    if (setAddCard) {
-      setAddCard(false);
+      setIsRepeat(true);
     }
   };
   const deleteCard = () => {
     if (setAddCard) {
       setAddCard(false);
     } else {
-      handleDeleteCard!(index!);
+      handleDeleteCard!(number!);
     }
   };
 
@@ -96,6 +105,11 @@ export const GameCard: React.FC<IGameCard> = ({
           setTitleGame={setNumberCard}
           styles={ERenderFieldType.card}
         />
+      )}
+      {isRepeat && (
+        <p className="text text-small text-error card-repeat">
+          Card already exists
+        </p>
       )}
       {scoreType ? (
         <div className="text text-ruda text-ruda-big game-card__scote-type">

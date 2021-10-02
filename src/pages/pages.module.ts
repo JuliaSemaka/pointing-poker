@@ -18,6 +18,8 @@ export interface IUsers {
   jobTitle: string;
   image: string | null;
   role: string;
+  confirmed?: boolean;
+  myId?: string;
 }
 
 export interface IGame {
@@ -42,6 +44,10 @@ export interface IGame {
   isTimerEnable: boolean;
   minute: string | null;
   seconds: string | null;
+  isPlayer: boolean;
+  isTurnAuto: boolean;
+  valueConfirmedUser: IUsers | null;
+  handleConfirmedUser: (value: boolean) => void;
   countPercentTask: (value: string | null) => string | undefined;
 }
 
@@ -71,12 +77,12 @@ export interface ILobby {
   editTitle: boolean;
   setEditTitle: React.Dispatch<React.SetStateAction<boolean>>;
   handleEditTitle: (value: string) => void;
-  handleDeleteCard?: (index: number) => void;
+  handleDeleteCard?: (number: string) => void;
   handleStartGame: () => void;
   handleCancelGame: () => void;
   handleExit: () => void;
   cards?: ICardsValues[];
-  handleEditCard: (value: string, index?: number) => void;
+  handleEditCard: (value: string, number?: string) => void;
   issues: IIssue[];
   handleIssue: (value: EHandleIssue) => void;
   handleRemoveMember: () => void;
