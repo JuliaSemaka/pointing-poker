@@ -2,7 +2,22 @@ import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { IssuesGame } from './Issues';
+import { GameResult } from './GameResult';
+
+const countPercentTask = (number: string | null): string | undefined => {
+  return;
+};
+
+const cardsValues = [
+  {
+    scoreType: 'sp',
+    number: '6',
+  },
+  {
+    scoreType: 'sp',
+    number: '12',
+  },
+];
 
 const issues = [
   {
@@ -32,16 +47,19 @@ const issues = [
 ];
 
 export default {
-  title: 'UI Components/Game-Issues',
-  component: IssuesGame,
-} as ComponentMeta<typeof IssuesGame>;
+  title: 'UI Components/Game-GameResult',
+  component: GameResult,
+} as ComponentMeta<typeof GameResult>;
 
-const Template: ComponentStory<typeof IssuesGame> = (args) => (
-  <IssuesGame {...args} />
+const Template: ComponentStory<typeof GameResult> = (args) => (
+  <GameResult {...args} />
 );
 
-export const DefaultIssues = Template.bind({});
-DefaultIssues.args = {
+export const DefaultGameResult = Template.bind({});
+DefaultGameResult.args = {
+  cardsValues,
+  title: 'Spring 23 planning (issues 13, 533, 5623, 3252, 6623, ...)',
   issues,
   handleGameIssue: action('handleGameIssue'),
+  countPercentTask,
 };

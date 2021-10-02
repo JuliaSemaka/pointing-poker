@@ -10,6 +10,10 @@ import { Statistics } from './Statistics';
 
 const reducer = combineReducers({ form: formReducer });
 
+const countPercentTask = (number: string | null): string | undefined => {
+  return;
+};
+
 const propsDefault = {
   cardsValues: [
     {
@@ -21,18 +25,12 @@ const propsDefault = {
       number: '12',
     },
   ],
-  marksCurrentTask: [
-    {
-      idUser: '1',
-      mark: '12',
-      scoreType: 'sp',
-    },
-  ],
+  countPercentTask,
 };
 
 storiesOf('UI Components/Game-Statistics', module)
   .addDecorator((story) => <MemoryRouter>{story()}</MemoryRouter>)
-  .add('InputTextBigWithDefaultValue', () => (
+  .add('StatisticsDefaultValue', () => (
     <Provider store={createStore(reducer)}>
       <Statistics {...propsDefault} />
     </Provider>

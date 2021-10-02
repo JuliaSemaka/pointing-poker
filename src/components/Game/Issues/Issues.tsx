@@ -5,7 +5,10 @@ import { IIssuesGame } from '../game.module';
 
 import './Issues.scss';
 
-export const IssuesGame: React.FC<IIssuesGame> = ({ issues, handleGameIssue }) => {
+export const IssuesGame: React.FC<IIssuesGame> = ({
+  issues,
+  handleGameIssue,
+}) => {
   return (
     <div className="game-item">
       <div className="game-item__row game-item__issues">

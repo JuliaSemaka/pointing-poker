@@ -8,6 +8,8 @@ import {
   Statistics,
 } from '../../components';
 import { ERoundStatus } from '../../components/Game/game.module';
+import { EGameStatus } from '../../components/Game/game.module';
+import { GameResult } from '../../components/GameResult/GameResult';
 import { IGame } from '../pages.module';
 
 import './Game.scss';
@@ -38,49 +40,64 @@ export const Game: React.FC<IGame> = ({
   isTurnAuto,
   valueConfirmedUser,
   handleConfirmedUser,
-}) => (
-  <div className="game wrapper">
-    <main className="game-main">
-      <GameDataGame
-        myId={myId}
-        isDealer={isDealer}
+  countPercentTask,
+}) => {
+  if (gameStatus === EGameStatus.finished) {
+    return (
+      <GameResult
         title={title}
-        dealerData={dealerData}
-        handleGameStopGame={handleGameStopGame}
-        handleGameExit={handleGameExit}
-        roundStatus={roundStatus}
-        minute={minute}
-        seconds={seconds}
-        handleTimeFinish={handleTimeFinish}
-        handleRunRound={handleRunRound}
-        handleRestartRound={handleRestartRound}
-        handleNextIssye={handleNextIssye}
-        isTimerEnable={isTimerEnable}
+        issues={issues}
+        handleGameIssue={handleGameIssue}
+        cardsValues={cardsValues}
+        countPercentTask={countPercentTask}
       />
-      <IssuesGame issues={issues} handleGameIssue={handleGameIssue} />
-      {(!isDealer || isPlayer) && <CardsGame cardsValues={cardsValues} />}
-      {isDealer && roundStatus === ERoundStatus.finish && (
-        <Statistics
-          cardsValues={cardsValues}
+    );
+  }
+
+  return (
+    <div className="game wrapper">
+      <main className="game-main">
+        <GameDataGame
+          myId={myId}
+          isDealer={isDealer}
+          title={title}
+          dealerData={dealerData}
+          handleGameStopGame={handleGameStopGame}
+          handleGameExit={handleGameExit}
+          roundStatus={roundStatus}
+          minute={minute}
+          seconds={seconds}
+          handleTimeFinish={handleTimeFinish}
+          handleRunRound={handleRunRound}
+          handleRestartRound={handleRestartRound}
+          handleNextIssye={handleNextIssye}
+          isTimerEnable={isTimerEnable}
+        />
+        <IssuesGame issues={issues} handleGameIssue={handleGameIssue} />
+        {(!isDealer || isPlayer) && <CardsGame cardsValues={cardsValues} />}
+        {isDealer && roundStatus === ERoundStatus.finish && (
+          <Statistics
+            cardsValues={cardsValues}
+            countPercentTask={countPercentTask}
+          />
+        )}
+      </main>
+      <aside className="game-score">
+        <Score
+          members={members}
           marksCurrentTask={marksCurrentTask}
+          myId={myId}
+          dealerId={dealerId}
+        />
+      </aside>
+      {valueConfirmedUser && isDealer && (
+        <ConfirmedUser
+          handleConfirmedUser={handleConfirmedUser}
+          valueConfirmedUser={valueConfirmedUser}
         />
       )}
-    </main>
-    <aside className="game-score">
-      <Score
-        members={members}
-        marksCurrentTask={marksCurrentTask}
-        myId={myId}
-        dealerId={dealerId}
-      />
-    </aside>
-    {valueConfirmedUser && isDealer && (
-      <ConfirmedUser
-        handleConfirmedUser={handleConfirmedUser}
-        valueConfirmedUser={valueConfirmedUser}
-      />
-    )}
-  </div>
-);
+    </div>
+  );
+};
 
 export default Game;

@@ -74,6 +74,7 @@ export enum ETypeCard {
   normal = 'normal',
   add = 'add',
   remove = 'remove',
+  none = 'none',
 }
 
 export interface IIssueCard {

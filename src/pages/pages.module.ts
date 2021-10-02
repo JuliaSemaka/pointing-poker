@@ -48,6 +48,7 @@ export interface IGame {
   isTurnAuto: boolean;
   valueConfirmedUser: IUsers | null;
   handleConfirmedUser: (value: boolean) => void;
+  countPercentTask: (value: string | null) => string | undefined;
 }
 
 export interface IInitialSettings {
