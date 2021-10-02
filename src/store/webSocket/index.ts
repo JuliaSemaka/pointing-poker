@@ -18,7 +18,7 @@ export const useWebSocket = () => {
 
   useEffect(() => {
     const socket = new WebSocket('ws://obscure-wave-90492.herokuapp.com/');
-    // const socket = new WebSocket('ws://localhost:5000/');
+    // const socket = new WebSocket('ws://localhost:5100/');
     dispatch(addWebSocket(socket));
     socket.onopen = () => {
       console.log('Подключение установлено');
@@ -36,8 +36,6 @@ export const useWebSocket = () => {
               dispatch(addCard(data.cards));
               break;
             case 'add-user':
-              console.log(data);
-
               if ('confirmed' in data && data.confirmed === false) {
                 dispatch(confirmedNewUser(data));
               } else {
