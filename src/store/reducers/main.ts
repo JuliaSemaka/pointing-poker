@@ -6,6 +6,7 @@ import {
   IAction,
   IMainState,
   SET_DENIED,
+  THERE_ID,
 } from '../store.module';
 
 const defaultState = {
@@ -13,6 +14,7 @@ const defaultState = {
   myId: null,
   confirmedUser: null,
   denied: null,
+  thereId: null,
 };
 
 export const main = (
@@ -28,6 +30,8 @@ export const main = (
       return { ...state, confirmedUser: action.payload };
     case SET_DENIED:
       return { ...state, denied: action.payload };
+    case THERE_ID:
+      return { ...state, thereId: action.payload };
     default:
       return state;
   }

@@ -11,14 +11,19 @@ import {
   setUsers,
   changeSettings,
 } from '../actions/game';
-import { addWebSocket, confirmedNewUser, setDenied } from '../actions/main';
+import {
+  addWebSocket,
+  confirmedNewUser,
+  setDenied,
+  setThereId,
+} from '../actions/main';
 
 export const useWebSocket = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socket = new WebSocket('ws://obscure-wave-90492.herokuapp.com/');
-    // const socket = new WebSocket('ws://localhost:5100/');
+    // const socket = new WebSocket('ws://obscure-wave-90492.herokuapp.com/');
+    const socket = new WebSocket('ws://localhost:5100/');
     dispatch(addWebSocket(socket));
     socket.onopen = () => {
       console.log('Подключение установлено');
@@ -59,6 +64,10 @@ export const useWebSocket = () => {
               break;
             case 'set-denied':
               dispatch(setDenied(data.denied));
+              break;
+            case 'there-id':
+              console.log(data);
+              dispatch(setThereId(data.thereId));
               break;
             //     case 'add-user':
             //       console.log('userId: ', userId);

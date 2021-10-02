@@ -18,6 +18,7 @@ const isValidId: ValidationFunc<any> = (value) =>
 const MainForm: React.FC = ({
   handleSubmit,
   handleStartGame,
+  thereIsId,
 }: any): JSX.Element => {
   return (
     <div className="main-page-wrapper">
@@ -57,6 +58,11 @@ const MainForm: React.FC = ({
               handleClick={handleSubmit}
               isDisabled={false}
             />
+            {!thereIsId && (
+              <div className="text text-error main-page-connect-to-lobby__error">
+                There are no games with this Id
+              </div>
+            )}
           </form>
         </div>
       </div>

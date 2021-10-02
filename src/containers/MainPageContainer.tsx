@@ -4,14 +4,14 @@ import { useHistory } from 'react-router';
 import { reset } from 'redux-form';
 import ConnectToLobby from '../components/ConnectToLobby/ConnectToLobby';
 import { IReducer } from '../store/store.module';
-import { addMyId, setDenied } from '../store/actions/main';
+import { addMyId, setDenied, setThereId } from '../store/actions/main';
 import { MainPage } from '../pages';
 import { ERole } from '../components/components.module';
 import { EGameStatus } from '../components/Game/game.module';
 import { Spinners } from '../components';
 
 export const MainPageContainer: React.FC = () => {
-  const { socket, denied, myId, confirmedUser } = useSelector(
+  const { socket, denied, myId, confirmedUser, thereId } = useSelector(
     (state: IReducer) => state.main
   );
   const form = useSelector((state: IReducer) => state.form);
@@ -24,6 +24,7 @@ export const MainPageContainer: React.FC = () => {
   const [avatar, setAvatar] = useState('');
   const [isLoader, setIsLoader] = useState(false);
   const [isDeniedAccess, setDeniedAccess] = useState(false);
+  const [thereIsId, setThereIsId] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,6 +43,19 @@ export const MainPageContainer: React.FC = () => {
       setDeniedAccess(true);
     }
   }, [denied]);
+
+  useEffect(() => {
+    if (thereId) {
+      setIsDealler(false);
+      setGameId(form.connectToLobby.values.lobbyId);
+      handleCloseModal();
+      dispatch(setThereId(null));
+      setThereIsId(true);
+    } else if (thereId === false) {
+      setThereIsId(false);
+      dispatch(setThereId(null));
+    }
+  }, [thereId]);
 
   if (isDeniedAccess) {
     return (
@@ -96,14 +110,12 @@ export const MainPageContainer: React.FC = () => {
     handleCloseModal();
   };
   const handleConnectToLobby = () => {
-    setIsDealler(false);
-    setGameId(form.connectToLobby.values.lobbyId);
-    handleCloseModal();
-  };
-
-  const props = {
-    onSubmit: handleConnectToLobby,
-    handleStartGame,
+    console.log(form.connectToLobby.values.lobbyId);
+    const data = {
+      id: form.connectToLobby.values.lobbyId,
+      method: 'there-id',
+    };
+    socket!.send(JSON.stringify(data));
   };
 
   const handleClickSwitch = () => {
@@ -139,13 +151,19 @@ export const MainPageContainer: React.FC = () => {
     console.log('Форма отправлена');
   };
 
+  const props = {
+    onSubmit: handleConnectToLobby,
+    handleStartGame,
+    thereIsId,
+  };
+
   const propsModal = {
     title: 'Connect to lobby',
-    handleCloseModal: handleCloseModal,
+    handleCloseModal,
     onSubmit: handleSubmit,
-    handleClickSwitch: handleClickSwitch,
-    handleUploadImage: handleUploadImage,
-    avatar: avatar,
+    handleClickSwitch,
+    handleUploadImage,
+    avatar,
     isDealler,
   };
 

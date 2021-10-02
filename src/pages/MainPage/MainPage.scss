@@ -40,9 +40,15 @@
   }
 
   &-connect-to-lobby {
+    position: relative;
     display: flex;
     align-items: flex-start;
     flex-direction: row;
     padding-bottom: 5rem;
+
+    &__error {
+      position: absolute;
+      top: 50px;
+    }
   }
 }
