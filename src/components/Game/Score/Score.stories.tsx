@@ -67,6 +67,7 @@ const propsDefault = {
   marksCurrentTask,
   myId: '1',
   dealerId: '1',
+  isPlayer: true,
 };
 
 storiesOf('UI Components/Game-Score', module)

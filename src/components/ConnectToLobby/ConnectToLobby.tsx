@@ -1,15 +1,15 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 import { Button } from '../UI/Button/Button';
 import { RenderField, ModalWindow, Switch, Avatar } from '..';
 import { EButtonStyle, EButtonType } from '../UI/ui.module';
 
-import './ConnectToLobby.scss'
+import './ConnectToLobby.scss';
 
-const isRequired = (value: boolean) => value ? undefined : 'Required'
+const isRequired = (value: boolean) => (value ? undefined : 'Required');
 const maxLength = (max: number) => (value: string) =>
-  value && value.length > max ? `Must be ${max} characters or less` : undefined
-const maxLength15 = maxLength(15)
+  value && value.length > max ? `Must be ${max} characters or less` : undefined;
+const maxLength15 = maxLength(15);
 
 const ConnectToLobbyForm = ({ ...props }: any) => {
   const {
@@ -19,41 +19,41 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
     handleClickSwitch,
     handleUploadImage,
     avatar,
-    isDealler
+    isDealler,
   } = props;
 
-  const gameTitle = isDealler ? <div className="modal-connect-lobby-job">
-    <label htmlFor="title">
-      <span className="text text-bold">Title:</span>
-      <Field
-        name="title"
-        component={RenderField}
-        placeholder="Type your title"
-      />
-    </label>
-  </div> : null;
+  const gameTitle = isDealler ? (
+    <div className="modal-connect-lobby-job">
+      <label htmlFor="title" className="modal-connect-lobby__row">
+        <span className="text text-bold">Title:</span>
+        <Field
+          name="title"
+          component={RenderField}
+          placeholder="Type your title"
+        />
+      </label>
+    </div>
+  ) : null;
 
   return (
     <ModalWindow handleClick={handleCloseModal}>
       <form onSubmit={handleSubmit} className="modal-connect-lobby">
-
         <div className="modal-connect-lobby-title">
-          <h3 className="text text-title">
-            {title}
-          </h3>
-          <label htmlFor="switch">
-            <span className="text text-bold">Connect as Observer</span>
-            <Field
-              name="switch"
-              id="switch"
-              handleClick={handleClickSwitch}
-              component={Switch}
-            />
-          </label>
+          <h3 className="text text-title">{title}</h3>
+          {!isDealler && (
+            <label htmlFor="switch">
+              <span className="text text-bold">Connect as Observer</span>
+              <Field
+                name="switch"
+                handleClick={handleClickSwitch}
+                component={Switch}
+              />
+            </label>
+          )}
         </div>
 
         <div className="modal-connect-lobby-name">
-          <label htmlFor="firstName">
+          <label htmlFor="firstName" className="modal-connect-lobby__row">
             <span className="text text-bold">Your first name:</span>
             <Field
               name="firstName"
@@ -65,7 +65,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
         </div>
 
         <div className="modal-connect-lobby-last-name">
-          <label htmlFor="lastName">
+          <label htmlFor="lastName" className="modal-connect-lobby__row">
             <span className="text text-bold">Your last name:</span>
             <Field
               name="lastName"
@@ -77,7 +77,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
         </div>
 
         <div className="modal-connect-lobby-job">
-          <label htmlFor="jobPosition">
+          <label htmlFor="jobPosition" className="modal-connect-lobby__row">
             <span className="text text-bold">Your job position:</span>
             <Field
               name="jobPosition"
@@ -91,17 +91,15 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
 
         <div className="modal-connect-lobby-image">
           <span className="text text-bold">Image:</span>
-          <div className="modal-connect-lobby-file">
+          <div className="modal-connect-lobby-file modal-connect-lobby__row">
             <Field
               name="image"
               component={RenderField}
               onChange={handleUploadImage}
               type="file"
             />
+            <Avatar image={avatar} />
           </div>
-        </div>
-        <div className="modal-connect-lobby-avatar">
-          <Avatar image={avatar} />
         </div>
         <div className="modal-connect-lobby-buttons">
           <Button
@@ -119,7 +117,9 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
         </div>
       </form>
     </ModalWindow>
-  )
-}
-export const ConnectToLobby = reduxForm({ form: 'connectToLobbyModal' })(ConnectToLobbyForm)
-export default ConnectToLobby
+  );
+};
+export const ConnectToLobby = reduxForm({ form: 'connectToLobbyModal' })(
+  ConnectToLobbyForm
+);
+export default ConnectToLobby;

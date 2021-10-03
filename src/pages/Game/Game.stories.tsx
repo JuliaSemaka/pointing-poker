@@ -148,7 +148,8 @@ const propsDealer = {
   isTurnAuto: false,
   valueConfirmedUser: null,
   handleConfirmedUser: action('handleConfirmedUser'),
-  countPercentTask
+  countPercentTask,
+  handleClickCard: action('handleClickCard'),
 };
 
 const propsDealerInProgress = {
@@ -177,7 +178,8 @@ const propsDealerInProgress = {
   isTurnAuto: false,
   valueConfirmedUser: null,
   handleConfirmedUser: action('handleConfirmedUser'),
-  countPercentTask
+  countPercentTask,
+  handleClickCard: action('handleClickCard'),
 };
 
 const propsPlayer = {
@@ -206,7 +208,8 @@ const propsPlayer = {
   isTurnAuto: false,
   valueConfirmedUser: null,
   handleConfirmedUser: action('handleConfirmedUser'),
-  countPercentTask
+  countPercentTask,
+  handleClickCard: action('handleClickCard'),
 };
 
 storiesOf('Pages/Game', module)

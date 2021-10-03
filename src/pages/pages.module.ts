@@ -49,6 +49,7 @@ export interface IGame {
   valueConfirmedUser: IUsers | null;
   handleConfirmedUser: (value: boolean) => void;
   countPercentTask: (value: string | null) => string | undefined;
+  handleClickCard: (number: string,scoreType: string | null) => void;
 }
 
 export interface IInitialSettings {

@@ -49,7 +49,7 @@ export const RenderField: React.FC<IRenderField> = ({
         placeholder={placeholder}
       />
       {meta!.touched && meta!.error && (
-        <p className="text text-error">{meta!.error}</p>
+        <p className="text text-error input-error">{meta!.error}</p>
       )}
     </>
   );

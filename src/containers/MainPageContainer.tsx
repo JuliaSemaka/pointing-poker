@@ -47,13 +47,23 @@ export const MainPageContainer: React.FC = () => {
   useEffect(() => {
     if (thereId) {
       setIsDealler(false);
-      setGameId(form.connectToLobby.values.lobbyId);
+      setGameId(form.connectToLobby?.values.lobbyId);
       handleCloseModal();
-      dispatch(setThereId(null));
+      const data = {
+        id: form.connectToLobby.values.lobbyId,
+        thereId: null,
+        method: 'there-id',
+      };
+      socket!.send(JSON.stringify(data));
       setThereIsId(true);
     } else if (thereId === false) {
       setThereIsId(false);
-      dispatch(setThereId(null));
+      const data = {
+        id: form.connectToLobby.values.lobbyId,
+        thereId: null,
+        method: 'there-id',
+      };
+      socket!.send(JSON.stringify(data));
     }
   }, [thereId]);
 
@@ -97,7 +107,7 @@ export const MainPageContainer: React.FC = () => {
       lastName: lastName,
       jobTitle: jobPosition,
       image: avatar,
-      player: isDealler ? ERole.dealer : ERole.player,
+      player: isDealler ? ERole.dealer : isObserver ? ERole.observer : ERole.player,
       title: title,
       id: gameId,
       method: isDealler ? 'connection' : 'add-user',

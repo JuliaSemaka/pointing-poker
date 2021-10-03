@@ -65,8 +65,13 @@ export interface IScore {
   members: IUsers[];
   myId: string;
   dealerId: string;
+  isPlayer: boolean;
 }
 
 export interface ICardsGame {
   cardsValues: ICardsValues[];
+  handleClickCard: (number: string,scoreType: string | null) => void;
+  roundStatus: ERoundStatus;
+  marksCurrentTask: IMarksCurrentTask[];
+  myId: string;
 }

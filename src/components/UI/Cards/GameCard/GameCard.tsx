@@ -9,6 +9,7 @@ import AddCard from '../../../../assets/images/add-card.jpg';
 import Check from '../../../../assets/images/check.svg';
 import '../Cards.scss';
 import { RenderField } from '../../..';
+import { ERoundStatus } from '../../../Game/game.module';
 
 export const GameCard: React.FC<IGameCard> = ({
   isAddCard = false,
@@ -22,6 +23,9 @@ export const GameCard: React.FC<IGameCard> = ({
   setAddCard,
   isNewCard,
   cardsValues,
+  handleClickCard,
+  roundStatus,
+  isChecked,
 }) => {
   const [editCard, setEditCard] = useState(isNewCard ?? false);
   const [numberCard, setNumberCard] = useState(number || 'Unknown');
@@ -46,11 +50,18 @@ export const GameCard: React.FC<IGameCard> = ({
       setIsRepeat(true);
     }
   };
+
   const deleteCard = () => {
     if (setAddCard) {
       setAddCard(false);
     } else {
       handleDeleteCard!(number!);
+    }
+  };
+
+  const handleClick = () => {
+    if (handleClickCard && roundStatus === ERoundStatus.inProgress) {
+      handleClickCard(number!, scoreType);
     }
   };
 
@@ -63,7 +74,14 @@ export const GameCard: React.FC<IGameCard> = ({
   }
 
   return (
-    <div className="game-card">
+    <div
+      className={`game-card ${
+        handleClickCard &&
+        roundStatus === ERoundStatus.inProgress &&
+        'game-card__click'
+      } ${isChecked && 'game-card__checked'}`}
+      onClick={handleClick}
+    >
       {isEdit && !editCard && (
         <img
           className="game-card__edit card-cred"

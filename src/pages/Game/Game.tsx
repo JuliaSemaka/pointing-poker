@@ -41,6 +41,7 @@ export const Game: React.FC<IGame> = ({
   valueConfirmedUser,
   handleConfirmedUser,
   countPercentTask,
+  handleClickCard,
 }) => {
   if (gameStatus === EGameStatus.finished) {
     return (
@@ -74,7 +75,15 @@ export const Game: React.FC<IGame> = ({
           isTimerEnable={isTimerEnable}
         />
         <IssuesGame issues={issues} handleGameIssue={handleGameIssue} />
-        {(!isDealer || isPlayer) && <CardsGame cardsValues={cardsValues} />}
+        {(!isDealer || isPlayer) && (
+          <CardsGame
+            cardsValues={cardsValues}
+            handleClickCard={handleClickCard}
+            roundStatus={roundStatus}
+            marksCurrentTask={marksCurrentTask}
+            myId={myId}
+          />
+        )}
         {isDealer && roundStatus === ERoundStatus.finish && (
           <Statistics
             cardsValues={cardsValues}
@@ -88,6 +97,7 @@ export const Game: React.FC<IGame> = ({
           marksCurrentTask={marksCurrentTask}
           myId={myId}
           dealerId={dealerId}
+          isPlayer={isPlayer}
         />
       </aside>
       {valueConfirmedUser && isDealer && (

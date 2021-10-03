@@ -3,7 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Spinners } from '../components';
 
-import { EGameStatus, ERoundStatus } from '../components/Game/game.module';
+import {
+  EGameStatus,
+  ERoundStatus,
+  IMarksCurrentTask,
+} from '../components/Game/game.module';
 import { Game } from '../pages';
 import { IUsers } from '../pages/pages.module';
 import { confirmedNewUser } from '../store/actions/main';
@@ -100,7 +104,7 @@ export const GameContainer: React.FC = () => {
   const handleTimeFinish = () => {
     const data = {
       id,
-      gameStatus: ERoundStatus.finish,
+      roundStatus: ERoundStatus.finish,
       method: 'set-round-status',
     };
     socket!.send(JSON.stringify(data));
@@ -125,6 +129,30 @@ export const GameContainer: React.FC = () => {
         marksCurrentTask.length) *
       100
     ).toFixed(1)}%`;
+  };
+
+  const handleClickCard = (number: string, scoreType: string | null) => {
+    const mark: IMarksCurrentTask = {
+      idUser: myId!,
+      mark: number,
+      scoreType,
+    };
+    const ind = marksCurrentTask.findIndex((item) => item.idUser === myId);
+    let newArr: IMarksCurrentTask[] = [];
+    if (ind === -1) {
+      newArr = marksCurrentTask.concat([mark]);
+    } else {
+      newArr = marksCurrentTask.map((item, index) =>
+        index === ind ? mark : item
+      );
+    }
+    const data = {
+      id,
+      marksCurrentTask: newArr,
+      method: 'set-mark-current-task',
+    };
+
+    socket!.send(JSON.stringify(data));
   };
 
   const propsGme = {
@@ -154,6 +182,7 @@ export const GameContainer: React.FC = () => {
     valueConfirmedUser: confirmedUser,
     handleConfirmedUser,
     countPercentTask,
+    handleClickCard,
   };
 
   return <Game {...propsGme} />;
