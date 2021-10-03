@@ -5,37 +5,34 @@ import { Button } from '../UI/Button/Button';
 import { ModalWindow } from '../UI/ModalWindow/ModalWindow';
 import { RenderField } from '../UI/RenderField/RenderField';
 import { Select } from '../UI/Select/Select';
-import { EButtonStyle } from '../UI/ui.module';
+import { EButtonStyle, EButtonType } from '../UI/ui.module';
 import './CreateIssueModal.scss';
 
 export interface ICreateIssueModal {
-  handleCloseModal: (value: boolean) => void;
+  handleCloseModal: (event?: boolean | React.MouseEvent<Element, MouseEvent>) => void;
+  handleSubmit?: () => void;
+  submitting?: boolean;
 }
 
-const required = (value: undefined | string) =>
+const isRequired = (value: undefined | string) =>
   value ? undefined : 'Required';
 
 const CreateIssueModal: React.FC<
   ICreateIssueModal & InjectedFormProps<any, ICreateIssueModal>
-> = ({ handleCloseModal, handleSubmit, submitting, pristine }) => {
+> = ({ handleCloseModal, handleSubmit, submitting }) => {
   const arrayOptions = ['Low', 'Middle', 'Hight'];
-  const handleOnSubmit = () => {
-
-    handleSubmit
-    handleCloseModal
-  }
 
   return (
     <ModalWindow handleClick={handleCloseModal}>
-      <form className="create-issue" onSubmit={handleSubmit} >
+      <form className="create-issue" onSubmit={handleSubmit}>
         <h2 className="text text-title create-issue__title">Create Issue</h2>
         <div className="create-issue__row">
           <p className="text text-ruda">Title:</p>
-          <Field name="title" component={RenderField} validate={[required]} />
+          <Field name="title" component={RenderField} validate={[isRequired]} />
         </div>
         <div className="create-issue__row">
           <p className="text text-ruda">Link:</p>
-          <Field name="link" component={RenderField} validate={[required]} />
+          <Field name="link" component={RenderField} validate={[isRequired]} />
         </div>
         <div className="create-issue__row">
           <p className="text text-ruda">Priority:</p>
@@ -45,11 +42,10 @@ const CreateIssueModal: React.FC<
           <Button
             text="Yes"
             isDisabled={submitting}
-            handleClick={() => handleSubmit}
-            typeButton="submit"
+            handleClick={handleSubmit}
+            type={EButtonType.submit}
           />
           <Button
-            isDisabled={pristine || submitting}
             text="No"
             handleClick={handleCloseModal}
             style={EButtonStyle.light}

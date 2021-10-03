@@ -10,15 +10,18 @@ import { CreateIssue } from './CreateIssueModal';
 
 const reducer = combineReducers({ form: formReducer });
 
-const TestCreateIssue: React.FC = () => {
+const TestCreateIssue: React.FC<any> = (props) => {
   const [isOpened, setIsOpened] = useState(true);
 
-  function changeIsState(value: boolean) {
+  const handleCloseModal = () => {
     setIsOpened((state) => !state);
-    console.log(`Пользователь сказал: ${value}`);
   }
 
-  return <>{isOpened && <CreateIssue actionSubmit={changeIsState} />}</>;
+  const handleSubmit = (event: any) => {
+    console.log('Форма отправлена')
+  }
+
+  return <>{isOpened && <CreateIssue handleCloseModal={handleCloseModal} onSubmit={handleSubmit} />}</>;
 };
 
 storiesOf('CreateIssue', module)
