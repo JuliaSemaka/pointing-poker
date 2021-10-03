@@ -9,7 +9,6 @@ import {
   IMarksCurrentTask,
 } from '../components/Game/game.module';
 import { Game } from '../pages';
-import { IUsers } from '../pages/pages.module';
 import { confirmedNewUser } from '../store/actions/main';
 import { IReducer } from '../store/store.module';
 
