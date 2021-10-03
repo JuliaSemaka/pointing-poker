@@ -154,6 +154,19 @@
   align-items: center;
   overflow: hidden;
 
+  &__click {
+    cursor: pointer;
+
+    &:hover {
+      top: -15px;
+    }
+  }
+
+  &__checked {
+    background: #66999b6e;
+    top: -15px;
+  }
+
   &__block {
     position: absolute;
     display: flex;

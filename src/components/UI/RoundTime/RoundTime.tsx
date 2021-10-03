@@ -22,32 +22,30 @@ export const RoundTime: React.FC<IRoundTime> = ({
       setMinuteRound(+minute!);
       setSecondsRound(+seconds!);
     }
+    if (roundStatus === ERoundStatus.inProgress && minute) {
+      foo.current = setInterval(tick, 1000);
+    }
+    return () => clearInterval(foo.current);
   }, [roundStatus]);
+
+  useEffect(() => {
+    if (minuteRound === 0 && secondsRound === 0 && handleTimeFinish) {
+      clearInterval(foo.current);
+      handleTimeFinish!();
+    } else if (secondsRound === 59) {
+      setMinuteRound((prev) => prev - 1);
+    }
+  }, [secondsRound]);
 
   const tick = () => {
     setSecondsRound((prev) => {
       if (prev === 0) {
-        setMinuteRound((prev) => prev - 1);
         return 59;
       } else {
         return prev - 1;
       }
     });
   };
-
-  useEffect(() => {
-    if (minuteRound === 0 && secondsRound === 0 && handleTimeFinish) {
-      clearInterval(foo.current);
-      handleTimeFinish!();
-    }
-  }, [secondsRound]);
-
-  useEffect(() => {
-    if (roundStatus === ERoundStatus.inProgress && minute) {
-      foo.current = setInterval(tick, 1000);
-    }
-    return () => clearInterval(foo.current);
-  }, [roundStatus]);
 
   return (
     <div className="round-time">

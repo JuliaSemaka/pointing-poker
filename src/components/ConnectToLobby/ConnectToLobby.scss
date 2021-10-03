@@ -1,12 +1,23 @@
 .modal-connect-lobby {
-  max-width: 876px;
-  width: 100%;
+  width: 756px;
   height: auto;
   display: flex;
   flex-direction: column;
   gap: 3rem;
 
-  &-name, &-last-name, &-job {
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-name,
+  &-last-name,
+  &-job {
     display: flex;
     flex-direction: column;
 

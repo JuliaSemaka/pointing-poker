@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {
   Field,
   reduxForm,
-  formValueSelector,
   InjectedFormProps,
 } from 'redux-form';
 import { Button } from '../../UI/Button/Button';
