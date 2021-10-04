@@ -86,7 +86,7 @@ export interface ILobby {
   handleEditCard: (value: string, number?: string) => void;
   issues: IIssue[];
   handleIssue: (value: EHandleIssue) => void;
-  handleRemoveMember: () => void;
+  handleRemoveMember: (id: string) => void;
   handleSubmitGameSettings: (event?: React.MouseEvent) => void;
   handleChangeMinute: React.Dispatch<React.SetStateAction<string>>;
   handleChangeSeconds: React.Dispatch<React.SetStateAction<string>>;
