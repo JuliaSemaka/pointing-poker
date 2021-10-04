@@ -13,7 +13,11 @@
     margin-left: 5rem;
     z-index: 1;
     max-width: 1440px;
-    width: 94%;
+    width: 90%;
+
+    @media (max-width: 800px) {
+      width: 85%;
+    }
   }
 
   &-second-line {

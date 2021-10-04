@@ -17,12 +17,22 @@
     align-items: center;
     padding-top: 5rem;
     padding-bottom: 2.5rem;
+
+    & > img {
+      max-width: 87%;
+    }
   }
 
   &-start {
     display: flex;
     flex-direction: column;
     gap: 50px;
+
+    @media (max-width: 680px) {
+      max-width: 93%;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   &-or {
