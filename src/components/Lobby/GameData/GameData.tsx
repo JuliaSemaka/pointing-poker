@@ -79,6 +79,7 @@ export const GameDataForm: React.FC<
       <div className="scram-master">
         <p className="text text-ruda text-ruda-small">Scram master:</p>
         <MemberCard
+          id={'dealer'}
           firstName={dealerData?.firstName}
           lastName={dealerData?.lastName}
           position={dealerData?.jobTitle}

@@ -60,6 +60,7 @@ export interface IAvatar {
 }
 
 export interface IMemberCard {
+  id: string;
   firstName?: string;
   lastName?: string;
   position?: string;

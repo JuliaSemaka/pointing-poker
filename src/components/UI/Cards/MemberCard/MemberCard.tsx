@@ -6,6 +6,7 @@ import '../Cards.scss';
 import Remove from '../../../../assets/images/remove-user.svg';
 
 export const MemberCard: React.FC<IMemberCard> = ({
+  id = '',
   firstName = '',
   lastName = '',
   position = '',
@@ -38,7 +39,7 @@ export const MemberCard: React.FC<IMemberCard> = ({
           className="card-cred"
           src={Remove}
           alt="remove"
-          onClick={() => handleRemoveMember!('test')}
+          onClick={() => handleRemoveMember!(id)}
         />
       )}
     </div>

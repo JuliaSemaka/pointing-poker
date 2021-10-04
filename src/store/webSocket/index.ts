@@ -10,6 +10,7 @@ import {
   setRoundStatus,
   setUsers,
   changeSettings,
+  removePlayerFromGame,
 } from '../actions/game';
 import {
   addWebSocket,
@@ -48,6 +49,7 @@ export const useWebSocket = () => {
               }
               break;
             case 'del-user':
+              dispatch(removePlayerFromGame(data));
               console.log(data)
               break;
             case 'access-del-user':

@@ -15,6 +15,7 @@ const Template: ComponentStory<typeof MemberCard> = (args) => (
 
 export const DefaultCard = Template.bind({});
 DefaultCard.args = {
+  id: '101',
   firstName: 'Julia',
   lastName: 'Yatsko',
   position: 'lead software engeneer',

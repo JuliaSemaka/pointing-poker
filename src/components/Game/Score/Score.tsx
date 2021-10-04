@@ -45,6 +45,7 @@ export const Score: React.FC<IScore> = ({
             return (
               <MemberCard
                 key={id}
+                id={id}
                 isMyCard={myId === id}
                 firstName={firstName}
                 lastName={lastName}
@@ -66,6 +67,7 @@ export const Score: React.FC<IScore> = ({
           return (
             <MemberCard
               key={id}
+              id={id}
               isMyCard={myId === id}
               firstName={firstName}
               lastName={lastName}

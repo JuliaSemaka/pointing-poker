@@ -51,6 +51,6 @@ export function setUsers(value: IUsers[]): IAction {
   return { type: SET_USERS, payload: value };
 }
 
-export function removePlayerFromGame(value: IUsers): IAction {
+export function removePlayerFromGame(value: IUsers | null): IAction {
   return { type: REMOVE_PLAYER_FROM_GAME, payload: value };
 }

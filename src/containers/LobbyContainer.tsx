@@ -221,7 +221,7 @@ export const LobbyContainer: React.FC = () => {
       delUserId,
       method: 'del-user',
     };
-    // console.log(`Remove: ${delUserId}`)
+    console.log(`Remove: ${JSON.stringify(delUserId)}`);
     socket!.send(JSON.stringify(data));
   }
 

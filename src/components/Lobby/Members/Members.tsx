@@ -17,6 +17,7 @@ export const Members: React.FC<IMembers> = ({
       {members.map(({ jobTitle, lastName, firstName, image, id }) => (
         <MemberCard
           key={id}
+          id={id}
           firstName={firstName}
           lastName={lastName}
           position={jobTitle}

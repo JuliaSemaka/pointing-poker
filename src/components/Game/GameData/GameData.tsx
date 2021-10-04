@@ -33,6 +33,7 @@ export const GameDataGame: React.FC<IGameData> = ({
         <div className="scram-master">
           <p className="text text-ruda text-ruda-small">Scram master:</p>
           <MemberCard
+            id={id}
             firstName={firstName}
             lastName={lastName}
             position={jobTitle}

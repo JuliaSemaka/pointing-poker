@@ -21,6 +21,7 @@ export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
       {chatMessage.map(({ idUser, message }, index) => (
         <div className="chat-line" key={index}>
           <MemberCard
+            id={idUser}
             firstName={members.find(({ id }) => id === idUser)?.firstName}
             lastName={members.find(({ id }) => id === idUser)?.lastName}
             position={members.find(({ id }) => id === idUser)?.jobTitle}
