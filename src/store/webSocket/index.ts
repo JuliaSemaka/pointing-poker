@@ -47,6 +47,12 @@ export const useWebSocket = () => {
                 dispatch(enterTheGame(data));
               }
               break;
+            case 'del-user':
+              console.log(data)
+              break;
+            case 'access-del-user':
+              console.log(data)
+              break;
             case 'set-game-status':
               dispatch(setGameStatus(data.gameStatus));
               break;

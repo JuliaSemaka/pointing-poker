@@ -16,6 +16,7 @@ import {
   SET_ROUND_STATUS,
   SET_TITLE,
   SET_USERS,
+  REMOVE_PLAYER_FROM_GAME
 } from '../store.module';
 
 export function enterTheGame(value: IGameState): IAction {
@@ -48,4 +49,8 @@ export function setMarksCurrentTask(value: IMarksCurrentTask[]): IAction {
 
 export function setUsers(value: IUsers[]): IAction {
   return { type: SET_USERS, payload: value };
+}
+
+export function removePlayerFromGame(value: IUsers): IAction {
+  return { type: REMOVE_PLAYER_FROM_GAME, payload: value };
 }

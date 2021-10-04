@@ -66,7 +66,7 @@ export interface IMemberCard {
   image?: string | null;
   isMyCard?: boolean;
   isRemove?: boolean;
-  handleRemoveMember?: () => void;
+  handleRemoveMember?: (id: any) => void;
   isSmall?: boolean;
 }
 
@@ -163,7 +163,7 @@ export interface IMembers {
   myId: string;
   dealerId: string;
   members: IUsers[];
-  handleRemoveMember: () => void;
+  handleRemoveMember: (id: any) => void;
 }
 
 export interface IChat {
@@ -173,7 +173,7 @@ export interface IChat {
   onSubmit?: () => void;
   chatMessage?: IChatMessage[];
   members: IUsers[];
-  handleRemoveMember: () => void;
+  handleRemoveMember: (id: any) => void;
 }
 
 export interface IIssues {

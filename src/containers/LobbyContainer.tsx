@@ -214,6 +214,26 @@ export const LobbyContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
+  const handleRemoveMember = () => {
+    const data = {
+      id,
+      idUser: myId,
+      // delUserId,
+      method: 'del-user',
+    };
+    // console.log(`Remove: ${delUserId}`)
+    socket!.send(JSON.stringify(data));
+  }
+
+  const handleAccessRemoveMember = (idUser: any) => {
+    const data = {
+      id,
+      idUser,
+      method: 'access-del-user',
+    };
+    socket!.send(JSON.stringify(data));
+  }
+
   const propsDealer = {
     myId,
     dealerId,
@@ -234,7 +254,7 @@ export const LobbyContainer: React.FC = () => {
     handleEditCard,
     issues: tasks,
     handleIssue: funcTestParam,
-    handleRemoveMember: funcTest,
+    handleRemoveMember,
     handleSubmitGameSettings,
     handleChangeMinute,
     handleChangeSeconds,

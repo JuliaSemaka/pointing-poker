@@ -38,7 +38,7 @@ export const MemberCard: React.FC<IMemberCard> = ({
           className="card-cred"
           src={Remove}
           alt="remove"
-          onClick={handleRemoveMember}
+          onClick={() => handleRemoveMember!('test')}
         />
       )}
     </div>

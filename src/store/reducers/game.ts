@@ -10,6 +10,7 @@ import {
   SET_TITLE,
   ADD_USER_TO_LOBBY,
   SET_USERS,
+  REMOVE_PLAYER_FROM_GAME
 } from '../store.module';
 
 const defaultGame: IGameState = {} as IGameState;
@@ -34,6 +35,8 @@ export const game = (
     case SET_MARK_CURRENT_TASK:
       return { ...state, marksCurrentTask: action.payload };
     case SET_USERS:
+      return { ...state, users: action.payload };
+    case REMOVE_PLAYER_FROM_GAME:
       return { ...state, users: action.payload };
     default:
       return state;
