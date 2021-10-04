@@ -7,6 +7,7 @@ import {
   Score,
   Statistics,
 } from '../../components';
+import { ERole } from '../../components/components.module';
 import { ERoundStatus } from '../../components/Game/game.module';
 import { EGameStatus } from '../../components/Game/game.module';
 import { GameResult } from '../../components/GameResult/GameResult';
@@ -75,15 +76,18 @@ export const Game: React.FC<IGame> = ({
           isTimerEnable={isTimerEnable}
         />
         <IssuesGame issues={issues} handleGameIssue={handleGameIssue} />
-        {(!isDealer || isPlayer) && (
-          <CardsGame
-            cardsValues={cardsValues}
-            handleClickCard={handleClickCard}
-            roundStatus={roundStatus}
-            marksCurrentTask={marksCurrentTask}
-            myId={myId}
-          />
-        )}
+        {(!isDealer || isPlayer) &&
+          members.find(
+            (item) => item.id === myId && item.role !== ERole.observer
+          ) && (
+            <CardsGame
+              cardsValues={cardsValues}
+              handleClickCard={handleClickCard}
+              roundStatus={roundStatus}
+              marksCurrentTask={marksCurrentTask}
+              myId={myId}
+            />
+          )}
         {isDealer && roundStatus === ERoundStatus.finish && (
           <Statistics
             cardsValues={cardsValues}
