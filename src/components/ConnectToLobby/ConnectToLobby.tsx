@@ -52,7 +52,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
           )}
         </div>
 
-        <div className="modal-connect-lobby-name">
+        <div>
           <label htmlFor="firstName" className="modal-connect-lobby__row">
             <span className="text text-bold">Your first name:</span>
             <Field
@@ -64,7 +64,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
           </label>
         </div>
 
-        <div className="modal-connect-lobby-last-name">
+        <div>
           <label htmlFor="lastName" className="modal-connect-lobby__row">
             <span className="text text-bold">Your last name:</span>
             <Field
@@ -76,7 +76,7 @@ const ConnectToLobbyForm = ({ ...props }: any) => {
           </label>
         </div>
 
-        <div className="modal-connect-lobby-job">
+        <div>
           <label htmlFor="jobPosition" className="modal-connect-lobby__row">
             <span className="text text-bold">Your job position:</span>
             <Field

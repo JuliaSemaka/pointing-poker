@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ERenderFieldType, EType, IRenderField } from '../ui.module';
 
 import './RenderField.scss';
@@ -40,17 +40,17 @@ export const RenderField: React.FC<IRenderField> = ({
   }
 
   return (
-    <>
+    <div className={`input input-${styles}`}>
       <input
         {...input}
         type={type}
-        className={`text text-bold input input-${styles}`}
+        className={`text text-bold`}
         disabled={disabled}
         placeholder={placeholder}
       />
       {meta!.touched && meta!.error && (
         <p className="text text-error input-error">{meta!.error}</p>
       )}
-    </>
+    </div>
   );
 };
