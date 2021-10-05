@@ -222,8 +222,24 @@ export const LobbyContainer: React.FC = () => {
     setShowIssue(value!);
   };
 
-  const handelAddIssue = () => {
-    console.log('add');
+  const handelAddIssue = (props: any) => {
+    const idIssue = (+new Date()).toString(16);
+    const newIssue = {
+      ...props,
+      id: idIssue,
+      isChecked: false,
+      mark: null,
+    };
+
+    tasks.push(newIssue);
+
+    const data = {
+      id,
+      issues: tasks,
+      method: 'correct-issues',
+    };
+    socket!.send(JSON.stringify(data));
+    setShowIssue(false);
   };
 
   const propsDealer = {

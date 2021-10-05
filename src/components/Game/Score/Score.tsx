@@ -14,7 +14,7 @@ export const Score: React.FC<IScore> = ({
   isPlayer,
 }) => (
   <div className="score">
-    <div className="game-item__row">
+    <div className="score__row">
       <div className="game-item__column">
         <div className="game-item__title">
           <h3 className="text text-ruda">Score:</h3>

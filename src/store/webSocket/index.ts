@@ -10,6 +10,7 @@ import {
   setRoundStatus,
   setUsers,
   changeSettings,
+  setTasks,
 } from '../actions/game';
 import {
   addWebSocket,
@@ -66,8 +67,10 @@ export const useWebSocket = () => {
               dispatch(setDenied(data.denied));
               break;
             case 'there-id':
-              console.log(data);
               dispatch(setThereId(data.thereId));
+              break;
+            case 'correct-issues':
+              dispatch(setTasks(data.tasks))
               break;
             //     case 'add-user':
             //       console.log('userId: ', userId);

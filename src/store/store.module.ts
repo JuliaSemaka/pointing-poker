@@ -13,6 +13,7 @@ export const SET_USERS = 'SET_USERS';
 export const CONFIRMED_USER = 'CONFIRMED_USER';
 export const SET_DENIED = 'SET_DENIED';
 export const THERE_ID = 'THERE_ID';
+export const SET_TASKS = 'SET_TASKS';
 
 import {
   EGameStatus,

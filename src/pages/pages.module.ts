@@ -98,5 +98,5 @@ export interface ILobby {
   successSettings: boolean;
   showIssue: boolean;
   handleCloseModal: (event?: boolean) => void;
-  handelAddIssue: () => void;
+  handelAddIssue: (props: any) => void;
 }
