@@ -1,4 +1,5 @@
 .input {
+  position: relative;
   background: #ffffff;
   border: 1px solid #2b3a67;
   box-sizing: border-box;
@@ -10,6 +11,16 @@
     1px 1px 5px rgba(255, 255, 255, 1);
   width: 60%;
   max-width: 466px;
+
+  & > input {
+    outline: none;
+    border: none;
+    width: 100%;
+  }
+
+  &-block {
+    position: relative;
+  }
 
   &-error {
     position: absolute;

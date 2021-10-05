@@ -15,9 +15,7 @@
     align-items: center;
   }
 
-  &-name,
-  &-last-name,
-  &-job {
+  &-name{
     display: flex;
     flex-direction: column;
 

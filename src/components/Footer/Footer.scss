@@ -20,6 +20,10 @@
   &-logo {
     width: 100px;
     height: auto;
+
+    @media (max-width: 992px) {
+      margin-bottom: 15px;
+    }
   }
 
   &-github-list {
