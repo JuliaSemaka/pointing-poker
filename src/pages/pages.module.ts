@@ -49,7 +49,7 @@ export interface IGame {
   valueConfirmedUser: IUsers | null;
   handleConfirmedUser: (value: boolean) => void;
   countPercentTask: (value: string | null) => string | undefined;
-  handleClickCard: (number: string,scoreType: string | null) => void;
+  handleClickCard: (number: string, scoreType: string | null) => void;
 }
 
 export interface IInitialSettings {
@@ -96,4 +96,7 @@ export interface ILobby {
   isTimerEnableState: boolean;
   setIsTimerEnable: React.Dispatch<React.SetStateAction<boolean>>;
   successSettings: boolean;
+  showIssue: boolean;
+  handleCloseModal: (event?: boolean) => void;
+  handelAddIssue: () => void;
 }

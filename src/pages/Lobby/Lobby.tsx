@@ -2,6 +2,7 @@ import React from 'react';
 
 import {
   Chat,
+  CreateIssue,
   GameData,
   GameSettings,
   Issues,
@@ -40,6 +41,9 @@ export const Lobby: React.FC<ILobby> = ({
   isTimerEnableState,
   setIsTimerEnable,
   successSettings,
+  showIssue,
+  handleCloseModal,
+  handelAddIssue,
 }) => (
   <div className="lobby wrapper">
     <main className="lobby-main">
@@ -90,6 +94,12 @@ export const Lobby: React.FC<ILobby> = ({
         handleRemoveMember={handleRemoveMember}
       />
     </aside>
+    {showIssue && (
+      <CreateIssue
+        handleCloseModal={handleCloseModal}
+        onSubmit={handelAddIssue}
+      />
+    )}
   </div>
 );
 
