@@ -72,7 +72,11 @@ export const Lobby: React.FC<ILobby> = ({
       />
       {isDealer && (
         <>
-          <Issues issues={issues} handleIssue={handleIssue} />
+          <Issues
+            issues={issues}
+            handleIssue={handleIssue}
+            isDealer={isDealer}
+          />
           <GameSettings
             cardsValues={cards}
             handleEditCard={handleEditCard}

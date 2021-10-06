@@ -58,6 +58,7 @@ export const Game: React.FC<IGame> = ({
         handleGameIssue={handleGameIssue}
         cardsValues={cardsValues}
         countPercentTask={countPercentTask}
+        isDealer={isDealer}
       />
     );
   }

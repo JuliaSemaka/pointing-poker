@@ -51,6 +51,25 @@ export const GameContainer: React.FC = () => {
     }
   }, [users]);
 
+  useEffect(() => {
+    if (marksCurrentTask.length && roundStatus === ERoundStatus.finish) {
+      const mark = marksCurrentTask.reduce(
+        (res, item) =>
+          typeof item.mark === 'number' ? res + Number(item.mark) : res,
+        0
+      );
+      const newTasks = tasks.map((item) =>
+        item.isChecked ? { ...item, mark } : item
+      );
+      const data = {
+        id,
+        issues: newTasks,
+        method: 'correct-issues',
+      };
+      socket!.send(JSON.stringify(data));
+    }
+  }, [roundStatus]);
+
   const handleConfirmedUser = (value: boolean) => {
     if (value) {
       const userData = { ...confirmedUser, confirmed: true };

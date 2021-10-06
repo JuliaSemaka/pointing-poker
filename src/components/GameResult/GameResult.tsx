@@ -11,6 +11,7 @@ export const GameResult: React.FC<IGameResult> = ({
   handleGameIssue,
   cardsValues,
   countPercentTask,
+  isDealer
 }) => (
   <div className="game wrapper">
     <main className="game-main">
@@ -25,6 +26,7 @@ export const GameResult: React.FC<IGameResult> = ({
               type={ETypeCard.none}
               priority={`${priority} priority`}
               handleIssue={handleGameIssue}
+              isDealer={isDealer}
             />
             <div className="game-item__cards">
               {cardsValues.map(({ number, scoreType }, index) => (

@@ -19,4 +19,5 @@ export interface IGameResult {
   handleGameIssue: (value: EHandleIssue) => void;
   cardsValues: ICardsValues[];
   countPercentTask: (value: string | null) => string | undefined;
+  isDealer: boolean;
 }
