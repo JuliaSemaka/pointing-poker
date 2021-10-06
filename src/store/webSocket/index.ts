@@ -70,7 +70,7 @@ export const useWebSocket = () => {
               dispatch(setThereId(data.thereId));
               break;
             case 'correct-issues':
-              dispatch(setTasks(data.tasks))
+              dispatch(setTasks(data.tasks));
               break;
             //     case 'add-user':
             //       console.log('userId: ', userId);

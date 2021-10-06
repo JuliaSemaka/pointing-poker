@@ -16,10 +16,11 @@ export const IssuesGame: React.FC<IIssuesGame> = ({
           <div className="game-item__title">
             <h3 className="text text-ruda">Issues</h3>
           </div>
-          {issues.map(({ title, priority, isChecked }, index) => (
+          {issues.map(({ title, priority, isChecked, id }, index) => (
             <IssueCard
               key={index}
               title={title}
+              idIssue={id}
               type={ETypeCard.remove}
               priority={`${priority} priority`}
               isCheck={isChecked}

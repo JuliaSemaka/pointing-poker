@@ -1,4 +1,5 @@
 import { IUsers } from '../../pages/pages.module';
+import { EHandleIssue } from '../UI/ui.module';
 
 export interface IGameData {
   myId: string;
@@ -33,7 +34,7 @@ export interface ICardsValues {
 
 export interface IIssuesGame {
   issues: IIssue[];
-  handleGameIssue: (value: string) => void;
+  handleGameIssue: (value: EHandleIssue) => void;
 }
 
 export enum EGameStatus {

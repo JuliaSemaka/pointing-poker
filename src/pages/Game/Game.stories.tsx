@@ -150,6 +150,9 @@ const propsDealer = {
   handleConfirmedUser: action('handleConfirmedUser'),
   countPercentTask,
   handleClickCard: action('handleClickCard'),
+  showIssue: false,
+  handleCloseModal: action('handleCloseModal'),
+  handelAddIssue: action('handelAddIssue'),
 };
 
 const propsDealerInProgress = {
@@ -180,6 +183,9 @@ const propsDealerInProgress = {
   handleConfirmedUser: action('handleConfirmedUser'),
   countPercentTask,
   handleClickCard: action('handleClickCard'),
+  showIssue: false,
+  handleCloseModal: action('handleCloseModal'),
+  handelAddIssue: action('handelAddIssue'),
 };
 
 const propsPlayer = {
@@ -210,6 +216,9 @@ const propsPlayer = {
   handleConfirmedUser: action('handleConfirmedUser'),
   countPercentTask,
   handleClickCard: action('handleClickCard'),
+  showIssue: false,
+  handleCloseModal: action('handleCloseModal'),
+  handelAddIssue: action('handelAddIssue'),
 };
 
 storiesOf('Pages/Game', module)

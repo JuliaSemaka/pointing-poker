@@ -2,6 +2,7 @@ import React from 'react';
 import {
   CardsGame,
   ConfirmedUser,
+  CreateIssue,
   GameDataGame,
   IssuesGame,
   Score,
@@ -43,6 +44,9 @@ export const Game: React.FC<IGame> = ({
   handleConfirmedUser,
   countPercentTask,
   handleClickCard,
+  showIssue,
+  handleCloseModal,
+  handelAddIssue,
 }) => {
   if (gameStatus === EGameStatus.finished) {
     return (
@@ -108,6 +112,12 @@ export const Game: React.FC<IGame> = ({
         <ConfirmedUser
           handleConfirmedUser={handleConfirmedUser}
           valueConfirmedUser={valueConfirmedUser}
+        />
+      )}
+      {showIssue && (
+        <CreateIssue
+          handleCloseModal={handleCloseModal}
+          onSubmit={handelAddIssue}
         />
       )}
     </div>
