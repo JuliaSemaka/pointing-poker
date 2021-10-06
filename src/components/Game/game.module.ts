@@ -34,7 +34,7 @@ export interface ICardsValues {
 
 export interface IIssuesGame {
   issues: IIssue[];
-  handleGameIssue: (value: EHandleIssue) => void;
+  handleGameIssue: (value: EHandleIssue, idIssue?: string) => void;
 }
 
 export enum EGameStatus {

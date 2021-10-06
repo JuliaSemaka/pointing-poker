@@ -88,7 +88,7 @@ export interface ILobby {
   cards?: ICardsValues[];
   handleEditCard: (value: string, number?: string) => void;
   issues: IIssue[];
-  handleIssue: (value: EHandleIssue) => void;
+  handleIssue: (value: EHandleIssue, idIssue?: string) => void;
   handleRemoveMember: () => void;
   handleSubmitGameSettings: (event?: React.MouseEvent) => void;
   handleChangeMinute: React.Dispatch<React.SetStateAction<string>>;
@@ -102,4 +102,5 @@ export interface ILobby {
   showIssue: boolean;
   handleCloseModal: (event?: boolean) => void;
   handelAddIssue: (props: any) => void;
+  initialIssuesValue?: Object;
 }

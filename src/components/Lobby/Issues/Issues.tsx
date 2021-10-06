@@ -1,3 +1,4 @@
+import { title } from 'process';
 import React from 'react';
 import { IssueCard } from '../../UI/Cards/IssueCard/IssueCard';
 import { ETypeCard, IIssues } from '../../UI/ui.module';
@@ -8,12 +9,13 @@ export const Issues: React.FC<IIssues> = ({ issues, handleIssue }) => (
       <h3 className="text text-ruda">Issues:</h3>
     </div>
     <div className="lobby-item__wrap">
-      {issues.map((item, index) => (
+      {issues.map(({ title, id, priority }) => (
         <IssueCard
-          key={index}
-          title={item.title}
-          priority={`${item.priority} priority`}
+          key={id}
+          title={title}
+          priority={`${priority} priority`}
           handleIssue={handleIssue}
+          idIssue={id}
         />
       ))}
       <IssueCard

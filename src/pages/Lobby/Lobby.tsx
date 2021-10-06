@@ -44,6 +44,7 @@ export const Lobby: React.FC<ILobby> = ({
   showIssue,
   handleCloseModal,
   handelAddIssue,
+  initialIssuesValue,
 }) => (
   <div className="lobby wrapper">
     <main className="lobby-main">
@@ -98,6 +99,7 @@ export const Lobby: React.FC<ILobby> = ({
       <CreateIssue
         handleCloseModal={handleCloseModal}
         onSubmit={handelAddIssue}
+        initialValues={initialIssuesValue}
       />
     )}
   </div>
