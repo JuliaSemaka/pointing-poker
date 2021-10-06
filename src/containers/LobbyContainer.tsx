@@ -83,13 +83,6 @@ export const LobbyContainer: React.FC = () => {
     console.log(1);
   };
 
-  const funcTestParam = (value: EHandleIssue) => {
-    console.log(value);
-    if (value === 'add') {
-      setShowIssue(true);
-    }
-  };
-
   const sendMessageChat = ({ chatMessage }: any) => {
     dispatch(reset('chat'));
     const message = {
@@ -231,15 +224,29 @@ export const LobbyContainer: React.FC = () => {
       mark: null,
     };
 
-    tasks.push(newIssue);
+    const newTasks = [...tasks, newIssue];
 
     const data = {
       id,
-      issues: tasks,
+      issues: newTasks,
       method: 'correct-issues',
     };
     socket!.send(JSON.stringify(data));
     setShowIssue(false);
+  };
+
+  const funcTestParam = (value: EHandleIssue, idIssue?: string) => {
+    if (value === EHandleIssue.add) {
+      setShowIssue(true);
+    } else if (EHandleIssue.delete) {
+      const newTasks = null
+      const data = {
+        id,
+        issues: newTasks,
+        method: 'correct-issues',
+      };
+      socket!.send(JSON.stringify(data));
+    }
   };
 
   const propsDealer = {
