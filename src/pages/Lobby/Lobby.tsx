@@ -8,6 +8,7 @@ import {
   Issues,
   Members,
 } from '../../components';
+import { KickPlayerModal } from '../../components/KickPlayerModal/KickPlayerModal';
 import { ILobby } from '../pages.module';
 import './Lobby.scss';
 
@@ -45,6 +46,9 @@ export const Lobby: React.FC<ILobby> = ({
   handleCloseModal,
   handelAddIssue,
   initialIssuesValue,
+  kickPlayer,
+  actionKickButton,
+  delUser,
 }) => (
   <div className="lobby wrapper">
     <main className="lobby-main">
@@ -100,6 +104,14 @@ export const Lobby: React.FC<ILobby> = ({
         handleCloseModal={handleCloseModal}
         onSubmit={handelAddIssue}
         initialValues={initialIssuesValue}
+      />
+    )}
+    {kickPlayer && delUser && (
+      <KickPlayerModal
+        playerName={delUser.delUser}
+        actionKickButton={actionKickButton}
+        authorKick={delUser.deleterUserId}
+        members={members}
       />
     )}
   </div>

@@ -11,6 +11,7 @@ import {
   ADD_USER_TO_LOBBY,
   SET_USERS,
   SET_TASKS,
+  SET_DEL_USER,
 } from '../store.module';
 
 const defaultGame: IGameState = {} as IGameState;
@@ -38,6 +39,8 @@ export const game = (
       return { ...state, users: action.payload };
     case SET_TASKS:
       return { ...state, tasks: action.payload };
+    case SET_DEL_USER:
+      return { ...state, delUser: action.payload };
     default:
       return state;
   }
