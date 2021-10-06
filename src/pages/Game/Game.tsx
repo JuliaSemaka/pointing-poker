@@ -48,6 +48,7 @@ export const Game: React.FC<IGame> = ({
   handleCloseModal,
   handelAddIssue,
   handleCheckedIssue,
+  initialIssuesValue,
 }) => {
   if (gameStatus === EGameStatus.finished) {
     return (
@@ -123,6 +124,7 @@ export const Game: React.FC<IGame> = ({
         <CreateIssue
           handleCloseModal={handleCloseModal}
           onSubmit={handelAddIssue}
+          initialValues={initialIssuesValue}
         />
       )}
     </div>

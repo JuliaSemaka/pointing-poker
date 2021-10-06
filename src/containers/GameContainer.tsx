@@ -6,6 +6,7 @@ import { Spinners } from '../components';
 import {
   EGameStatus,
   ERoundStatus,
+  IIssue,
   IMarksCurrentTask,
 } from '../components/Game/game.module';
 import { EHandleIssue } from '../components/UI/ui.module';
@@ -34,6 +35,7 @@ export const GameContainer: React.FC = () => {
     users,
   } = useSelector((state: IReducer) => state.game);
   const [showIssue, setShowIssue] = useState(false);
+  const [initialIssue, setInitialIssue] = useState<IIssue>({} as IIssue);
 
   useEffect(() => {
     if (gameStatus === EGameStatus.created) {
@@ -165,6 +167,7 @@ export const GameContainer: React.FC = () => {
 
   const handleGameIssue = (value: EHandleIssue, idIssue?: string) => {
     if (value === EHandleIssue.add) {
+      setInitialIssue({} as IIssue);
       setShowIssue(true);
     } else if (value === EHandleIssue.remove) {
       const newTasks = tasks.filter((item) => item.id !== idIssue);
@@ -175,7 +178,8 @@ export const GameContainer: React.FC = () => {
       };
       socket!.send(JSON.stringify(data));
     } else if (value === EHandleIssue.show) {
-      console.log(value);
+      setInitialIssue(tasks.filter((item) => item.id == idIssue)[0]);
+      setShowIssue(true);
     }
   };
 
@@ -184,16 +188,22 @@ export const GameContainer: React.FC = () => {
   };
 
   const handelAddIssue = (props: any) => {
-    const idIssue = (+new Date()).toString(16);
-    const newIssue = {
-      priority: 'Low',
-      ...props,
-      id: idIssue,
-      isChecked: tasks.length === 0 ? true : false,
-      mark: null,
-    };
-
-    const newTasks = [...tasks, newIssue];
+    let newTasks: IIssue[] = [];
+    if (!Object.keys(initialIssue).length) {
+      const idIssue = (+new Date()).toString(16);
+      const newIssue = {
+        priority: 'Low',
+        ...props,
+        id: idIssue,
+        isChecked: tasks.length === 0 ? true : false,
+        mark: null,
+      };
+      newTasks = [...tasks, newIssue];
+    } else {
+      newTasks = tasks.map((item) =>
+        item.id === initialIssue.id ? { ...item, ...props } : item
+      );
+    }
 
     const data = {
       id,
@@ -251,6 +261,7 @@ export const GameContainer: React.FC = () => {
     handleCloseModal,
     handelAddIssue,
     handleCheckedIssue,
+    initialIssuesValue: initialIssue,
   };
 
   return <Game {...propsGme} />;
