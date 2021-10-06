@@ -12,6 +12,7 @@ import {
   SET_USERS,
   SET_TASKS,
   SET_DEL_USER,
+  SET_AGREE_USER,
 } from '../store.module';
 
 const defaultGame: IGameState = {} as IGameState;
@@ -41,6 +42,8 @@ export const game = (
       return { ...state, tasks: action.payload };
     case SET_DEL_USER:
       return { ...state, delUser: action.payload };
+    case SET_AGREE_USER:
+      return (Object.keys(state).length) ? { ...state, agreeUsers: action.payload } : state;
     default:
       return state;
   }

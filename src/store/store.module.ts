@@ -15,6 +15,7 @@ export const SET_DENIED = 'SET_DENIED';
 export const THERE_ID = 'THERE_ID';
 export const SET_TASKS = 'SET_TASKS';
 export const SET_DEL_USER = 'SET_DEL_USER';
+export const SET_AGREE_USER = 'SET_AGREE_USER';
 
 import {
   EGameStatus,
@@ -51,6 +52,11 @@ export interface IDelUser {
   delUser: string;
 }
 
+export interface IAgreeUsers {
+  userId: string;
+  isAgree: boolean;
+}
+
 export interface IGameState {
   id: string;
   dealerId: string;
@@ -63,6 +69,7 @@ export interface IGameState {
   tasks: IIssue[];
   marksCurrentTask: IMarksCurrentTask[];
   delUser: null | IDelUser;
+  agreeUsers: IAgreeUsers[];
 }
 
 export interface IAction {

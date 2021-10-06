@@ -12,6 +12,7 @@ import {
   changeSettings,
   setTasks,
   setDelUser,
+  setAgreeUser,
 } from '../actions/game';
 import {
   addWebSocket,
@@ -25,7 +26,7 @@ export const useWebSocket = () => {
 
   useEffect(() => {
     // const socket = new WebSocket('wss://obscure-wave-90492.herokuapp.com/');
-    const socket = new WebSocket('ws://localhost:5100/');
+    const socket = new WebSocket('ws://localhost:5300/');
     dispatch(addWebSocket(socket));
     socket.onopen = () => {
       console.log('Подключение установлено');
@@ -74,8 +75,17 @@ export const useWebSocket = () => {
               dispatch(setTasks(data.tasks));
               break;
             case 'del-user':
-              console.log(data);
               dispatch(setDelUser(data.delUser));
+              dispatch(setAgreeUser(data.agreeUsers));
+              break;
+            case 'access-del-user':
+              if (data.users !== undefined) {
+                dispatch(setUsers(data.users));
+              }
+              if (data.delUser !== undefined) {
+                dispatch(setDelUser(data.delUser));
+              }
+              dispatch(setAgreeUser(data.agreeUsers));
               break;
             case 'add-message':
               dispatch(

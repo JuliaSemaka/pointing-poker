@@ -114,7 +114,9 @@ export const Lobby: React.FC<ILobby> = ({
       <KickPlayerModal
         playerName={delUser.delUser}
         actionKickButton={actionKickButton}
-        authorKick={delUser.deleterUserId}
+        authorKick={
+          myId === delUser.deleterUserId ? undefined : delUser.deleterUserId
+        }
         members={members}
       />
     )}

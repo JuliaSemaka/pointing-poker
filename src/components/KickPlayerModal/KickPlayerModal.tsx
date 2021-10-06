@@ -15,16 +15,16 @@ export const KickPlayerModal: React.FC<IKickPlayerModal> = ({
     <div className="kick-player">
       {!authorKick ? (
         <>
-          <h2 className="text text-title">Kick player?</h2>
+          <h2 className="text text-title">Kick player</h2>
           <p className="text text-ruda">
-            Are you really want to remove player
+            Player
             <span className="text-dark-green">
               {' '}
               {members.find(({ id }) => id === authorKick)?.firstName}{' '}
               {members.find(({ id }) => id === authorKick)?.lastName}{' '}
             </span>
-            from game session?
-          </p>{' '}
+            will remove from game session!
+          </p>
         </>
       ) : (
         <>
@@ -46,11 +46,13 @@ export const KickPlayerModal: React.FC<IKickPlayerModal> = ({
       )}
       <div className="kick-player__block">
         <Button text="Yes" handleClick={() => actionKickButton(true)} />
-        <Button
-          text="No"
-          handleClick={() => actionKickButton(false)}
-          style={EButtonStyle.light}
-        />
+        {authorKick && (
+          <Button
+            text="No"
+            handleClick={() => actionKickButton(false)}
+            style={EButtonStyle.light}
+          />
+        )}
       </div>
     </div>
   </ModalWindow>
