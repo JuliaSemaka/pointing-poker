@@ -11,7 +11,9 @@ import {
   ADD_GAME,
   CHANGE_SETTINGS,
   IAction,
+  IDelUser,
   IGameState,
+  SET_DEL_USER,
   SET_GAME_STATUS,
   SET_MARK_CURRENT_TASK,
   SET_ROUND_STATUS,
@@ -54,4 +56,8 @@ export function setUsers(value: IUsers[]): IAction {
 
 export function setTasks(value: IIssue[]): IAction {
   return { type: SET_TASKS, payload: value };
+}
+
+export function setDelUser(value: IDelUser): IAction {
+  return { type: SET_DEL_USER, payload: value };
 }

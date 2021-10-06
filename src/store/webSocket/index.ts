@@ -11,6 +11,7 @@ import {
   setUsers,
   changeSettings,
   setTasks,
+  setDelUser,
 } from '../actions/game';
 import {
   addWebSocket,
@@ -72,21 +73,10 @@ export const useWebSocket = () => {
             case 'correct-issues':
               dispatch(setTasks(data.tasks));
               break;
-            //     case 'add-user':
-            //       console.log('userId: ', userId);
-            //       console.log(data);
-            //       if (userId === null) {
-            //         setUserId(data.users[data.users.length - 1].id);
-            //       }
-            //       break;
-            //     case 'del-user':
-            //       console.log('userId: ', userId);
-            //       console.log(data);
-            //       setSessionId(null);
-            //       sock.onclose = function () {
-            //         console.log('WebSocket is closed now.');
-            //       };
-            //       break;
+            case 'del-user':
+              console.log(data);
+              dispatch(setDelUser(data.delUser));
+              break;
             case 'add-message':
               dispatch(
                 addChatMessage({ idUser: data.idUser, message: data.message })

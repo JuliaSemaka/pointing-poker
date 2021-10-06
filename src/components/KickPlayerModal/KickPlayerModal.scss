@@ -1,11 +1,15 @@
 .kick-player {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 876px;
-  height: 500px;
+  max-width: 600px;
+  height: 400px;
+
+  &>p {
+    text-align: center;
+  }
 
   &__block {
     display: flex;

@@ -14,6 +14,7 @@ export const MemberCard: React.FC<IMemberCard> = ({
   isRemove = false,
   isSmall = false,
   handleRemoveMember,
+  idUser
 }) => {
   const cardAvatar = image ? (
     <Avatar image={image} />
@@ -38,7 +39,7 @@ export const MemberCard: React.FC<IMemberCard> = ({
           className="card-cred"
           src={Remove}
           alt="remove"
-          onClick={handleRemoveMember}
+          onClick={() => handleRemoveMember!(idUser!)}
         />
       )}
     </div>

@@ -10,6 +10,7 @@ import {
   IChatMessage,
   IInitialValuesCopy,
 } from '../components/UI/ui.module';
+import { IDelUser } from '../store/store.module';
 
 export interface IUsers {
   id: string;
@@ -91,7 +92,7 @@ export interface ILobby {
   handleEditCard: (value: string, number?: string) => void;
   issues: IIssue[];
   handleIssue: (value: EHandleIssue, idIssue?: string) => void;
-  handleRemoveMember: () => void;
+  handleRemoveMember: (idUser: string) => void;
   handleSubmitGameSettings: (event?: React.MouseEvent) => void;
   handleChangeMinute: React.Dispatch<React.SetStateAction<string>>;
   handleChangeSeconds: React.Dispatch<React.SetStateAction<string>>;
@@ -105,4 +106,7 @@ export interface ILobby {
   handleCloseModal: (event?: boolean) => void;
   handelAddIssue: (props: any) => void;
   initialIssuesValue?: IIssue;
+  kickPlayer: boolean;
+  actionKickButton: (value: boolean) => void;
+  delUser: IDelUser | null;
 }

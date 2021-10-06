@@ -23,6 +23,7 @@ export const LobbyContainer: React.FC = () => {
   const [successSettings, setSuccessSettings] = useState(false);
   const [showIssue, setShowIssue] = useState(false);
   const [initialIssue, setInitialIssue] = useState<IIssue>({} as IIssue);
+  const [kickPlayer, setKickPlayer] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -46,6 +47,12 @@ export const LobbyContainer: React.FC = () => {
       history.push('/');
     }
   }, [game.gameStatus]);
+
+  useEffect(() => {
+    if (game.delUser !== null && myId !== game.delUser?.deleterUserId) {
+      setKickPlayer(true);
+    }
+  }, [game.delUser]);
 
   if (Object.keys(game).length === 0 || !myId) {
     return (
@@ -80,8 +87,23 @@ export const LobbyContainer: React.FC = () => {
     isTimerEnable,
   } = settings;
 
-  const funcTest = () => {
-    console.log(1);
+  const handleRemoveMember = (idUser: string) => {
+    if (dealerId === myId) {
+      const data = {
+        id,
+        exitUserId: idUser,
+        method: 'exit-from-game',
+      };
+      socket!.send(JSON.stringify(data));
+    } else {
+      const data = {
+        id,
+        userId: myId,
+        delUserId: idUser,
+        method: 'del-user',
+      };
+      socket!.send(JSON.stringify(data));
+    }
   };
 
   const sendMessageChat = ({ chatMessage }: any) => {
@@ -261,6 +283,18 @@ export const LobbyContainer: React.FC = () => {
     }
   };
 
+  const actionKickButton = (value: boolean) => {
+    if (value) {
+      const data = {
+        id,
+        userId: myId,
+        method: 'access-del-user',
+      };
+      socket!.send(JSON.stringify(data));
+    }
+    setKickPlayer(false);
+  };
+
   const propsDealer = {
     myId,
     dealerId,
@@ -281,7 +315,7 @@ export const LobbyContainer: React.FC = () => {
     handleEditCard,
     issues: tasks,
     handleIssue,
-    handleRemoveMember: funcTest,
+    handleRemoveMember,
     handleSubmitGameSettings,
     handleChangeMinute,
     handleChangeSeconds,
@@ -295,6 +329,9 @@ export const LobbyContainer: React.FC = () => {
     handleCloseModal,
     handelAddIssue,
     initialIssuesValue: initialIssue,
+    kickPlayer,
+    actionKickButton,
+    delUser,
   };
 
   return <>{myId && <Lobby {...propsDealer} />}</>;

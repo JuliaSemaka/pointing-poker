@@ -6,9 +6,10 @@ import { EButtonStyle, IKickPlayerModal } from '../UI/ui.module';
 import './KickPlayerModal.scss';
 
 export const KickPlayerModal: React.FC<IKickPlayerModal> = ({
-  playerName,
+  playerName = '',
   actionKickButton,
   authorKick = null,
+  members,
 }) => (
   <ModalWindow handleClick={actionKickButton}>
     <div className="kick-player">
@@ -17,7 +18,11 @@ export const KickPlayerModal: React.FC<IKickPlayerModal> = ({
           <h2 className="text text-title">Kick player?</h2>
           <p className="text text-ruda">
             Are you really want to remove player
-            <span className="text-dark-green"> {playerName} </span>
+            <span className="text-dark-green">
+              {' '}
+              {members.find(({ id }) => id === authorKick)?.firstName}{' '}
+              {members.find(({ id }) => id === authorKick)?.lastName}{' '}
+            </span>
             from game session?
           </p>{' '}
         </>
@@ -25,10 +30,17 @@ export const KickPlayerModal: React.FC<IKickPlayerModal> = ({
         <>
           <h2 className="text text-title">Kick</h2>
           <p className="text text-kick">
-            <span className="text-dark-green">{authorKick} </span>
+            <span className="text-dark-green">
+              {members.find(({ id }) => id === authorKick)?.firstName}{' '}
+              {members.find(({ id }) => id === authorKick)?.lastName}{' '}
+            </span>
             want to kick member
-            <span className="text-dark-green"> {playerName}</span>. Do you agree
-            with it?
+            <span className="text-dark-green">
+              {' '}
+              {members.find(({ id }) => id === playerName)?.firstName}{' '}
+              {members.find(({ id }) => id === playerName)?.lastName}
+            </span>
+            . Do you agree with it?
           </p>
         </>
       )}

@@ -1,5 +1,10 @@
 import { ITime, IUsers } from '../../pages/pages.module';
-import { ERoundStatus, ICardsValues, IIssue, IMarksCurrentTask } from '../Game/game.module';
+import {
+  ERoundStatus,
+  ICardsValues,
+  IIssue,
+  IMarksCurrentTask,
+} from '../Game/game.module';
 
 export enum EButtonStyle {
   dark = 'dark',
@@ -66,8 +71,9 @@ export interface IMemberCard {
   image?: string | null;
   isMyCard?: boolean;
   isRemove?: boolean;
-  handleRemoveMember?: () => void;
+  handleRemoveMember?: (idUser: string) => void;
   isSmall?: boolean;
+  idUser?: string;
 }
 
 export enum ETypeCard {
@@ -100,7 +106,7 @@ export interface IGameCard {
   setAddCard?: React.Dispatch<React.SetStateAction<boolean>>;
   isNewCard?: boolean;
   cardsValues?: ICardsValues[];
-  handleClickCard?: (number: string,scoreType: string | null) => void;
+  handleClickCard?: (number: string, scoreType: string | null) => void;
   roundStatus?: ERoundStatus;
   isChecked?: boolean;
 }
@@ -165,7 +171,7 @@ export interface IMembers {
   myId: string;
   dealerId: string;
   members: IUsers[];
-  handleRemoveMember: () => void;
+  handleRemoveMember: (idUser: string) => void;
 }
 
 export interface IChat {
@@ -175,7 +181,7 @@ export interface IChat {
   onSubmit?: () => void;
   chatMessage?: IChatMessage[];
   members: IUsers[];
-  handleRemoveMember: () => void;
+  handleRemoveMember: (idUser: string) => void;
 }
 
 export interface IIssues {
@@ -195,4 +201,5 @@ export interface IKickPlayerModal {
   playerName: string;
   actionKickButton: (value: boolean) => void;
   authorKick?: string | null;
+  members: IUsers[];
 }

@@ -27,7 +27,7 @@ export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
             image={members.find(({ id }) => id === idUser)?.image}
             isRemove={members.find(({ id }) => id === idUser)?.id !== dealerId}
             isMyCard={members.find(({ id }) => id === idUser)?.id === myId}
-            handleRemoveMember={handleRemoveMember}
+            handleRemoveMember={() => handleRemoveMember(idUser)}
             isSmall={true}
           />
           <div className="chat-message">

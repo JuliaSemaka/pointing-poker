@@ -224,6 +224,9 @@ const propsDealer = {
   showIssue: false,
   handleCloseModal: action('handleCloseModal'),
   handelAddIssue: action('handelAddIssue'),
+  kickPlayer: false,
+  actionKickButton: action('actionKickButton'),
+  delUser: null,
 };
 
 const propsDealerEmptyChat = {
@@ -259,6 +262,9 @@ const propsDealerEmptyChat = {
   showIssue: true,
   handleCloseModal: action('handleCloseModal'),
   handelAddIssue: action('handelAddIssue'),
+  kickPlayer: false,
+  actionKickButton: action('actionKickButton'),
+  delUser: null,
 };
 
 const propsPlayer = {
@@ -294,6 +300,9 @@ const propsPlayer = {
   showIssue: false,
   handleCloseModal: action('handleCloseModal'),
   handelAddIssue: action('handelAddIssue'),
+  kickPlayer: false,
+  actionKickButton: action('actionKickButton'),
+  delUser: null,
 };
 
 storiesOf('Pages/Lobby', module)

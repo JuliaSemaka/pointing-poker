@@ -24,6 +24,7 @@ export const Members: React.FC<IMembers> = ({
           isRemove={id !== dealerId}
           isMyCard={id === myId}
           handleRemoveMember={handleRemoveMember}
+          idUser={id}
         />
       ))}
     </div>
