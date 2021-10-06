@@ -243,7 +243,7 @@ export const LobbyContainer: React.FC = () => {
     setShowIssue(false);
   };
 
-  const funcTestParam = (value: EHandleIssue, idIssue?: string) => {
+  const handleIssue = (value: EHandleIssue, idIssue?: string) => {
     if (value === EHandleIssue.add) {
       setInitialIssue({} as IIssue);
       setShowIssue(true);
@@ -256,8 +256,8 @@ export const LobbyContainer: React.FC = () => {
       };
       socket!.send(JSON.stringify(data));
     } else if (value === EHandleIssue.edit || value === EHandleIssue.show) {
-      setShowIssue(true);
       setInitialIssue(tasks.filter((item) => item.id == idIssue)[0]);
+      setShowIssue(true);
     }
   };
 
@@ -280,7 +280,7 @@ export const LobbyContainer: React.FC = () => {
     cards,
     handleEditCard,
     issues: tasks,
-    handleIssue: funcTestParam,
+    handleIssue,
     handleRemoveMember: funcTest,
     handleSubmitGameSettings,
     handleChangeMinute,
