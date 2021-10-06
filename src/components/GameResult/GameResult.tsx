@@ -18,8 +18,8 @@ export const GameResult: React.FC<IGameResult> = ({
         <div className="game-item__title">
           <h3 className="text text-ruda">{title}</h3>
         </div>
-        {issues.map(({ id, title, priority }, index) => (
-          <div key={index}>
+        {issues.map(({ id, title, priority }) => (
+          <div key={id}>
             <IssueCard
               title={title}
               type={ETypeCard.none}

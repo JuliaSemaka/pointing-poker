@@ -53,6 +53,7 @@ export interface IGame {
   showIssue: boolean;
   handleCloseModal: (event?: boolean) => void;
   handelAddIssue: (props: any) => void;
+  handleCheckedIssue: (idIssue: string) => void;
 }
 
 export interface IInitialSettings {

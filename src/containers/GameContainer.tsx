@@ -10,8 +10,9 @@ import {
 } from '../components/Game/game.module';
 import { EHandleIssue } from '../components/UI/ui.module';
 import { Game } from '../pages';
+import { enterTheGame } from '../store/actions/game';
 import { confirmedNewUser } from '../store/actions/main';
-import { IReducer } from '../store/store.module';
+import { IGameState, IReducer } from '../store/store.module';
 
 export const GameContainer: React.FC = () => {
   const history = useHistory();
@@ -41,6 +42,12 @@ export const GameContainer: React.FC = () => {
       history.push('/');
     }
   }, [gameStatus]);
+
+  useEffect(() => {
+    if (!users?.some((item) => item.id === myId)) {
+      dispatch(enterTheGame({} as IGameState));
+    }
+  }, [users]);
 
   const handleConfirmedUser = (value: boolean) => {
     if (value) {
@@ -179,13 +186,29 @@ export const GameContainer: React.FC = () => {
   const handelAddIssue = (props: any) => {
     const idIssue = (+new Date()).toString(16);
     const newIssue = {
+      priority: 'Low',
       ...props,
       id: idIssue,
-      isChecked: false,
+      isChecked: tasks.length === 0 ? true : false,
       mark: null,
     };
 
     const newTasks = [...tasks, newIssue];
+
+    const data = {
+      id,
+      issues: newTasks,
+      method: 'correct-issues',
+    };
+    socket!.send(JSON.stringify(data));
+    setShowIssue(false);
+  };
+
+  const handleCheckedIssue = (idIssue: string) => {
+    const newTasks = tasks.map((item) => {
+      item.isChecked = item.id === idIssue;
+      return item;
+    });
 
     const data = {
       id,
@@ -227,6 +250,7 @@ export const GameContainer: React.FC = () => {
     showIssue,
     handleCloseModal,
     handelAddIssue,
+    handleCheckedIssue,
   };
 
   return <Game {...propsGme} />;

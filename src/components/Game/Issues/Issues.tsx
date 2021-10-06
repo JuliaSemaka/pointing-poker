@@ -8,6 +8,7 @@ import './Issues.scss';
 export const IssuesGame: React.FC<IIssuesGame> = ({
   issues,
   handleGameIssue,
+  handleCheckedIssue,
 }) => {
   return (
     <div className="game-item">
@@ -16,15 +17,16 @@ export const IssuesGame: React.FC<IIssuesGame> = ({
           <div className="game-item__title">
             <h3 className="text text-ruda">Issues</h3>
           </div>
-          {issues.map(({ title, priority, isChecked, id }, index) => (
+          {issues.map(({ title, priority, isChecked, id }) => (
             <IssueCard
-              key={index}
+              key={id}
               title={title}
               idIssue={id}
               type={ETypeCard.remove}
               priority={`${priority} priority`}
               isCheck={isChecked}
               handleIssue={handleGameIssue}
+              handleCheckedIssue={handleCheckedIssue}
             />
           ))}
           <IssueCard

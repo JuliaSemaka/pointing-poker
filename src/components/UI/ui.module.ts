@@ -84,6 +84,7 @@ export interface IIssueCard {
   isCheck?: boolean;
   idIssue?: string;
   handleIssue: (value: EHandleIssue, idIssue?: string) => void;
+  handleCheckedIssue?: (idIssue: string) => void;
 }
 
 export interface IGameCard {

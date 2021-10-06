@@ -153,6 +153,7 @@ const propsDealer = {
   showIssue: false,
   handleCloseModal: action('handleCloseModal'),
   handelAddIssue: action('handelAddIssue'),
+  handleCheckedIssue: action('handleCheckedIssue'),
 };
 
 const propsDealerInProgress = {
@@ -186,6 +187,7 @@ const propsDealerInProgress = {
   showIssue: false,
   handleCloseModal: action('handleCloseModal'),
   handelAddIssue: action('handelAddIssue'),
+  handleCheckedIssue: action('handleCheckedIssue'),
 };
 
 const propsPlayer = {
@@ -219,6 +221,7 @@ const propsPlayer = {
   showIssue: false,
   handleCloseModal: action('handleCloseModal'),
   handelAddIssue: action('handelAddIssue'),
+  handleCheckedIssue: action('handleCheckedIssue'),
 };
 
 storiesOf('Pages/Game', module)

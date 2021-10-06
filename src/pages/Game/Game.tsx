@@ -47,6 +47,7 @@ export const Game: React.FC<IGame> = ({
   showIssue,
   handleCloseModal,
   handelAddIssue,
+  handleCheckedIssue,
 }) => {
   if (gameStatus === EGameStatus.finished) {
     return (
@@ -79,7 +80,11 @@ export const Game: React.FC<IGame> = ({
           handleNextIssye={handleNextIssye}
           isTimerEnable={isTimerEnable}
         />
-        <IssuesGame issues={issues} handleGameIssue={handleGameIssue} />
+        <IssuesGame
+          issues={issues}
+          handleGameIssue={handleGameIssue}
+          handleCheckedIssue={handleCheckedIssue}
+        />
         {(!isDealer || isPlayer) &&
           members.find(
             (item) => item.id === myId && item.role !== ERole.observer

@@ -50,6 +50,10 @@
     width: 63%;
     height: 100%;
 
+    &__cursor {
+      cursor: pointer;
+    }
+
     &__small {
       & .card-data__name {
         top: 5px;
@@ -109,6 +113,7 @@
     display: flex;
     justify-content: end;
     width: 37%;
+    z-index: 1;
   }
 
   &__check {
@@ -153,6 +158,10 @@
   justify-content: space-between;
   align-items: center;
   overflow: hidden;
+
+  & > input {
+    align-self: flex-start;
+  }
 
   &__click {
     cursor: pointer;

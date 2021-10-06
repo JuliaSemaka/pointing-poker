@@ -35,6 +35,7 @@ export interface ICardsValues {
 export interface IIssuesGame {
   issues: IIssue[];
   handleGameIssue: (value: EHandleIssue, idIssue?: string) => void;
+  handleCheckedIssue: (idIssue: string) => void;
 }
 
 export enum EGameStatus {
@@ -71,7 +72,7 @@ export interface IScore {
 
 export interface ICardsGame {
   cardsValues: ICardsValues[];
-  handleClickCard: (number: string,scoreType: string | null) => void;
+  handleClickCard: (number: string, scoreType: string | null) => void;
   roundStatus: ERoundStatus;
   marksCurrentTask: IMarksCurrentTask[];
   myId: string;
