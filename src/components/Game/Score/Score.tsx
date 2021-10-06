@@ -3,7 +3,7 @@ import { ERole } from '../../components.module';
 
 import { MemberCard } from '../../UI/Cards/MemberCard/MemberCard';
 import { ScoreCard } from '../../UI/Cards/Score/Score';
-import { IScore } from '../game.module';
+import { ERoundStatus, IScore } from '../game.module';
 import './Score.scss';
 
 export const Score: React.FC<IScore> = ({
@@ -12,6 +12,8 @@ export const Score: React.FC<IScore> = ({
   myId,
   dealerId,
   isPlayer,
+  isTurnAuto,
+  roundStatus,
 }) => (
   <div className="score">
     <div className="score__row">
@@ -21,7 +23,7 @@ export const Score: React.FC<IScore> = ({
         </div>
         {members?.map(({ id, role }) => {
           if (role === ERole.player || (role === ERole.dealer && isPlayer)) {
-            return (
+            return roundStatus === ERoundStatus.finish && isTurnAuto ? (
               <ScoreCard
                 key={id}
                 scoreType={
@@ -32,6 +34,8 @@ export const Score: React.FC<IScore> = ({
                   marksCurrentTask.find(({ idUser }) => idUser === id)?.mark
                 }
               />
+            ) : (
+              <ScoreCard key={id} />
             );
           }
         })}

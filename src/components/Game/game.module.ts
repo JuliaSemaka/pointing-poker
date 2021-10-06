@@ -36,6 +36,7 @@ export interface IIssuesGame {
   issues: IIssue[];
   handleGameIssue: (value: EHandleIssue, idIssue?: string) => void;
   handleCheckedIssue: (idIssue: string) => void;
+  isDealer?: boolean;
 }
 
 export enum EGameStatus {
@@ -68,6 +69,8 @@ export interface IScore {
   myId: string;
   dealerId: string;
   isPlayer: boolean;
+  isTurnAuto: boolean;
+  roundStatus: ERoundStatus;
 }
 
 export interface ICardsGame {

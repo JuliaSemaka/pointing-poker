@@ -16,6 +16,7 @@ export const IssueCard: React.FC<IIssueCard> = ({
   idIssue,
   handleIssue,
   handleCheckedIssue,
+  isDealer,
 }) => {
   let cardEditorContent;
   switch (type) {
@@ -79,7 +80,7 @@ export const IssueCard: React.FC<IIssueCard> = ({
   return (
     <div className="card">
       {isCheck && <div className="card__check"></div>}
-      {handleCheckedIssue ? (
+      {handleCheckedIssue && isDealer ? (
         <div
           className="card-data"
           onClick={() => handleCheckedIssue!(idIssue!)}

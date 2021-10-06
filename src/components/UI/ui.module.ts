@@ -91,6 +91,7 @@ export interface IIssueCard {
   idIssue?: string;
   handleIssue: (value: EHandleIssue, idIssue?: string) => void;
   handleCheckedIssue?: (idIssue: string) => void;
+  isDealer?: boolean;
 }
 
 export interface IGameCard {

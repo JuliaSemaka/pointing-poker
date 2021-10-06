@@ -9,6 +9,7 @@ export const IssuesGame: React.FC<IIssuesGame> = ({
   issues,
   handleGameIssue,
   handleCheckedIssue,
+  isDealer,
 }) => {
   return (
     <div className="game-item">

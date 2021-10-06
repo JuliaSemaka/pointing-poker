@@ -85,6 +85,7 @@ export const Game: React.FC<IGame> = ({
           issues={issues}
           handleGameIssue={handleGameIssue}
           handleCheckedIssue={handleCheckedIssue}
+          isDealer={isDealer}
         />
         {(!isDealer || isPlayer) &&
           members.find(
@@ -112,6 +113,8 @@ export const Game: React.FC<IGame> = ({
           myId={myId}
           dealerId={dealerId}
           isPlayer={isPlayer}
+          isTurnAuto={isTurnAuto}
+          roundStatus={roundStatus}
         />
       </aside>
       {valueConfirmedUser && isDealer && (
