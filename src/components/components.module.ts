@@ -1,5 +1,6 @@
 import { IUsers } from '../pages/pages.module';
 import { ICardsValues, IIssue } from './Game/game.module';
+import { EHandleIssue } from './UI/ui.module';
 
 export enum ERole {
   dealer = 'dealer',
@@ -15,7 +16,7 @@ export interface IConfirmedUser {
 export interface IGameResult {
   title: string;
   issues: IIssue[];
-  handleGameIssue: (value: string) => void;
+  handleGameIssue: (value: EHandleIssue) => void;
   cardsValues: ICardsValues[];
   countPercentTask: (value: string | null) => string | undefined;
 }

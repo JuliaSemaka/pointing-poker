@@ -82,7 +82,8 @@ export interface IIssueCard {
   priority?: string | null;
   type?: ETypeCard;
   isCheck?: boolean;
-  handleIssue: (value: EHandleIssue) => void;
+  idIssue?: string;
+  handleIssue: (value: EHandleIssue, idIssue?: string) => void;
 }
 
 export interface IGameCard {

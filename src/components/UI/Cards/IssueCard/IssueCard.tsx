@@ -12,6 +12,7 @@ export const IssueCard: React.FC<IIssueCard> = ({
   priority = null,
   type = ETypeCard.normal,
   isCheck = false,
+  idIssue,
   handleIssue,
 }) => {
   let cardEditorContent;
@@ -23,13 +24,13 @@ export const IssueCard: React.FC<IIssueCard> = ({
             className="card-cred"
             src={Edit}
             alt="edit"
-            onClick={() => handleIssue(EHandleIssue.edit)}
+            onClick={() => handleIssue(EHandleIssue.edit, idIssue)}
           />
           <img
             className="card-cred"
             src={Delete}
             alt="delete"
-            onClick={() => handleIssue(EHandleIssue.delete)}
+            onClick={() => handleIssue(EHandleIssue.delete, idIssue)}
           />
         </div>
       );
@@ -50,7 +51,7 @@ export const IssueCard: React.FC<IIssueCard> = ({
           className="card-cred"
           src={Remove}
           alt="remove"
-          onClick={() => handleIssue(EHandleIssue.remove)}
+          onClick={() => handleIssue(EHandleIssue.remove, idIssue)}
         />
       );
       break;
@@ -65,7 +66,7 @@ export const IssueCard: React.FC<IIssueCard> = ({
       <div className="card-data">
         <p
           className="text card-data__name"
-          onClick={() => handleIssue(EHandleIssue.show)}
+          onClick={() => handleIssue(EHandleIssue.show, idIssue)}
         >
           {title}
         </p>

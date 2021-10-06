@@ -37,7 +37,7 @@ export interface IGame {
   gameStatus: EGameStatus;
   roundStatus: ERoundStatus;
   issues: IIssue[];
-  handleGameIssue: (value: string) => void;
+  handleGameIssue: (value: EHandleIssue, idIssue?: string) => void;
   cardsValues: ICardsValues[];
   marksCurrentTask: IMarksCurrentTask[];
   members: IUsers[];
@@ -50,6 +50,9 @@ export interface IGame {
   handleConfirmedUser: (value: boolean) => void;
   countPercentTask: (value: string | null) => string | undefined;
   handleClickCard: (number: string, scoreType: string | null) => void;
+  showIssue: boolean;
+  handleCloseModal: (event?: boolean) => void;
+  handelAddIssue: (props: any) => void;
 }
 
 export interface IInitialSettings {

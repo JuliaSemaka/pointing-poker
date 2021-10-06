@@ -8,6 +8,7 @@ import {
   ERoundStatus,
   IMarksCurrentTask,
 } from '../components/Game/game.module';
+import { EHandleIssue } from '../components/UI/ui.module';
 import { Game } from '../pages';
 import { confirmedNewUser } from '../store/actions/main';
 import { IReducer } from '../store/store.module';
@@ -31,6 +32,7 @@ export const GameContainer: React.FC = () => {
     tasks,
     users,
   } = useSelector((state: IReducer) => state.game);
+  const [showIssue, setShowIssue] = useState(false);
 
   useEffect(() => {
     if (gameStatus === EGameStatus.created) {
@@ -154,6 +156,46 @@ export const GameContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
+  const handleGameIssue = (value: EHandleIssue, idIssue?: string) => {
+    if (value === EHandleIssue.add) {
+      setShowIssue(true);
+    } else if (value === EHandleIssue.remove) {
+      const newTasks = tasks.filter((item) => item.id !== idIssue);
+      const data = {
+        id,
+        issues: newTasks,
+        method: 'correct-issues',
+      };
+      socket!.send(JSON.stringify(data));
+    } else if (value === EHandleIssue.show) {
+      console.log(value);
+    }
+  };
+
+  const handleCloseModal = (value?: boolean) => {
+    setShowIssue(value!);
+  };
+
+  const handelAddIssue = (props: any) => {
+    const idIssue = (+new Date()).toString(16);
+    const newIssue = {
+      ...props,
+      id: idIssue,
+      isChecked: false,
+      mark: null,
+    };
+
+    const newTasks = [...tasks, newIssue];
+
+    const data = {
+      id,
+      issues: newTasks,
+      method: 'correct-issues',
+    };
+    socket!.send(JSON.stringify(data));
+    setShowIssue(false);
+  };
+
   const propsGme = {
     myId: myId!,
     dealerId,
@@ -168,7 +210,7 @@ export const GameContainer: React.FC = () => {
     gameStatus,
     roundStatus,
     issues: tasks,
-    handleGameIssue: testFunc,
+    handleGameIssue,
     cardsValues: cards,
     marksCurrentTask,
     members: users,
@@ -182,6 +224,9 @@ export const GameContainer: React.FC = () => {
     handleConfirmedUser,
     countPercentTask,
     handleClickCard,
+    showIssue,
+    handleCloseModal,
+    handelAddIssue,
   };
 
   return <Game {...propsGme} />;
