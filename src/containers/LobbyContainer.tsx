@@ -7,7 +7,7 @@ import { EHandleIssue } from '../components/UI/ui.module';
 import { Lobby } from '../pages';
 import { changeSettings, enterTheGame } from '../store/actions/game';
 import { IGameState, IReducer } from '../store/store.module';
-import { EGameStatus } from '../components/Game/game.module';
+import { EGameStatus, IIssue } from '../components/Game/game.module';
 import { Spinners } from '../components';
 
 export const LobbyContainer: React.FC = () => {
@@ -22,6 +22,7 @@ export const LobbyContainer: React.FC = () => {
   const [editTitle, setEditTitle] = useState(false);
   const [successSettings, setSuccessSettings] = useState(false);
   const [showIssue, setShowIssue] = useState(false);
+  const [initialIssue, setInitialIssue] = useState<IIssue>({} as IIssue);
 
   useEffect(() => {
     return () => {
@@ -81,13 +82,6 @@ export const LobbyContainer: React.FC = () => {
 
   const funcTest = () => {
     console.log(1);
-  };
-
-  const funcTestParam = (value: EHandleIssue) => {
-    console.log(value);
-    if (value === 'add') {
-      setShowIssue(true);
-    }
   };
 
   const sendMessageChat = ({ chatMessage }: any) => {
@@ -223,23 +217,48 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const handelAddIssue = (props: any) => {
-    const idIssue = (+new Date()).toString(16);
-    const newIssue = {
-      ...props,
-      id: idIssue,
-      isChecked: false,
-      mark: null,
-    };
-
-    tasks.push(newIssue);
+    let newTasks: IIssue[] = [];
+    if (!Object.keys(initialIssue).length) {
+      const idIssue = (+new Date()).toString(16);
+      const newIssue = {
+        priority: 'Low',
+        ...props,
+        id: idIssue,
+        isChecked: tasks.length === 0 ? true : false,
+        mark: null,
+      };
+      newTasks = [...tasks, newIssue];
+    } else {
+      newTasks = tasks.map((item) =>
+        item.id === initialIssue.id ? { ...item, ...props } : item
+      );
+    }
 
     const data = {
       id,
-      issues: tasks,
+      issues: newTasks,
       method: 'correct-issues',
     };
     socket!.send(JSON.stringify(data));
     setShowIssue(false);
+  };
+
+  const funcTestParam = (value: EHandleIssue, idIssue?: string) => {
+    if (value === EHandleIssue.add) {
+      setInitialIssue({} as IIssue);
+      setShowIssue(true);
+    } else if (value === EHandleIssue.delete) {
+      const newTasks = tasks.filter((item) => item.id !== idIssue);
+      const data = {
+        id,
+        issues: newTasks,
+        method: 'correct-issues',
+      };
+      socket!.send(JSON.stringify(data));
+    } else if (value === EHandleIssue.edit || value === EHandleIssue.show) {
+      setShowIssue(true);
+      setInitialIssue(tasks.filter((item) => item.id == idIssue)[0]);
+    }
   };
 
   const propsDealer = {
@@ -275,6 +294,7 @@ export const LobbyContainer: React.FC = () => {
     showIssue,
     handleCloseModal,
     handelAddIssue,
+    initialIssuesValue: initialIssue,
   };
 
   return <>{myId && <Lobby {...propsDealer} />}</>;
