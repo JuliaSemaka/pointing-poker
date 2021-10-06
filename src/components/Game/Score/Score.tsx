@@ -12,6 +12,8 @@ export const Score: React.FC<IScore> = ({
   myId,
   dealerId,
   isPlayer,
+  isTurnAuto,
+  roundStatus,
 }) => (
   <div className="score">
     <div className="score__row">
@@ -31,6 +33,8 @@ export const Score: React.FC<IScore> = ({
                 number={
                   marksCurrentTask.find(({ idUser }) => idUser === id)?.mark
                 }
+                roundStatus={roundStatus}
+                isTurnAuto={isTurnAuto}
               />
             );
           }

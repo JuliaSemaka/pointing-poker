@@ -30,6 +30,7 @@ export enum ERenderFieldType {
   middle = 'middle',
   big = 'big',
   card = 'card',
+  issue = 'issue',
 }
 
 export enum EType {
@@ -91,6 +92,8 @@ export interface IIssueCard {
   idIssue?: string;
   handleIssue: (value: EHandleIssue, idIssue?: string) => void;
   handleCheckedIssue?: (idIssue: string) => void;
+  isDealer: boolean;
+  mark?: string;
 }
 
 export interface IGameCard {
@@ -129,6 +132,8 @@ export interface IRoundTime {
 export interface IScoreCard {
   scoreType?: string | null;
   number?: string | null;
+  roundStatus: ERoundStatus;
+  isTurnAuto: boolean;
 }
 
 export interface IGameSettingsForm {
@@ -187,6 +192,7 @@ export interface IChat {
 export interface IIssues {
   issues: IIssue[];
   handleIssue: (value: EHandleIssue) => void;
+  isDealer: boolean;
 }
 
 export enum EHandleIssue {

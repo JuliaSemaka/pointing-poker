@@ -49,8 +49,10 @@ export const LobbyContainer: React.FC = () => {
   }, [game.gameStatus]);
 
   useEffect(() => {
-    if (game.delUser !== null && myId !== game.delUser?.deleterUserId) {
+    if (game.delUser !== null && game.delUser?.delUser !== myId) {
       setKickPlayer(true);
+    } else {
+      setKickPlayer(false);
     }
   }, [game.delUser]);
 
@@ -284,14 +286,13 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const actionKickButton = (value: boolean) => {
-    if (value) {
-      const data = {
-        id,
-        userId: myId,
-        method: 'access-del-user',
-      };
-      socket!.send(JSON.stringify(data));
-    }
+    const data = {
+      id,
+      userId: myId,
+      isAgree: value,
+      method: 'access-del-user',
+    };
+    socket!.send(JSON.stringify(data));
     setKickPlayer(false);
   };
 

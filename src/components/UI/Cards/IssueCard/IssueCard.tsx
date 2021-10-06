@@ -1,12 +1,18 @@
 import React from 'react';
 
-import { EHandleIssue, ETypeCard, IIssueCard } from '../../ui.module';
+import {
+  EHandleIssue,
+  ERenderFieldType,
+  ETypeCard,
+  IIssueCard,
+} from '../../ui.module';
 import '../Cards.scss';
 import Add from '../../../../assets/images/cards/add.svg';
 import Delete from '../../../../assets/images/cards/delete.svg';
 import Edit from '../../../../assets/images/cards/edit.svg';
 import Remove from '../../../../assets/images/cards/remove.svg';
 import Eyes from '../../../../assets/images/cards/eyes.svg';
+import { RenderField } from '../../..';
 
 export const IssueCard: React.FC<IIssueCard> = ({
   title,
@@ -16,6 +22,8 @@ export const IssueCard: React.FC<IIssueCard> = ({
   idIssue,
   handleIssue,
   handleCheckedIssue,
+  isDealer,
+  mark,
 }) => {
   let cardEditorContent;
   switch (type) {
@@ -77,9 +85,9 @@ export const IssueCard: React.FC<IIssueCard> = ({
   }
 
   return (
-    <div className="card">
+    <div className={`card ${mark !== undefined && 'card-mark'}`}>
       {isCheck && <div className="card__check"></div>}
-      {handleCheckedIssue ? (
+      {handleCheckedIssue && isDealer ? (
         <div
           className="card-data"
           onClick={() => handleCheckedIssue!(idIssue!)}
@@ -94,7 +102,11 @@ export const IssueCard: React.FC<IIssueCard> = ({
         </div>
       )}
 
-      <div className="card-editor">{cardEditorContent}</div>
+      {isDealer && <div className="card-editor">{cardEditorContent}</div>}
+
+      {mark !== undefined && (
+        <RenderField value={mark ?? '-'} styles={ERenderFieldType.issue} />
+      )}
     </div>
   );
 };

@@ -9,6 +9,7 @@ export const IssuesGame: React.FC<IIssuesGame> = ({
   issues,
   handleGameIssue,
   handleCheckedIssue,
+  isDealer,
 }) => {
   return (
     <div className="game-item">
@@ -17,7 +18,7 @@ export const IssuesGame: React.FC<IIssuesGame> = ({
           <div className="game-item__title">
             <h3 className="text text-ruda">Issues</h3>
           </div>
-          {issues.map(({ title, priority, isChecked, id }) => (
+          {issues.map(({ title, priority, isChecked, id, mark }) => (
             <IssueCard
               key={id}
               title={title}
@@ -27,12 +28,15 @@ export const IssuesGame: React.FC<IIssuesGame> = ({
               isCheck={isChecked}
               handleIssue={handleGameIssue}
               handleCheckedIssue={handleCheckedIssue}
+              isDealer={isDealer!}
+              mark={mark!}
             />
           ))}
           <IssueCard
             title="Create new Issue"
             type={ETypeCard.add}
             handleIssue={handleGameIssue}
+            isDealer={isDealer!}
           />
         </div>
       </div>

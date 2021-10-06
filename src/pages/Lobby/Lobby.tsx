@@ -72,7 +72,11 @@ export const Lobby: React.FC<ILobby> = ({
       />
       {isDealer && (
         <>
-          <Issues issues={issues} handleIssue={handleIssue} />
+          <Issues
+            issues={issues}
+            handleIssue={handleIssue}
+            isDealer={isDealer}
+          />
           <GameSettings
             cardsValues={cards}
             handleEditCard={handleEditCard}
@@ -110,7 +114,9 @@ export const Lobby: React.FC<ILobby> = ({
       <KickPlayerModal
         playerName={delUser.delUser}
         actionKickButton={actionKickButton}
-        authorKick={delUser.deleterUserId}
+        authorKick={
+          myId === delUser.deleterUserId ? undefined : delUser.deleterUserId
+        }
         members={members}
       />
     )}

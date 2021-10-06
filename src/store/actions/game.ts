@@ -11,8 +11,10 @@ import {
   ADD_GAME,
   CHANGE_SETTINGS,
   IAction,
+  IAgreeUsers,
   IDelUser,
   IGameState,
+  SET_AGREE_USER,
   SET_DEL_USER,
   SET_GAME_STATUS,
   SET_MARK_CURRENT_TASK,
@@ -60,4 +62,8 @@ export function setTasks(value: IIssue[]): IAction {
 
 export function setDelUser(value: IDelUser): IAction {
   return { type: SET_DEL_USER, payload: value };
+}
+
+export function setAgreeUser(value: IAgreeUsers[]): IAction {
+  return { type: SET_AGREE_USER, payload: value };
 }

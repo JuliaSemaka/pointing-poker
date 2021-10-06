@@ -7,6 +7,8 @@ import { MemoryRouter } from 'react-router-dom';
 
 import '../../../App.scss';
 import { Score } from './Score';
+import { ERoundStatus } from '../game.module';
+import { action } from '@storybook/addon-actions';
 
 const members = [
   {
@@ -68,6 +70,8 @@ const propsDefault = {
   myId: '1',
   dealerId: '1',
   isPlayer: true,
+  isTurnAuto: true,
+  roundStatus: ERoundStatus.inProgress,
 };
 
 storiesOf('UI Components/Game-Score', module)

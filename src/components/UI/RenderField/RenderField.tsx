@@ -29,7 +29,7 @@ export const RenderField: React.FC<IRenderField> = ({
         type={type}
         className={`text text-bold input input-${styles} input-inherit`}
         disabled={disabled}
-        autoFocus
+        autoFocus={styles === ERenderFieldType.card}
         placeholder={placeholder}
         value={value}
         onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
