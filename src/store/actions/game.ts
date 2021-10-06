@@ -2,6 +2,7 @@ import {
   EGameStatus,
   ERoundStatus,
   ICardsValues,
+  IIssue,
   IMarksCurrentTask,
 } from '../../components/Game/game.module';
 import { IUsers } from '../../pages/pages.module';
@@ -14,6 +15,7 @@ import {
   SET_GAME_STATUS,
   SET_MARK_CURRENT_TASK,
   SET_ROUND_STATUS,
+  SET_TASKS,
   SET_TITLE,
   SET_USERS,
 } from '../store.module';
@@ -48,4 +50,8 @@ export function setMarksCurrentTask(value: IMarksCurrentTask[]): IAction {
 
 export function setUsers(value: IUsers[]): IAction {
   return { type: SET_USERS, payload: value };
+}
+
+export function setTasks(value: IIssue[]): IAction {
+  return { type: SET_TASKS, payload: value };
 }

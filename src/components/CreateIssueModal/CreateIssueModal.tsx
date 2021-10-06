@@ -9,7 +9,9 @@ import { EButtonStyle, EButtonType } from '../UI/ui.module';
 import './CreateIssueModal.scss';
 
 export interface ICreateIssueModal {
-  handleCloseModal: (event?: boolean | React.MouseEvent<Element, MouseEvent>) => void;
+  handleCloseModal: (
+    event?: boolean
+  ) => void;
   handleSubmit?: () => void;
   submitting?: boolean;
 }
@@ -47,7 +49,7 @@ const CreateIssueModal: React.FC<
           />
           <Button
             text="No"
-            handleClick={handleCloseModal}
+            handleClick={() => handleCloseModal(false)}
             style={EButtonStyle.light}
           />
         </div>

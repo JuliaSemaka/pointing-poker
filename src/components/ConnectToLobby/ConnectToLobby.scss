@@ -1,9 +1,9 @@
 .modal-connect-lobby {
   width: 756px;
-  height: auto;
+  height: 550px;
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  justify-content: space-between;
 
   @media (max-width: 900px) {
     width: 100%;

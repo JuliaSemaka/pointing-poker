@@ -21,6 +21,7 @@ export const LobbyContainer: React.FC = () => {
   const [getSeconds, handleChangeSeconds] = useState('0');
   const [editTitle, setEditTitle] = useState(false);
   const [successSettings, setSuccessSettings] = useState(false);
+  const [showIssue, setShowIssue] = useState(false);
 
   useEffect(() => {
     return () => {
@@ -84,6 +85,9 @@ export const LobbyContainer: React.FC = () => {
 
   const funcTestParam = (value: EHandleIssue) => {
     console.log(value);
+    if (value === 'add') {
+      setShowIssue(true);
+    }
   };
 
   const sendMessageChat = ({ chatMessage }: any) => {
@@ -214,6 +218,30 @@ export const LobbyContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
+  const handleCloseModal = (value?: boolean) => {
+    setShowIssue(value!);
+  };
+
+  const handelAddIssue = (props: any) => {
+    const idIssue = (+new Date()).toString(16);
+    const newIssue = {
+      ...props,
+      id: idIssue,
+      isChecked: false,
+      mark: null,
+    };
+
+    tasks.push(newIssue);
+
+    const data = {
+      id,
+      issues: tasks,
+      method: 'correct-issues',
+    };
+    socket!.send(JSON.stringify(data));
+    setShowIssue(false);
+  };
+
   const propsDealer = {
     myId,
     dealerId,
@@ -244,6 +272,9 @@ export const LobbyContainer: React.FC = () => {
     isTimerEnableState,
     setIsTimerEnable,
     successSettings,
+    showIssue,
+    handleCloseModal,
+    handelAddIssue,
   };
 
   return <>{myId && <Lobby {...propsDealer} />}</>;

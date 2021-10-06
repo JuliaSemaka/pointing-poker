@@ -221,6 +221,9 @@ const propsDealer = {
   isTimerEnableState,
   setIsTimerEnable,
   successSettings: false,
+  showIssue: false,
+  handleCloseModal: action('handleCloseModal'),
+  handelAddIssue: action('handelAddIssue'),
 };
 
 const propsDealerEmptyChat = {
@@ -253,6 +256,9 @@ const propsDealerEmptyChat = {
   isTimerEnableState,
   setIsTimerEnable,
   successSettings: true,
+  showIssue: true,
+  handleCloseModal: action('handleCloseModal'),
+  handelAddIssue: action('handelAddIssue'),
 };
 
 const propsPlayer = {
@@ -285,6 +291,9 @@ const propsPlayer = {
   isTimerEnableState,
   setIsTimerEnable,
   successSettings: false,
+  showIssue: false,
+  handleCloseModal: action('handleCloseModal'),
+  handelAddIssue: action('handelAddIssue'),
 };
 
 storiesOf('Pages/Lobby', module)
