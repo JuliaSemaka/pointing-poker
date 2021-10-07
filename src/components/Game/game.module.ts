@@ -16,6 +16,7 @@ export interface IGameData {
   handleRestartRound: () => void;
   handleNextIssye: () => void;
   isTimerEnable: boolean;
+  issues: IIssue[];
 }
 
 export interface IIssue {
@@ -71,6 +72,7 @@ export interface IScore {
   isPlayer: boolean;
   isTurnAuto: boolean;
   roundStatus: ERoundStatus;
+  handleRemoveMember: (idUser: string) => void;
 }
 
 export interface ICardsGame {

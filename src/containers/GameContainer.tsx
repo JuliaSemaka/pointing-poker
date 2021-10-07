@@ -36,6 +36,7 @@ export const GameContainer: React.FC = () => {
   } = useSelector((state: IReducer) => state.game);
   const [showIssue, setShowIssue] = useState(false);
   const [initialIssue, setInitialIssue] = useState<IIssue>({} as IIssue);
+  const [kickPlayer, setKickPlayer] = useState(false);
 
   useEffect(() => {
     if (gameStatus === EGameStatus.created) {
@@ -52,14 +53,27 @@ export const GameContainer: React.FC = () => {
   }, [users]);
 
   useEffect(() => {
-    if (marksCurrentTask.length && roundStatus === ERoundStatus.finish) {
+    if (marksCurrentTask?.length && roundStatus === ERoundStatus.finish) {
       const mark = marksCurrentTask.reduce(
         (res, item) =>
-          typeof item.mark === 'number' ? res + Number(item.mark) : res,
+          item.mark !== 'Unknown' ? res + Number(item.mark) : res,
         0
       );
+      const len = marksCurrentTask.filter(
+        (item) => item.mark !== 'Unknown'
+      ).length;
       const newTasks = tasks.map((item) =>
-        item.isChecked ? { ...item, mark } : item
+        item.isChecked ? { ...item, mark: Math.round(mark / len) } : item
+      );
+      const data = {
+        id,
+        issues: newTasks,
+        method: 'correct-issues',
+      };
+      socket!.send(JSON.stringify(data));
+    } else if (roundStatus === ERoundStatus.start) {
+      const newTasks = tasks.map((item) =>
+        item.isChecked ? { ...item, mark: null } : item
       );
       const data = {
         id,
@@ -69,6 +83,14 @@ export const GameContainer: React.FC = () => {
       socket!.send(JSON.stringify(data));
     }
   }, [roundStatus]);
+
+  useEffect(() => {
+    if (delUser !== null && delUser?.delUser !== myId) {
+      setKickPlayer(true);
+    } else {
+      setKickPlayer(false);
+    }
+  }, [delUser]);
 
   const handleConfirmedUser = (value: boolean) => {
     if (value) {
@@ -91,10 +113,6 @@ export const GameContainer: React.FC = () => {
   }
 
   const { isTimerEnable, minute, seconds, isPlayer, isTurnAuto } = settings;
-
-  const testFunc = () => {
-    console.log(1);
-  };
 
   const handleRunRound = () => {
     const data = {
@@ -248,6 +266,59 @@ export const GameContainer: React.FC = () => {
     setShowIssue(false);
   };
 
+  const handleNextIssye = () => {
+    const indCheck = tasks.findIndex((item) => item.isChecked);
+    const indNewCheck = indCheck + 1 === tasks.length ? 0 : indCheck + 1;
+    const newTasks = tasks.map((item, index) =>
+      index === indNewCheck
+        ? { ...item, isChecked: true }
+        : { ...item, isChecked: false }
+    );
+    const data = {
+      id,
+      issues: newTasks,
+      method: 'correct-issues',
+    };
+    socket!.send(JSON.stringify(data));
+
+    const dataRound = {
+      id,
+      roundStatus: ERoundStatus.start,
+      method: 'set-round-status',
+    };
+    socket!.send(JSON.stringify(dataRound));
+  };
+
+  const handleRemoveMember = (idUser: string) => {
+    if (dealerId === myId) {
+      const data = {
+        id,
+        exitUserId: idUser,
+        method: 'exit-from-game',
+      };
+      socket!.send(JSON.stringify(data));
+    } else {
+      const data = {
+        id,
+        userId: myId,
+        delUserId: idUser,
+        method: 'del-user',
+      };
+      socket!.send(JSON.stringify(data));
+    }
+  };
+
+  const actionKickButton = (value: boolean) => {
+    const data = {
+      id,
+      userId: myId,
+      isAgree: value,
+      method: 'access-del-user',
+    };
+    socket!.send(JSON.stringify(data));
+    setKickPlayer(false);
+  };
+
   const propsGme = {
     myId: myId!,
     dealerId,
@@ -258,7 +329,7 @@ export const GameContainer: React.FC = () => {
     handleGameExit,
     handleRunRound,
     handleRestartRound,
-    handleNextIssye: testFunc,
+    handleNextIssye,
     gameStatus,
     roundStatus,
     issues: tasks,
@@ -281,6 +352,10 @@ export const GameContainer: React.FC = () => {
     handelAddIssue,
     handleCheckedIssue,
     initialIssuesValue: initialIssue,
+    kickPlayer,
+    actionKickButton,
+    delUser,
+    handleRemoveMember,
   };
 
   return <Game {...propsGme} />;

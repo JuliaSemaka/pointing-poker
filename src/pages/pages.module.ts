@@ -56,6 +56,10 @@ export interface IGame {
   handelAddIssue: (props: any) => void;
   handleCheckedIssue: (idIssue: string) => void;
   initialIssuesValue?: IIssue;
+  kickPlayer: boolean;
+  actionKickButton: (value: boolean) => void;
+  delUser: IDelUser | null;
+  handleRemoveMember: (idUser: string) => void;
 }
 
 export interface IInitialSettings {

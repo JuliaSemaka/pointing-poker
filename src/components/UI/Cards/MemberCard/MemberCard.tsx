@@ -14,7 +14,7 @@ export const MemberCard: React.FC<IMemberCard> = ({
   isRemove = false,
   isSmall = false,
   handleRemoveMember,
-  idUser
+  idUser,
 }) => {
   const cardAvatar = image ? (
     <Avatar image={image} />

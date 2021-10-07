@@ -19,6 +19,32 @@ const dealerData = {
   image: null,
   role: 'dealer',
 };
+const issues = [
+  {
+    title: 'Issue 505',
+    priority: 'Low',
+    id: '1',
+    link: 'http://serga.aer',
+    isChecked: true,
+    mark: null,
+  },
+  {
+    title: 'Issue 745',
+    priority: 'Middle',
+    id: '2',
+    link: 'http://serga.aer',
+    isChecked: false,
+    mark: '8',
+  },
+  {
+    title: 'Issue 325',
+    priority: 'Hight',
+    id: '3',
+    link: 'http://serga.aer',
+    isChecked: false,
+    mark: '12',
+  },
+];
 
 const reducer = combineReducers({ form: formReducer });
 
@@ -35,6 +61,7 @@ const propsDefault = {
   handleRestartRound: action('handleRestartRound'),
   handleNextIssye: action('handleNextIssye'),
   isTimerEnable: true,
+  issues,
 };
 
 storiesOf('UI Components/Game-GameData', module)

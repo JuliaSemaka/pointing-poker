@@ -154,6 +154,10 @@ const propsDealer = {
   handleCloseModal: action('handleCloseModal'),
   handelAddIssue: action('handelAddIssue'),
   handleCheckedIssue: action('handleCheckedIssue'),
+  kickPlayer: false,
+  delUser: null,
+  actionKickButton: action('actionKickButton'),
+  handleRemoveMember: action('handleRemoveMember'),
 };
 
 const propsDealerInProgress = {
@@ -188,6 +192,10 @@ const propsDealerInProgress = {
   handleCloseModal: action('handleCloseModal'),
   handelAddIssue: action('handelAddIssue'),
   handleCheckedIssue: action('handleCheckedIssue'),
+  kickPlayer: false,
+  delUser: null,
+  actionKickButton: action('actionKickButton'),
+  handleRemoveMember: action('handleRemoveMember'),
 };
 
 const propsPlayer = {
@@ -222,6 +230,10 @@ const propsPlayer = {
   handleCloseModal: action('handleCloseModal'),
   handelAddIssue: action('handelAddIssue'),
   handleCheckedIssue: action('handleCheckedIssue'),
+  kickPlayer: false,
+  delUser: null,
+  actionKickButton: action('actionKickButton'),
+  handleRemoveMember: action('handleRemoveMember'),
 };
 
 storiesOf('Pages/Game', module)

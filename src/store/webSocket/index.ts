@@ -25,8 +25,8 @@ export const useWebSocket = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    // const socket = new WebSocket('wss://obscure-wave-90492.herokuapp.com/');
-    const socket = new WebSocket('ws://localhost:5300/');
+    const socket = new WebSocket('wss://obscure-wave-90492.herokuapp.com/');
+    // const socket = new WebSocket('ws://localhost:5300/');
     dispatch(addWebSocket(socket));
     socket.onopen = () => {
       console.log('Подключение установлено');
