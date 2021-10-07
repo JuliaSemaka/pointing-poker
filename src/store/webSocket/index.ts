@@ -96,5 +96,10 @@ export const useWebSocket = () => {
         }
       };
     };
+    socket.onclose = () => {
+      console.error(
+        'WebSocket is already in CLOSING or CLOSED state. Please try again.'
+      );
+    };
   }, []);
 };
