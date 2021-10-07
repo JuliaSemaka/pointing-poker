@@ -12,6 +12,7 @@ import { ERole } from '../../components/components.module';
 import { ERoundStatus } from '../../components/Game/game.module';
 import { EGameStatus } from '../../components/Game/game.module';
 import { GameResult } from '../../components/GameResult/GameResult';
+import { KickPlayerModal } from '../../components/KickPlayerModal/KickPlayerModal';
 import { IGame } from '../pages.module';
 
 import './Game.scss';
@@ -49,6 +50,10 @@ export const Game: React.FC<IGame> = ({
   handelAddIssue,
   handleCheckedIssue,
   initialIssuesValue,
+  kickPlayer,
+  delUser,
+  actionKickButton,
+  handleRemoveMember,
 }) => {
   if (gameStatus === EGameStatus.finished) {
     return (
@@ -81,6 +86,7 @@ export const Game: React.FC<IGame> = ({
           handleRestartRound={handleRestartRound}
           handleNextIssye={handleNextIssye}
           isTimerEnable={isTimerEnable}
+          issues={issues}
         />
         <IssuesGame
           issues={issues}
@@ -116,6 +122,7 @@ export const Game: React.FC<IGame> = ({
           isPlayer={isPlayer}
           isTurnAuto={isTurnAuto}
           roundStatus={roundStatus}
+          handleRemoveMember={handleRemoveMember}
         />
       </aside>
       {valueConfirmedUser && isDealer && (
@@ -129,6 +136,16 @@ export const Game: React.FC<IGame> = ({
           handleCloseModal={handleCloseModal}
           onSubmit={handelAddIssue}
           initialValues={initialIssuesValue}
+        />
+      )}
+      {kickPlayer && delUser && (
+        <KickPlayerModal
+          playerName={delUser.delUser}
+          actionKickButton={actionKickButton}
+          authorKick={
+            myId === delUser.deleterUserId ? undefined : delUser.deleterUserId
+          }
+          members={members}
         />
       )}
     </div>

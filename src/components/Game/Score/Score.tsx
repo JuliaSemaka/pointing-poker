@@ -14,6 +14,7 @@ export const Score: React.FC<IScore> = ({
   isPlayer,
   isTurnAuto,
   roundStatus,
+  handleRemoveMember,
 }) => (
   <div className="score">
     <div className="score__row">
@@ -55,6 +56,8 @@ export const Score: React.FC<IScore> = ({
                 position={jobTitle}
                 isSmall={true}
                 isRemove={id !== dealerId}
+                handleRemoveMember={handleRemoveMember}
+                idUser={id}
               />
             );
           }

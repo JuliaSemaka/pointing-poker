@@ -72,6 +72,7 @@ const propsDefault = {
   isPlayer: true,
   isTurnAuto: true,
   roundStatus: ERoundStatus.inProgress,
+  handleRemoveMember: action('handleRemoveMember'),
 };
 
 storiesOf('UI Components/Game-Score', module)

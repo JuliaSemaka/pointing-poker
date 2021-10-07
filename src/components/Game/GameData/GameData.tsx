@@ -21,6 +21,7 @@ export const GameDataGame: React.FC<IGameData> = ({
   handleRestartRound,
   handleNextIssye,
   isTimerEnable,
+  issues,
 }) => {
   const { firstName, lastName, jobTitle, id } = dealerData;
 
@@ -57,19 +58,21 @@ export const GameDataGame: React.FC<IGameData> = ({
                 handleTimeFinish={handleTimeFinish}
               />
             )}
-            <Button
-              style={EButtonStyle.dark}
-              text={
-                roundStatus === ERoundStatus.start
-                  ? 'Run Round'
-                  : 'Restart Round'
-              }
-              handleClick={
-                roundStatus === ERoundStatus.start
-                  ? handleRunRound
-                  : handleRestartRound
-              }
-            />
+            {issues.length !== 0 && (
+              <Button
+                style={EButtonStyle.dark}
+                text={
+                  roundStatus === ERoundStatus.start
+                    ? 'Run Round'
+                    : 'Restart Round'
+                }
+                handleClick={
+                  roundStatus === ERoundStatus.start
+                    ? handleRunRound
+                    : handleRestartRound
+                }
+              />
+            )}
             {roundStatus !== ERoundStatus.start && (
               <Button
                 style={EButtonStyle.dark}

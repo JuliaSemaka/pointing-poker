@@ -32,12 +32,14 @@ export const IssuesGame: React.FC<IIssuesGame> = ({
               mark={mark!}
             />
           ))}
-          <IssueCard
-            title="Create new Issue"
-            type={ETypeCard.add}
-            handleIssue={handleGameIssue}
-            isDealer={isDealer!}
-          />
+          {isDealer && (
+            <IssueCard
+              title="Create new Issue"
+              type={ETypeCard.add}
+              handleIssue={handleGameIssue}
+              isDealer={isDealer!}
+            />
+          )}
         </div>
       </div>
     </div>
