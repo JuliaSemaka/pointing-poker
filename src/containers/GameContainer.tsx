@@ -8,6 +8,7 @@ import {
   EGameStatus,
   ERoundStatus,
   IIssue,
+  IMarks,
   IMarksCurrentTask,
 } from '../components/Game/game.module';
 import { EHandleIssue } from '../components/UI/ui.module';
@@ -54,13 +55,23 @@ export const GameContainer: React.FC = () => {
   }, [users]);
 
   useEffect(() => {
-    if (marksCurrentTask?.length && roundStatus === ERoundStatus.finish) {
-      const mark = marksCurrentTask.reduce(
+    if (
+      dealerId === myId &&
+      marksCurrentTask?.find(
+        ({ idTask }) => idTask === tasks?.find(({ isChecked }) => isChecked)?.id
+      )?.marks.length &&
+      roundStatus === ERoundStatus.finish
+    ) {
+      const idIssue = tasks.find((item) => item.isChecked)?.id;
+      const indexMark = marksCurrentTask.findIndex(
+        (item) => item.idTask === idIssue
+      );
+      const mark = marksCurrentTask[indexMark].marks.reduce(
         (res, item) =>
           item.mark !== 'Unknown' ? res + Number(item.mark) : res,
         0
       );
-      const len = marksCurrentTask.filter(
+      const len = marksCurrentTask[indexMark].marks.filter(
         (item) => item.mark !== 'Unknown'
       ).length;
       const newTasks = tasks.map((item) =>
@@ -72,18 +83,8 @@ export const GameContainer: React.FC = () => {
         method: 'correct-issues',
       };
       socket!.send(JSON.stringify(data));
-    } else if (roundStatus === ERoundStatus.start) {
-      const newTasks = tasks.map((item) =>
-        item.isChecked ? { ...item, mark: null } : item
-      );
-      const data = {
-        id,
-        issues: newTasks,
-        method: 'correct-issues',
-      };
-      socket!.send(JSON.stringify(data));
     }
-  }, [roundStatus]);
+  }, [roundStatus, marksCurrentTask]);
 
   useEffect(() => {
     if (delUser !== null && delUser?.delUser !== myId) {
@@ -94,9 +95,13 @@ export const GameContainer: React.FC = () => {
   }, [delUser]);
 
   useEffect(() => {
+    const checkedTaskId = tasks?.find(({ isChecked }) => isChecked)?.id;
     if (
+      checkedTaskId &&
       marksCurrentTask?.length &&
-      marksCurrentTask?.length ===
+      marksCurrentTask?.find(({ idTask }) => idTask === checkedTaskId)?.marks &&
+      marksCurrentTask?.find(({ idTask }) => idTask === checkedTaskId)?.marks
+        .length ===
         users?.filter(
           (item) =>
             item.role === ERole.player ||
@@ -132,7 +137,14 @@ export const GameContainer: React.FC = () => {
     );
   }
 
-  const { isTimerEnable, minute, seconds, isPlayer, isTurnAuto } = settings;
+  const {
+    isTimerEnable,
+    minute,
+    seconds,
+    isPlayer,
+    isTurnAuto,
+    isChangeEnable,
+  } = settings;
 
   const handleRunRound = () => {
     const data = {
@@ -141,21 +153,29 @@ export const GameContainer: React.FC = () => {
       method: 'set-round-status',
     };
     socket!.send(JSON.stringify(data));
-  };
 
-  const handleRestartRound = () => {
-    const data = {
-      id,
-      roundStatus: ERoundStatus.start,
-      method: 'set-round-status',
-    };
-    socket!.send(JSON.stringify(data));
+    const idIssue = tasks.find((item) => item.isChecked)?.id;
+    const newMarksCurrentTask = marksCurrentTask.map((item) =>
+      item.idTask === idIssue ? { idTask: idIssue, marks: [] } : item
+    );
     const dataMark = {
       id,
-      marksCurrentTask: [],
+      marksCurrentTask: newMarksCurrentTask,
       method: 'set-mark-current-task',
     };
     socket!.send(JSON.stringify(dataMark));
+  };
+
+  const handleRestartRound = () => {
+    const newTasks = tasks.map((item) =>
+      item.isChecked ? { ...item, mark: null } : item
+    );
+    const correctIssues = {
+      id,
+      issues: newTasks,
+      method: 'correct-issues',
+    };
+    socket!.send(JSON.stringify(correctIssues));
     handleRunRound();
   };
 
@@ -186,36 +206,68 @@ export const GameContainer: React.FC = () => {
     socket!.send(JSON.stringify(data));
   };
 
-  const countPercentTask = (number: string | null): string | undefined => {
+  const countPercentTask = (
+    number: string | null,
+    id?: string
+  ): string | undefined => {
     if (!marksCurrentTask.length) {
       return;
     }
 
+    if (id !== undefined) {
+      return `${(
+        (marksCurrentTask
+          .find(({ idTask }) => idTask === id)!
+          .marks.filter(({ mark }) => mark === number).length /
+          marksCurrentTask.length) *
+        100
+      ).toFixed(1)}%`;
+    }
+
+    const idIssue = tasks.find((item) => item.isChecked)?.id;
+    const indexMark = marksCurrentTask.findIndex(
+      (item) => item.idTask === idIssue
+    );
+
     return `${(
-      (marksCurrentTask.filter(({ mark }) => mark === number).length /
+      (marksCurrentTask[indexMark].marks.filter(({ mark }) => mark === number)
+        .length /
         marksCurrentTask.length) *
       100
     ).toFixed(1)}%`;
   };
 
   const handleClickCard = (number: string, scoreType: string | null) => {
-    const mark: IMarksCurrentTask = {
+    const idIssue = tasks.find((item) => item.isChecked)?.id;
+    const indexMark = marksCurrentTask.findIndex(
+      (item) => item.idTask === idIssue
+    );
+
+    const mark: IMarks = {
       idUser: myId!,
       mark: number,
       scoreType,
     };
-    const ind = marksCurrentTask.findIndex((item) => item.idUser === myId);
-    let newArr: IMarksCurrentTask[] = [];
+
+    const ind = marksCurrentTask[indexMark].marks.findIndex(
+      (item) => item.idUser === myId
+    );
+    let newArr: IMarks[] = [];
     if (ind === -1) {
-      newArr = marksCurrentTask.concat([mark]);
+      newArr = marksCurrentTask[indexMark].marks.concat([mark]);
     } else {
-      newArr = marksCurrentTask.map((item, index) =>
+      newArr = marksCurrentTask[indexMark].marks.map((item, index) =>
         index === ind ? mark : item
       );
     }
+
+    const newMarksCurrentTask = marksCurrentTask.map((item) =>
+      item.idTask === idIssue ? { idTask: idIssue, marks: newArr } : item
+    );
+
     const data = {
       id,
-      marksCurrentTask: newArr,
+      marksCurrentTask: newMarksCurrentTask,
       method: 'set-mark-current-task',
     };
 
@@ -227,10 +279,15 @@ export const GameContainer: React.FC = () => {
       setInitialIssue({} as IIssue);
       setShowIssue(true);
     } else if (value === EHandleIssue.remove) {
-      const newTasks = tasks.filter((item) => item.id !== idIssue);
+      const newTasks = tasks.filter(({ id }) => id !== idIssue);
+      const newMarksCurrentTask = marksCurrentTask.filter(
+        ({ idTask }) => idTask !== idIssue
+      );
+
       const data = {
         id,
         issues: newTasks,
+        marksCurrentTask: newMarksCurrentTask,
         method: 'correct-issues',
       };
       socket!.send(JSON.stringify(data));
@@ -246,6 +303,7 @@ export const GameContainer: React.FC = () => {
 
   const handelAddIssue = (props: any) => {
     let newTasks: IIssue[] = [];
+    let newMarksCurrentTask: IMarksCurrentTask[] | undefined = undefined;
     if (!Object.keys(initialIssue).length) {
       const idIssue = (+new Date()).toString(16);
       const newIssue = {
@@ -256,15 +314,19 @@ export const GameContainer: React.FC = () => {
         mark: null,
       };
       newTasks = [...tasks, newIssue];
+      newMarksCurrentTask = [
+        ...marksCurrentTask,
+        { idTask: idIssue, marks: [] as IMarks[] },
+      ];
     } else {
       newTasks = tasks.map((item) =>
         item.id === initialIssue.id ? { ...item, ...props } : item
       );
     }
-
     const data = {
       id,
       issues: newTasks,
+      marksCurrentTask: newMarksCurrentTask,
       method: 'correct-issues',
     };
     socket!.send(JSON.stringify(data));
@@ -283,6 +345,13 @@ export const GameContainer: React.FC = () => {
       method: 'correct-issues',
     };
     socket!.send(JSON.stringify(data));
+
+    const dataRound = {
+      id,
+      roundStatus: ERoundStatus.start,
+      method: 'set-round-status',
+    };
+    socket!.send(JSON.stringify(dataRound));
     setShowIssue(false);
   };
 
@@ -376,6 +445,7 @@ export const GameContainer: React.FC = () => {
     actionKickButton,
     delUser,
     handleRemoveMember,
+    isChangeEnable,
   };
 
   return <Game {...propsGme} />;

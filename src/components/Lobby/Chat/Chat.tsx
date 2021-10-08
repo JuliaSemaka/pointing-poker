@@ -25,7 +25,10 @@ export const ChatForm: React.FC<IChat & InjectedFormProps<any, IChat>> = ({
             lastName={members.find(({ id }) => id === idUser)?.lastName}
             position={members.find(({ id }) => id === idUser)?.jobTitle}
             image={members.find(({ id }) => id === idUser)?.image}
-            isRemove={members.find(({ id }) => id === idUser)?.id !== dealerId}
+            isRemove={
+              members.find(({ id }) => id === idUser)?.id !== dealerId &&
+              members.find(({ id }) => id === idUser)?.id !== myId
+            }
             isMyCard={members.find(({ id }) => id === idUser)?.id === myId}
             handleRemoveMember={() => handleRemoveMember(idUser)}
             isSmall={true}

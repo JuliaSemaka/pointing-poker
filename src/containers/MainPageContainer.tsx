@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
-import { reset } from 'redux-form';
+
 import ConnectToLobby from '../components/ConnectToLobby/ConnectToLobby';
 import { IReducer } from '../store/store.module';
 import { addMyId, setDenied, setThereId } from '../store/actions/main';
@@ -107,7 +107,11 @@ export const MainPageContainer: React.FC = () => {
       lastName: lastName,
       jobTitle: jobPosition,
       image: avatar,
-      player: isDealler ? ERole.dealer : isObserver ? ERole.observer : ERole.player,
+      player: isDealler
+        ? ERole.dealer
+        : isObserver
+        ? ERole.observer
+        : ERole.player,
       title: title,
       id: gameId,
       method: isDealler ? 'connection' : 'add-user',
@@ -119,8 +123,8 @@ export const MainPageContainer: React.FC = () => {
   const handleStartGame = () => {
     handleCloseModal();
   };
+
   const handleConnectToLobby = () => {
-    console.log(form.connectToLobby.values.lobbyId);
     const data = {
       id: form.connectToLobby.values.lobbyId,
       method: 'there-id',
@@ -158,7 +162,6 @@ export const MainPageContainer: React.FC = () => {
   const handleSubmit = () => {
     onSubmit();
     handleCloseModal();
-    console.log('Форма отправлена');
   };
 
   const props = {

@@ -112,6 +112,7 @@ export interface IGameCard {
   handleClickCard?: (number: string, scoreType: string | null) => void;
   roundStatus?: ERoundStatus;
   isChecked?: boolean;
+  isChangeEnable?: boolean;
 }
 
 export interface IModalWindow {

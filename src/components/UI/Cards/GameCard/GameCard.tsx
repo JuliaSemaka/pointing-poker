@@ -26,6 +26,7 @@ export const GameCard: React.FC<IGameCard> = ({
   handleClickCard,
   roundStatus,
   isChecked,
+  isChangeEnable,
 }) => {
   const [editCard, setEditCard] = useState(isNewCard ?? false);
   const [numberCard, setNumberCard] = useState(number || 'Unknown');
@@ -60,7 +61,11 @@ export const GameCard: React.FC<IGameCard> = ({
   };
 
   const handleClick = () => {
-    if (handleClickCard && roundStatus === ERoundStatus.inProgress) {
+    if (
+      handleClickCard &&
+      (roundStatus === ERoundStatus.inProgress ||
+        (roundStatus === ERoundStatus.finish && isChangeEnable))
+    ) {
       handleClickCard(number!, scoreType);
     }
   };
@@ -77,7 +82,8 @@ export const GameCard: React.FC<IGameCard> = ({
     <div
       className={`game-card ${
         handleClickCard &&
-        roundStatus === ERoundStatus.inProgress &&
+        (roundStatus === ERoundStatus.inProgress ||
+          (roundStatus === ERoundStatus.finish && isChangeEnable)) &&
         'game-card__click'
       } ${isChecked && 'game-card__checked'}`}
       onClick={handleClick}

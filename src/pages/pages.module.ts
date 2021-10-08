@@ -52,7 +52,7 @@ export interface IGame {
   isTurnAuto: boolean;
   valueConfirmedUser: IUsers | null;
   handleConfirmedUser: (value: boolean) => void;
-  countPercentTask: (value: string | null) => string | undefined;
+  countPercentTask: (value: string | null, id?: string) => string | undefined;
   handleClickCard: (number: string, scoreType: string | null) => void;
   showIssue: boolean;
   handleCloseModal: (event?: boolean) => void;
@@ -60,6 +60,7 @@ export interface IGame {
   handleCheckedIssue: (idIssue: string) => void;
   initialIssuesValue?: IIssue;
   kickPlayer: boolean;
+  isChangeEnable: boolean;
   actionKickButton: (value: boolean) => void;
   delUser: IDelUser | null;
   handleRemoveMember: (idUser: string) => void;

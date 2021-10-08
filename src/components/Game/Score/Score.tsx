@@ -15,6 +15,7 @@ export const Score: React.FC<IScore> = ({
   isTurnAuto,
   roundStatus,
   handleRemoveMember,
+  issueId,
 }) => (
   <div className="score">
     <div className="score__row">
@@ -28,11 +29,14 @@ export const Score: React.FC<IScore> = ({
               <ScoreCard
                 key={id}
                 scoreType={
-                  marksCurrentTask.find(({ idUser }) => idUser === id)
-                    ?.scoreType
+                  marksCurrentTask
+                    .find(({ idTask }) => idTask === issueId)
+                    ?.marks.find(({ idUser }) => idUser === id)?.scoreType
                 }
                 number={
-                  marksCurrentTask.find(({ idUser }) => idUser === id)?.mark
+                  marksCurrentTask
+                    .find(({ idTask }) => idTask === issueId)
+                    ?.marks.find(({ idUser }) => idUser === id)?.mark
                 }
                 roundStatus={roundStatus}
                 isTurnAuto={isTurnAuto}
@@ -55,7 +59,7 @@ export const Score: React.FC<IScore> = ({
                 lastName={lastName}
                 position={jobTitle}
                 isSmall={true}
-                isRemove={id !== dealerId}
+                isRemove={id !== dealerId && id !== myId}
                 handleRemoveMember={handleRemoveMember}
                 idUser={id}
               />
@@ -78,7 +82,9 @@ export const Score: React.FC<IScore> = ({
               lastName={lastName}
               position={jobTitle}
               isSmall={true}
-              isRemove={id !== dealerId}
+              isRemove={id !== dealerId && id !== myId}
+              handleRemoveMember={handleRemoveMember}
+              idUser={id}
             />
           );
         }

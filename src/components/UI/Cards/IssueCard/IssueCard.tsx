@@ -105,7 +105,11 @@ export const IssueCard: React.FC<IIssueCard> = ({
       {isDealer && <div className="card-editor">{cardEditorContent}</div>}
 
       {mark !== undefined && (
-        <RenderField value={mark ?? '-'} styles={ERenderFieldType.issue} />
+        <RenderField
+          value={mark ?? '-'}
+          styles={ERenderFieldType.issue}
+          disabled={true}
+        />
       )}
     </div>
   );

@@ -54,6 +54,7 @@ export const Game: React.FC<IGame> = ({
   delUser,
   actionKickButton,
   handleRemoveMember,
+  isChangeEnable,
 }) => {
   if (gameStatus === EGameStatus.finished) {
     return (
@@ -96,7 +97,7 @@ export const Game: React.FC<IGame> = ({
         />
         {(!isDealer || isPlayer) &&
           members.find(
-            (item) => item.id === myId && item.role !== ERole.observer
+            ({ id, role }) => id === myId && role !== ERole.observer
           ) && (
             <CardsGame
               cardsValues={cardsValues}
@@ -104,6 +105,8 @@ export const Game: React.FC<IGame> = ({
               roundStatus={roundStatus}
               marksCurrentTask={marksCurrentTask}
               myId={myId}
+              issueId={issues?.find(({ isChecked }) => isChecked)?.id}
+              isChangeEnable={isChangeEnable}
             />
           )}
         {isDealer && roundStatus === ERoundStatus.finish && (
@@ -123,6 +126,7 @@ export const Game: React.FC<IGame> = ({
           isTurnAuto={isTurnAuto}
           roundStatus={roundStatus}
           handleRemoveMember={handleRemoveMember}
+          issueId={issues?.find(({ isChecked }) => isChecked)?.id}
         />
       </aside>
       {valueConfirmedUser && isDealer && (

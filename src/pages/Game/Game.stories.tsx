@@ -100,19 +100,24 @@ const members = [
 ];
 const marksCurrentTask = [
   {
-    idUser: '1',
-    mark: '6',
-    scoreType: 'sp',
-  },
-  {
-    idUser: '2',
-    mark: '12',
-    scoreType: 'sp',
-  },
-  {
-    idUser: '3',
-    mark: 'uncnown',
-    scoreType: null,
+    idTask: '1',
+    marks: [
+      {
+        idUser: '1',
+        mark: '6',
+        scoreType: 'sp',
+      },
+      {
+        idUser: '2',
+        mark: '12',
+        scoreType: 'sp',
+      },
+      {
+        idUser: '3',
+        mark: '6',
+        scoreType: 'sp',
+      },
+    ],
   },
 ];
 const isTimerEnable = true;
@@ -155,6 +160,7 @@ const propsDealer = {
   handelAddIssue: action('handelAddIssue'),
   handleCheckedIssue: action('handleCheckedIssue'),
   kickPlayer: false,
+  isChangeEnable: false,
   delUser: null,
   actionKickButton: action('actionKickButton'),
   handleRemoveMember: action('handleRemoveMember'),
@@ -193,6 +199,7 @@ const propsDealerInProgress = {
   handelAddIssue: action('handelAddIssue'),
   handleCheckedIssue: action('handleCheckedIssue'),
   kickPlayer: false,
+  isChangeEnable: false,
   delUser: null,
   actionKickButton: action('actionKickButton'),
   handleRemoveMember: action('handleRemoveMember'),
@@ -231,6 +238,7 @@ const propsPlayer = {
   handelAddIssue: action('handelAddIssue'),
   handleCheckedIssue: action('handleCheckedIssue'),
   kickPlayer: false,
+  isChangeEnable: false,
   delUser: null,
   actionKickButton: action('actionKickButton'),
   handleRemoveMember: action('handleRemoveMember'),
