@@ -5,10 +5,11 @@ import { useHistory } from 'react-router-dom';
 
 import { EHandleIssue } from '../components/UI/ui.module';
 import { Lobby } from '../pages';
-import { changeSettings, enterTheGame } from '../store/actions/game';
+import { enterTheGame } from '../store/actions/game';
 import { IGameState, IReducer } from '../store/store.module';
 import { EGameStatus, IIssue } from '../components/Game/game.module';
 import { Spinners } from '../components';
+import { THIRTY_SECONDS, ZERO_SECONDS } from '../pages/pages.module';
 
 export const LobbyContainer: React.FC = () => {
   const { socket, myId } = useSelector((state: IReducer) => state.main);
@@ -16,9 +17,9 @@ export const LobbyContainer: React.FC = () => {
   const chat = useSelector((state: IReducer) => state.chat);
   const dispatch = useDispatch();
   const history = useHistory();
-  const [isTimerEnableState, setIsTimerEnable] = useState(false);
-  const [getMinute, handleChangeMinute] = useState('0');
-  const [getSeconds, handleChangeSeconds] = useState('0');
+  const [isTimerEnableState, setIsTimerEnable] = useState(true);
+  const [getMinute, handleChangeMinute] = useState(ZERO_SECONDS);
+  const [getSeconds, handleChangeSeconds] = useState(THIRTY_SECONDS);
   const [editTitle, setEditTitle] = useState(false);
   const [successSettings, setSuccessSettings] = useState(false);
   const [showIssue, setShowIssue] = useState(false);
@@ -27,13 +28,14 @@ export const LobbyContainer: React.FC = () => {
 
   useEffect(() => {
     return () => {
-      setIsTimerEnable(false);
-      handleChangeMinute('0');
-      handleChangeSeconds('0');
+      setIsTimerEnable(true);
+      handleChangeMinute(ZERO_SECONDS);
+      handleChangeSeconds(THIRTY_SECONDS);
       setEditTitle(false);
       setSuccessSettings(false);
     };
   }, []);
+  
   useEffect(() => {
     if (!game?.users?.some((item) => item.id === myId)) {
       dispatch(enterTheGame({} as IGameState));
