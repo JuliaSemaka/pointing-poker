@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Spinners } from '../components';
+import { ERole } from '../components/components.module';
 
 import {
   EGameStatus,
@@ -91,6 +92,25 @@ export const GameContainer: React.FC = () => {
       setKickPlayer(false);
     }
   }, [delUser]);
+
+  useEffect(() => {
+    if (
+      marksCurrentTask?.length &&
+      marksCurrentTask?.length ===
+        users?.filter(
+          (item) =>
+            item.role === ERole.player ||
+            (item.role === ERole.dealer && settings.isPlayer)
+        ).length
+    ) {
+      const data = {
+        id,
+        roundStatus: ERoundStatus.finish,
+        method: 'set-round-status',
+      };
+      socket!.send(JSON.stringify(data));
+    }
+  }, [marksCurrentTask]);
 
   const handleConfirmedUser = (value: boolean) => {
     if (value) {

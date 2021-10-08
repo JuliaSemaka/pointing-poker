@@ -12,6 +12,9 @@ import {
 } from '../components/UI/ui.module';
 import { IDelUser } from '../store/store.module';
 
+export const THIRTY_SECONDS = '30';
+export const ZERO_SECONDS = '0';
+
 export interface IUsers {
   id: string;
   firstName: string;
