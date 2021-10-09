@@ -33,7 +33,7 @@ export const GameResult: React.FC<IGameResult> = ({
                 <div className="game-item__card" key={index}>
                   <GameCard scoreType={scoreType} number={number} />
                   <div className="text text-ruda">
-                    {countPercentTask(number)}
+                    {countPercentTask(number, id)}
                   </div>
                 </div>
               ))}

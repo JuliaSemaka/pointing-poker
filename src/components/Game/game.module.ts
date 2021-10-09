@@ -54,6 +54,11 @@ export enum ERoundStatus {
 }
 
 export interface IMarksCurrentTask {
+  idTask: string;
+  marks: IMarks[];
+}
+
+export interface IMarks {
   idUser: string;
   mark: string;
   scoreType: string | null;
@@ -73,6 +78,7 @@ export interface IScore {
   isTurnAuto: boolean;
   roundStatus: ERoundStatus;
   handleRemoveMember: (idUser: string) => void;
+  issueId?: string;
 }
 
 export interface ICardsGame {
@@ -81,4 +87,6 @@ export interface ICardsGame {
   roundStatus: ERoundStatus;
   marksCurrentTask: IMarksCurrentTask[];
   myId: string;
+  issueId?: string;
+  isChangeEnable: boolean;
 }

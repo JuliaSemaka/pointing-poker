@@ -7,7 +7,12 @@ import { EHandleIssue } from '../components/UI/ui.module';
 import { Lobby } from '../pages';
 import { enterTheGame } from '../store/actions/game';
 import { IGameState, IReducer } from '../store/store.module';
-import { EGameStatus, IIssue } from '../components/Game/game.module';
+import {
+  EGameStatus,
+  IIssue,
+  IMarks,
+  IMarksCurrentTask,
+} from '../components/Game/game.module';
 import { Spinners } from '../components';
 import { THIRTY_SECONDS, ZERO_SECONDS } from '../pages/pages.module';
 
@@ -35,7 +40,7 @@ export const LobbyContainer: React.FC = () => {
       setSuccessSettings(false);
     };
   }, []);
-  
+
   useEffect(() => {
     if (!game?.users?.some((item) => item.id === myId)) {
       dispatch(enterTheGame({} as IGameState));
@@ -158,7 +163,6 @@ export const LobbyContainer: React.FC = () => {
       minute: getMinute,
       seconds: getSeconds,
     };
-    console.log('newSettings', newSettings);
     const data = {
       id,
       newSettings,
@@ -214,13 +218,11 @@ export const LobbyContainer: React.FC = () => {
   };
 
   const handleDeleteCard = (number: string) => {
-    console.log(number);
     const newCards = cards.filter((item, ind) => {
       if (item.number !== number) {
         return item;
       }
     });
-    console.log(newCards);
     const data = {
       id,
       newCards,
@@ -244,6 +246,7 @@ export const LobbyContainer: React.FC = () => {
 
   const handelAddIssue = (props: any) => {
     let newTasks: IIssue[] = [];
+    let newMarksCurrentTask: IMarksCurrentTask[] | undefined = undefined;
     if (!Object.keys(initialIssue).length) {
       const idIssue = (+new Date()).toString(16);
       const newIssue = {
@@ -254,15 +257,19 @@ export const LobbyContainer: React.FC = () => {
         mark: null,
       };
       newTasks = [...tasks, newIssue];
+      newMarksCurrentTask = [
+        ...marksCurrentTask,
+        { idTask: idIssue, marks: [] as IMarks[] },
+      ];
     } else {
       newTasks = tasks.map((item) =>
         item.id === initialIssue.id ? { ...item, ...props } : item
       );
     }
-
     const data = {
       id,
       issues: newTasks,
+      marksCurrentTask: newMarksCurrentTask,
       method: 'correct-issues',
     };
     socket!.send(JSON.stringify(data));
@@ -274,10 +281,15 @@ export const LobbyContainer: React.FC = () => {
       setInitialIssue({} as IIssue);
       setShowIssue(true);
     } else if (value === EHandleIssue.delete) {
-      const newTasks = tasks.filter((item) => item.id !== idIssue);
+      const newTasks = tasks.filter(({ id }) => id !== idIssue);
+      const newMarksCurrentTask = marksCurrentTask.filter(
+        ({ idTask }) => idTask !== idIssue
+      );
+
       const data = {
         id,
         issues: newTasks,
+        marksCurrentTask: newMarksCurrentTask,
         method: 'correct-issues',
       };
       socket!.send(JSON.stringify(data));

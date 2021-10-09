@@ -46,8 +46,10 @@ export const useWebSocket = () => {
             case 'add-user':
               if ('confirmed' in data && data.confirmed === false) {
                 dispatch(confirmedNewUser(data));
-              } else {
+              } else if ('id' in data) {
                 dispatch(enterTheGame(data));
+              } else {
+                dispatch(setUsers(data.users));
               }
               break;
             case 'set-game-status':
@@ -73,6 +75,9 @@ export const useWebSocket = () => {
               break;
             case 'correct-issues':
               dispatch(setTasks(data.tasks));
+              if (data.marksCurrentTask) {
+                dispatch(setMarksCurrentTask(data.marksCurrentTask));
+              }
               break;
             case 'del-user':
               dispatch(setDelUser(data.delUser));

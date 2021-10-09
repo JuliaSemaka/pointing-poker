@@ -39,4 +39,5 @@ CardCheck.args = {
   scoreType: 'sp',
   isCheck: true,
   roundStatus: ERoundStatus.inProgress,
+  isChangeEnable: true,
 };

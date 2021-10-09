@@ -46,19 +46,24 @@ const members = [
 ];
 const marksCurrentTask = [
   {
-    idUser: '1',
-    mark: '6',
-    scoreType: 'sp',
-  },
-  {
-    idUser: '2',
-    mark: '12',
-    scoreType: 'sp',
-  },
-  {
-    idUser: '3',
-    mark: '6',
-    scoreType: 'sp',
+    idTask: '1',
+    marks: [
+      {
+        idUser: '1',
+        mark: '6',
+        scoreType: 'sp',
+      },
+      {
+        idUser: '2',
+        mark: '12',
+        scoreType: 'sp',
+      },
+      {
+        idUser: '3',
+        mark: '6',
+        scoreType: 'sp',
+      },
+    ],
   },
 ];
 

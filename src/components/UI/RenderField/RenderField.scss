@@ -13,6 +13,10 @@
   width: 60%;
   max-width: 466px;
 
+  &:disabled {
+    box-shadow: 2px 4px 4px 0px #c7bebeab;
+  }
+
   & > input {
     outline: none;
     border: none;
@@ -42,6 +46,10 @@
     padding-left: 10px;
     padding-right: 0;
     overflow: hidden;
+
+    &:disabled {
+      box-shadow: none;
+    }
   }
 
   &-inherit {
@@ -81,9 +89,5 @@
     overflow: hidden;
     text-align: center;
     cursor: pointer;
-  }
-
-  &:disabled {
-    box-shadow: 2px 4px 4px 0px #c7bebeab;
   }
 }

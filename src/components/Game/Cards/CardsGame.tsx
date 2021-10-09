@@ -10,6 +10,8 @@ export const CardsGame: React.FC<ICardsGame> = ({
   roundStatus,
   marksCurrentTask,
   myId,
+  isChangeEnable,
+  issueId,
 }) => (
   <div className="game-item">
     <div className="game-item__cards">
@@ -21,10 +23,14 @@ export const CardsGame: React.FC<ICardsGame> = ({
           handleClickCard={handleClickCard}
           roundStatus={roundStatus}
           isChecked={
-            marksCurrentTask.findIndex(
-              (item) => item.mark === number && item.idUser === myId
-            ) !== -1
+            !!marksCurrentTask.length &&
+            marksCurrentTask
+              .find(({ idTask }) => idTask === issueId)
+              ?.marks.findIndex(
+                ({ mark, idUser }) => mark === number && idUser === myId
+              ) !== -1
           }
+          isChangeEnable={isChangeEnable}
         />
       ))}
     </div>
