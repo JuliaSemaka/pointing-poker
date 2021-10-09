@@ -40,7 +40,7 @@ export const GameDataGame: React.FC<IGameData> = ({
             isMyCard={myId === id}
           />
         </div>
-        {!isDealer && (seconds || minute) && (
+        {!isDealer && isTimerEnable && (seconds || minute) && (
           <RoundTime
             minute={minute!}
             seconds={seconds!}

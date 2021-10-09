@@ -11,7 +11,7 @@ export const GameResult: React.FC<IGameResult> = ({
   handleGameIssue,
   cardsValues,
   countPercentTask,
-  isDealer
+  isDealer,
 }) => (
   <div className="game wrapper">
     <main className="game-main">
@@ -19,7 +19,7 @@ export const GameResult: React.FC<IGameResult> = ({
         <div className="game-item__title">
           <h3 className="text text-ruda">{title}</h3>
         </div>
-        {issues.map(({ id, title, priority }) => (
+        {issues.map(({ id, title, priority, mark }) => (
           <div key={id}>
             <IssueCard
               title={title}
@@ -27,6 +27,7 @@ export const GameResult: React.FC<IGameResult> = ({
               priority={`${priority} priority`}
               handleIssue={handleGameIssue}
               isDealer={isDealer}
+              mark={mark!}
             />
             <div className="game-item__cards">
               {cardsValues.map(({ number, scoreType }, index) => (
