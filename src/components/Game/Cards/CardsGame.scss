@@ -11,4 +11,12 @@
       margin: 10px;
     }
   }
+
+  &__analitics {
+    margin-top: 10px;
+    width: 190px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
 }

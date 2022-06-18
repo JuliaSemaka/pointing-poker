@@ -114,6 +114,13 @@ $color5: #ffc482;
       line-height: 65px;
     }
 
+    &-medium {
+      font-weight: bold;
+      font-size: 21px;
+      line-height: 24px;
+      color: rgba(0, 0, 0, 0.6);
+    }
+
     &-small {
       font-weight: bold;
       font-size: 11px;
