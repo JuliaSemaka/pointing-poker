@@ -84,7 +84,7 @@ export const GameDataGame: React.FC<IGameData> = ({
         )}
         <Button
           style={EButtonStyle.light}
-          text={isDealer ? 'Stop Game' : 'Exit'}
+          text={isDealer ? 'Stop Session' : 'Exit'}
           handleClick={isDealer ? handleGameStopGame : handleGameExit}
         />
       </div>

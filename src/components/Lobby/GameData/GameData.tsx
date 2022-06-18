@@ -109,10 +109,10 @@ export const GameDataForm: React.FC<
       <div className="game-control">
         {isDealer ? (
           <>
-            <Button text="Start Game" handleClick={handleStartGame} />
+            <Button text="Start Session" handleClick={handleStartGame} />
             <Button
               style={EButtonStyle.light}
-              text="Cancel game"
+              text="Cancel Session"
               handleClick={handleCancelGame}
             />
           </>

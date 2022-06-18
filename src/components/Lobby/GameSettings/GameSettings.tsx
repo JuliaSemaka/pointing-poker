@@ -38,7 +38,7 @@ export const GameSettingsForm: React.FC<
   return (
     <div className="lobby-item">
       <div className="lobby-item__title">
-        <h3 className="text text-ruda">Game settings:</h3>
+        <h3 className="text text-ruda">Session settings:</h3>
       </div>
       <form className="settings" onSubmit={handleSubmit}>
         <div className="settings-item">

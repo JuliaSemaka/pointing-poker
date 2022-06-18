@@ -32,7 +32,7 @@ const MainForm: React.FC = ({
           </span>
           <div className="main-page-create-session">
             <span className="text">Create session:</span>
-            <Button text="Start New Game" handleClick={handleStartGame} />
+            <Button text="Start New Session" handleClick={handleStartGame} />
           </div>
           <span className="text text-big text-dark-green main-page-or">
             OR:

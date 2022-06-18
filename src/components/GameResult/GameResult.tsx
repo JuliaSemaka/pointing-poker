@@ -16,7 +16,7 @@ export const GameResult: React.FC<IGameResult> = ({
   isDealer,
 }) => {
 const analiticsMark = (mark: number) => {
-  return ((Math.floor(Math.random() * MAX) + mark) / 2) < 2 ? 2 : (Math.floor(Math.random() * MAX) + mark) / 2;
+  return (((Math.random() * MAX) + mark) / 2) < 2 ? 2 : Math.floor(((Math.random() * MAX) + mark) / 2);
 };
 
   return (
