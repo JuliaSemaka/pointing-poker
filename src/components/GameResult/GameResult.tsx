@@ -37,7 +37,7 @@ const analiticsMark = (mark: number) => {
                 mark={mark!}
               />
               <div className="game-item__analitics">
-                <p className="text text-ruda-medium">Analitics Mark: </p>
+                <p className="text text-ruda-medium">Analitics Assessment: </p>
                 <p className="text text-ruda">{analiticsMark(+mark!)}</p>
               </div>
               <div className="game-item__cards">
