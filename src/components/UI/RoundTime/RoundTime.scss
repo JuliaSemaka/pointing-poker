@@ -1,0 +1,37 @@
+.round-time {
+  width: 200px;
+  height: 80px;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  display: flex;
+
+  &__half {
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    & > input {
+      margin-left: 15px;
+      width: 80%;
+      height: 68%;
+      border: none;
+      outline: none;
+    }
+  }
+
+  &__text {
+    position: absolute;
+    top: 0;
+    left: 3px;
+  }
+
+  &__separator {
+    position: absolute;
+    top: 25px;
+    left: 0;
+  }
+}

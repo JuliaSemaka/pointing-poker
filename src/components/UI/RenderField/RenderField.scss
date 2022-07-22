@@ -1,0 +1,93 @@
+.input {
+  display: flex;
+  position: relative;
+  background: #ffffff;
+  border: 1px solid #2b3a67;
+  box-sizing: border-box;
+  border-radius: 0px 0px 0px 10px;
+  outline: none;
+  line-height: 29px;
+  padding: 8px 20px;
+  box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5),
+    1px 1px 5px rgba(255, 255, 255, 1);
+  width: 60%;
+  max-width: 466px;
+
+  &:disabled {
+    box-shadow: 2px 4px 4px 0px #c7bebeab;
+  }
+
+  & > input {
+    outline: none;
+    border: none;
+    width: 100%;
+  }
+
+  &-block {
+    position: relative;
+  }
+
+  &-error {
+    position: absolute;
+    top: 46px;
+  }
+
+  &-card {
+    font-size: 11px;
+    line-height: 15px;
+    padding: 0;
+    color: gray;
+  }
+
+  &-issue {
+    width: 50px;
+    font-size: 26px;
+    line-height: 30px;
+    padding-left: 10px;
+    padding-right: 0;
+    overflow: hidden;
+
+    &:disabled {
+      box-shadow: none;
+    }
+  }
+
+  &-inherit {
+    background: transparent;
+    box-shadow: none;
+    border: none;
+  }
+
+  &-with-button {
+    max-width: 276px;
+    font-weight: 300;
+    text-overflow: ellipsis;
+  }
+
+  &-middle {
+    width: 324px;
+    padding: 3px 20px;
+  }
+
+  &-error-text {
+    margin-left: 20px;
+  }
+
+  &-file {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+  }
+
+  &-label {
+    box-shadow: 2px 4px 4px 0px #c7bebeab;
+    text-overflow: ellipsis;
+    display: inline-block;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+  }
+}

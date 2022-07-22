@@ -1,0 +1,64 @@
+.main-page {
+  &-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &-container {
+    width: 100%;
+    max-width: 1000px;
+  }
+
+  &-logo-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 5rem;
+    padding-bottom: 2.5rem;
+
+    & > img {
+      max-width: 87%;
+    }
+  }
+
+  &-start {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    @media (max-width: 680px) {
+      max-width: 93%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  &-or {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 450px;
+  }
+  &-create-session {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    gap: 10rem;
+  }
+
+  &-connect-to-lobby {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    padding-bottom: 5rem;
+
+    &__error {
+      position: absolute;
+      top: -30px;
+    }
+  }
+}

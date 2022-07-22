@@ -1,0 +1,22 @@
+.game-item {
+  &__cards {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+    & > div {
+      margin: 10px;
+    }
+  }
+
+  &__analitics {
+    margin-top: 10px;
+    width: 190px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+}

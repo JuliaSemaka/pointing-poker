@@ -1,0 +1,29 @@
+.settings {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 30px;
+
+  &-submit {
+    & > button {
+      margin-left: auto;
+    }
+
+    & > p {
+      position: absolute;
+      right: 0px;
+    }
+  }
+
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    &-cards {
+      flex-direction: column;
+      margin-bottom: 30px;
+    }
+  }
+}

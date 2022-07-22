@@ -1,0 +1,19 @@
+.kick-player {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+  height: 400px;
+
+  &>p {
+    text-align: center;
+  }
+
+  &__block {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}

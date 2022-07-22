@@ -1,0 +1,10 @@
+.game-item__card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & .game-card {
+    width: 82px;
+    height: 137px;
+  }
+}

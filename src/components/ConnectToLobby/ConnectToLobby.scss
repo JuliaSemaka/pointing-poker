@@ -1,0 +1,51 @@
+.modal-connect-lobby {
+  width: 756px;
+  height: 550px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
+
+  &__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &-name{
+    display: flex;
+    flex-direction: column;
+
+    span {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    gap: 3rem;
+
+    label {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+    }
+  }
+
+  &-file {
+    display: flex;
+    flex-direction: row;
+  }
+
+  &-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+}
